@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Coefficient of Determination</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="linearizable-models.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="proportionality.html" title="Up">Up</a><span id="nextbutton" class="next-button button toolbar-item disabled">Next</span></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="linearizable-models.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="proportionality.html" title="Up">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination" class="active">Coefficient of Determination</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="coefficient-of-determination"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">6.6</span> <span class="title">Coefficient of Determination</span>
+</h2>
+<p id="p-432">The coefficient of determination, denoted \(R^2\text{,}\) is a numerical measure of how well a line fits a set of data.  To illustrate the fundamental concepts, we will generate some hypothetical data according to the relationship \(y=3+2x\text{.}\)</p>
+<div class="sagecell-sage" id="sage-166"><script type="text/x-sage">data = [(x,2*x+3) for x in range(10)]
+data
+</script></div>
+<div class="sagecell-sage" id="sage-167"><script type="text/x-sage">var('x') # x had a value of 9 because of our data definition.  This resets x and is necessary.
+sp = scatter_plot(data)
+sp + plot(2*x+3,(x,0,10))
+</script></div>
+<p id="p-433">Note that the line goes through each data point and the equation of this line (also called the <em class="emphasis">regression equation</em> is exactly what is used to generate the data.</p>
+<p id="p-434">One purpose of fitting a line to data is to use it for predicting the value of \(y\) when \(x\) is known.  If we did not have a graph of the data or the regression equation and we were given a value of \(x\text{,}\) the best guess as to the corresponding value of \(y\) would be the mean of the data.</p>
+<div class="sagecell-sage" id="sage-168"><script type="text/x-sage">yvalues = [y for (x,y) in data]
+yvalues
+</script></div>
+<div class="sagecell-sage" id="sage-169"><script type="text/x-sage">import numpy # This imports a numerical package
+
+numpy.mean(yvalues)
+</script></div>
+<p id="p-435">This mean is denoted by \(\overline{y}\) and equals 12 in this case.  We test this simple prediction strategy by examining the “error” it would cause for the given data points.</p>
+<div class="sagecell-sage" id="sage-170"><script type="text/x-sage">var('x')
+sp + plot(2*x+3,(x,0,10)) + plot(12,(x,0,10),color='red') \
++ text('$\\}\\leftarrow y -\\overline{y}$', (7.2,13.5),fontsize='24') \
++ text('$\\overline{y}=12$', (2,13.5), fontsize = '24', color = 'black')
+</script></div>
+<div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="./images/meanerror.png" class="contained" alt=""></div>
+<p id="p-436">If a \(y\)-value predicted by the regression equation is denoted \(\hat{y}\text{,}\) we measure how well a regression equation fits the data by comparing the deviation to the difference between \(\hat{y}\) and \(\overline{y}\text{,}\) \(\hat{y} - \overline{y}\text{.}\)  In this case, the regression line goes through each data point, so \(\hat{y} = y\text{.}\)  Therefore,</p>
+<div class="displaymath">
+\begin{equation*}
+\hat{y} - \overline{y} = y - \overline{y} \quad\Longrightarrow \quad \frac{\hat{y} - \overline{y}}{y - \overline{y}} = 1.
+\end{equation*}
+</div>
+<p id="p-437">Thus we give this regression equation an \(R^2\) value of 1.  This value is often interpreted by saying that the regression equation “explains” 100% of the deviation. The definition of the coefficient of determination is based on this idea of comparing the deviation to the difference between \(\hat{y}\) and \(\overline{y}\) to measure the percentage of deviation “explained” by the regression equation.</p>
+<p id="p-438">This set of data is highly idealized because it was generated exactly according to the linear relationship \(y=3+2x\text{.}\)  In reality, data never conforms to an exact relationship like this.  Real data with a linear relationship satisfies an equation of the form</p>
+<div class="displaymath">
+\begin{equation*}
+y = \beta_0 + \beta_1 x + \varepsilon
+\end{equation*}
+</div>
+<p id="p-439">where \(\varepsilon\) is some “noise.” This noise may be due to measurement error, sampling variation, or some other random event outside of our control.</p>
+<p id="p-440">The relation \(y = \beta_0 + \beta_1x\) is called the “true” linear trend of the population while the regression equation has the generic form \(\hat{y} = \hat{\beta}_0 + 
+\hat{\beta}_1 x\text{.}\)  The “hats” indicate that the parameters \(\hat{\beta}_0\) and \(\hat{\beta}_1\text{,}\) and the values of \(y\text{,}\) are estimates of the population values based on sample data.</p>
+<p id="p-441">Let's redo the data set by adding in some psuedorandom noise.</p>
+<div class="sagecell-sage" id="sage-171"><script type="text/x-sage">data = [(x, 2*x+3+numpy.random.normal(0,2)) for x in range(10)]
+
+sp2 = scatter_plot(data)
+show(sp2)
+</script></div>
+<p id="p-442">(If you execute these commands several times in a row, you will get a slightly different graph each time.)</p>
+<div class="sagecell-sage" id="sage-172"><script type="text/x-sage">var('b0 b1 x')
+model(x) = b0 + b1*x
+ans = find_fit(data,model, solution_dict = True)
+ans
+</script></div>
+<div class="sagecell-sage" id="sage-173"><script type="text/x-sage">sp2 + plot(ans[b0] + ans[b1]*x,(x,0,10))
+</script></div>
+<p id="p-443">How do we define the \(R^2\) value for a line fit to noisy data?  We introduce three different types of deviation:</p>
+<ul class="disc">
+<li id="li-39"><p id="p-444"><em class="emphasis">Explained deviation</em> \({}=\hat{y} - \overline{y}\)</p></li>
+<li id="li-40"><p id="p-445"><em class="emphasis">Unexplained deviation</em> \({}=y - \hat{y}\)</p></li>
+<li id="li-41"><p id="p-446"><em class="emphasis">Total deviation</em> = Explained deviation + unexplained deviation \({}= y - \overline{y}\)</p></li>
+</ul>
+<p id="p-447">We wish to total up the deviation over all the data points, but we need to avoid cancellation. So similar to the least-squares approach, we will square these quantities to get amounts of <dfn class="terminology">variation</dfn>.  The total variation is called the <dfn class="terminology">total sum of squares</dfn> and is given by</p>
+<div class="displaymath">
+\begin{equation*}
+SS_{Tot} = \sum (y_i - \overline{y})^2.
+\end{equation*}
+</div>
+<p id="p-448">The explained variation is called the <dfn class="terminology">regression sum of squares</dfn> and is given by</p>
+<div class="displaymath">
+\begin{equation*}
+SS_{Reg} = \sum (\hat{y}_i - \overline{y})^2.
+\end{equation*}
+</div>
+<p id="p-449">The unexplained variation is called the <dfn class="terminology">residual sum of squares</dfn> and is given by</p>
+<div class="displaymath">
+\begin{equation*}
+SS_{Res} = \sum (y_i - \hat{y}_i)^2.
+\end{equation*}
+</div>
+<p id="p-450">Similar to the relationship between the deviations, we get that</p>
+<div class="displaymath">
+\begin{equation*}
+SS_{Tot} = SS_{Reg} + SS_{Res}.
+\end{equation*}
+</div>
+<p id="p-451">(Proving that is not trivial.). If we rewrite the previous equation as \(SS_{Reg} = SS_{Tot} - SS_{Res}\text{,}\) we can write that the “percentage” of the total variation explained by the regression equation is</p>
+<div class="displaymath">
+\begin{equation*}
+R^2 = \frac{SS_{Reg}}{SS_{Tot}} = \frac{SS_{Tot} - SS_{Res}}{SS_{Tot}}.
+\end{equation*}
+</div>
+<p id="p-452">This is the definition of the coefficient of determination.  The closer \(R^2\) is to 1, the better the line fits the data.  An \(R^2\) value close to 0 indicates a very poor-fitting model.</p>
+<p id="p-453">Now let's calculate \(R^2\) for our noisy data and its regression line above.</p>
+<div class="sagecell-sage" id="sage-174"><script type="text/x-sage">yvalues = [y for (x,y) in data]
+avg = numpy.mean(yvalues)
+
+yhatvalues = [(ans[b0] + ans[b1]*x) for (x,y) in data]
+
+sstot = sum((yvalues[i]-avg)^2 for i in range(10))
+
+ssres = sum((yvalues[i] - yhatvalues[i])^2 for i in range(10))
+
+rsquared = (sstot - ssres)/sstot
+rsquared
+</script></div>
+<p id="p-454">The \(R^2\) value is not 1 because our data has some noise, so the underlying linear relationship (\(y=3+2x\)) does not account for all of the variation from the mean.</p>
+<p id="p-455">If we re-execute the cells above to re-do the noise, we should get different points and a different \(R^2\) value. We can add more “noise” to the data by increasing the standard deviation from 2 to 4.  What happens to the \(R^2\) value if we do this?</p>
+<section class="subsection" id="subsection-19"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">6.6.1</span> <span class="title">Finding \(R^2\) for linearizable models</span>
+</h3>
+<p id="p-456">Consider the linearizable models fit to the life expectancy data in <a href="linearizable-models.html" class="internal" title="Section 6.5: Linearizable Models">Section 6.5</a>. We can compare how well the different models fit the data by calculating the \(R^2\) value for each model and then comparing the \(R^2\) values. To calculate the \(R^2\) value for a linearizable model, we calculate the \(R^2\) value for the straight line fit to the <em class="emphasis">transformed</em> data.</p>
+<section class="subsubsection" id="subsubsection-1"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span> <span class="codenumber">6.6.1.1</span> <span class="title">Power model</span>
+</h4>
+<div class="sagecell-sage" id="sage-175"><script type="text/x-sage">datapoints = [(275, 74), (410, 72), (467, 73), (559, 67), (643, 68), (1010, 70), (1037, 67), (1216, 66), (2471, 57), (4873, 62), (6166, 54), (7174, 59)]
+
+loglogpoints = [(ln(P), ln(L)) for (P, L) in datapoints]
+sp = scatter_plot(loglogpoints, axes_labels=['$\\ln P$', '$\\ln L$'])
+show(sp)
+</script></div>
+<div class="sagecell-sage" id="sage-176"><script type="text/x-sage">var('b a')
+model(x) = b*x + a
+ans = find_fit(loglogpoints, model, solution_dict=True)
+ans
+</script></div>
+<div class="sagecell-sage" id="sage-177"><script type="text/x-sage">sp + plot(ans[b]*x + ans[a],(x,5,9))
+</script></div>
+<div class="sagecell-sage" id="sage-178"><script type="text/x-sage">yvalues = [y for (x,y) in loglogpoints]
+
+import numpy
+avg = numpy.mean(yvalues).n()
+avg
+</script></div>
+<div class="sagecell-sage" id="sage-179"><script type="text/x-sage">yhatvalues = [(ans[b]*x + ans[a]) for (x,y) in loglogpoints]
+sstot = N(sum((yvalues[i]-avg)^2 for i in range(10)))
+ssres = N(sum((yvalues[i] - yhatvalues[i])^2 for i in range(10)))
+rsquared = (sstot - ssres)/sstot
+rsquared
+</script></div></section><section class="subsubsection" id="subsubsection-2"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span> <span class="codenumber">6.6.1.2</span> <span class="title">Logarithmic model</span>
+</h4>
+<div class="sagecell-sage" id="sage-180"><script type="text/x-sage">datapoints = [(275, 74), (410, 72), (467, 73), (559, 67), (643, 68), (1010, 70), (1037, 67), (1216, 66), (2471, 57), (4873, 62), (6166, 54), (7174, 59)]
+
+logpoints = [(ln(P), L) for (P,L) in datapoints]
+sp2 = scatter_plot(logpoints, axes_labels = ["$\\ln P$", "$L$"])
+show(sp2)
+</script></div>
+<div class="sagecell-sage" id="sage-181"><script type="text/x-sage">var('b a')
+model(x) = b*x + a
+ans = find_fit(logpoints,model, solution_dict = True)
+ans
+</script></div>
+<div class="sagecell-sage" id="sage-182"><script type="text/x-sage">sp2 + plot(ans[b]*x + ans[a],(x,5,9))
+</script></div>
+<div class="sagecell-sage" id="sage-183"><script type="text/x-sage">yvalues = [y for (x,y) in logpoints]
+
+import numpy
+avg = numpy.mean(yvalues)
+avg
+</script></div>
+<div class="sagecell-sage" id="sage-184"><script type="text/x-sage">yhatvalues = [(ans[b]*x + ans[a]) for (x,y) in logpoints]
+sstot = N(sum((yvalues[i]-avg)^2 for i in range(10)))
+ssres = N(sum((yvalues[i] - yhatvalues[i])^2 for i in range(10)))
+rsquared = (sstot - ssres)/sstot
+rsquared
+</script></div></section><section class="subsubsection" id="subsubsection-3"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span> <span class="codenumber">6.6.1.3</span> <span class="title">Exponential model</span>
+</h4>
+<div class="sagecell-sage" id="sage-185"><script type="text/x-sage">datapoints = [(275, 74), (410, 72), (467, 73), (559, 67), (643, 68), (1010, 70), (1037, 67), (1216, 66), (2471, 57), (4873, 62), (6166, 54), (7174, 59)]
+
+exppoints = [(P,ln(L)) for (P,L) in datapoints]
+sp3 = scatter_plot(exppoints,axes_labels=["$P$", "$\\ln L$"])
+sp3
+</script></div>
+<div class="sagecell-sage" id="sage-186"><script type="text/x-sage">var('b a')
+model(x) = b*x + a
+ans = find_fit(exppoints,model, solution_dict = True)
+ans
+</script></div>
+<div class="sagecell-sage" id="sage-187"><script type="text/x-sage">sp3 + plot(ans[b]*x + ans[a],(x,0,7000))
+</script></div>
+<div class="sagecell-sage" id="sage-188"><script type="text/x-sage">yvalues = [y for (x,y) in exppoints]
+
+import numpy
+avg = numpy.mean(yvalues).n()
+avg
+</script></div>
+<div class="sagecell-sage" id="sage-189"><script type="text/x-sage">yhatvalues = [(ans[b]*x + ans[a]) for (x,y) in exppoints]
+sstot = N(sum((yvalues[i]-avg)^2 for i in range(10)))
+ssres = N(sum((yvalues[i] - yhatvalues[i])^2 for i in range(10)))
+rsquared = (sstot - ssres)/sstot
+rsquared
+</script></div></section><p id="p-457">We can now compare how well these models fit the data by comparing their \(R^2\) values:</p>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th class="c m b0 r0 l0 t3 lines">Logarithmic</th>
+<th class="c m b0 r0 l0 t3 lines">Power</th>
+<th class="c m b0 r0 l0 t3 lines">Exponential</th>
+</tr>
+<tr>
+<td class="c m b3 r0 l0 t0 lines">0.7714</td>
+<td class="c m b3 r0 l0 t0 lines">0.7611</td>
+<td class="c m b3 r0 l0 t0 lines">0.5739</td>
+</tr>
+</table></div></section><p id="p-458">We see that the power and logarithmic models fit the data well with the logarithmic model being slightly better. The exponential model does not fit as well. Thus, based strictly on the \(R^2\) values, we would conclude that the logarithmic model fits the data the best. This agrees with our earlier conclusion.</p>
+<p id="p-459">We warn against blindly using \(R^2\) values to choose a best model. These values should be used as only one factor when choosing a best model. Other factors that should be considered are the nature of the behavior being analyzed and the simplicity of the model.</p>
+<p id="p-460">For instance, population growth is often exponential. So if we fit curves to some data of a population, we may want to favor an exponential model over other types even if it has a lower \(R^2\) value.</p>
+<p id="p-461">In “Modeling the U.S. Population” (AMATYC Review, Vol. 20, No. 2, Spring 1999, pages 17–29), Sheldon Gordon makes the point that, “The best choice (of a model) depends on the set of data being analyzed and requires an exercise in judgement, not just computation.”</p>
+<section class="exercises" id="exercises-8"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">6.6.2</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-23"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<p id="p-462">The data below contain the weights (in lbs) and highway miles per gallon (MPG) of several cars. Calculate \(SS_{Reg}\text{,}\) \(SS_{Res}\text{,}\) \(SS_{Tot}\text{,}\) and \(R^2\) for the linear regression equation fit to this data.</p>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b1 r1 l0 t3 lines">
+<em class="emphasis">Weight</em> (\(x\))</td>
+<td class="c m b1 r0 l0 t3 lines">3250</td>
+<td class="c m b1 r0 l0 t3 lines">3425</td>
+<td class="c m b1 r0 l0 t3 lines">2400</td>
+<td class="c m b1 r0 l0 t3 lines">2250</td>
+</tr>
+<tr>
+<td class="c m b3 r1 l0 t0 lines">
+<em class="emphasis">MPG</em> (\(y\))</td>
+<td class="c m b3 r0 l0 t0 lines">26</td>
+<td class="c m b3 r0 l0 t0 lines">28</td>
+<td class="c m b3 r0 l0 t0 lines">37</td>
+<td class="c m b3 r0 l0 t0 lines">38</td>
+</tr>
+</table></div></article><article class="exercise exercise-like" id="exercise-24"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<p id="p-463">The data below contain the diameter of the trunk at chest height and volume of wood in several pine trees. Model Volume in terms of Diameter with several different linearizable models and select the best one. Briefly explain how you decided which one is best.</p>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r m b1 r1 l0 t3 lines"><em class="emphasis">Diameter</em></td>
+<td class="c m b1 r0 l0 t3 lines">32</td>
+<td class="c m b1 r0 l0 t3 lines">29</td>
+<td class="c m b1 r0 l0 t3 lines">24</td>
+<td class="c m b1 r0 l0 t3 lines">45</td>
+<td class="c m b1 r0 l0 t3 lines">20</td>
+<td class="c m b1 r0 l0 t3 lines">30</td>
+<td class="c m b1 r0 l0 t3 lines">26</td>
+<td class="c m b1 r0 l0 t3 lines">40</td>
+<td class="c m b1 r0 l0 t3 lines">24</td>
+<td class="c m b1 r0 l0 t3 lines">18</td>
+</tr>
+<tr>
+<td class="r m b3 r1 l0 t0 lines"><em class="emphasis">Volume</em></td>
+<td class="c m b3 r0 l0 t0 lines">185</td>
+<td class="c m b3 r0 l0 t0 lines">109</td>
+<td class="c m b3 r0 l0 t0 lines">95</td>
+<td class="c m b3 r0 l0 t0 lines">300</td>
+<td class="c m b3 r0 l0 t0 lines">30</td>
+<td class="c m b3 r0 l0 t0 lines">125</td>
+<td class="c m b3 r0 l0 t0 lines">55</td>
+<td class="c m b3 r0 l0 t0 lines">246</td>
+<td class="c m b3 r0 l0 t0 lines">60</td>
+<td class="c m b3 r0 l0 t0 lines">15</td>
+</tr>
+</table></div></article></section></section></div></main>
+</div>
+</body>
+</html>

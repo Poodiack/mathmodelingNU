@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Downloading SageMath</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="download.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="download.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-cocalc.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="download.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="download.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-cocalc.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage" class="active">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination">Coefficient of Determination</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="section-downloading-Sage"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">1.1</span> <span class="title">Downloading SageMath</span>
+</h2>
+<section class="introduction" id="introduction-2"><p id="p-1">SageMath is an open-source and free competitor to expensive computer algebra systems like Mathematica, Maple, and MATLAB.  It is generally easier to use than a graphing calculator and much more powerful, combining ways to display your results to others with stunning graphics.</p>
+<p id="p-2">Working with SageMath can be done by downloading the software to your own laptop, or by using CoCalc, an online installation that can be used in any browser.  There are advantages and disadvantages to each implementation, but both experiences are equivalent -- you get the same version of Sage and can use the same commands in either method.</p>
+<p id="p-3">What follows below are starter instructions for downloading SageMath to your Mac or a Windows PC.  (There is an app for the iPad and the iPhone, but these simply call the SageMathCell server to do quick calculations.  At this writing, there is not a full implementation of SageMath for the iPad or iPhone. On the iPad, you will need to use CoCalc.)</p>
+<p id="p-4">In any browser, navigate to <a class="external" href="http://www.sagemath.org" target="_blank">http://www.sagemath.org</a>.</p>
+<div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="images/sagemathpage.pdf" class="contained" alt=""></div>
+<p id="p-5">There are six buttons in the center of the screen.  Click on the downward arrow button in the upper right-hand corner. (It'll say "Install 10.7" -- or whatever the current version is.)</p>
+<div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="./images/sageinstallation.pdf" class="contained" alt=""></div>
+<p id="p-6">NOTE: If you have installed SageMath on MacOS, you should move the icon to start SageMath to the Applications folder. If you have installed SageMath on a Windows machine, you should absolutely create a shortcut for SageMath that lets you start the Jupyter or JupyterLab server in one click.</p></section></section></div></main>
+</div>
+</body>
+</html>

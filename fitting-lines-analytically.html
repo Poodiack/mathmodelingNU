@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Fitting Straight Lines Analytically</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="modeling-with-proportionality.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="proportionality.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="geometric-similarity.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="modeling-with-proportionality.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="proportionality.html" title="Up">Up</a><a class="next-button button toolbar-item" href="geometric-similarity.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically" class="active">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination">Coefficient of Determination</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="fitting-lines-analytically"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">6.3</span> <span class="title">Fitting Straight Lines Analytically</span>
+</h2>
+<p id="p-312">As we have seen, modeling with proportionality often requires us to fit a straight line to a set of data. In earlier sections we used a graphical approach, which can be rather subjective. Today we will look at different definitions of a “best fit” line and find formulas for the slope and \(y\)-intercept of a best-fit line in terms of the \(x\)- and \(y\)-coordinates of the data points. This will give an objective approach to fitting a straight line.</p>
+<p id="p-313">The first step is to define criteria for a good-fitting line. The line in the left graph in <a class="xref" data-knowl="./knowl/two-lines.html" title="Figure 6.3.1">Figure 6.3.1</a> fits the data “better” than the line in the right graph.</p>
+<figure class="figure figure-like" id="two-lines"><div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="./images/Fig2.14.png" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">6.3.1<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-314">What’s the difference between these two lines? There are probably many ways to answer this question.</p>
+<p id="p-315">We see that in the right graph, the line is very close to the right-most point, but further from the other two points than the line in the left graph. We might say that the line in the left graph is “closer” to the data points in general than the line in the right graph. The idea of minimizing the distance between the line and the points will form the basis of the definition of a best-fit line.</p>
+<p id="p-316">These distances (also called <em class="emphasis">errors</em>) are illustrated in the figure below with the dashed lines.</p>
+<figure class="figure figure-like" id="figure-3"><div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="./images/Fig2.15.png" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">6.3.2<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-317">If the coordinates of the points are given by</p>
+<div class="displaymath">
+\begin{equation*}
+(x_i,y_i) \text{ for } i = 1, 2, \dots, n
+\end{equation*}
+</div>
+<p id="p-318">and the line is described by the function \(f(x) = mx + b\text{,}\) then the values of the distances are</p>
+<div class="displaymath">
+\begin{equation*}
+|y_i-f(x_i)| \text{ for } i=1, 2, \dots, n
+\end{equation*}
+</div>
+<p id="p-319">There are many ways to define how the best-fit line minimizes these distances. One way, called <em class="emphasis">Chebyshev’s criterion</em>, is based on the idea that the best-fit line should make the largest of these distances as small as possible. In more technical terms, this criterion says that the function \(f(x) = mx+b\) giving the best-fit line is the one that minimizes the number</p>
+<div class="displaymath">
+\begin{equation*}
+C = \text{Maximum of } \{|y_i - f(x_i)|: i = 1, 2, \cdots n\}.
+\end{equation*}
+</div>
+<p id="p-320">Our goal is to find formulas for the slope \(m\) and \(y\)-intercept \(b\text{.}\) Since we want to minimize something, we might think about using derivatives. Chebyshev’s criterion makes logical sense, but it’s not obvious how to take the derivative or use it to find simple formulas for \(m\) and \(b\text{.}\)</p>
+<p id="p-321">Another criterion is based on the idea that the best–fit line should minimize the sum of the distances. In mathematical notation, \(f(x) = mx + b\) should minimize the number</p>
+<div class="displaymath">
+\begin{equation*}
+A = \sum_{i=1}^n |y_i - f(x_i)|.
+\end{equation*}
+</div>
+<p id="p-322">This criterion is also very logical, but the absolute values make the derivative difficult to calculate. To make the derivative simpler, we might consider getting rid of the absolute values in the above summation altogether and add the criterion that the sum must be non–negative. This, however, would make some of the terms in the summation positive and some negative. So, there might be some large positive values that cancel out some large negative values resulting in a small sum, but a poor-fitting line.</p>
+<p id="p-323">The most widely used criterion, called the <em class="emphasis">least–squares</em> criterion, uses squares rather than absolute values to make all the terms positive. In mathematical notation, this criterion says that the function \(f(x) = mx + b\) should minimize the number</p>
+<div class="displaymath">
+\begin{equation*}
+S = \sum_{n=1}^\infty (y_i-f(x_i))^2.
+\end{equation*}
+</div>
+<p id="p-324">To see how this might work, consider the example below.</p>
+<article class="example example-like" id="example-10"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-10"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Illustrating the Least-Squares Criterion.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-10"><article class="example example-like"><p id="p-325">We start with a data set and then ask SageMath to produce a scatterplot of the data.</p>
+<div class="hidden-sagecell-sage" id="sage-136"><script type="text/x-sage">datapoints = [(0.8, 2), (2.5, 4.2), (3.5, 3.5), (4.2, 5.3), (5.8, 4.5), (7.5, 7)]
+sp = scatter_plot(datapoints)
+show(sp)
+</script></div>
+<p id="p-326">We could certainly try to “guess and check” a slope and intercept, but it's likely there's a better candidate than our eyeball might give us.</p>
+<p id="p-327">The least-squares approach to finding a “best-fit” line for a set of data involves finding the slope \(m\) and the \(y\)-intercept \(b\) that minimizes the sum of the squares of the errors.  If we let \(f(x) = mx + b\) be our approximating line, we are trying to find \(m\) and \(b\) values so that</p>
+<div class="displaymath">
+\begin{equation*}
+S = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2 = \sum_{i=1}^n (y_i - mx_i -b)^2 
+\end{equation*}
+</div>
+<p id="p-328">is a minimum.  To search for these values, we think of \(S\) as a function of \(m\) and \(b\text{,}\) and set the partial derivatives of \(S\) with respect to \(m\) and \(b\) to 0.</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+\frac{\partial S}{\partial m} &amp;= \sum_{i=1}^n 2(y_i - mx_i -b)\cdot (-x_i)  = -2\sum_{i=1}^n (y_i - mx_i-b)x_i= 0 \\
+\frac{\partial S}{\partial b} &amp;= \sum_{i=1}^n 2(y_i - mx_i -b)\cdot (-1)  = -2\sum_{i=1}^n (y_i - mx_i - b)= 0
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-329">These equations can be rewritten as</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{gathered}
+\sum_{i=1}^n x_i y_i - m\sum_{i=1}^n x_i^2 - b\sum_{i=1}^n x_i = 0 \\
+\sum_{i=1}^n y_i - m\sum_{i=1}^n x_i - n\cdot b = 0
+\end{gathered}
+\end{equation*}
+</div>
+<p id="p-330">Despite the look of these equations, they are a system of two linear equations in two unknowns. Using the usual methods to solve for \(m\) and \(b\text{,}\) we get</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+b &amp;= \frac{\sum x_i^2 \sum y_i - \sum x_i y_i \sum x_i}{n\sum x_i^2 - \left(\sum x_i\right)^2} \\
+m &amp;= \frac{n\sum x_i y_i - \sum x_i \sum y_i}{n\sum x_i^2 - \left(\sum x_i\right)^2}
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-331">These formulas are implemented below.</p>
+<div class="hidden-sagecell-sage" id="sage-137"><script type="text/x-sage">n = len(datapoints)
+n
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-138"><script type="text/x-sage">b = (sum(x[0]^2 for x in datapoints)*sum(x[1] for x in 
+	datapoints)-sum(x[0]*x[1] for x in datapoints)*
+	sum(x[0] for x in datapoints))/(n*sum(x[0]^2 for x in 
+	datapoints) - sum(x[0] for x in datapoints)^2)
+
+m = (n*sum(x[0]*x[1] for x in datapoints)-
+     sum(x[0] for x in datapoints)*sum(x[1] for x in 
+     datapoints))/(n*sum(x[0]^2 for x in datapoints) - 
+     sum(x[0] for x in datapoints)^2)
+
+m, b
+</script></div>
+<p id="p-332">The good news is that we don't have to do this all the time. The least-squares approach is already built into SageMath, using the <code class="code-inline tex2jax_ignore">find_fit</code> function.</p>
+<div class="hidden-sagecell-sage" id="sage-139"><script type="text/x-sage">var('m1 b1')
+model(x) = m1*x + b1
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-140"><script type="text/x-sage">sol = find_fit(datapoints, model, solution_dict = True)
+sol[m1], sol[b1]
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-141"><script type="text/x-sage">sp + plot(sol[m1]*x + sol[b1], (x, 0, 8))
+</script></div></article></div>
+<section class="exercises" id="exercises-5"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-17"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-15">
+<p id="p-333">Suppose a biologist records the number of pulses per second of the chirps of a cricket at different temperatures (in \({}^\circ\)F). The data collected is shown below.</p>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="r m b1 r1 l0 t3 lines"><em class="emphasis">Temperature</em></td>
+<td class="c m b1 r0 l0 t3 lines">72</td>
+<td class="c m b1 r0 l0 t3 lines">73</td>
+<td class="c m b1 r0 l0 t3 lines">89</td>
+<td class="c m b1 r0 l0 t3 lines">75</td>
+<td class="c m b1 r0 l0 t3 lines">93</td>
+<td class="c m b1 r0 l0 t3 lines">85</td>
+<td class="c m b1 r0 l0 t3 lines">79</td>
+<td class="c m b1 r0 l0 t3 lines">97</td>
+<td class="c m b1 r0 l0 t3 lines">86</td>
+<td class="c m b1 r0 l0 t3 lines">91</td>
+</tr>
+<tr>
+<td class="r m b3 r1 l0 t0 lines"><em class="emphasis">Pulses/sec</em></td>
+<td class="c m b3 r0 l0 t0 lines">16</td>
+<td class="c m b3 r0 l0 t0 lines">16.2</td>
+<td class="c m b3 r0 l0 t0 lines">21.2</td>
+<td class="c m b3 r0 l0 t0 lines">16.5</td>
+<td class="c m b3 r0 l0 t0 lines">20</td>
+<td class="c m b3 r0 l0 t0 lines">18</td>
+<td class="c m b3 r0 l0 t0 lines">16.75</td>
+<td class="c m b3 r0 l0 t0 lines">19.25</td>
+<td class="c m b3 r0 l0 t0 lines">18.25</td>
+<td class="c m b3 r0 l0 t0 lines">18.5</td>
+</tr>
+</table></div>
+</div>
+<article class="task exercise-like" id="task-23"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-334">Fit a straight line to this data (where temperature is on the \(x\)-axis). How well does the model fit the data?</p></article><article class="task exercise-like" id="task-24"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-335">What is the slope of this line? What does the sign of the slope tell you about the relationship between pulses/sec and temperature?</p></article></article><article class="exercise exercise-like" id="exercise-18"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-16">
+<p id="p-336">The table below gives the win/loss percentage and other key statistics of 15 NCAA Division 1 women’s basketball teams (data collected by Quinn Wragge, 2019).</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{c|ccccc}\hline\hline
+\textbf{Win/Loss} &amp; \textbf{Rebounds} &amp; \textbf{Turnovers} &amp; \textbf{Steals} &amp; \textbf{3 pt Shots} &amp; \textbf{Field Goal} \\
+\textbf{Percent} &amp; \textbf{Per Game} &amp; \textbf{Per Game} &amp; \textbf{Per Game} &amp; \textbf{Made/Game} &amp; \textbf{Percent} \\\hline\hline
+93.8 &amp; 48.8 &amp; 13.1 &amp; 7.4 &amp; 3.3 &amp; 51.5 \\
+52.6 &amp; 32.89 &amp; 13.4 &amp; 4.6 &amp; 10.3 &amp; 42.9 \\
+89.5 &amp; 39.89 &amp; 14.2 &amp; 10.2 &amp; 4.8 &amp; 45.3 \\
+77.8 &amp; 42.67 &amp; 14.6 &amp; 8.1 &amp; 8.9 &amp; 45.2 \\
+68.8 &amp; 36.19 &amp; 13.8 &amp; 8.8 &amp; 7.7 &amp; 41.2 \\
+100 &amp; 45.53 &amp; 14.3 &amp; 5.6 &amp; 8 &amp; 46.3 \\
+50 &amp; 40.82 &amp; 15.7 &amp; 7.8 &amp; 7.2 &amp; 42.9 \\
+94.7 &amp; 44.17 &amp; 14.5 &amp; 8.7 &amp; 4.1 &amp; 51.7 \\
+68.4 &amp; 38.26 &amp; 13.7 &amp; 7.4 &amp; 7.5 &amp; 46.6 \\
+70.6 &amp; 46 &amp; 16.8 &amp; 9.7 &amp; 6.2 &amp; 42.9 \\
+83.3 &amp; 43.28 &amp; 16.4 &amp; 7.6 &amp; 5.6 &amp; 45.5 \\
+70.6 &amp; 38.41 &amp; 15.9 &amp; 9.6 &amp; 6.2 &amp; 43.3 \\
+94.1 &amp; 42.13 &amp; 11.8 &amp; 7.3 &amp; 7.9 &amp; 49.1 \\
+33.3 &amp; 38.29 &amp; 16.7 &amp; 7.4 &amp; 5.4 &amp; 39 \\
+85 &amp; 38.84 &amp; 13.4 &amp; 9.5 &amp; 8.2 &amp; 44.4 \\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+</div>
+<article class="task exercise-like" id="task-25"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-337">Create graphs of win/loss percentage vs. each of the other statistics (one graph per statistic) and fit a straight line to the data.</p></article><article class="task exercise-like" id="task-26"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-338">Comment on how well each line fits the data. Which line appears to fit the data the best?</p></article><article class="task exercise-like" id="task-27"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-339">Comment on the sign of the slope of each line. Does the sign make sense? Briefly explain.</p></article></article></section></section></div></main>
+</div>
+</body>
+</html>

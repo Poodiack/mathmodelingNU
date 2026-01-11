@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Linearizable Models</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="geometric-similarity.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="proportionality.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="coefficient-of-determination.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="geometric-similarity.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="proportionality.html" title="Up">Up</a><a class="next-button button toolbar-item" href="coefficient-of-determination.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models" class="active">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination">Coefficient of Determination</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="linearizable-models"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">6.5</span> <span class="title">Linearizable Models</span>
+</h2>
+<p id="p-389">In previous sections we used theory of one form or another to construct models and then used data to determine the values of parameters within the model. This process is called <dfn class="terminology">model fitting</dfn> and the resulting models are called <dfn class="terminology">analytical models</dfn>. The model never fit the data perfectly, but we were willing to accept some error because the model helps <em class="emphasis">explain</em> the behavior of the system.</p>
+<p id="p-390">In this section, and the next chapter, we build models guided solely by data. We will not even attempt to use theory to explain behavior. Rather, we will find a model that captures the trend of the data and use it to <em class="emphasis">predict</em> values rather than explain the behavior. These models are called <dfn class="terminology">empirical models</dfn>. Many of the topics related to empirical modeling are closely related to the field of statistics, and particularly the topic of regression.</p>
+<p id="p-391">Linearizable models are those which can be fit to a set of data by making an appropriate transformation and then fitting a linear model to the transformed data. Listed below are the three common types of linearizable models:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{ccc}
+\textbf{Logarithmic} &amp; \textbf{Power} &amp; \textbf{Exponential} \\\hline\hline
+y = a + b\ln (x) &amp; y = ax^b &amp; y = ae^{bx}
+\end{array}
+\end{equation*}
+</div>
+<p id="p-392">The variable \(x\) is called the <dfn class="terminology">predictor</dfn> variable while the variable \(y\) is called the <dfn class="terminology">response</dfn> variable. Graphs of these different types of models are shown in <a class="xref" data-knowl="./knowl/curveshapes.html" title="Figure 6.5.1">Figure 6.5.1</a>.</p>
+<figure class="figure figure-like" id="curveshapes"><div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="./images/MA241Notes0215-1.png" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">6.5.1<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-393">Note the “shape” of the different graphs. Each one of these different functions increases as \(x\) increases, but they increase at different rates. The logarithmic function and the power functions with exponents less than 1 increase much slower than the other types of functions. They almost appear to “level off” whereas the other types grow very quickly. Being able to recognize the shapes of the different graphs will help us to select an appropriate type of model.</p>
+<p id="p-394">To illustrate how to use these models, consider the data in the table below which gives the number of people per physician and male life expectancy (in years) for various countries around the world (data from <em class="emphasis">World Almanac Book of Facts</em>, 1992, Pharos Books). Our goal is to predict life expectancy in terms of the number of people per physician.</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{lcc}\hline\hline
+&amp; \textbf{People/Physician} &amp; \textbf{Life Expectancy} \\
+\textbf{Country} &amp; \boldsymbol{P} &amp; \boldsymbol{L} \\\hline
+\text{Spain} &amp; 275 &amp; 74 \\
+\text{United States} &amp; 410 &amp; 72 \\
+\text{Canada} &amp; 467 &amp; 73 \\
+\text{Romania} &amp; 559 &amp; 67 \\
+\text{China} &amp; 643 &amp; 68 \\
+\text{Taiwan} &amp; 1010 &amp; 70 \\
+\text{Mexico} &amp; 1037 &amp; 67 \\
+\text{South Korea} &amp; 1216 &amp; 66 \\
+\text{India} &amp; 2471 &amp; 57 \\
+\text{Morocco} &amp; 4873 &amp; 62 \\
+\text{Bangladesh} &amp; 6166 &amp; 54 \\
+\text{Kenya} &amp; 7174 &amp; 59\\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+<p id="p-395">Obviously there are many factors involved with life expectancy; the number of persons per physician is only one of them. It seems reasonable to believe that as the number of persons per physician increases (meaning fewer doctors per person), life expectancy decreases because people would not have as easy access to health care.  We do not claim that the number of people per physician <em class="emphasis">causes</em> life expectancy, but there is a relationship between the two variables. It is not at all clear how the variables of people per physician and life expectancy are related theoretically, so we will not even attempt to construct an analytical model. We will construct an empirical model by fitting various linearizable models to this data and analyzing how well each one fits.</p>
+<p id="p-396">We first enter the data points:</p>
+<div class="sagecell-sage" id="sage-142"><script type="text/x-sage">datapoints = [(275, 74), (410, 72), (467, 73), (559, 67), 
+	(643, 68), (1010, 70), (1037, 67), (1216, 66), 
+	(2471, 57),(4873, 62), (6166, 54), (7174, 59)]
+</script></div>
+<div class="sagecell-sage" id="sage-143"><script type="text/x-sage">sp = scatter_plot(datapoints)
+show(sp, axes_labels = ['People/Physician', 'Life Expectancy'],figsize = [8,4], frame = True)
+</script></div>
+<p id="p-397">Notice that as the number of people per physician increases, the life expectancy decreases, agreeing with our intuition. Also note that the points seems to form a curve that initially decreases rapidly, but then levels off. This suggests that a logarithmic or power model might be appropriate.</p>
+<section class="subsection" id="subsection-15"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">6.5.1</span> <span class="title">Logarithmic model</span>
+</h3>
+<p id="p-398">We will fit a curve of the form \(L = a + b\ln(P)\) by graphing \(L\) versus \(\ln(P)\) and fitting a straight line.  The value of \(b\) is the slope of the line and the value of \(a\) is the \(y\)-intercept.</p>
+<div class="sagecell-sage" id="sage-144"><script type="text/x-sage">logpoints = [(ln(P), L) for (P,L) in datapoints]
+sp2 = scatter_plot(logpoints, title = "Transformed Data", 
+	axes_labels = ["$\\ln(P)$", "$L$"], frame = True)
+show(sp2)
+</script></div>
+<p id="p-399">This data looks to be more along a straight line than our original data set, so we can then ask Sage to fit a straight line to it.</p>
+<div class="sagecell-sage" id="sage-145"><script type="text/x-sage">var('b a')
+model(x) = b*x + a
+sol = find_fit(logpoints,model, solution_dict = True)
+sol
+</script></div>
+<p id="p-400">So the model is \(L = 103.4 - 5.2876\ln P\text{.}\)</p>
+<div class="sagecell-sage" id="sage-146"><script type="text/x-sage">sp2 + plot(sol[b]*x + sol[a], (x, 5, 9) )
+</script></div>
+<p id="p-401">Now we want to create a graph to compare the observed values of \(L\) to the predicted ones from our model.</p>
+<div class="sagecell-sage" id="sage-147"><script type="text/x-sage">predpoints = [(P,sol[b]*ln(P) + sol[a]) for (P,L) in datapoints]
+show(sp + list_plot(predpoints, size=75, marker='v'), 
+     axes_labels = ["People/Physician", "Life Expectancy"], 
+     frame = True, xmin = 0, xmax = 8000, ymin = 50, ymax = 80)
+</script></div>
+<p id="p-402">To further analyze how well the model fits the data, for each data point define</p>
+<div class="displaymath">
+\begin{equation*}
+\text{Residual} = \text{(Observed value)} - \text{(Predicted value)}.
+\end{equation*}
+</div>
+<p id="p-403">Note that a positive residual means that the predicted value is less than the observed value.  A negative residual means that the predicted value is greater than the observed value.</p>
+<div class="sagecell-sage" id="sage-148"><script type="text/x-sage">respoints = [(x, y-(sol[b]*ln(x) + sol[a])) 
+	for (x,y) in datapoints]
+list_plot(respoints, size=75, title = "Residuals", 
+	axes_labels = [None, "Residuals"], frame = True)
+</script></div>
+<p id="p-404">Note that roughly half the residuals are positive and half are negative.  This indicates that the model does not tend to overpredict or underpredict the values of \(L\text{.}\)  Also note that the magnitudes of the residuals (the absolute values) are all relatively small, less than 6, and that there is no “pattern” to the residuals.  These three observations indicate that this model fits relatively well.</p>
+<p id="p-405">We note that we can find the logarithmic model directly by using that logarithmic format in our definition of <code class="code-inline tex2jax_ignore">model(x)</code> and applying it directly to the data points themselves (not the logarithm version).</p>
+<div class="sagecell-sage" id="sage-149"><script type="text/x-sage">var('b a')
+model(x) = b*ln(x) + a
+find_fit(datapoints, model)
+</script></div></section><section class="subsection" id="subsection-16"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">6.5.2</span> <span class="title">Power model</span>
+</h3>
+<p id="p-406">We will fit a curve of the form \(L=aP^b\) to the data.  To find the values of this, we linearize the model by taking the natural logarithm of both sides of its equation to get</p>
+<div class="displaymath">
+\begin{equation*}
+\ln L = \ln(aP^b) = \ln a + \ln P^b = \ln a + b\ln P.
+\end{equation*}
+</div>
+<p id="p-407">Thus a straight line fit to the graph of \(\ln L\) versus \(\ln P\) will have a slope of \(b\) and a \(y\)-intercept of \(\ln a\text{.}\)</p>
+<div class="sagecell-sage" id="sage-150"><script type="text/x-sage">loglogpoints = [(ln(P), ln(L)) for (P,L) in datapoints]
+sp3 = scatter_plot(loglogpoints, title = "Transformed Data", 
+	axes_labels = ["$\\ln(P)$", "$\\ln(L)$"], frame = True)
+show(sp3)
+</script></div>
+<div class="sagecell-sage" id="sage-151"><script type="text/x-sage">var('b a')
+model(x) = b*x + a
+sol = find_fit(loglogpoints, model, solution_dict = True)
+sol
+</script></div>
+<p id="p-408">The equation of the line through the log-log data is \(y = -0.0823x + 4.7675\text{.}\)</p>
+<div class="sagecell-sage" id="sage-152"><script type="text/x-sage">sp3 + plot(sol[b]*x + sol[a], (x, 5, 9))
+</script></div>
+<p id="p-409">Therefore, we have</p>
+<div class="displaymath">
+\begin{equation*}
+\ln a = 4.7675 \quad\Longrightarrow\quad a = e^{4.7675} = 117.62.
+\end{equation*}
+</div>
+<p id="p-410">Therefore our model is \(L = 117.62P^{-0.0823}\text{.}\) Again, we could have computed this directly from the original data points.</p>
+<div class="sagecell-sage" id="sage-153"><script type="text/x-sage">var('a b')
+model(x) = a*x^b
+sol = find_fit(datapoints, model, solution_dict = True)
+sol
+</script></div>
+<div class="sagecell-sage" id="sage-154"><script type="text/x-sage">predpoints = [(P, sol[a]*P^sol[b] ) for (P,L) in datapoints]
+sp + list_plot(predpoints, size=75, marker='v')
+</script></div>
+<p id="p-411">Now plot the residuals and determine whether we have a good model.</p>
+<div class="sagecell-sage" id="sage-155"><script type="text/x-sage">respoints = [(P,L-sol[a]*P^sol[b] ) for (P,L) in datapoints]
+list_plot(respoints, size=75, 
+	title = "Power Model Residuals", 
+	axes_labels = [None, "Residuals"], frame = True)
+</script></div></section><section class="subsection" id="subsection-17"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">6.5.3</span> <span class="title">Exponential model</span>
+</h3>
+<p id="p-412">Now try and fit a model of the form \(L = ae^{bP}\) to the data, plot the residuals and tell whether the model is a good fit.</p>
+<p id="p-413">Note that</p>
+<div class="displaymath">
+\begin{equation*}
+\ln(L) = \ln(ae^{bP}) = \ln a + \ln(e^{bP}) = \ln a + bP.
+\end{equation*}
+</div>
+<div class="sagecell-sage" id="sage-156"><script type="text/x-sage">exppoints = [(P,ln(L)) for (P,L) in datapoints]
+sp4 = scatter_plot(exppoints, 
+	axes_labels=["$P$", "$\\ln L$"],
+    frame=True)
+sp4
+</script></div>
+<div class="sagecell-sage" id="sage-157"><script type="text/x-sage">var('a b')
+model(x) = b*x+a
+sol = find_fit(exppoints, model, solution_dict=True)
+sol
+</script></div>
+<p id="p-414">The equation of the line through the transformed data is \(y = -0.00003x + 4.2561\text{,}\) so \(b = -0.00003\) and</p>
+<div class="displaymath">
+\begin{equation*}
+\ln a = 4.2561 \Longrightarrow a = e^{4.2561} \approx 70.53 
+\end{equation*}
+</div>
+<p id="p-415">Therefore the model is \(L = 70.53e^{-0.00003P}\text{.}\)</p>
+<div class="sagecell-sage" id="sage-158"><script type="text/x-sage">sp4 + plot(sol[b]*x+sol[a],(x,0,8000))
+</script></div>
+<p id="p-416">As before, we will graph our predicted values with the actual data points, and compute the residuals to check fit.</p>
+<div class="sagecell-sage" id="sage-159"><script type="text/x-sage">predpoints = [(P, e^sol[a]*e^(sol[b]*P) ) for (P,L) in datapoints]
+sp + list_plot(predpoints, size=75, marker='v')
+</script></div>
+<div class="sagecell-sage" id="sage-160"><script type="text/x-sage">respoints = [(P,L-e^sol[a]*e^(sol[b]*P) ) for (P,L) in datapoints]
+list_plot(respoints, size=75, 
+	title = "Exponential Model Residuals", 
+	axes_labels = [None, "Residuals"], frame = True)
+</script></div>
+<p id="p-417">Notice that all the residuals are at least 1 in magnitude and that one is almost \(-8\text{.}\) This indicates that the model doesn’t predict any of the values of \(L\) very accurately. Therefore, this is not the best fitting model, as previously suspected.</p>
+<p id="p-418">We note that in this case, we could <em class="emphasis">not</em> have computed the exponential model directly.</p>
+<div class="sagecell-sage" id="sage-161"><script type="text/x-sage">var('a b')
+model(x) = a*e^(b*x)
+find_fit(datapoints, model)
+</script></div>
+<p id="p-419">The <code class="code-inline tex2jax_ignore">find_fit</code> has some issues when working on exponential models. So when computing an exponential model in SageMath, <em class="emphasis">we will most likely have to linearize the model before using</em> <code class="code-inline tex2jax_ignore">find_fit</code>.</p></section><section class="subsection" id="subsection-18"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">6.5.4</span> <span class="title">Using the models to predict</span>
+</h3>
+<p id="p-420">Out of the three models, the logarithmic and power models are the “best” based on an analysis of the graph of the models and of the residuals. In the next section we will look at more analytical techniques for measuring how well a model fits a set of data.</p>
+<p id="p-421">Now that we have two good–fitting models for the data, what can we do with them? There are at least two uses. First of all, the graphs of the models help us to see the trend of the data. The graphs decrease from left to right, helping us to illustrate the point that as the number of people per physician increases, life expectancy decreases. The plot of the data also shows this, but a curve helps exemplify the relationship.</p>
+<p id="p-422">Second of all, we can use the models to <em class="emphasis">predict</em> life expectancy if we know the number of people per physician. For instance, suppose a country has 3,500 people per physician. The logarithmic model predicts that life expectancy is</p>
+<div class="sagecell-sage" id="sage-162"><script type="text/x-sage">103.40031225765938 -5.287622715527743*ln(3500.)
+</script></div>
+<p id="p-423">while the power model gives</p>
+<div class="sagecell-sage" id="sage-163"><script type="text/x-sage">117.64063035437424*(3500.)^(-0.0822368070118513)
+</script></div>
+<p id="p-424">We certainly could plug \(P = 3,500\) into the exponential model and get</p>
+<div class="sagecell-sage" id="sage-164"><script type="text/x-sage">70.5365506541459*e^(-3.416720158289088e-05*3500)
+</script></div>
+<p id="p-425">However, we saw that the exponential model did not fit the data very well, so it would not be appropriate to use it for making predictions. This illustrates the first caution when using empirical models: <em class="emphasis">If a model does not fit a set of data, do not use it for making predictions.</em></p>
+<p id="p-426">Now suppose a country has 100 persons per physician.  We could plug \(P=100\) into the logarithmic model to get</p>
+<div class="sagecell-sage" id="sage-165"><script type="text/x-sage">103.40031225765938 -5.287622715527743*ln(100.)
+</script></div>
+<p id="p-427">However, note that \(P = 100\) is outside the range of the original data. We do not know the trend of the data for values of \(P\) less than 275. It could change or stay the same; we simply do not know. Therefore, it would be inappropriate to use any of these models to predict values of \(L\) for \(P\) less than 275. This value of 79.04 years may or may not be accurate, so we should not report this “prediction.” This illustrates the second caution when using empirical models: <em class="emphasis">Only use values of the predictor variable that are within the range of the original set of data.</em></p></section><section class="exercises" id="exercises-7"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">6.5.5</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-21"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<p id="p-428">The table below contains the total length and weight of 20 black bears (data collected by Brent Troyer, 2011). Graph weight vs. length, fit different linearizable models to the data, and select the one that best fits the data. Briefly explain your reasoning.</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{l|cccccccccc}\hline\hline
+\textbf{Length}&amp; 139 &amp; 138 &amp; 139 &amp; 120.5 &amp; 149 &amp; 141 &amp; 150 &amp; 166 &amp; 180 &amp; 129.5 \\
+\textbf{Weight}&amp; 110 &amp; 60 &amp; 90 &amp; 60 &amp; 85 &amp; 95 &amp; 85 &amp; 155 &amp; 220 &amp; 105 \\\hline
+\textbf{Length}&amp; 150 &amp; 142 &amp; 162 &amp; 148 &amp; 140 &amp; 134 &amp; 137 &amp; 149 &amp; 102 &amp; 151.5 \\
+\textbf{Weight}&amp; 110 &amp; 115 &amp; 255 &amp; 105 &amp; 90 &amp; 75 &amp; 75 &amp; 115 &amp; 35 &amp; 140 \\\hline\hline
+\end{array}
+\end{equation*}
+</div></article><article class="exercise exercise-like" id="exercise-22"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-18">
+<p id="p-429">Consider the data below:</p>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b1 r1 l0 t3 lines">\(x\)</td>
+<td class="c m b1 r0 l0 t3 lines">0</td>
+<td class="c m b1 r0 l0 t3 lines">2</td>
+<td class="c m b1 r0 l0 t3 lines">4</td>
+<td class="c m b1 r0 l0 t3 lines">6</td>
+<td class="c m b1 r0 l0 t3 lines">8</td>
+<td class="c m b1 r0 l0 t3 lines">10</td>
+</tr>
+<tr>
+<td class="c m b3 r1 l0 t0 lines">\(y\)</td>
+<td class="c m b3 r0 l0 t0 lines">3.000</td>
+<td class="c m b3 r0 l0 t0 lines">3.061</td>
+<td class="c m b3 r0 l0 t0 lines">3.122</td>
+<td class="c m b3 r0 l0 t0 lines">3.186</td>
+<td class="c m b3 r0 l0 t0 lines">3.250</td>
+<td class="c m b3 r0 l0 t0 lines">3.316</td>
+</tr>
+</table></div>
+</div>
+<article class="task exercise-like" id="task-32"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-430">Fit a linear model to the data. How well does the model appear to fit the data? Create a graph of the residuals. What do you notice about the pattern of the residuals?</p></article><article class="task exercise-like" id="task-33"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-431">Fit an exponential model to the data. How well does the model appear to fit the data? Calculate and graph the residuals. What does this tell you about how well this model fits the data?</p></article></article></section></section></div></main>
+</div>
+</body>
+</html>

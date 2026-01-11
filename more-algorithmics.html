@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>More Algorithmics</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="algorithmics.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="basic-programming.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="part-modeling-intro.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="algorithmics.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="basic-programming.html" title="Up">Up</a><a class="next-button button toolbar-item" href="part-modeling-intro.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics" class="active">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination">Coefficient of Determination</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="more-algorithmics"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">4.3</span> <span class="title">More Algorithmics</span>
+</h2>
+<p id="p-112">When we use loops to repeat instructions, we can have a loop that carries on longer than we wish. For instance, we may be looking for the first instance of an inequality to be true. We find it, but the loop carries on for several more iterations anyway. With <code class="code-inline tex2jax_ignore">while</code> loops, we can accidentally write code so that the condition for the loop to terminate never becomes true, and computation goes on and on and on.</p>
+<section class="subsection" id="subsection-11"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.3.1</span> <span class="title">Aborting a loop execution</span>
+</h3>
+<p id="p-113">The <code class="code-inline tex2jax_ignore">for</code> and <code class="code-inline tex2jax_ignore">while</code> loops repeat a given number of times the same instructions. The <code class="code-inline tex2jax_ignore">break</code> command inside a loop interrupts it before its end, and the <code class="code-inline tex2jax_ignore">continue</code> command goes directly to the next iteration.  Those commands allow to check the terminating condition at every place in the loop.</p>
+<p id="p-114">The four examples below determine the smallest determine the smallest positive integer \(x\) satisfying \(\log(x+1)\le x/10\text{.}\)</p>
+<div class="sagecell-sage" id="sage-94"><script type="text/x-sage">for x in [1.0..100.0]:
+	if log(x+1) <= x/10:
+		break
+x
+</script></div>
+<div class="sagecell-sage" id="sage-95"><script type="text/x-sage">x = 1.0
+while log(x+1) > x/10:
+  		x = x + 1
+x
+</script></div>
+<div class="sagecell-sage" id="sage-96"><script type="text/x-sage">while log(x+1) > x/10 and x < 100:
+  		x = x + 1
+x
+</script></div>
+<div class="sagecell-sage" id="sage-97"><script type="text/x-sage">x = 1.0
+while True:
+	if log(x+1) > x/10:
+		x = x+1
+		continue
+	break
+x
+</script></div>
+<p id="p-115">The first of the four examples uses a <code class="code-inline tex2jax_ignore">for</code> loop with at most 100 tries which terminates terminates once the first solution is found; the second program looks for the smallest solution and might not terminate if the condition is never fulfilled; the third is equivalent to the first one with a more complex loop condition; finally the fourth has an unnecessarily complex structure, whose unique goal is to exhibit the <code class="code-inline tex2jax_ignore">continue</code> command. In all cases the final value \(x\) is 37.0.</p></section><section class="subsection" id="subsection-12"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.3.2</span> <span class="title">Conditionals</span>
+</h3>
+<p id="p-116">Notice that we had a new keyword -- <code class="code-inline tex2jax_ignore">if</code> -- in the first example.  The last two lines are an example of a <em class="emphasis">conditional</em>.  This is a test that enables us to execute code based on the result of a boolean (true/false) condition.  Some possible examples of the syntax are:</p>
+<pre class="code-display tex2jax_ignore" id="p-117">
+		if a condition:
+			an instruction sequence
+		</pre>
+<pre class="code-display tex2jax_ignore">
+		if a condition:
+			an instruction sequence
+		else:
+			another instruction sequence
+		</pre> As an example, there is the famous Collatz sequence defined by:<div class="displaymath" id="p-118">
+\begin{equation*}
+x_0 \in \mathbb{N}\setminus\{0\}, \qquad x_{n+1} = \begin{cases}
+x_n/2 &amp; \text{if } x_n \text{ is even} \\
+3x_n + 1 &amp; \text{if } x_n \text{ is odd}
+\end{cases}
+\end{equation*}
+</div>
+<p id="p-119">The Collatz conjecture (which is unsolved) says that for all possible starting values \(x_0\text{,}\) the sequence will eventually reach a 1, after which it will cycle 4, 2, 1, 4, 2, 1 ... forever.</p>
+<div class="sagecell-sage" id="sage-98"><script type="text/x-sage">x = 6; n = 0
+while x != 1:    # the test x <> 1 is equivalent
+    if x%2 == 0: # the operator % yields the remainder
+        x = x//2 # //: division quotient
+    else:
+        x = 3*x + 1
+    n = n + 1
+    print(n,x)
+</script></div>
+<p id="p-120">We check whether \(x_n\) is even by seeing whether the remainder of the division of \(x_n\) by 2 is 0.  The variable \(n\) at the end of the block is the number of iterations. The loop ends as soon as \(x_n = 1\text{.}\)  So this result says that if \(x_0 = 6\) then \(x_8 = 1\text{,}\) and \(8 = \min\{p\in \mathbb{N}\mid x_p = 1\}\text{.}\)</p>
+<p id="p-121">The <code class="code-inline tex2jax_ignore">if</code> instruction also allows nested tests in the <code class="code-inline tex2jax_ignore">else</code> branch using the <code class="code-inline tex2jax_ignore">elif</code> (short for <em class="emphasis">else if</em>) keyword. These two following structures would then be equivalent:</p>
+<pre class="code-display tex2jax_ignore">
+if a condition cond1:
+	an instruction sequence inst1
+else:
+	if a condition cond2:
+		an instruction sequence inst2
+	else:
+		if a condition cond3:
+			an instruction sequence inst3
+		else:
+			in all other cases inst4
+</pre>
+<pre class="code-display tex2jax_ignore">
+if cond1:
+	inst1
+elif cond2:
+	inst2
+elif cond3:
+	inst3
+else:
+	inst4
+</pre></section><section class="subsection" id="subsection-13"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">4.3.3</span> <span class="title">Procedures and Functions</span>
+</h3>
+<p id="p-122">As in other computer languages, we can define our own procedures and functions, using the <code class="code-inline tex2jax_ignore">def</code> command whose syntax we detail below. (The difference between a function and a procedure is that a function always returns a result, whereas a procedure does not.) Either can be defined to take as input one or several arguments, or none at all. For instance, we can define the function that takes \(x\) and \(y\) to \(x^2+y^2\) in this way:</p>
+<div class="sagecell-sage" id="sage-99"><script type="text/x-sage">var('x y')
+fct1(x,y) = x^2 + y^2
+</script></div>
+<div class="sagecell-sage" id="sage-100"><script type="text/x-sage">var('a')
+fct1(a,2*a)
+</script></div>
+<p id="p-123">By default, all variables appearing in a function are local variables.  That is, they are created at each call to the function, used as needed within the function, and destroyed at the end of the function, and do not interact with other variables of the same name.  In particular, global variables (variables used outside the function) are not modified.</p>
+<div class="sagecell-sage" id="sage-101"><script type="text/x-sage">def foo(u):
+   	t = u^2
+   	return t*(t+1)
+</script></div>
+<div class="sagecell-sage" id="sage-102"><script type="text/x-sage">t = 1; u = 2
+foo(3), t, u
+</script></div>
+<p id="p-124">It <em class="emphasis">is</em> possible to modify a global variable from within a function, using the <code class="code-inline tex2jax_ignore">global</code> keyword.</p>
+<div class="sagecell-sage" id="sage-103"><script type="text/x-sage">a = b = 1
+def f():
+    global a
+    a = b = 2
+f(); a, b
+</script></div></section><article class="example example-like" id="example-1"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-1"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.3.1</span><span class="period">.</span><span class="space"> </span><span class="title">Working with Coins.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-1"><article class="example example-like"><p id="p-125">We're going to start with a very easy subroutine, which would be part of the programming of a vending machine or a cash register.  It is going to reply with the dollar value for some number of quarters, dimes, nickels, and pennies, which of course have respective values $0.25, $0.10, $0.05, and $0.01.  This is a simple task, so that we can concentrate on the programming rather than the underlying mathematics.</p>
+<div class="hidden-sagecell-sage" id="sage-104"><script type="text/x-sage">def coinCount( quarters,dimes,nickels,pennies ):
+   """
+   This subroutine takes in data about a pile of change, with the four parameters being
+   the number of quarters, dimes, nickels, and pennies.  Then the total dollar value of
+   these is reported.  The quantities are assumed to be natural numbers.  Please do 
+   not use complex numbers as inputs, as it will horrify a user to find out that some of 
+   their money is imaginary.
+   """
+   total = quarters*0.25 + dimes*0.10 + nickels*0.05 + pennies*0.01
+   print("That's a total of $"), 
+   print(total)
+</script></div>
+<p id="p-126">The first line, with the <code class="code-inline tex2jax_ignore">def</code> command, signals Python and Sage that we're about to define a new subroutine. We follow this immediately with the name of the subroutine, and then a list of the variables needed in that subroutine. Here, we have variables for quarters, dimes, nickels, and pennies. While in algebra, variables tend to be a single letter -- in programming, we use words so that we don't have to remember what each variable stands for. The colon is very important. It indicates that the next few commands are subordinate to the <code class="code-inline tex2jax_ignore">def</code> statement. The indentation shows specifically which statements are subordinate.</p>
+<p id="p-127">After that, on the second line, we have a formula that computes the total value of the coins. Each coin is multiplied by its value in dollars, and the total is placed in the variable which is unsurprisingly called "total." The third line and the fourth line print the amounts in a nicely formatted human-readable way. (Note that there's a description of the subroutine at the top, set off by triple quotation marks.)</p>
+<p id="p-128">We can test our subroutine with 5 quarters, 4 dimes, 3 nickels, and 2 pennies.</p>
+<div class="hidden-sagecell-sage" id="sage-105"><script type="text/x-sage">coinCount(5,4,3,2)
+</script></div>
+<p id="p-129">It is important to remember that order matters.  Consider the following three calls to this function.</p>
+<div class="hidden-sagecell-sage" id="sage-106"><script type="text/x-sage">coinCount(1, 3, 2, 1)
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-107"><script type="text/x-sage">coinCount(1, 1, 2, 3)
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-108"><script type="text/x-sage">coinCount(1, 2, 3, 1)
+</script></div>
+<p id="p-130">As you can see, all three calls are asking about different piles of change, and those piles will have different total values. You could imagine that someone using the subroutine on three different days, who has forgotten the ordering, might guess the ordering and input those three lines above. The output produces below illustrates the point: you get a wrong answer if you put the parameters in the wrong order.</p>
+<p id="p-131">Unlike most computer languages, Python has a solution for those who cannot remember orderings well. Using the following notation, we label each value with the variable that we hope it will be assigned to. We will get the same answer each time.</p>
+<div class="hidden-sagecell-sage" id="sage-109"><script type="text/x-sage">coinCount( dimes=3, nickels=2, pennies=1, quarters=1 )
+coinCount( quarters=1, pennies=1, nickels=2, dimes=3 )
+coinCount( pennies=1, nickels=2, dimes=3, quarters=1 )
+</script></div>
+<p id="p-132">This is a very nice service!  The one thing that Python and Sage will always ding us for are typos or misspellings of variables.</p>
+<div class="hidden-sagecell-sage" id="sage-110"><script type="text/x-sage">coinCount( dimes=3, nickels=2, pennies=1, quaters=1 )
+</script></div></article></div>
+<article class="exercise exercise-like" id="exercise-4"><a data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-4"><h6 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.3.2</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-4"><article class="exercise exercise-like">Simulate a cash register as follows. Suppose a small foodstand in a subway station sells sodas ($1.50 each), bananas ($0.75 each), sandwiches of various types (all $3.75 each), and bottles of water ($2 each). Write a subroutine that takes five inputs: the number of sodas, bananas, sandwiches and bottles of water, as well as the amount of cash tendered (for example, $20 or $10). Your program should tell the user how much change, in dollars and cents, is therefore due.</article></div>
+<article class="exercise exercise-like" id="exercise-5"><a data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-5"><h6 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Designing Aquariums.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-5"><article class="exercise exercise-like"><p id="p-133">Now we're going to write a subroutine that is suitable for a company that builds custom display aquariums for use in dentist's offices and other upscale businesses. Customers come with orders and the cost must be correctly calculated, based on the sizes of the six panels which comprise the rectangular aquarium.</p>
+<p id="p-134">It turns out that the particular materials that the company is using have the following costs:</p>
+<ul class="disc">
+<li id="li-1">The bottom of the aquarium is metal, and costs 1.3 cents/sq in.</li>
+<li id="li-2">The top of the aquarium is plastic, and costs half a cent/sq in.</li>
+<li id="li-3">The sides of the aquarium are glass, and cost 5 cents/sq in.</li>
+</ul>
+<p id="p-135">Given a customer preference for the volume of the aquarium, there are many choices of dimensions and they will have substantially different costs. Consider a customer who wants a 12,000 cubic inch aquarium. (Note that 12,000 cubic inches is about 52 gallons so that is not a very large aquarium at all.) We can compute the following prices:</p>
+<ul class="disc">
+<li id="li-4">A choice of \(20\times 30\times 20\) has a cost of $110.80.</li>
+<li id="li-5">A choice of \(40\times 30\times 10\) has a cost of $91.60.</li>
+<li id="li-6">A choice of \(60\times 20\times 10\) has a cost of $101.60.</li>
+<li id="li-7">A choice of \(80\times 15\times 10\) has a cost of $116.60.</li>
+</ul>
+<p id="p-136">Those prices were computed using the <code class="code-inline tex2jax_ignore">analyzeAquariumDesign</code> subroutine, which is found below. The commands calling the subroutine are found below the code.</p>
+<div class="hidden-sagecell-sage" id="sage-111"><script type="text/x-sage">top_cost = 0.5
+bottom_cost = 1.3
+side_cost = 5
+
+def analyzeAquariumDesign( length, width, height):
+    """
+    Here the dimensions of an aquarium are the inputs. The
+    sizes of the six panels that form the rectangular aquarium
+    will be printed on the screen, along with their costs. The
+    costs are computed in terms of the areas of those panels and 
+    the global variables top_cost, bottom_cost, and side_cost.
+    Finally, the volume and the total cost are displayed.
+    """
+    bottom_top_area = length*width
+    front_back_area = length*height
+    left_right_area = width*height
+    
+    print ("The left/right panels have an area of", left_right_area,
+           "costing $", round(side_cost*left_right_area*0.01,2))
+    print ("The front/back panels have an area of", front_back_area,
+           "costing $", round(side_cost*front_back_area*0.01,2))
+    print ("The top panel has an area of", bottom_top_area,
+           "costing $", round(top_cost*bottom_top_area*0.01,2))
+    print ("The bottom panel has an area of", bottom_top_area, 
+           "costing $", round(bottom_cost*bottom_top_area*0.01,2),"\n")
+    
+    print ("The total volume is", N( length*width*height,digits=2 ),"\n")
+    
+    cost = top_cost*bottom_top_area + bottom_cost*bottom_top_area + \
+    2*front_back_area*side_cost + 2*left_right_area*side_cost
+    
+    print ("The total cost is $", round(cost*0.01,ndigits=2),"\n")
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-112"><script type="text/x-sage">analyzeAquariumDesign( 20, 30, 20 )
+analyzeAquariumDesign( 40, 30, 10 )
+analyzeAquariumDesign( 60, 20, 10 )
+analyzeAquariumDesign( 80, 15, 10 )
+</script></div></article></div></section></div></main>
+</div>
+</body>
+</html>
