@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-02T14:10:06-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><div class="hint solution-like">
+<p xmlns:svg="http://www.w3.org/2000/svg">You should probably build your list of points piece-by-piece from the numbers given in the Population Growth example. From the initial population list, build a new list of the differences in the populations, build the list of products of the population counts \(p_n\) and \(621-p_n\) and, finally, build the list of points with first coordinate \(p_n(621-p_n)\) and second coordinate \(\Delta p_n\text{.}\)</p>
+<div class="sagecell-sage" id="sage-127"><script type="text/x-sage">p = [10.3, 17.2, 27, 45.3, 80.2, 125.3, 176.2, 255.6]
+</script></div>
+<div class="sagecell-sage" id="sage-128"><script type="text/x-sage">Delta_pn = [(p[n+1] - p[n]) for n in srange(len(p)-1)]
+Delta_pn
+</script></div>
+<div class="sagecell-sage" id="sage-129"><script type="text/x-sage">product = [p[n]*(621-p[n]) for n in srange(len(p)-1)]
+product
+</script></div>
+<div class="sagecell-sage" id="sage-130"><script type="text/x-sage">mypoints = list(zip(product, Delta_pn)) # makes a list of ordered pairs
+mypoints
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The <code class="code-inline tex2jax_ignore">points</code> command will plot a list of points.</p>
+<div class="sagecell-sage" id="sage-131"><script type="text/x-sage">points(mypoints, size=50, axes_labels = ['$(621-p_n)p_n$','$p_{n+1}-p_n$'])
+</script></div>
+</div></body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-08T11:03:29-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.5.2</span><span class="period">.</span><span class="space"> </span><span class="title">Logarithmic model.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">We will fit a curve of the form \(L = a + b\ln(P)\) by graphing \(L\) versus \(\ln(P)\) and fitting a straight line.  The value of \(b\) is the slope of the line and the value of \(a\) is the \(y\)-intercept.</p>
+<div class="sagecell-sage" id="sage-144"><script type="text/x-sage">datapoints = [(275, 74), (410, 72), (467, 73), (559, 67), 
+	(643, 68), (1010, 70), (1037, 67), (1216, 66), 
+	(2471, 57),(4873, 62), (6166, 54), (7174, 59)]
+logpoints = [(ln(P), L) for (P,L) in datapoints]
+sp2 = scatter_plot(logpoints, title = "Transformed Data", 
+	axes_labels = ["$\\ln(P)$", "$L$"], frame = True)
+show(sp2)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">This data looks to be more along a straight line than our original data set, so we can then ask Sage to fit a straight line to it.</p>
+<div class="sagecell-sage" id="sage-145"><script type="text/x-sage">var('b a')
+model(x) = b*x + a
+sol = find_fit(logpoints,model, solution_dict = True)
+sol
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">So the model is \(L = 103.4 - 5.2876\ln P\text{.}\)</p>
+<div class="sagecell-sage" id="sage-146"><script type="text/x-sage">sp2 + plot(sol[b]*x + sol[a], (x, 5, 9) )
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Now we want to create a graph to compare the observed values of \(L\) to the predicted ones from our model.</p>
+<div class="sagecell-sage" id="sage-147"><script type="text/x-sage">predpoints = [(x,sol[b]*ln(x) + sol[a]) for (x,y) in datapoints]
+show(sp + list_plot(predpoints, size=75, marker='v'), 
+     axes_labels = ["People/Physician", "Life Expectancy"], frame = True,
+    xmin = 0, xmax = 8000, ymin = 50, ymax = 80)
+</script></div></article><span class="incontext"><a href="linearizable-models.html#example-13">in-context</a></span>
+</body>
+</html>
