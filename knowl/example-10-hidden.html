@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-11T18:13:40-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example example-like"><p xmlns:svg="http://www.w3.org/2000/svg">We start with a data set and then ask SageMath to produce a scatterplot of the data.</p>
+<div class="sagecell-sage" id="sage-136"><script type="text/x-sage">datapoints = [(0.8, 2), (2.5, 4.2), (3.5, 3.5), (4.2, 5.3), (5.8, 4.5), (7.5, 7)]
+sp = scatter_plot(datapoints)
+show(sp)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We could certainly try to “guess and check” a slope and intercept, but it's likely there's a better candidate than our eyeball might give us.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">The least-squares approach to finding a “best-fit” line for a set of data involves finding the slope \(m\) and the \(y\)-intercept \(b\) that minimizes the sum of the squares of the errors.  If we let \(f(x) = mx + b\) be our approximating line, we are trying to find \(m\) and \(b\) values so that</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+S = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2 = \sum_{i=1}^n (y_i - mx_i -b)^2 
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">is a minimum.  To search for these values, we think of \(S\) as a function of \(m\) and \(b\text{,}\) and set the partial derivatives of \(S\) with respect to \(m\) and \(b\) to 0.</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+\frac{\partial S}{\partial m} &amp;= \sum_{i=1}^n 2(y_i - mx_i -b)\cdot (-x_i)  = -2\sum_{i=1}^n (y_i - mx_i-b)x_i= 0 \\
+\frac{\partial S}{\partial b} &amp;= \sum_{i=1}^n 2(y_i - mx_i -b)\cdot (-1)  = -2\sum_{i=1}^n (y_i - mx_i - b)= 0
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">These equations can be rewritten as</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{gathered}
+\sum_{i=1}^n x_i y_i - m\sum_{i=1}^n x_i^2 - b\sum_{i=1}^n x_i = 0 \\
+\sum_{i=1}^n y_i - m\sum_{i=1}^n x_i - n\cdot b = 0
+\end{gathered}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Despite the look of these equations, they are a system of two linear equations in two unknowns. Using the usual methods to solve for \(m\) and \(b\text{,}\) we get</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+b &amp;= \frac{\sum x_i^2 \sum y_i - \sum x_i y_i \sum x_i}{n\sum x_i^2 - \left(\sum x_i\right)^2} \\
+m &amp;= \frac{n\sum x_i y_i - \sum x_i \sum y_i}{n\sum x_i^2 - \left(\sum x_i\right)^2}
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">These formulas are implemented below.</p>
+<div class="sagecell-sage" id="sage-137"><script type="text/x-sage">n = len(datapoints)
+n
+</script></div>
+<div class="sagecell-sage" id="sage-138"><script type="text/x-sage">b = (sum(x[0]^2 for x in datapoints)*sum(x[1] for x in 
+	datapoints)-sum(x[0]*x[1] for x in datapoints)*
+	sum(x[0] for x in datapoints))/(n*sum(x[0]^2 for x in 
+	datapoints) - sum(x[0] for x in datapoints)^2)
+
+m = (n*sum(x[0]*x[1] for x in datapoints)-
+     sum(x[0] for x in datapoints)*sum(x[1] for x in 
+     datapoints))/(n*sum(x[0]^2 for x in datapoints) - 
+     sum(x[0] for x in datapoints)^2)
+
+m, b
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The good news is that we don't have to do this all the time. The least-squares approach is already built into SageMath, using the <code class="code-inline tex2jax_ignore">find_fit</code> function.</p>
+<div class="sagecell-sage" id="sage-139"><script type="text/x-sage">var('m1 b1')
+model(x) = m1*x + b1
+</script></div>
+<div class="sagecell-sage" id="sage-140"><script type="text/x-sage">sol = find_fit(datapoints, model, solution_dict = True)
+sol[m1], sol[b1]
+</script></div>
+<div class="sagecell-sage" id="sage-141"><script type="text/x-sage">sp + plot(sol[m1]*x + sol[b1], (x, 0, 8))
+</script></div></article></body>
+</html>

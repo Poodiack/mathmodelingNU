@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-11T18:13:40-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<div class="solution solution-like">
+<h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">6.2.2.1</span><span class="period">.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">You should probably build your list of points piece-by-piece from the numbers given in the Population Growth example. From the initial population list, build a new list of the differences in the populations, build the list of products of the population counts \(p_n\) and \(621-p_n\) and, finally, build the list of points with first coordinate \(p_n(621-p_n)\) and second coordinate \(\Delta p_n\text{.}\)</p>
+<div class="sagecell-sage" id="sage-127"><script type="text/x-sage">p = [10.3, 17.2, 27, 45.3, 80.2, 125.3, 176.2, 255.6]
+</script></div>
+<div class="sagecell-sage" id="sage-128"><script type="text/x-sage">Delta_pn = [(p[n+1] - p[n]) for n in srange(len(p)-1)]
+Delta_pn
+</script></div>
+<div class="sagecell-sage" id="sage-129"><script type="text/x-sage">product = [p[n]*(621-p[n]) for n in srange(len(p)-1)]
+product
+</script></div>
+<div class="sagecell-sage" id="sage-130"><script type="text/x-sage">mypoints = list(zip(product, Delta_pn)) # makes a list of ordered pairs
+mypoints
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The <code class="code-inline tex2jax_ignore">points</code> command will plot a list of points.</p>
+<div class="sagecell-sage" id="sage-131"><script type="text/x-sage">plot1 = points(mypoints, size=50, axes_labels = ['$(621-p_n)p_n$','$p_{n+1}-p_n$'])
+plot1
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We next find the proportionality constant \(k\text{:}\)</p>
+<div class="sagecell-sage" id="sage-132"><script type="text/x-sage">var('k')
+model(x) = k*x
+sol = find_fit(mypoints, model, solution_dict=True)
+</script></div>
+<div class="sagecell-sage" id="sage-133"><script type="text/x-sage">show(plot1 + plot(sol[k]*x, 0, 80000, color = 'red'))
+pretty_print('y = ', sol[k], 'x')
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">This shows that \(p_{n+1}-p_n \approx 0.00098(621-p_n)p_n\) or \(p_{n+1}\approx 
+p_n + 0.00098(621-p_n)p_n\text{.}\) We can now put together a list of predicted population values from this model.</p>
+<div class="sagecell-sage" id="sage-134"><script type="text/x-sage">pred_pop = [p[0]]
+
+for n in srange(len(p) + 1):
+    pred_pop = pred_pop + [pred_pop[n] + sol[k]*pred_pop[n]*(621-pred_pop[n])]
+    
+pred_pop
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Now we put together two lists of ordered pairs: one with the predicted populations versus the time, and the other with the actual population data versus time. Then we graph the two sets of points, including a legend to differentiate the points.</p>
+<div class="sagecell-sage" id="sage-135"><script type="text/x-sage">predPop_points = list(zip(range(n), pred_pop))
+
+actPop_points = list(zip(range(n), p))
+
+points(actPop_points, size=50,
+      axes_labels = ['Hour', 'Pop. (thousands)'],
+      legend_label = 'Actual') \
++ points(predPop_points, marker = '^', size=50, color='red',
+		legend_label = 'Predicted')
+</script></div> The answer to part (c) is left to you.</div>
+<span class="incontext"><a href="modeling-with-proportionality.html#solution-1">in-context</a></span>
+</body>
+</html>
