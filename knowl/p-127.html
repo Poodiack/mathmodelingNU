@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-01-11T18:13:40-05:00       *-->
+<!--*       on 2026-01-16T08:43:04-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,13 @@
 </head>
 <body>
 <h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading"><span class="type">Paragraph</span></h6>
-<p xmlns:svg="http://www.w3.org/2000/svg">After that, on the second line, we have a formula that computes the total value of the coins. Each coin is multiplied by its value in dollars, and the total is placed in the variable which is unsurprisingly called "total." The third line and the fourth line print the amounts in a nicely formatted human-readable way. (Note that there's a description of the subroutine at the top, set off by triple quotation marks.)</p>
-<span class="incontext"><a href="more-algorithmics.html#p-127">in-context</a></span>
+<p>In the first block, the instruction <code xmlns:svg="http://www.w3.org/2000/svg" class="code-inline tex2jax_ignore">S = 2*S</code> is executed only once at the end of the loop, while in the second it is executed at every iteration, which explains the different results:</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+S = (0+1+2+3)\cdot 2 = 12 \qquad S = ((((0+1)\cdot 2)+2)\cdot 2) + 3)\cdot 2 = 22.
+\end{equation*}
+</div>
+<p class="continuation">(Note that we can stop typing code in as part of a loop simply by hitting backspace at the start of a line.)</p>
+<span class="incontext"><a href="algorithmics.html#p-127">in-context</a></span>
 </body>
 </html>
