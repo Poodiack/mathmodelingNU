@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-01-11T18:13:40-05:00       *-->
+<!--*       on 2026-01-16T08:43:04-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -12,53 +12,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>$(function () {
-    // Make *any* div with class 'sagecell-sage' an executable Sage cell
-    // Their results will be linked, only within language type
-    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
-                           linked: true,
-                           languages: ['sage'],
-                           evalButtonText: 'Evaluate (Sage)'});
-});
-</script>
 </head>
 <body>
 <article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.3.1</span><span class="period">.</span><span class="space"> </span><span class="title">Working with Coins.</span>
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Entering plain text.</span>
 </h6>
-<p xmlns:svg="http://www.w3.org/2000/svg">We're going to start with a very easy subroutine, which would be part of the programming of a vending machine or a cash register.  It is going to reply with the dollar value for some number of quarters, dimes, nickels, and pennies, which of course have respective values $0.25, $0.10, $0.05, and $0.01.  This is a simple task, so that we can concentrate on the programming rather than the underlying mathematics.</p>
-<div class="sagecell-sage" id="sage-104"><script type="text/x-sage">def coinCount( quarters,dimes,nickels,pennies ):
-   """
-   This subroutine takes in data about a pile of change, with the four parameters being
-   the number of quarters, dimes, nickels, and pennies.  Then the total dollar value of
-   these is reported.  The quantities are assumed to be natural numbers.  Please do 
-   not use complex numbers as inputs, as it will horrify a user to find out that some of 
-   their money is imaginary.
-   """
-   total = quarters*0.25 + dimes*0.10 + nickels*0.05 + pennies*0.01
-   print("That's a total of $"), 
-   print(total)
-</script></div>
-<p xmlns:svg="http://www.w3.org/2000/svg">The first line, with the <code class="code-inline tex2jax_ignore">def</code> command, signals Python and Sage that we're about to define a new subroutine. We follow this immediately with the name of the subroutine, and then a list of the variables needed in that subroutine. Here, we have variables for quarters, dimes, nickels, and pennies. While in algebra, variables tend to be a single letter -- in programming, we use words so that we don't have to remember what each variable stands for. The colon is very important. It indicates that the next few commands are subordinate to the <code class="code-inline tex2jax_ignore">def</code> statement. The indentation shows specifically which statements are subordinate.</p>
-<p xmlns:svg="http://www.w3.org/2000/svg">After that, on the second line, we have a formula that computes the total value of the coins. Each coin is multiplied by its value in dollars, and the total is placed in the variable which is unsurprisingly called "total." The third line and the fourth line print the amounts in a nicely formatted human-readable way. (Note that there's a description of the subroutine at the top, set off by triple quotation marks.)</p>
-<p xmlns:svg="http://www.w3.org/2000/svg">We can test our subroutine with 5 quarters, 4 dimes, 3 nickels, and 2 pennies.</p>
-<div class="sagecell-sage" id="sage-105"><script type="text/x-sage">coinCount(5,4,3,2)
-</script></div>
-<p xmlns:svg="http://www.w3.org/2000/svg">It is important to remember that order matters.  Consider the following three calls to this function.</p>
-<div class="sagecell-sage" id="sage-106"><script type="text/x-sage">coinCount(1, 3, 2, 1)
-</script></div>
-<div class="sagecell-sage" id="sage-107"><script type="text/x-sage">coinCount(1, 1, 2, 3)
-</script></div>
-<div class="sagecell-sage" id="sage-108"><script type="text/x-sage">coinCount(1, 2, 3, 1)
-</script></div>
-<p xmlns:svg="http://www.w3.org/2000/svg">As you can see, all three calls are asking about different piles of change, and those piles will have different total values. You could imagine that someone using the subroutine on three different days, who has forgotten the ordering, might guess the ordering and input those three lines above. The output produces below illustrates the point: you get a wrong answer if you put the parameters in the wrong order.</p>
-<p xmlns:svg="http://www.w3.org/2000/svg">Unlike most computer languages, Python has a solution for those who cannot remember orderings well. Using the following notation, we label each value with the variable that we hope it will be assigned to. We will get the same answer each time.</p>
-<div class="sagecell-sage" id="sage-109"><script type="text/x-sage">coinCount( dimes=3, nickels=2, pennies=1, quarters=1 )
-coinCount( quarters=1, pennies=1, nickels=2, dimes=3 )
-coinCount( pennies=1, nickels=2, dimes=3, quarters=1 )
-</script></div>
-<p xmlns:svg="http://www.w3.org/2000/svg">This is a very nice service!  The one thing that Python and Sage will always ding us for are typos or misspellings of variables.</p>
-<div class="sagecell-sage" id="sage-110"><script type="text/x-sage">coinCount( dimes=3, nickels=2, pennies=1, quaters=1 )
-</script></div></article><span class="incontext"><a href="more-algorithmics.html#example-1">in-context</a></span>
+<p xmlns:svg="http://www.w3.org/2000/svg">Plain text in Jupyter notebooks must begin with a <code class="code-inline tex2jax_ignore">&lt;p&gt;</code> tag (for <em class="emphasis">paragraph</em>) and end with a <code class="code-inline tex2jax_ignore">&lt;/p&gt;</code> tag. Each new paragraph must begin with <code class="code-inline tex2jax_ignore">&lt;p&gt;</code> and end with <code class="code-inline tex2jax_ignore">&lt;/p&gt;</code>.</p>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-html">&lt;p&gt;This is a piece of plain text (not code).&lt;/p&gt;
+</code></pre></div>
+<p xmlns:svg="http://www.w3.org/2000/svg"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/output1.png" class="contained" alt=""></div></p></article><span class="incontext"><a href="jupyter-notebooks.html#example-1">in-context</a></span>
 </body>
 </html>
