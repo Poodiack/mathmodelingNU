@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-01-16T08:43:04-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Working with Jupyter notebooks</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-starting-Sage.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="gettingstarted.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="sage-intro.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-starting-Sage.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="gettingstarted.html" title="Up">Up</a><a class="next-button button toolbar-item" href="sage-intro.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks" class="active">Working with Jupyter notebooks</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination">Coefficient of Determination</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="jupyter-notebooks"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">2.2</span> <span class="title">Working with Jupyter notebooks</span>
+</h2>
+<section class="introduction" id="introduction-4"><p id="p-13">While SageMath can be used within a terminal environment, using SageMath in a Jupyter notebook leads to much more robust and readable sessions. In a Jupyter notebook, we can enter explanatory text to go with the SageMath code using HTML commands to format. In this section, we will give some examples of coding that will allow us make our notebooks look exactly as we want them to look.</p></section><section class="subsection" id="subsection-1"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.2.1</span> <span class="title">Getting started with Jupyter</span>
+</h3>
+<p id="p-14">When you open a new notebook in either SageMath or CoCalc, you'll have one of two similar but not identical experiences.</p>
+<ul id="p-15" class="disc">
+<li id="li-1"><p id="p-16">In SageMath, you'll go up to the right-hand corner of your screen to the New button and choose SageMath 10.8 (or whatever version you have). A blank notebook with an indicator that you're using SageMath as the kernel should open.</p></li>
+<li id="li-2"><p id="p-17">In CoCalc, you can click on the arrow to the right of the New button and choose “Jupyter notebook (.ipynb)”. You'll be asked to name the file. After you do so, you should see the screen in <a class="xref" data-knowl="./knowl/opening-screens.html" title="Figure 2.2.1">Figure 2.2.1</a>.</p></li>
+</ul>
+<figure class="figure figure-like" id="opening-screens"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel middle" style="width:45%;"><img src="./images/sagemathopen.png" class="contained" alt=""></div>
+<div class="sbspanel middle" style="width:45%;"><img src="./images/cocalcopen.png" class="contained" alt=""></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.2.1<span class="period">.</span></span><span class="space"> </span>A blank notebook in SageMath (left) and in CoCalc (right).</figcaption></figure><p id="p-18">You may have to go to the Kernel menu in CoCalc to select the most recent version of SageMath as the kernel.</p></section><section class="subsection" id="subsection-2"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.2.2</span> <span class="title">Adding plain text in Jupyter notebooks</span>
+</h3>
+<p id="p-19">We assume that you have a blank Jupyter notebook open either in CoCalc or in SageMath itself.</p>
+<p id="p-20">We will introduce SageMath code in the next section. For now, we will look at ways of entering and formatting plain text in our notebook. This is useful for adding titles, section headings, and longer comments on your code.</p>
+<p id="p-21">Content in Jupyter notebooks is inserted via <em class="emphasis">cells</em>. In both SageMath and CoCalc, new cells are by default <em class="emphasis">Code</em> cells, the kind of cell where we would enter SageMath commands. To enter plain text, we need to have a <em class="emphasis">Markdown</em> cell.</p>
+<p id="p-22">In SageMath, we can click on the pulldown menu right and choose “Markdown” as the type of cell. (See <a class="xref" data-knowl="./knowl/markdownsage.html" title="Figure 2.2.2">Figure 2.2.2</a>.) In CoCalc, we can either add a new cell by choosing to add a Text cell, then choosing Markdown. (see <a class="xref" data-knowl="./knowl/markdowncocalc.html" title="Figure 2.2.3">Figure 2.2.3</a>) or clicking on the three dots at the right end of the cell and choosing Change Cell to Markdown. (See <a class="xref" data-knowl="./knowl/markdowncocalc3.html" title="Figure 2.2.4">Figure 2.2.4</a>.)</p>
+<figure class="figure figure-like" id="markdownsage"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="./images/markdown.png" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.2.2<span class="period">.</span></span><span class="space"> </span>Changing the cell type to Markdown in SageMath</figcaption></figure><figure class="figure figure-like" id="markdowncocalc"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel middle" style="width:45%;"><img src="./images/markdowncocalc.png" class="contained" alt=""></div>
+<div class="sbspanel middle" style="width:45%;"><img src="./images/markdowncocalc2.png" class="contained" alt=""></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.2.3<span class="period">.</span></span><span class="space"> </span>Adding a new Markdown cell in CoCalc</figcaption></figure><figure class="figure figure-like" id="markdowncocalc3"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/markdowncocalc3.png" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.2.4<span class="period">.</span></span><span class="space"> </span>Changing a cell to Markdown in CoCalc</figcaption></figure></section><section class="subsection" id="subsection-3"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.2.3</span> <span class="title">Formatting plain text</span>
+</h3>
+<p id="p-23">Here, we provide several examples of ways to enter and format plain text in Jupyter notebooks. Jupyter notebooks use HTML tags and commands to format text. We only need a few basic commands to make our notebooks look spiffy. Once our Markdown commands are entered, we hit <code class="code-inline tex2jax_ignore">SHIFT</code>-<code class="code-inline tex2jax_ignore">ENTER</code> to render the text.</p>
+<article class="example example-like" id="example-1"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-1"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Entering plain text.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-1"><article class="example example-like"><p id="p-24">Plain text in Jupyter notebooks must begin with a <code class="code-inline tex2jax_ignore">&lt;p&gt;</code> tag (for <em class="emphasis">paragraph</em>) and end with a <code class="code-inline tex2jax_ignore">&lt;/p&gt;</code> tag. Each new paragraph must begin with <code class="code-inline tex2jax_ignore">&lt;p&gt;</code> and end with <code class="code-inline tex2jax_ignore">&lt;/p&gt;</code>.</p>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-html">&lt;p&gt;This is a piece of plain text (not code).&lt;/p&gt;
+</code></pre></div>
+<p id="p-25"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/output1.png" class="contained" alt=""></div></p></article></div>
+<article class="example example-like" id="example-2"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-2"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Entering bold or italic text.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-2"><article class="example example-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-html">&lt;p&gt;This is a piece of &lt;b&gt;bold&lt;/b&gt; text and this is a piece 
+of &lt;i&gt;italic&lt;/i&gt; text.&lt;/p&gt;
+</code></pre></div>
+<p id="p-26"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/output2.png" class="contained" alt=""></div></p></article></div>
+<article class="example example-like" id="example-3"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-3"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Entering large text.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-3"><article class="example example-like"><p id="p-27">Here, we ask SageMath to render our text two sizes bigger than usual.</p>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-html">&lt;font size=+2&gt;
+ 		&lt;p&gt;This is a piece of large text.&lt;/p&gt;
+&lt;/font&gt;
+</code></pre></div>
+<p id="p-28"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/output3.png" class="contained" alt=""></div></p></article></div>
+<article class="example example-like" id="example-4"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-4"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.8</span><span class="period">.</span><span class="space"> </span><span class="title">Entering large text with color.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-4"><article class="example example-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-html">&lt;font color='red' size=+1&gt;
+ 		&lt;p&gt;This is a piece of large (though not &lt;br /&gt;
+ 		as large as the previous example) red text.&lt;/p&gt;
+&lt;/font&gt;
+</code></pre></div>
+<p id="p-29"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/output4.png" class="contained" alt=""></div></p>
+<p id="p-30">The <code class="code-inline tex2jax_ignore">&lt;br /&gt;</code> command inserts a line break in the text.</p></article></div>
+<article class="example example-like" id="example-5"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-5"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.9</span><span class="period">.</span><span class="space"> </span><span class="title">Adding a big header.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-5"><article class="example example-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-html"># Big header
+</code></pre></div>
+<p id="p-31"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/output5.png" class="contained" alt=""></div></p>
+<p id="p-32">Equivalently, we could enclose the header text in the HTML style commands <code class="code-inline tex2jax_ignore">&lt;h1&gt;</code> and <code class="code-inline tex2jax_ignore">&lt;/h1&gt;</code>.</p></article></div>
+<article class="example example-like" id="example-6"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-6"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.10</span><span class="period">.</span><span class="space"> </span><span class="title">Adding a medium header.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-6"><article class="example example-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-html">## Medium header
+</code></pre></div>
+<p id="p-33"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/output6.png" class="contained" alt=""></div></p>
+<p id="p-34">Equivalently, we could enclose the header text in the HTML style commands <code class="code-inline tex2jax_ignore">&lt;h2&gt;</code> and <code class="code-inline tex2jax_ignore">&lt;/h2&gt;</code>. We can get smaller section headers still by putting in another hashtag or two before the text (or using <code class="code-inline tex2jax_ignore">h3</code> or <code class="code-inline tex2jax_ignore">h4</code> styles).</p></article></div></section></section></div></main>
+</div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

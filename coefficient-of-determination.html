@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*       on 2026-01-16T08:43:04-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -57,7 +57,8 @@
                            languages: ['sage'],
                            evalButtonText: 'Evaluate (Sage)'});
 });
-</script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
 </script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
@@ -103,6 +104,7 @@
 <li class="link">
 <a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
 <li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks">Working with Jupyter notebooks</a></li>
 <li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
 <li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
 <li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
@@ -150,7 +152,7 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="coefficient-of-determination"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">6.6</span> <span class="title">Coefficient of Determination</span>
 </h2>
-<p id="p-432">The coefficient of determination, denoted \(R^2\text{,}\) is a numerical measure of how well a line fits a set of data.  To illustrate the fundamental concepts, we will generate some hypothetical data according to the relationship \(y=3+2x\text{.}\)</p>
+<p id="p-454">The coefficient of determination, denoted \(R^2\text{,}\) is a numerical measure of how well a line fits a set of data.  To illustrate the fundamental concepts, we will generate some hypothetical data according to the relationship \(y=3+2x\text{.}\)</p>
 <div class="sagecell-sage" id="sage-166"><script type="text/x-sage">data = [(x,2*x+3) for x in range(10)]
 data
 </script></div>
@@ -158,8 +160,8 @@ data
 sp = scatter_plot(data)
 sp + plot(2*x+3,(x,0,10))
 </script></div>
-<p id="p-433">Note that the line goes through each data point and the equation of this line (also called the <em class="emphasis">regression equation</em> is exactly what is used to generate the data.</p>
-<p id="p-434">One purpose of fitting a line to data is to use it for predicting the value of \(y\) when \(x\) is known.  If we did not have a graph of the data or the regression equation and we were given a value of \(x\text{,}\) the best guess as to the corresponding value of \(y\) would be the mean of the data.</p>
+<p id="p-455">Note that the line goes through each data point and the equation of this line (also called the <em class="emphasis">regression equation</em> is exactly what is used to generate the data.</p>
+<p id="p-456">One purpose of fitting a line to data is to use it for predicting the value of \(y\) when \(x\) is known.  If we did not have a graph of the data or the regression equation and we were given a value of \(x\text{,}\) the best guess as to the corresponding value of \(y\) would be the mean of the data.</p>
 <div class="sagecell-sage" id="sage-168"><script type="text/x-sage">yvalues = [y for (x,y) in data]
 yvalues
 </script></div>
@@ -167,36 +169,36 @@ yvalues
 
 numpy.mean(yvalues)
 </script></div>
-<p id="p-435">This mean is denoted by \(\overline{y}\) and equals 12 in this case.  We test this simple prediction strategy by examining the “error” it would cause for the given data points.</p>
+<p id="p-457">This mean is denoted by \(\overline{y}\) and equals 12 in this case.  We test this simple prediction strategy by examining the “error” it would cause for the given data points.</p>
 <div class="sagecell-sage" id="sage-170"><script type="text/x-sage">var('x')
 sp + plot(2*x+3,(x,0,10)) + plot(12,(x,0,10),color='red') \
 + text('$\\}\\leftarrow y -\\overline{y}$', (7.2,13.5),fontsize='24') \
 + text('$\\overline{y}=12$', (2,13.5), fontsize = '24', color = 'black')
 </script></div>
 <div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="./images/meanerror.png" class="contained" alt=""></div>
-<p id="p-436">If a \(y\)-value predicted by the regression equation is denoted \(\hat{y}\text{,}\) we measure how well a regression equation fits the data by comparing the deviation to the difference between \(\hat{y}\) and \(\overline{y}\text{,}\) \(\hat{y} - \overline{y}\text{.}\)  In this case, the regression line goes through each data point, so \(\hat{y} = y\text{.}\)  Therefore,</p>
+<p id="p-458">If a \(y\)-value predicted by the regression equation is denoted \(\hat{y}\text{,}\) we measure how well a regression equation fits the data by comparing the deviation to the difference between \(\hat{y}\) and \(\overline{y}\text{,}\) \(\hat{y} - \overline{y}\text{.}\)  In this case, the regression line goes through each data point, so \(\hat{y} = y\text{.}\)  Therefore,</p>
 <div class="displaymath">
 \begin{equation*}
 \hat{y} - \overline{y} = y - \overline{y} \quad\Longrightarrow \quad \frac{\hat{y} - \overline{y}}{y - \overline{y}} = 1.
 \end{equation*}
 </div>
-<p id="p-437">Thus we give this regression equation an \(R^2\) value of 1.  This value is often interpreted by saying that the regression equation “explains” 100% of the deviation. The definition of the coefficient of determination is based on this idea of comparing the deviation to the difference between \(\hat{y}\) and \(\overline{y}\) to measure the percentage of deviation “explained” by the regression equation.</p>
-<p id="p-438">This set of data is highly idealized because it was generated exactly according to the linear relationship \(y=3+2x\text{.}\)  In reality, data never conforms to an exact relationship like this.  Real data with a linear relationship satisfies an equation of the form</p>
+<p id="p-459">Thus we give this regression equation an \(R^2\) value of 1.  This value is often interpreted by saying that the regression equation “explains” 100% of the deviation. The definition of the coefficient of determination is based on this idea of comparing the deviation to the difference between \(\hat{y}\) and \(\overline{y}\) to measure the percentage of deviation “explained” by the regression equation.</p>
+<p id="p-460">This set of data is highly idealized because it was generated exactly according to the linear relationship \(y=3+2x\text{.}\)  In reality, data never conforms to an exact relationship like this.  Real data with a linear relationship satisfies an equation of the form</p>
 <div class="displaymath">
 \begin{equation*}
 y = \beta_0 + \beta_1 x + \varepsilon
 \end{equation*}
 </div>
-<p id="p-439">where \(\varepsilon\) is some “noise.” This noise may be due to measurement error, sampling variation, or some other random event outside of our control.</p>
-<p id="p-440">The relation \(y = \beta_0 + \beta_1x\) is called the “true” linear trend of the population while the regression equation has the generic form \(\hat{y} = \hat{\beta}_0 + 
+<p id="p-461">where \(\varepsilon\) is some “noise.” This noise may be due to measurement error, sampling variation, or some other random event outside of our control.</p>
+<p id="p-462">The relation \(y = \beta_0 + \beta_1x\) is called the “true” linear trend of the population while the regression equation has the generic form \(\hat{y} = \hat{\beta}_0 + 
 \hat{\beta}_1 x\text{.}\)  The “hats” indicate that the parameters \(\hat{\beta}_0\) and \(\hat{\beta}_1\text{,}\) and the values of \(y\text{,}\) are estimates of the population values based on sample data.</p>
-<p id="p-441">Let's redo the data set by adding in some psuedorandom noise.</p>
+<p id="p-463">Let's redo the data set by adding in some psuedorandom noise.</p>
 <div class="sagecell-sage" id="sage-171"><script type="text/x-sage">data = [(x, 2*x+3+numpy.random.normal(0,2)) for x in range(10)]
 
 sp2 = scatter_plot(data)
 show(sp2)
 </script></div>
-<p id="p-442">(If you execute these commands several times in a row, you will get a slightly different graph each time.)</p>
+<p id="p-464">(If you execute these commands several times in a row, you will get a slightly different graph each time.)</p>
 <div class="sagecell-sage" id="sage-172"><script type="text/x-sage">var('b0 b1 x')
 model(x) = b0 + b1*x
 ans = find_fit(data,model, solution_dict = True)
@@ -204,44 +206,44 @@ ans
 </script></div>
 <div class="sagecell-sage" id="sage-173"><script type="text/x-sage">sp2 + plot(ans[b0] + ans[b1]*x,(x,0,10))
 </script></div>
-<p id="p-443">How do we define the \(R^2\) value for a line fit to noisy data?  We introduce three different types of deviation:</p>
+<p id="p-465">How do we define the \(R^2\) value for a line fit to noisy data?  We introduce three different types of deviation:</p>
 <ul class="disc">
-<li id="li-39"><p id="p-444"><em class="emphasis">Explained deviation</em> \({}=\hat{y} - \overline{y}\)</p></li>
-<li id="li-40"><p id="p-445"><em class="emphasis">Unexplained deviation</em> \({}=y - \hat{y}\)</p></li>
-<li id="li-41"><p id="p-446"><em class="emphasis">Total deviation</em> = Explained deviation + unexplained deviation \({}= y - \overline{y}\)</p></li>
+<li id="li-41"><p id="p-466"><em class="emphasis">Explained deviation</em> \({}=\hat{y} - \overline{y}\)</p></li>
+<li id="li-42"><p id="p-467"><em class="emphasis">Unexplained deviation</em> \({}=y - \hat{y}\)</p></li>
+<li id="li-43"><p id="p-468"><em class="emphasis">Total deviation</em> = Explained deviation + unexplained deviation \({}= y - \overline{y}\)</p></li>
 </ul>
-<p id="p-447">We wish to total up the deviation over all the data points, but we need to avoid cancellation. So similar to the least-squares approach, we will square these quantities to get amounts of <dfn class="terminology">variation</dfn>.  The total variation is called the <dfn class="terminology">total sum of squares</dfn> and is given by</p>
+<p id="p-469">We wish to total up the deviation over all the data points, but we need to avoid cancellation. So similar to the least-squares approach, we will square these quantities to get amounts of <dfn class="terminology">variation</dfn>.  The total variation is called the <dfn class="terminology">total sum of squares</dfn> and is given by</p>
 <div class="displaymath">
 \begin{equation*}
 SS_{Tot} = \sum (y_i - \overline{y})^2.
 \end{equation*}
 </div>
-<p id="p-448">The explained variation is called the <dfn class="terminology">regression sum of squares</dfn> and is given by</p>
+<p id="p-470">The explained variation is called the <dfn class="terminology">regression sum of squares</dfn> and is given by</p>
 <div class="displaymath">
 \begin{equation*}
 SS_{Reg} = \sum (\hat{y}_i - \overline{y})^2.
 \end{equation*}
 </div>
-<p id="p-449">The unexplained variation is called the <dfn class="terminology">residual sum of squares</dfn> and is given by</p>
+<p id="p-471">The unexplained variation is called the <dfn class="terminology">residual sum of squares</dfn> and is given by</p>
 <div class="displaymath">
 \begin{equation*}
 SS_{Res} = \sum (y_i - \hat{y}_i)^2.
 \end{equation*}
 </div>
-<p id="p-450">Similar to the relationship between the deviations, we get that</p>
+<p id="p-472">Similar to the relationship between the deviations, we get that</p>
 <div class="displaymath">
 \begin{equation*}
 SS_{Tot} = SS_{Reg} + SS_{Res}.
 \end{equation*}
 </div>
-<p id="p-451">(Proving that is not trivial.). If we rewrite the previous equation as \(SS_{Reg} = SS_{Tot} - SS_{Res}\text{,}\) we can write that the “percentage” of the total variation explained by the regression equation is</p>
+<p id="p-473">(Proving that is not trivial.). If we rewrite the previous equation as \(SS_{Reg} = SS_{Tot} - SS_{Res}\text{,}\) we can write that the “percentage” of the total variation explained by the regression equation is</p>
 <div class="displaymath">
 \begin{equation*}
 R^2 = \frac{SS_{Reg}}{SS_{Tot}} = \frac{SS_{Tot} - SS_{Res}}{SS_{Tot}}.
 \end{equation*}
 </div>
-<p id="p-452">This is the definition of the coefficient of determination.  The closer \(R^2\) is to 1, the better the line fits the data.  An \(R^2\) value close to 0 indicates a very poor-fitting model.</p>
-<p id="p-453">Now let's calculate \(R^2\) for our noisy data and its regression line above.</p>
+<p id="p-474">This is the definition of the coefficient of determination.  The closer \(R^2\) is to 1, the better the line fits the data.  An \(R^2\) value close to 0 indicates a very poor-fitting model.</p>
+<p id="p-475">Now let's calculate \(R^2\) for our noisy data and its regression line above.</p>
 <div class="sagecell-sage" id="sage-174"><script type="text/x-sage">yvalues = [y for (x,y) in data]
 avg = numpy.mean(yvalues)
 
@@ -254,12 +256,12 @@ ssres = sum((yvalues[i] - yhatvalues[i])^2 for i in range(10))
 rsquared = (sstot - ssres)/sstot
 rsquared
 </script></div>
-<p id="p-454">The \(R^2\) value is not 1 because our data has some noise, so the underlying linear relationship (\(y=3+2x\)) does not account for all of the variation from the mean.</p>
-<p id="p-455">If we re-execute the cells above to re-do the noise, we should get different points and a different \(R^2\) value. We can add more “noise” to the data by increasing the standard deviation from 2 to 4.  What happens to the \(R^2\) value if we do this?</p>
-<section class="subsection" id="subsection-19"><h3 class="heading hide-type">
+<p id="p-476">The \(R^2\) value is not 1 because our data has some noise, so the underlying linear relationship (\(y=3+2x\)) does not account for all of the variation from the mean.</p>
+<p id="p-477">If we re-execute the cells above to re-do the noise, we should get different points and a different \(R^2\) value. We can add more “noise” to the data by increasing the standard deviation from 2 to 4.  What happens to the \(R^2\) value if we do this?</p>
+<section class="subsection" id="subsection-22"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">6.6.1</span> <span class="title">Finding \(R^2\) for linearizable models</span>
 </h3>
-<p id="p-456">Consider the linearizable models fit to the life expectancy data in <a href="linearizable-models.html" class="internal" title="Section 6.5: Linearizable Models">Section 6.5</a>. We can compare how well the different models fit the data by calculating the \(R^2\) value for each model and then comparing the \(R^2\) values. To calculate the \(R^2\) value for a linearizable model, we calculate the \(R^2\) value for the straight line fit to the <em class="emphasis">transformed</em> data.</p>
+<p id="p-478">Consider the linearizable models fit to the life expectancy data in <a href="linearizable-models.html" class="internal" title="Section 6.5: Linearizable Models">Section 6.5</a>. We can compare how well the different models fit the data by calculating the \(R^2\) value for each model and then comparing the \(R^2\) values. To calculate the \(R^2\) value for a linearizable model, we calculate the \(R^2\) value for the straight line fit to the <em class="emphasis">transformed</em> data.</p>
 <section class="subsubsection" id="subsubsection-1"><h4 class="heading hide-type">
 <span class="type">Subsubsection</span> <span class="codenumber">6.6.1.1</span> <span class="title">Power model</span>
 </h4>
@@ -341,7 +343,7 @@ sstot = N(sum((yvalues[i]-avg)^2 for i in range(10)))
 ssres = N(sum((yvalues[i] - yhatvalues[i])^2 for i in range(10)))
 rsquared = (sstot - ssres)/sstot
 rsquared
-</script></div></section><p id="p-457">We can now compare how well these models fit the data by comparing their \(R^2\) values:</p>
+</script></div></section><p id="p-479">We can now compare how well these models fit the data by comparing their \(R^2\) values:</p>
 <div class="tabular-box natural-width"><table class="tabular">
 <tr class="header-horizontal">
 <th class="c m b0 r0 l0 t3 lines">Logarithmic</th>
@@ -353,15 +355,15 @@ rsquared
 <td class="c m b3 r0 l0 t0 lines">0.7611</td>
 <td class="c m b3 r0 l0 t0 lines">0.5739</td>
 </tr>
-</table></div></section><p id="p-458">We see that the power and logarithmic models fit the data well with the logarithmic model being slightly better. The exponential model does not fit as well. Thus, based strictly on the \(R^2\) values, we would conclude that the logarithmic model fits the data the best. This agrees with our earlier conclusion.</p>
-<p id="p-459">We warn against blindly using \(R^2\) values to choose a best model. These values should be used as only one factor when choosing a best model. Other factors that should be considered are the nature of the behavior being analyzed and the simplicity of the model.</p>
-<p id="p-460">For instance, population growth is often exponential. So if we fit curves to some data of a population, we may want to favor an exponential model over other types even if it has a lower \(R^2\) value.</p>
-<p id="p-461">In “Modeling the U.S. Population” (AMATYC Review, Vol. 20, No. 2, Spring 1999, pages 17–29), Sheldon Gordon makes the point that, “The best choice (of a model) depends on the set of data being analyzed and requires an exercise in judgement, not just computation.”</p>
+</table></div></section><p id="p-480">We see that the power and logarithmic models fit the data well with the logarithmic model being slightly better. The exponential model does not fit as well. Thus, based strictly on the \(R^2\) values, we would conclude that the logarithmic model fits the data the best. This agrees with our earlier conclusion.</p>
+<p id="p-481">We warn against blindly using \(R^2\) values to choose a best model. These values should be used as only one factor when choosing a best model. Other factors that should be considered are the nature of the behavior being analyzed and the simplicity of the model.</p>
+<p id="p-482">For instance, population growth is often exponential. So if we fit curves to some data of a population, we may want to favor an exponential model over other types even if it has a lower \(R^2\) value.</p>
+<p id="p-483">In “Modeling the U.S. Population” (AMATYC Review, Vol. 20, No. 2, Spring 1999, pages 17–29), Sheldon Gordon makes the point that, “The best choice (of a model) depends on the set of data being analyzed and requires an exercise in judgement, not just computation.”</p>
 <section class="exercises" id="exercises-8"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">6.6.2</span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="exercise-23"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
-<p id="p-462">The data below contain the weights (in lbs) and highway miles per gallon (MPG) of several cars. Calculate \(SS_{Reg}\text{,}\) \(SS_{Res}\text{,}\) \(SS_{Tot}\text{,}\) and \(R^2\) for the linear regression equation fit to this data.</p>
+<p id="p-484">The data below contain the weights (in lbs) and highway miles per gallon (MPG) of several cars. Calculate \(SS_{Reg}\text{,}\) \(SS_{Res}\text{,}\) \(SS_{Tot}\text{,}\) and \(R^2\) for the linear regression equation fit to this data.</p>
 <div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="c m b1 r1 l0 t3 lines">
@@ -380,7 +382,7 @@ rsquared
 <td class="c m b3 r0 l0 t0 lines">38</td>
 </tr>
 </table></div></article><article class="exercise exercise-like" id="exercise-24"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
-<p id="p-463">The data below contain the diameter of the trunk at chest height and volume of wood in several pine trees. Model Volume in terms of Diameter with several different linearizable models and select the best one. Briefly explain how you decided which one is best.</p>
+<p id="p-485">The data below contain the diameter of the trunk at chest height and volume of wood in several pine trees. Model Volume in terms of Diameter with several different linearizable models and select the best one. Briefly explain how you decided which one is best.</p>
 <div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="r m b1 r1 l0 t3 lines"><em class="emphasis">Diameter</em></td>
@@ -410,5 +412,6 @@ rsquared
 </tr>
 </table></div></article></section></section></div></main>
 </div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>

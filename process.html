@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*       on 2026-01-16T08:43:04-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -49,7 +49,8 @@
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
 };
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
 </script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
@@ -95,6 +96,7 @@
 <li class="link">
 <a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
 <li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks">Working with Jupyter notebooks</a></li>
 <li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
 <li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
 <li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
@@ -142,49 +144,49 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="process"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">5.3</span> <span class="title">Process</span>
 </h2>
-<p id="p-154">We will illustrate the process of mathematical modeling with an example of modeling the number of bacteria in a Petri dish as described in <a href="purpose.html" class="internal" title="Section 5.2: Purpose">Section 5.2</a>.</p>
-<dl id="p-155" class="description-list">
-<dt id="li-16">Step 1:</dt>
+<p id="p-176">We will illustrate the process of mathematical modeling with an example of modeling the number of bacteria in a Petri dish as described in <a href="purpose.html" class="internal" title="Section 5.2: Purpose">Section 5.2</a>.</p>
+<dl id="p-177" class="description-list">
+<dt id="li-18">Step 1:</dt>
 <dd>
-<p id="p-156">State the question to be answered.</p>
-<p id="p-157">In many situations, this step is almost trivial; in others it is the most difficult part of the process. The question should be narrow enough to make the problem manageable, but not too narrow so that the problem is trivial. Initially we may want to focus on a narrow question, and then use the knowledge gained to broaden the question at a later time. The question should also be stated in precise mathematical terms so it can easily be translated into mathematical notation.</p>
-<p id="p-158">In this example we will answer the question “How long will it be until the number of bacteria in the dish reaches 600?”</p>
+<p id="p-178">State the question to be answered.</p>
+<p id="p-179">In many situations, this step is almost trivial; in others it is the most difficult part of the process. The question should be narrow enough to make the problem manageable, but not too narrow so that the problem is trivial. Initially we may want to focus on a narrow question, and then use the knowledge gained to broaden the question at a later time. The question should also be stated in precise mathematical terms so it can easily be translated into mathematical notation.</p>
+<p id="p-180">In this example we will answer the question “How long will it be until the number of bacteria in the dish reaches 600?”</p>
 </dd>
-<dt id="li-17">Step 2:</dt>
+<dt id="li-19">Step 2:</dt>
 <dd>
-<p id="p-159">Select the modeling approach.</p>
-<p id="p-160">In this step we determine the form of the model. In some situations this is easy to do; in others we may have several reasonable choices. Making the right choice requires at least some knowledge of all the possibilities. It also depends on the nature of the assumptions being made.</p>
-<p id="p-161">Often times this step begins with some simple observations. Note that we started with 500 bacteria. After 1 day, it increased by 25, which is 5% of 500. After a second day it increased by 26, which is approximately 5% of 525. The growth rate (or change per day) appears to be relatively constant. This suggests a simple relationship between the populations on consecutive days:</p>
-<div class="displaymath" id="p-162">
+<p id="p-181">Select the modeling approach.</p>
+<p id="p-182">In this step we determine the form of the model. In some situations this is easy to do; in others we may have several reasonable choices. Making the right choice requires at least some knowledge of all the possibilities. It also depends on the nature of the assumptions being made.</p>
+<p id="p-183">Often times this step begins with some simple observations. Note that we started with 500 bacteria. After 1 day, it increased by 25, which is 5% of 500. After a second day it increased by 26, which is approximately 5% of 525. The growth rate (or change per day) appears to be relatively constant. This suggests a simple relationship between the populations on consecutive days:</p>
+<div class="displaymath" id="p-184">
 \begin{equation*}
 \text{Population on one day}=\text{Population on previous day } + 5\%
 \end{equation*}
 </div>
-<p id="p-163">This relationship indicates that we may be able to derive a simple equation to model the population.</p>
+<p id="p-185">This relationship indicates that we may be able to derive a simple equation to model the population.</p>
 </dd>
-<dt id="li-18">Step 3:</dt>
+<dt id="li-20">Step 3:</dt>
 <dd>
-<p id="p-164">Define variables and parameters.</p>
-<p id="p-165"><em class="emphasis">Variables</em> are quantities that could change within a problem. <em class="emphasis">Parameters</em> are quantities that are constant within a problem, but that could change between problems of the same type. The first part on this step is to determine what variables and parameters are involved. This may be simple and obvious, or very complicated. Often times there are potentially hundreds of quantities involved. To make the model manageable, we need to make assumptions as to which are the most important and which can be ignored. At a later time we could add additional variables and parameters to refine the model.</p>
-<p id="p-166">In this example, variables include:</p>
-<ol id="p-167" class="decimal">
-<li id="li-19">Time</li>
-<li id="li-20">Population</li>
-<li id="li-21">Temperature</li>
-<li id="li-22">Amount of food present</li>
-<li id="li-23">Amount of available space in the dish</li>
+<p id="p-186">Define variables and parameters.</p>
+<p id="p-187"><em class="emphasis">Variables</em> are quantities that could change within a problem. <em class="emphasis">Parameters</em> are quantities that are constant within a problem, but that could change between problems of the same type. The first part on this step is to determine what variables and parameters are involved. This may be simple and obvious, or very complicated. Often times there are potentially hundreds of quantities involved. To make the model manageable, we need to make assumptions as to which are the most important and which can be ignored. At a later time we could add additional variables and parameters to refine the model.</p>
+<p id="p-188">In this example, variables include:</p>
+<ol id="p-189" class="decimal">
+<li id="li-21">Time</li>
+<li id="li-22">Population</li>
+<li id="li-23">Temperature</li>
+<li id="li-24">Amount of food present</li>
+<li id="li-25">Amount of available space in the dish</li>
 </ol>
-<p id="p-168">These are all values that change as the population grows. Since the initial observation did not give any information on temperature, food, or space, we will ignore these variables and focus on only time and population.</p>
-<p id="p-169">Possible parameters to consider include:</p>
-<ol id="p-170" class="decimal">
-<li id="li-24">The initial population</li>
-<li id="li-25">Growth rate (we will assume this is constant)</li>
-<li id="li-26">Size of the dish</li>
-<li id="li-27">Initial amount of food</li>
+<p id="p-190">These are all values that change as the population grows. Since the initial observation did not give any information on temperature, food, or space, we will ignore these variables and focus on only time and population.</p>
+<p id="p-191">Possible parameters to consider include:</p>
+<ol id="p-192" class="decimal">
+<li id="li-26">The initial population</li>
+<li id="li-27">Growth rate (we will assume this is constant)</li>
+<li id="li-28">Size of the dish</li>
+<li id="li-29">Initial amount of food</li>
 </ol>
-<p id="p-171">These are all values that are constant once we put the bacteria in the dish and allow them to grow. But if we consider a different dish with a different population of bacteria, they could change. Again, since we don’t know anything about the size of the dish or the amount of food, we will ignore these parameters.</p>
-<p id="p-172">The second part of this step is to choose symbols to represent the variables and parameters. For this example, let</p>
-<div class="displaymath" id="p-173">
+<p id="p-193">These are all values that are constant once we put the bacteria in the dish and allow them to grow. But if we consider a different dish with a different population of bacteria, they could change. Again, since we don’t know anything about the size of the dish or the amount of food, we will ignore these parameters.</p>
+<p id="p-194">The second part of this step is to choose symbols to represent the variables and parameters. For this example, let</p>
+<div class="displaymath" id="p-195">
 \begin{equation*}
 \begin{aligned}
 n &amp; = \text{time in days from the present }(n = 0, 1,\dots) \\
@@ -195,18 +197,18 @@ a_0 &amp; = \text{the initial population}
 \end{equation*}
 </div>
 </dd>
-<dt id="li-28">Step 4:</dt>
+<dt id="li-30">Step 4:</dt>
 <dd>
-<p id="p-174">State the assumptions.</p>
-<p id="p-175">Making assumptions is an essential aspect of creating a valid and manageable model. Assumptions fall into many different categories. Some are used to simplify the model, such as those used to select the important variables. Some are needed to define relationships between the variables because the precise relationships are not known. Others are needed to determine the values of parameters when the exact values are not known.</p>
-<p id="p-176">Clearly stating the assumptions is an important part of interpreting and presenting the results. The results of a model are only as valid as the underlying assumptions. If the assumptions are unreasonable, then the conclusion will be unreasonable regardless of the precision of the mathematical analysis.</p>
-<p id="p-177">In this problem, we have already chosen to ignore temperature, size of the dish, and many other possible variables and parameters. This is a simplification. Furthermore, we will assume that the population growth is constant (<em class="emphasis">i.e.</em> the population will increase 5% each day).</p>
+<p id="p-196">State the assumptions.</p>
+<p id="p-197">Making assumptions is an essential aspect of creating a valid and manageable model. Assumptions fall into many different categories. Some are used to simplify the model, such as those used to select the important variables. Some are needed to define relationships between the variables because the precise relationships are not known. Others are needed to determine the values of parameters when the exact values are not known.</p>
+<p id="p-198">Clearly stating the assumptions is an important part of interpreting and presenting the results. The results of a model are only as valid as the underlying assumptions. If the assumptions are unreasonable, then the conclusion will be unreasonable regardless of the precision of the mathematical analysis.</p>
+<p id="p-199">In this problem, we have already chosen to ignore temperature, size of the dish, and many other possible variables and parameters. This is a simplification. Furthermore, we will assume that the population growth is constant (<em class="emphasis">i.e.</em> the population will increase 5% each day).</p>
 </dd>
-<dt id="li-29">Step 5:</dt>
+<dt id="li-31">Step 5:</dt>
 <dd>
-<p id="p-178">Formulate the model.</p>
-<p id="p-179">This is where the “mathematics” starts. We have observed that the number of bacteria on day 1 is equal to the number on day 0 plus 5%. The number on day 2 is equal to the number on day 1 plus 5%, etc. In mathematical notation using our variables and parameters, we have</p>
-<div class="displaymath" id="p-180">
+<p id="p-200">Formulate the model.</p>
+<p id="p-201">This is where the “mathematics” starts. We have observed that the number of bacteria on day 1 is equal to the number on day 0 plus 5%. The number on day 2 is equal to the number on day 1 plus 5%, etc. In mathematical notation using our variables and parameters, we have</p>
+<div class="displaymath" id="p-202">
 \begin{equation*}
 \begin{aligned}
 a_1 &amp; = a_0 + r\,a_0 = (1+r)a_0 \\
@@ -216,8 +218,8 @@ a_{n+1} &amp; = a_n + r\,a_n = (1+r)a_n
 \end{aligned}	
 \end{equation*}
 </div>
-<p id="p-181">This forms a recursively defined sequence. To form an explicit description of \(a_n\) in terms of \(n\text{,}\) note that</p>
-<div class="displaymath" id="p-182">
+<p id="p-203">This forms a recursively defined sequence. To form an explicit description of \(a_n\) in terms of \(n\text{,}\) note that</p>
+<div class="displaymath" id="p-204">
 \begin{equation*}
 \begin{aligned}
 a_1 &amp; = (1+r)a_0 \\
@@ -228,28 +230,28 @@ a_n &amp; = (1+r)^n a_0
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-183">This last equation is our model.</p>
+<p id="p-205">This last equation is our model.</p>
 </dd>
-<dt id="li-30">Step 6:</dt>
+<dt id="li-32">Step 6:</dt>
 <dd>
-<p id="p-184">Solve the model and state the solution.</p>
-<p id="p-185">Here we use the term “solve” loosely. Solving a model may involve solving a single equation, as in this example, it may involve constructing a graph and qualitatively describing its behavior, or it may involve running a simulation several hundred times and summarizing the resulting data. The meaning of the term solve is relative to the type of model.</p>
-<p id="p-186">In this example, the question is “when will the population be 600?” In terms of our variables, this can be stated as “find \(n\) such that \(a_n = 600\text{.}\)” This yields the equation</p>
-<div class="displaymath" id="p-187">
+<p id="p-206">Solve the model and state the solution.</p>
+<p id="p-207">Here we use the term “solve” loosely. Solving a model may involve solving a single equation, as in this example, it may involve constructing a graph and qualitatively describing its behavior, or it may involve running a simulation several hundred times and summarizing the resulting data. The meaning of the term solve is relative to the type of model.</p>
+<p id="p-208">In this example, the question is “when will the population be 600?” In terms of our variables, this can be stated as “find \(n\) such that \(a_n = 600\text{.}\)” This yields the equation</p>
+<div class="displaymath" id="p-209">
 \begin{equation*}
 600 = (1+0.05)^n\cdot 500
 \end{equation*}
 </div>
-<p id="p-188">Solving this equation using logarithms yields \(n\approx 3.7\text{.}\) This means that at the beginning of the fourth day we will have over 600 bacteria. This is our solution.</p>
-<p id="p-189">Often times the results of a model are used to guide decisions. In many practical situations, such as in business or the military, the person doing the modeling is not the final decision maker. The final decision maker is a CEO or officer who is not a mathematician. Therefore, the solution should be stated in as non-technical language as reasonably possible.</p>
+<p id="p-210">Solving this equation using logarithms yields \(n\approx 3.7\text{.}\) This means that at the beginning of the fourth day we will have over 600 bacteria. This is our solution.</p>
+<p id="p-211">Often times the results of a model are used to guide decisions. In many practical situations, such as in business or the military, the person doing the modeling is not the final decision maker. The final decision maker is a CEO or officer who is not a mathematician. Therefore, the solution should be stated in as non-technical language as reasonably possible.</p>
 </dd>
-<dt id="li-31">Step 7:</dt>
+<dt id="li-33">Step 7:</dt>
 <dd>
-<p id="p-190">Verify the model.</p>
-<p id="p-191">Verification is necessary to test the reasonableness of our assumptions. Typically we verify a model by comparing it to some real world data. Let’s suppose we let the bacteria grow for a total of 7 days and collect the data in <a class="xref" data-knowl="./knowl/bacteria-table.html" title="Table 5.3.1">Table 5.3.1</a>. Next to the actual observed populations are the populations predicted by the model.</p>
-<p id="p-192">We see that on day 4, the actual population is just below 600. Even though the predicted population does not equal the actual population, our solution of 4 days is reasonable.</p>
-<p id="p-193">Note that on days 5 and 6, the actual and predicted populations differ considerably. The data indicates that the growth rate slows down. This means that our assumption of a constant growth rate is incorrect.</p>
-<p id="p-194"><figure class="table table-like" id="bacteria-table"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">5.3.1<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<p id="p-212">Verify the model.</p>
+<p id="p-213">Verification is necessary to test the reasonableness of our assumptions. Typically we verify a model by comparing it to some real world data. Let’s suppose we let the bacteria grow for a total of 7 days and collect the data in <a class="xref" data-knowl="./knowl/bacteria-table.html" title="Table 5.3.1">Table 5.3.1</a>. Next to the actual observed populations are the populations predicted by the model.</p>
+<p id="p-214">We see that on day 4, the actual population is just below 600. Even though the predicted population does not equal the actual population, our solution of 4 days is reasonable.</p>
+<p id="p-215">Note that on days 5 and 6, the actual and predicted populations differ considerably. The data indicates that the growth rate slows down. This means that our assumption of a constant growth rate is incorrect.</p>
+<p id="p-216"><figure class="table table-like" id="bacteria-table"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">5.3.1<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr class="header-horizontal">
 <th class="c m b0 r0 l0 t3 lines"></th>
 <th class="c m b0 r0 l0 t3 lines">Actual</th>
@@ -296,21 +298,22 @@ a_n &amp; = (1+r)^n a_0
 <td class="c m b3 r0 l0 t0 lines">670</td>
 </tr>
 </table></div></figure></p>
-<p id="p-195">Our model is accurate up to day 4, but inaccurate for later days. This example illustrates that we must be very cautious about using data from the past to make predictions about the future.</p>
+<p id="p-217">Our model is accurate up to day 4, but inaccurate for later days. This example illustrates that we must be very cautious about using data from the past to make predictions about the future.</p>
 </dd>
-<dt id="li-32">Step 8:</dt>
+<dt id="li-34">Step 8:</dt>
 <dd>
-<p id="p-196">Refine the model.</p>
-<p id="p-197">Refine means to improve the model in some way. One way to do this is to add variables that we chose to ignore in step 3 to make a more accurate model. Another way is to generalize the model so that it can be used to solve other similar problems. Either one will require us to repeat steps 3 – 7 to some degree.</p>
-<p id="p-198">We have already noted that the data indicates the growth rate slows down over time. This could be a result of diminishing food supplies or room to grow. These are two variables we chose to ignore.</p>
-<p id="p-199">One possible refinement is to redo the model incorporating these two variables. This would require additional observations and data to determine how these variables are related to the other variables. Another possible refinement is to use the available data to model a decreasing growth rate. We will illustrate how to do this in the next chapter.</p>
-<p id="p-200">A simple diagram that illustrates the basic process of mathematical modeling is given in <a class="xref" data-knowl="./knowl/model-process.html" title="Figure 5.3.2">Figure 5.3.2</a>. The process begins in the upper left-hand corner with observations (or data). From this we get the basic problem we want to solve. We then make assumptions, construct the model, solve it using appropriate mathematical tools, and obtain a mathematical result. Then we must interpret the mathematical result in light of the assumptions to make our conclusions. We then verify the model using more observations.</p>
-<p id="p-201"><figure class="figure figure-like" id="model-process"><div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="images/modelingprocess.png" class="contained" alt=""></div>
+<p id="p-218">Refine the model.</p>
+<p id="p-219">Refine means to improve the model in some way. One way to do this is to add variables that we chose to ignore in step 3 to make a more accurate model. Another way is to generalize the model so that it can be used to solve other similar problems. Either one will require us to repeat steps 3 – 7 to some degree.</p>
+<p id="p-220">We have already noted that the data indicates the growth rate slows down over time. This could be a result of diminishing food supplies or room to grow. These are two variables we chose to ignore.</p>
+<p id="p-221">One possible refinement is to redo the model incorporating these two variables. This would require additional observations and data to determine how these variables are related to the other variables. Another possible refinement is to use the available data to model a decreasing growth rate. We will illustrate how to do this in the next chapter.</p>
+<p id="p-222">A simple diagram that illustrates the basic process of mathematical modeling is given in <a class="xref" data-knowl="./knowl/model-process.html" title="Figure 5.3.2">Figure 5.3.2</a>. The process begins in the upper left-hand corner with observations (or data). From this we get the basic problem we want to solve. We then make assumptions, construct the model, solve it using appropriate mathematical tools, and obtain a mathematical result. Then we must interpret the mathematical result in light of the assumptions to make our conclusions. We then verify the model using more observations.</p>
+<p id="p-223"><figure class="figure figure-like" id="model-process"><div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="images/modelingprocess.png" class="contained" alt=""></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">5.3.2<span class="period">.</span></span><span class="space"> </span></figcaption></figure></p>
-<p id="p-202">This figure also illustrates the cyclic nature of mathematical modeling. We rarely stop once we answer the original question. We continually repeat the process, to some extent, to test, refine, and implement the model.</p>
-<p id="p-203">The right half of this diagram is done in the “math world” and the left half is done in the “real world.” In the math world, we use the absolute certainty of mathematics. The real world contains no such certainties. Making assumptions and interpreting are necessary steps to move between these two worlds.</p>
+<p id="p-224">This figure also illustrates the cyclic nature of mathematical modeling. We rarely stop once we answer the original question. We continually repeat the process, to some extent, to test, refine, and implement the model.</p>
+<p id="p-225">The right half of this diagram is done in the “math world” and the left half is done in the “real world.” In the math world, we use the absolute certainty of mathematics. The real world contains no such certainties. Making assumptions and interpreting are necessary steps to move between these two worlds.</p>
 </dd>
 </dl></section></div></main>
 </div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>

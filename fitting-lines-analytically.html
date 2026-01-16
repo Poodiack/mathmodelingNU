@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*       on 2026-01-16T08:43:04-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -57,7 +57,8 @@
                            languages: ['sage'],
                            evalButtonText: 'Evaluate (Sage)'});
 });
-</script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
 </script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
@@ -103,6 +104,7 @@
 <li class="link">
 <a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
 <li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks">Working with Jupyter notebooks</a></li>
 <li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
 <li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
 <li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
@@ -150,61 +152,61 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="fitting-lines-analytically"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">6.3</span> <span class="title">Fitting Straight Lines Analytically</span>
 </h2>
-<p id="p-312">As we have seen, modeling with proportionality often requires us to fit a straight line to a set of data. In earlier sections we used a graphical approach, which can be rather subjective. Today we will look at different definitions of a “best fit” line and find formulas for the slope and \(y\)-intercept of a best-fit line in terms of the \(x\)- and \(y\)-coordinates of the data points. This will give an objective approach to fitting a straight line.</p>
-<p id="p-313">The first step is to define criteria for a good-fitting line. The line in the left graph in <a class="xref" data-knowl="./knowl/two-lines.html" title="Figure 6.3.1">Figure 6.3.1</a> fits the data “better” than the line in the right graph.</p>
+<p id="p-334">As we have seen, modeling with proportionality often requires us to fit a straight line to a set of data. In earlier sections we used a graphical approach, which can be rather subjective. Today we will look at different definitions of a “best fit” line and find formulas for the slope and \(y\)-intercept of a best-fit line in terms of the \(x\)- and \(y\)-coordinates of the data points. This will give an objective approach to fitting a straight line.</p>
+<p id="p-335">The first step is to define criteria for a good-fitting line. The line in the left graph in <a class="xref" data-knowl="./knowl/two-lines.html" title="Figure 6.3.1">Figure 6.3.1</a> fits the data “better” than the line in the right graph.</p>
 <figure class="figure figure-like" id="two-lines"><div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="./images/Fig2.14.png" class="contained" alt=""></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">6.3.1<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-314">What’s the difference between these two lines? There are probably many ways to answer this question.</p>
-<p id="p-315">We see that in the right graph, the line is very close to the right-most point, but further from the other two points than the line in the left graph. We might say that the line in the left graph is “closer” to the data points in general than the line in the right graph. The idea of minimizing the distance between the line and the points will form the basis of the definition of a best-fit line.</p>
-<p id="p-316">These distances (also called <em class="emphasis">errors</em>) are illustrated in the figure below with the dashed lines.</p>
-<figure class="figure figure-like" id="figure-3"><div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="./images/Fig2.15.png" class="contained" alt=""></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">6.3.2<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-317">If the coordinates of the points are given by</p>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">6.3.1<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-336">What’s the difference between these two lines? There are probably many ways to answer this question.</p>
+<p id="p-337">We see that in the right graph, the line is very close to the right-most point, but further from the other two points than the line in the left graph. We might say that the line in the left graph is “closer” to the data points in general than the line in the right graph. The idea of minimizing the distance between the line and the points will form the basis of the definition of a best-fit line.</p>
+<p id="p-338">These distances (also called <em class="emphasis">errors</em>) are illustrated in the figure below with the dashed lines.</p>
+<figure class="figure figure-like" id="figure-7"><div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;"><img src="./images/Fig2.15.png" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">6.3.2<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-339">If the coordinates of the points are given by</p>
 <div class="displaymath">
 \begin{equation*}
 (x_i,y_i) \text{ for } i = 1, 2, \dots, n
 \end{equation*}
 </div>
-<p id="p-318">and the line is described by the function \(f(x) = mx + b\text{,}\) then the values of the distances are</p>
+<p id="p-340">and the line is described by the function \(f(x) = mx + b\text{,}\) then the values of the distances are</p>
 <div class="displaymath">
 \begin{equation*}
 |y_i-f(x_i)| \text{ for } i=1, 2, \dots, n
 \end{equation*}
 </div>
-<p id="p-319">There are many ways to define how the best-fit line minimizes these distances. One way, called <em class="emphasis">Chebyshev’s criterion</em>, is based on the idea that the best-fit line should make the largest of these distances as small as possible. In more technical terms, this criterion says that the function \(f(x) = mx+b\) giving the best-fit line is the one that minimizes the number</p>
+<p id="p-341">There are many ways to define how the best-fit line minimizes these distances. One way, called <em class="emphasis">Chebyshev’s criterion</em>, is based on the idea that the best-fit line should make the largest of these distances as small as possible. In more technical terms, this criterion says that the function \(f(x) = mx+b\) giving the best-fit line is the one that minimizes the number</p>
 <div class="displaymath">
 \begin{equation*}
 C = \text{Maximum of } \{|y_i - f(x_i)|: i = 1, 2, \cdots n\}.
 \end{equation*}
 </div>
-<p id="p-320">Our goal is to find formulas for the slope \(m\) and \(y\)-intercept \(b\text{.}\) Since we want to minimize something, we might think about using derivatives. Chebyshev’s criterion makes logical sense, but it’s not obvious how to take the derivative or use it to find simple formulas for \(m\) and \(b\text{.}\)</p>
-<p id="p-321">Another criterion is based on the idea that the best–fit line should minimize the sum of the distances. In mathematical notation, \(f(x) = mx + b\) should minimize the number</p>
+<p id="p-342">Our goal is to find formulas for the slope \(m\) and \(y\)-intercept \(b\text{.}\) Since we want to minimize something, we might think about using derivatives. Chebyshev’s criterion makes logical sense, but it’s not obvious how to take the derivative or use it to find simple formulas for \(m\) and \(b\text{.}\)</p>
+<p id="p-343">Another criterion is based on the idea that the best–fit line should minimize the sum of the distances. In mathematical notation, \(f(x) = mx + b\) should minimize the number</p>
 <div class="displaymath">
 \begin{equation*}
 A = \sum_{i=1}^n |y_i - f(x_i)|.
 \end{equation*}
 </div>
-<p id="p-322">This criterion is also very logical, but the absolute values make the derivative difficult to calculate. To make the derivative simpler, we might consider getting rid of the absolute values in the above summation altogether and add the criterion that the sum must be non–negative. This, however, would make some of the terms in the summation positive and some negative. So, there might be some large positive values that cancel out some large negative values resulting in a small sum, but a poor-fitting line.</p>
-<p id="p-323">The most widely used criterion, called the <em class="emphasis">least–squares</em> criterion, uses squares rather than absolute values to make all the terms positive. In mathematical notation, this criterion says that the function \(f(x) = mx + b\) should minimize the number</p>
+<p id="p-344">This criterion is also very logical, but the absolute values make the derivative difficult to calculate. To make the derivative simpler, we might consider getting rid of the absolute values in the above summation altogether and add the criterion that the sum must be non–negative. This, however, would make some of the terms in the summation positive and some negative. So, there might be some large positive values that cancel out some large negative values resulting in a small sum, but a poor-fitting line.</p>
+<p id="p-345">The most widely used criterion, called the <em class="emphasis">least–squares</em> criterion, uses squares rather than absolute values to make all the terms positive. In mathematical notation, this criterion says that the function \(f(x) = mx + b\) should minimize the number</p>
 <div class="displaymath">
 \begin{equation*}
 S = \sum_{n=1}^\infty (y_i-f(x_i))^2.
 \end{equation*}
 </div>
-<p id="p-324">To see how this might work, consider the example below.</p>
-<article class="example example-like" id="example-10"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-10"><h6 class="heading">
+<p id="p-346">To see how this might work, consider the example below.</p>
+<article class="example example-like" id="example-16"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-16"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">6.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Illustrating the Least-Squares Criterion.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-10"><article class="example example-like"><p id="p-325">We start with a data set and then ask SageMath to produce a scatterplot of the data.</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-16"><article class="example example-like"><p id="p-347">We start with a data set and then ask SageMath to produce a scatterplot of the data.</p>
 <div class="hidden-sagecell-sage" id="sage-136"><script type="text/x-sage">datapoints = [(0.8, 2), (2.5, 4.2), (3.5, 3.5), (4.2, 5.3), (5.8, 4.5), (7.5, 7)]
 sp = scatter_plot(datapoints)
 show(sp)
 </script></div>
-<p id="p-326">We could certainly try to “guess and check” a slope and intercept, but it's likely there's a better candidate than our eyeball might give us.</p>
-<p id="p-327">The least-squares approach to finding a “best-fit” line for a set of data involves finding the slope \(m\) and the \(y\)-intercept \(b\) that minimizes the sum of the squares of the errors.  If we let \(f(x) = mx + b\) be our approximating line, we are trying to find \(m\) and \(b\) values so that</p>
+<p id="p-348">We could certainly try to “guess and check” a slope and intercept, but it's likely there's a better candidate than our eyeball might give us.</p>
+<p id="p-349">The least-squares approach to finding a “best-fit” line for a set of data involves finding the slope \(m\) and the \(y\)-intercept \(b\) that minimizes the sum of the squares of the errors.  If we let \(f(x) = mx + b\) be our approximating line, we are trying to find \(m\) and \(b\) values so that</p>
 <div class="displaymath">
 \begin{equation*}
 S = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2 = \sum_{i=1}^n (y_i - mx_i -b)^2 
 \end{equation*}
 </div>
-<p id="p-328">is a minimum.  To search for these values, we think of \(S\) as a function of \(m\) and \(b\text{,}\) and set the partial derivatives of \(S\) with respect to \(m\) and \(b\) to 0.</p>
+<p id="p-350">is a minimum.  To search for these values, we think of \(S\) as a function of \(m\) and \(b\text{,}\) and set the partial derivatives of \(S\) with respect to \(m\) and \(b\) to 0.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -213,7 +215,7 @@ S = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2 = \sum_{i=1}^n (y_i - mx_i -b)^2
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-329">These equations can be rewritten as</p>
+<p id="p-351">These equations can be rewritten as</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{gathered}
@@ -222,7 +224,7 @@ S = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2 = \sum_{i=1}^n (y_i - mx_i -b)^2
 \end{gathered}
 \end{equation*}
 </div>
-<p id="p-330">Despite the look of these equations, they are a system of two linear equations in two unknowns. Using the usual methods to solve for \(m\) and \(b\text{,}\) we get</p>
+<p id="p-352">Despite the look of these equations, they are a system of two linear equations in two unknowns. Using the usual methods to solve for \(m\) and \(b\text{,}\) we get</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -231,7 +233,7 @@ m &amp;= \frac{n\sum x_i y_i - \sum x_i \sum y_i}{n\sum x_i^2 - \left(\sum x_i\r
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-331">These formulas are implemented below.</p>
+<p id="p-353">These formulas are implemented below.</p>
 <div class="hidden-sagecell-sage" id="sage-137"><script type="text/x-sage">n = len(datapoints)
 n
 </script></div>
@@ -247,7 +249,7 @@ m = (n*sum(x[0]*x[1] for x in datapoints)-
 
 m, b
 </script></div>
-<p id="p-332">The good news is that we don't have to do this all the time. The least-squares approach is already built into SageMath, using the <code class="code-inline tex2jax_ignore">find_fit</code> function.</p>
+<p id="p-354">The good news is that we don't have to do this all the time. The least-squares approach is already built into SageMath, using the <code class="code-inline tex2jax_ignore">find_fit</code> function.</p>
 <div class="hidden-sagecell-sage" id="sage-139"><script type="text/x-sage">var('m1 b1')
 model(x) = m1*x + b1
 </script></div>
@@ -260,8 +262,8 @@ sol[m1], sol[b1]
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="exercise-17"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
-<div class="introduction" id="introduction-15">
-<p id="p-333">Suppose a biologist records the number of pulses per second of the chirps of a cricket at different temperatures (in \({}^\circ\)F). The data collected is shown below.</p>
+<div class="introduction" id="introduction-16">
+<p id="p-355">Suppose a biologist records the number of pulses per second of the chirps of a cricket at different temperatures (in \({}^\circ\)F). The data collected is shown below.</p>
 <div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="r m b1 r1 l0 t3 lines"><em class="emphasis">Temperature</em></td>
@@ -292,10 +294,10 @@ sol[m1], sol[b1]
 </table></div>
 </div>
 <article class="task exercise-like" id="task-23"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-334">Fit a straight line to this data (where temperature is on the \(x\)-axis). How well does the model fit the data?</p></article><article class="task exercise-like" id="task-24"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-335">What is the slope of this line? What does the sign of the slope tell you about the relationship between pulses/sec and temperature?</p></article></article><article class="exercise exercise-like" id="exercise-18"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
-<div class="introduction" id="introduction-16">
-<p id="p-336">The table below gives the win/loss percentage and other key statistics of 15 NCAA Division 1 women’s basketball teams (data collected by Quinn Wragge, 2019).</p>
+<p id="p-356">Fit a straight line to this data (where temperature is on the \(x\)-axis). How well does the model fit the data?</p></article><article class="task exercise-like" id="task-24"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-357">What is the slope of this line? What does the sign of the slope tell you about the relationship between pulses/sec and temperature?</p></article></article><article class="exercise exercise-like" id="exercise-18"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-17">
+<p id="p-358">The table below gives the win/loss percentage and other key statistics of 15 NCAA Division 1 women’s basketball teams (data collected by Quinn Wragge, 2019).</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{c|ccccc}\hline\hline
@@ -321,9 +323,10 @@ sol[m1], sol[b1]
 </div>
 </div>
 <article class="task exercise-like" id="task-25"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-337">Create graphs of win/loss percentage vs. each of the other statistics (one graph per statistic) and fit a straight line to the data.</p></article><article class="task exercise-like" id="task-26"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-338">Comment on how well each line fits the data. Which line appears to fit the data the best?</p></article><article class="task exercise-like" id="task-27"><h6 class="heading"><span class="codenumber">(c)</span></h6>
-<p id="p-339">Comment on the sign of the slope of each line. Does the sign make sense? Briefly explain.</p></article></article></section></section></div></main>
+<p id="p-359">Create graphs of win/loss percentage vs. each of the other statistics (one graph per statistic) and fit a straight line to the data.</p></article><article class="task exercise-like" id="task-26"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-360">Comment on how well each line fits the data. Which line appears to fit the data the best?</p></article><article class="task exercise-like" id="task-27"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-361">Comment on the sign of the slope of each line. Does the sign make sense? Briefly explain.</p></article></article></section></section></div></main>
 </div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>

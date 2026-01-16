@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*       on 2026-01-16T08:43:04-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -57,7 +57,8 @@
                            languages: ['sage'],
                            evalButtonText: 'Evaluate (Sage)'});
 });
-</script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
 </script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
@@ -103,6 +104,7 @@
 <li class="link">
 <a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
 <li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks">Working with Jupyter notebooks</a></li>
 <li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
 <li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
 <li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
@@ -150,11 +152,11 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="modeling-with-proportionality"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">6.2</span> <span class="title">Modeling with Proportionality</span>
 </h2>
-<p id="p-255">One important observation about a proportionality relationship is that if one of the variables increases, so does the other, and if one variable decreases, so does the other. (We saw this previously in the examples on spring force.) Whenever we encounter a situation where two variables increase or decrease at the same time, we should consider a proportionality relationship.</p>
-<article class="example example-like" id="example-6"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-6"><h6 class="heading">
+<p id="p-277">One important observation about a proportionality relationship is that if one of the variables increases, so does the other, and if one variable decreases, so does the other. (We saw this previously in the examples on spring force.) Whenever we encounter a situation where two variables increase or decrease at the same time, we should consider a proportionality relationship.</p>
+<article class="example example-like" id="example-12"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-12"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">6.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Population Growth.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-6"><article class="example example-like"><p id="p-256">In many situations involving populations, the larger the population, the faster it grows. This suggests a proportionality relationship between the population and the rate of growth. The table below shows the population (in thousands) of bacteria in a Petri dish at different points in time. The third column contains the change in population between time periods.</p>
-<p id="p-257"><figure class="table table-like" id="petri-pop-growth"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">6.2.2<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-12"><article class="example example-like"><p id="p-278">In many situations involving populations, the larger the population, the faster it grows. This suggests a proportionality relationship between the population and the rate of growth. The table below shows the population (in thousands) of bacteria in a Petri dish at different points in time. The third column contains the change in population between time periods.</p>
+<p id="p-279"><figure class="table table-like" id="petri-pop-growth"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">6.2.2<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr class="header-horizontal">
 <th class="c m b0 r0 l0 t3 lines"></th>
 <th class="c m b0 r0 l0 t3 lines">Actual</th>
@@ -211,12 +213,12 @@
 <td class="c m b3 r0 l0 t0 lines"></td>
 </tr>
 </table></div></figure></p>
-<p id="p-258">Observe that as \(n\) increases, \(p_n\) increases, and so does \(\Delta p_n\text{.}\) This suggests that \(p_n\) is proportional to \(\Delta p_n\text{.}\) A graph of \(\Delta p_n\) vs. \(p_n\) is produced with the following commands.</p>
+<p id="p-280">Observe that as \(n\) increases, \(p_n\) increases, and so does \(\Delta p_n\text{.}\) This suggests that \(p_n\) is proportional to \(\Delta p_n\text{.}\) A graph of \(\Delta p_n\) vs. \(p_n\) is produced with the following commands.</p>
 <div class="hidden-sagecell-sage" id="sage-124"><script type="text/x-sage">poppoints = [(10.3, 6.9), (17.2, 9.8), (27, 18.3), (45.3, 34.9), (80.2, 45.1), (125.3, 50.9), (176.2, 79.4)]
 sp = scatter_plot(poppoints, xmin = 0, xmax = 200, ymin = 0, ymax = 100, frame = True, axes_labels = ["Population", "Change in Population"])
 sp
 </script></div>
-<p id="p-259">(Note we can get nice looking axes labels by including the <code class="code-inline tex2jax_ignore">frame = True</code> option. Take it out and notice the difference.)</p>
+<p id="p-281">(Note we can get nice looking axes labels by including the <code class="code-inline tex2jax_ignore">frame = True</code> option. Take it out and notice the difference.)</p>
 <div class="hidden-sagecell-sage" id="sage-125"><script type="text/x-sage">var('k')
 model(x) = k*x
 soln = find_fit(poppoints, model,solution_dict=True)
@@ -224,16 +226,16 @@ sp + plot(soln[k]*x, 0, 200)
 </script></div>
 <div class="hidden-sagecell-sage" id="sage-126"><script type="text/x-sage">soln[k]
 </script></div>
-<p id="p-260">We see that the points do fall near a straight line through the origin, suggesting that proportionality is a reasonable assumption. The slope of this line is approximately 0.5. This gives a model that relates the population on one day, \(p_n\text{,}\) to the population on the next, \(p_{n+1}\text{:}\)</p>
+<p id="p-282">We see that the points do fall near a straight line through the origin, suggesting that proportionality is a reasonable assumption. The slope of this line is approximately 0.5. This gives a model that relates the population on one day, \(p_n\text{,}\) to the population on the next, \(p_{n+1}\text{:}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \Delta p_{n} = p_{n+1} - p_{n} = 0.5p_n \quad \Longrightarrow \quad p_{n+1} = 1.5p_n
 \end{equation*}
 </div>
-<p id="p-261">This model predicts that the population grows by about 50% each time period, which means the population will grow without bound. This seems unreasonable, so the model needs to be refined. We will do just this later in the course.</p></article></div>
-<article class="example example-like" id="example-7"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-7"><h6 class="heading">
+<p id="p-283">This model predicts that the population grows by about 50% each time period, which means the population will grow without bound. This seems unreasonable, so the model needs to be refined. We will do just this later in the course.</p></article></div>
+<article class="example example-like" id="example-13"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-13"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">6.2.3</span><span class="period">.</span><span class="space"> </span><span class="title">Radioactive Decay.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-7"><article class="example example-like"><p id="p-262">One-half of the amount of a radioactive substance decays after each half-life. Radioactive Carbon-14 (\({}^{14}\)C) has a half-life of 5715 years. If we start with 10 g of \({}^{14}\)C, the table below shows the amount of material remaining after each half-life along with the rate of change between time periods.</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-13"><article class="example example-like"><p id="p-284">One-half of the amount of a radioactive substance decays after each half-life. Radioactive Carbon-14 (\({}^{14}\)C) has a half-life of 5715 years. If we start with 10 g of \({}^{14}\)C, the table below shows the amount of material remaining after each half-life along with the rate of change between time periods.</p>
 <div class="tabular-box natural-width"><table class="tabular">
 <tr class="header-horizontal">
 <th class="c m b1 r0 l0 t3 lines">Time (years)</th>
@@ -266,136 +268,136 @@ sp + plot(soln[k]*x, 0, 200)
 <td class="c m b3 r0 l0 t0 lines"></td>
 </tr>
 </table></div>
-<p id="p-263">Note that as the amount of \({}^{14}\)C decreases, the rate at which it decreases also changes. This suggests a proportionality relationship between the amount of \({}^{14}\)C and the rate at which it decreases.</p>
-<p id="p-264">If we let \(y(t)\) represent the amount of \({}^{14}\)C at time \(t\text{,}\) this proportionality relationship gives the differential equation</p>
-<div class="displaymath" id="p-265">
+<p id="p-285">Note that as the amount of \({}^{14}\)C decreases, the rate at which it decreases also changes. This suggests a proportionality relationship between the amount of \({}^{14}\)C and the rate at which it decreases.</p>
+<p id="p-286">If we let \(y(t)\) represent the amount of \({}^{14}\)C at time \(t\text{,}\) this proportionality relationship gives the differential equation</p>
+<div class="displaymath" id="p-287">
 \begin{equation*}
 \frac{dy}{dt} = k\,y.
 \end{equation*}
 </div>
-<p id="p-266">That is, the derivative of \(y\) is a multiple of \(y\text{.}\) The exponential function \(y(t) = Ce^{kt}\) solves the differential equation, where \(C\) is the initial amount of material.</p></article></div>
-<article class="example example-like" id="example-8"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-8"><h6 class="heading">
+<p id="p-288">That is, the derivative of \(y\) is a multiple of \(y\text{.}\) The exponential function \(y(t) = Ce^{kt}\) solves the differential equation, where \(C\) is the initial amount of material.</p></article></div>
+<article class="example example-like" id="example-14"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-14"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">6.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Free-falling Object.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-8"><article class="example example-like"><p id="p-267">An object in free–fall encounters two basic forces. The first is its weight due to gravity. The second is air resistance which slows the rate of fall. Air resistance is typically negligible at low speeds so it is often not modeled. If we ignore air resistance, then the only force acting on the object comes from acceleration due to gravity. This leads to the simple differential equation</p>
-<div class="displaymath" id="p-268">
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-14"><article class="example example-like"><p id="p-289">An object in free–fall encounters two basic forces. The first is its weight due to gravity. The second is air resistance which slows the rate of fall. Air resistance is typically negligible at low speeds so it is often not modeled. If we ignore air resistance, then the only force acting on the object comes from acceleration due to gravity. This leads to the simple differential equation</p>
+<div class="displaymath" id="p-290">
 \begin{equation*}
 \frac{dv}{dt} = g 
 \end{equation*}
 </div>
-<p id="p-269">where \(v(t)\) = the velocity of the object at time \(t\) and \(g = 9.8\,\text{m}/\text{sec}^2\) (the acceleration due to gravity). Solving this differential equation yields the model \(v(t) = gt + v_0\) where \(v_0\) is the initial velocity. This model predicts that the velocity grows without bound, which is inaccurate. Physics tells us that a free-falling object reaches a “terminal velocity” where the deceleration due to air resistance equals the acceleration due to gravity. At this point the object remains at a fairly constant velocity.</p>
-<p id="p-270">To refine this model for velocity, we can incorporate a simple model for air resistance. It seems reasonable to assume that as velocity increases, the force due to air resistance increases. This implies a proportionality relationship between velocity and the force due to air resistance:</p>
-<div class="displaymath" id="p-271">
+<p id="p-291">where \(v(t)\) = the velocity of the object at time \(t\) and \(g = 9.8\,\text{m}/\text{sec}^2\) (the acceleration due to gravity). Solving this differential equation yields the model \(v(t) = gt + v_0\) where \(v_0\) is the initial velocity. This model predicts that the velocity grows without bound, which is inaccurate. Physics tells us that a free-falling object reaches a “terminal velocity” where the deceleration due to air resistance equals the acceleration due to gravity. At this point the object remains at a fairly constant velocity.</p>
+<p id="p-292">To refine this model for velocity, we can incorporate a simple model for air resistance. It seems reasonable to assume that as velocity increases, the force due to air resistance increases. This implies a proportionality relationship between velocity and the force due to air resistance:</p>
+<div class="displaymath" id="p-293">
 \begin{equation*}
 \text{Force due to air resistance} = kv
 \end{equation*}
 </div>
-<p id="p-272">This force acts upward on the object. There is also a force acting downward on the object due to its mass \(m\text{:}\)</p>
-<div class="displaymath" id="p-273">
+<p id="p-294">This force acts upward on the object. There is also a force acting downward on the object due to its mass \(m\text{:}\)</p>
+<div class="displaymath" id="p-295">
 \begin{equation*}
 \text{Downward force} = mg
 \end{equation*}
 </div>
-<p id="p-274">Now, by Newton's second law,</p>
-<div class="displaymath" id="p-275">
+<p id="p-296">Now, by Newton's second law,</p>
+<div class="displaymath" id="p-297">
 \begin{equation*}
 F = ma = m\,\frac{dv}{dt}
 \end{equation*}
 </div>
-<p id="p-276">Also,</p>
-<div class="displaymath" id="p-277">
+<p id="p-298">Also,</p>
+<div class="displaymath" id="p-299">
 \begin{equation*}
 F = \text{Downward force} - \text{Upward force}
 \end{equation*}
 </div>
-<p id="p-278">Putting all this together we get,</p>
-<div class="displaymath" id="p-279">
+<p id="p-300">Putting all this together we get,</p>
+<div class="displaymath" id="p-301">
 \begin{equation*}
 m\,\frac{dv}{dt} = mg - kv \Longrightarrow \frac{dv}{dt} + \frac{k}{m}\,v = g
 \end{equation*}
 </div>
-<p id="p-280">Solving this last differential equation gives the model</p>
-<div class="displaymath" id="p-281">
+<p id="p-302">Solving this last differential equation gives the model</p>
+<div class="displaymath" id="p-303">
 \begin{equation*}
 v(t) = \frac{mg}{k}\left(1-e^{-kt/m}\right)
 \end{equation*}
 </div>
-<p id="p-282">Note that in this model,</p>
-<div class="displaymath" id="p-283">
+<p id="p-304">Note that in this model,</p>
+<div class="displaymath" id="p-305">
 \begin{equation*}
 \lim_{t\to\infty} v(t) = \frac{mg}{k}
 \end{equation*}
 </div>
-<p id="p-284">This suggests a terminal velocity, so this model is more realistic.</p></article></div>
-<p id="p-285">Proportionality relationships satisfy the following transitive property:</p>
+<p id="p-306">This suggests a terminal velocity, so this model is more realistic.</p></article></div>
+<p id="p-307">Proportionality relationships satisfy the following transitive property:</p>
 <article class="theorem theorem-like" id="theorem-1"><h6 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">6.2.5</span><span class="period">.</span>
-</h6>If \(a\propto b\) and \(b\propto c\text{,}\) then \(a\propto c\text{.}\)</article><article class="hiddenproof" id="proof-1"><a data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-1"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-1"><article class="hiddenproof"><p id="p-286">By definition, \(a\propto b\) and \(b\propto c\) mean that \(a=k_1 b\) and \(b=k_2 c\) for some nonzero constants \(k_1\) and \(k_2\text{.}\) So, substituting we get</p>
+</h6>If \(a\propto b\) and \(b\propto c\text{,}\) then \(a\propto c\text{.}\)</article><article class="hiddenproof" id="proof-1"><a data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-1"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-1"><article class="hiddenproof"><p id="p-308">By definition, \(a\propto b\) and \(b\propto c\) mean that \(a=k_1 b\) and \(b=k_2 c\) for some nonzero constants \(k_1\) and \(k_2\text{.}\) So, substituting we get</p>
 <div class="displaymath">
 \begin{equation*}
 a=k_1k_2c
 \end{equation*}
 </div>
-<p id="p-287">but \(k_1k_2\) is a nonzero constant, so \(a\propto c\) by definition.</p></article></div>
-<p id="p-288">The next example illustrates an application of this property.</p>
-<article class="example example-like" id="example-9"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-9"><h6 class="heading">
+<p id="p-309">but \(k_1k_2\) is a nonzero constant, so \(a\propto c\) by definition.</p></article></div>
+<p id="p-310">The next example illustrates an application of this property.</p>
+<article class="example example-like" id="example-15"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-15"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">6.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Work Done by a Train.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-9"><article class="example example-like"><p id="p-289">If a constant force is applied to an object moving it some distance, the work done is defined to be</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-15"><article class="example example-like"><p id="p-311">If a constant force is applied to an object moving it some distance, the work done is defined to be</p>
 <div class="displaymath">
 \begin{equation*}
 \text{Work} = \text{Force}\times\text{Distance} 
 \end{equation*}
 </div>
-<p id="p-290">Suppose a train engine pulls a car along a flat stretch of track until it runs out of fuel, and assume that the force needed is constant. We want to model the total work done by the engine in terms of the amount of fuel it carries.</p>
-<p id="p-291">Since the force is constant, work is proportional to the distance pulled. Let \(W\) denote work and \(D\) denote distance. In standard notation,</p>
+<p id="p-312">Suppose a train engine pulls a car along a flat stretch of track until it runs out of fuel, and assume that the force needed is constant. We want to model the total work done by the engine in terms of the amount of fuel it carries.</p>
+<p id="p-313">Since the force is constant, work is proportional to the distance pulled. Let \(W\) denote work and \(D\) denote distance. In standard notation,</p>
 <div class="displaymath">
 \begin{equation*}
 W\propto D
 \end{equation*}
 </div>
-<p id="p-292">Now, the total distance the train can pull the car is related to the amount of fuel. The more fuel, the farther it can pull the car. So distance pulled is proportional to the amount of fuel. If \(A\) denotes the amount of fuel, we have</p>
+<p id="p-314">Now, the total distance the train can pull the car is related to the amount of fuel. The more fuel, the farther it can pull the car. So distance pulled is proportional to the amount of fuel. If \(A\) denotes the amount of fuel, we have</p>
 <div class="displaymath">
 \begin{equation*}
 D\propto A
 \end{equation*}
 </div>
-<p id="p-293">Combining these two proportionality relationships, we arrive at the model:</p>
+<p id="p-315">Combining these two proportionality relationships, we arrive at the model:</p>
 <div class="displaymath">
 \begin{equation*}
 W\propto A
 \end{equation*}
 </div>
-<p id="p-294">Although we do not know the constant of proportionality, we can use this relationship to find relative values. For instance, if the constant of proportionality were 10 and the tank holds 1000 gallons, with a full tank the train could perform</p>
+<p id="p-316">Although we do not know the constant of proportionality, we can use this relationship to find relative values. For instance, if the constant of proportionality were 10 and the tank holds 1000 gallons, with a full tank the train could perform</p>
 <div class="displaymath">
 \begin{equation*}
 W = 10 (1000) = 10,000 
 \end{equation*}
 </div>
-<p id="p-295">units of work. If the fuel tank were one–quarter full, it could perform</p>
+<p id="p-317">units of work. If the fuel tank were one–quarter full, it could perform</p>
 <div class="displaymath">
 \begin{equation*}
 W = 10(250) = 2500
 \end{equation*}
 </div>
-<p id="p-296">units of work, which is exactly one–quarter as much work as if the tank were full.</p></article></div>
+<p id="p-318">units of work, which is exactly one–quarter as much work as if the tank were full.</p></article></div>
 <section class="exercises" id="exercises-4"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="exercise-14"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
-<div class="introduction" id="introduction-13">
-<p id="p-297">A very simple assumption about the population of rabbits in a forest is that it grows at a rate proportional to the size of the population and the rabbits die at a rate proportional to the number of foxes in the forest. If \(p_n\) denotes the population of rabbits at time \(n\text{,}\) and \(F\) denotes the (constant) number of foxes, this assumption yields a model for the change in the rabbit population:</p>
+<div class="introduction" id="introduction-14">
+<p id="p-319">A very simple assumption about the population of rabbits in a forest is that it grows at a rate proportional to the size of the population and the rabbits die at a rate proportional to the number of foxes in the forest. If \(p_n\) denotes the population of rabbits at time \(n\text{,}\) and \(F\) denotes the (constant) number of foxes, this assumption yields a model for the change in the rabbit population:</p>
 <div class="displaymath">
 \begin{equation*}
 \Delta p_n = p_{n+1}-p_{n} = k_1p_n - k_2 F
 \end{equation*}
 </div>
-<p id="p-298">where \(k_1, k_2\ge 0\text{.}\)</p>
+<p id="p-320">where \(k_1, k_2\ge 0\text{.}\)</p>
 </div>
 <article class="task exercise-like" id="task-17"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-299">Solve this model for \(p_{n+1}\text{.}\)</p></article><article class="task exercise-like" id="task-18"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-300">If \(p_0 = 500\text{,}\) \(k_1 = 0.15\text{,}\) and \(k_2 = 0.25\text{,}\) algebraically find the values of \(F\) for which the population of rabbits is decreasing, for which it is increasing, and for which it is constant for all \(n \ge 0\text{.}\) (<em class="emphasis">Hint:</em> If the population is constant, \(p_1 = p_0\text{.}\))</p></article><article class="task exercise-like" id="task-19"><h6 class="heading"><span class="codenumber">(c)</span></h6>
-<p id="p-301">Use SageMath to numerically and graphically support your answer above.</p></article></article><article class="exercise exercise-like" id="exercise-15"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
-<div class="introduction" id="introduction-14">
-<p id="p-302">Refer back to the Population Growth example at the start of this section. We will analyze a refined model. Assume that \(\Delta p_n\) is proportional to the product of the population and its difference from 621, that is</p>
+<p id="p-321">Solve this model for \(p_{n+1}\text{.}\)</p></article><article class="task exercise-like" id="task-18"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-322">If \(p_0 = 500\text{,}\) \(k_1 = 0.15\text{,}\) and \(k_2 = 0.25\text{,}\) algebraically find the values of \(F\) for which the population of rabbits is decreasing, for which it is increasing, and for which it is constant for all \(n \ge 0\text{.}\) (<em class="emphasis">Hint:</em> If the population is constant, \(p_1 = p_0\text{.}\))</p></article><article class="task exercise-like" id="task-19"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-323">Use SageMath to numerically and graphically support your answer above.</p></article></article><article class="exercise exercise-like" id="exercise-15"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-15">
+<p id="p-324">Refer back to the Population Growth example at the start of this section. We will analyze a refined model. Assume that \(\Delta p_n\) is proportional to the product of the population and its difference from 621, that is</p>
 <div class="displaymath">
 \begin{equation*}
 \Delta p_n = p_{n+1}-p_n = kp_n(621-p_n)
@@ -403,10 +405,10 @@ W = 10(250) = 2500
 </div>
 </div>
 <article class="task exercise-like" id="task-20"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-303">Use the data in the Population Growth example table to test this assumption by plotting \(\Delta p_n\) vs. \(p_n(621 - p_n)\text{.}\) Use the graph to estimate the constant of proportionality.</p></article><article class="task exercise-like" id="task-21"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-304">Starting with \(p_0 = 10.3\text{,}\) use this refined model to predict the population for days 1 through 20.</p></article><article class="task exercise-like" id="task-22"><h6 class="heading"><span class="codenumber">(c)</span></h6>
-<p id="p-305">Does this model seem more or less reasonable than the original one? Why or why not?</p></article><a data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-1" id="solution-1"><span class="type">Solution</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-1"><div class="solution solution-like">
-<p id="p-306">You should probably build your list of points piece-by-piece from the numbers given in the Population Growth example. From the initial population list, build a new list of the differences in the populations, build the list of products of the population counts \(p_n\) and \(621-p_n\) and, finally, build the list of points with first coordinate \(p_n(621-p_n)\) and second coordinate \(\Delta p_n\text{.}\)</p>
+<p id="p-325">Use the data in the Population Growth example table to test this assumption by plotting \(\Delta p_n\) vs. \(p_n(621 - p_n)\text{.}\) Use the graph to estimate the constant of proportionality.</p></article><article class="task exercise-like" id="task-21"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-326">Starting with \(p_0 = 10.3\text{,}\) use this refined model to predict the population for days 1 through 20.</p></article><article class="task exercise-like" id="task-22"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-327">Does this model seem more or less reasonable than the original one? Why or why not?</p></article><a data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-1" id="solution-1"><span class="type">Solution</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-1"><div class="solution solution-like">
+<p id="p-328">You should probably build your list of points piece-by-piece from the numbers given in the Population Growth example. From the initial population list, build a new list of the differences in the populations, build the list of products of the population counts \(p_n\) and \(621-p_n\) and, finally, build the list of points with first coordinate \(p_n(621-p_n)\) and second coordinate \(\Delta p_n\text{.}\)</p>
 <div class="hidden-sagecell-sage" id="sage-127"><script type="text/x-sage">p = [10.3, 17.2, 27, 45.3, 80.2, 125.3, 176.2, 255.6]
 </script></div>
 <div class="hidden-sagecell-sage" id="sage-128"><script type="text/x-sage">Delta_pn = [(p[n+1] - p[n]) for n in srange(len(p)-1)]
@@ -418,11 +420,11 @@ product
 <div class="hidden-sagecell-sage" id="sage-130"><script type="text/x-sage">mypoints = list(zip(product, Delta_pn)) # makes a list of ordered pairs
 mypoints
 </script></div>
-<p id="p-307">The <code class="code-inline tex2jax_ignore">points</code> command will plot a list of points.</p>
+<p id="p-329">The <code class="code-inline tex2jax_ignore">points</code> command will plot a list of points.</p>
 <div class="hidden-sagecell-sage" id="sage-131"><script type="text/x-sage">plot1 = points(mypoints, size=50, axes_labels = ['$(621-p_n)p_n$','$p_{n+1}-p_n$'])
 plot1
 </script></div>
-<p id="p-308">We next find the proportionality constant \(k\text{:}\)</p>
+<p id="p-330">We next find the proportionality constant \(k\text{:}\)</p>
 <div class="hidden-sagecell-sage" id="sage-132"><script type="text/x-sage">var('k')
 model(x) = k*x
 sol = find_fit(mypoints, model, solution_dict=True)
@@ -430,7 +432,7 @@ sol = find_fit(mypoints, model, solution_dict=True)
 <div class="hidden-sagecell-sage" id="sage-133"><script type="text/x-sage">show(plot1 + plot(sol[k]*x, 0, 80000, color = 'red'))
 pretty_print('y = ', sol[k], 'x')
 </script></div>
-<p id="p-309">This shows that \(p_{n+1}-p_n \approx 0.00098(621-p_n)p_n\) or \(p_{n+1}\approx 
+<p id="p-331">This shows that \(p_{n+1}-p_n \approx 0.00098(621-p_n)p_n\) or \(p_{n+1}\approx 
 p_n + 0.00098(621-p_n)p_n\text{.}\) We can now put together a list of predicted population values from this model.</p>
 <div class="hidden-sagecell-sage" id="sage-134"><script type="text/x-sage">pred_pop = [p[0]]
 
@@ -439,7 +441,7 @@ for n in srange(len(p) + 1):
     
 pred_pop
 </script></div>
-<p id="p-310">Now we put together two lists of ordered pairs: one with the predicted populations versus the time, and the other with the actual population data versus time. Then we graph the two sets of points, including a legend to differentiate the points.</p>
+<p id="p-332">Now we put together two lists of ordered pairs: one with the predicted populations versus the time, and the other with the actual population data versus time. Then we graph the two sets of points, including a legend to differentiate the points.</p>
 <div class="hidden-sagecell-sage" id="sage-135"><script type="text/x-sage">predPop_points = list(zip(range(n), pred_pop))
 
 actPop_points = list(zip(range(n), p))
@@ -450,7 +452,8 @@ points(actPop_points, size=50,
 + points(predPop_points, marker = '^', size=50, color='red',
 		legend_label = 'Predicted')
 </script></div> The answer to part (c) is left to you.</div></div></article><article class="exercise exercise-like" id="exercise-16"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
-<p id="p-311">Refer again back to the Population Growth example at the start of this section, and consider the assumption that \(\Delta p_n\) is proportional to \(p_n^2\text{.}\) Use the data in the table to test this assumption. Does this assumption appear to be reasonable? Why or why not?</p></article></section></section></div></main>
+<p id="p-333">Refer again back to the Population Growth example at the start of this section, and consider the assumption that \(\Delta p_n\) is proportional to \(p_n^2\text{.}\) Use the data in the table to test this assumption. Does this assumption appear to be reasonable? Why or why not?</p></article></section></section></div></main>
 </div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>

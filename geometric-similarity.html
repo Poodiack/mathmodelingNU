@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-01-11T18:13:39-05:00       *-->
+<!--*       on 2026-01-16T08:43:04-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -49,7 +49,8 @@
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
 };
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
 </script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
@@ -95,6 +96,7 @@
 <li class="link">
 <a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
 <li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks">Working with Jupyter notebooks</a></li>
 <li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
 <li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
 <li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
@@ -142,161 +144,161 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="geometric-similarity"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">6.4</span> <span class="title">Geometric Similarity</span>
 </h2>
-<p id="p-340">Shapes such as circles and rectangles are easy to work with. We can calculate the area and volume of objects with these shapes using very simple formulas. Real world objects rarely come in these simple forms. This necessitates some simplifying assumptions. Geometric similarity is one such assumption.</p>
+<p id="p-362">Shapes such as circles and rectangles are easy to work with. We can calculate the area and volume of objects with these shapes using very simple formulas. Real world objects rarely come in these simple forms. This necessitates some simplifying assumptions. Geometric similarity is one such assumption.</p>
 <article class="definition definition-like" id="definition-2"><h6 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">6.4.1</span><span class="period">.</span>
 </h6>
-<p id="p-341">Two objects are <em class="emphasis">geometrically similar</em> if the following two conditions are met:</p>
+<p id="p-363">Two objects are <em class="emphasis">geometrically similar</em> if the following two conditions are met:</p>
 <ol class="decimal">
-<li id="li-33"><p id="p-342">There is a one-to-one correspondence between points of the objects (i.e. the two objects have the same “shape”&gt;).</p></li>
-<li id="li-34"><p id="p-343">The ratio of distances between corresponding points is the same for all pairs of points.</p></li>
-</ol></article><p id="p-344">In simpler terms, two objects are geometrically similar if one is a scaled up or down version of the other.</p>
-<p id="p-345">What does geometric similarity allow us to do? Let’s start with a very simple example. Consider a rectangle of length 3 cm and height 2 cm. Its area is \(6 \text{ cm}^2\text{.}\) Note that this area is proportional to the square of the length of the rectangle since</p>
+<li id="li-35"><p id="p-364">There is a one-to-one correspondence between points of the objects (i.e. the two objects have the same “shape”&gt;).</p></li>
+<li id="li-36"><p id="p-365">The ratio of distances between corresponding points is the same for all pairs of points.</p></li>
+</ol></article><p id="p-366">In simpler terms, two objects are geometrically similar if one is a scaled up or down version of the other.</p>
+<p id="p-367">What does geometric similarity allow us to do? Let’s start with a very simple example. Consider a rectangle of length 3 cm and height 2 cm. Its area is \(6 \text{ cm}^2\text{.}\) Note that this area is proportional to the square of the length of the rectangle since</p>
 <div class="displaymath">
 \begin{equation*}
 6 = \frac6{3^2} (3^2) = \frac23(3^2)
 \end{equation*}
 </div>
-<p id="p-346">Now consider another rectangle of length 5 cm and height 4 cm. Its area is \(20 \text{ cm}^2\) which is again proportional to the square of the length since</p>
+<p id="p-368">Now consider another rectangle of length 5 cm and height 4 cm. Its area is \(20 \text{ cm}^2\) which is again proportional to the square of the length since</p>
 <div class="displaymath">
 \begin{equation*}
 20 = \frac{20}{5^2} (5^2) = \frac45(5^2)
 \end{equation*}
 </div>
-<p id="p-347">Consider a third rectangle of length 6 cm and height 4 cm. This rectangle is a scaled up version of the first rectangle (its dimensions are simply 2 times the dimensions of the first one). In other words, these two rectangles are geometrically similar. Its area is \(24 \text{ cm}^2\) which is again proportional to the square of the length since</p>
+<p id="p-369">Consider a third rectangle of length 6 cm and height 4 cm. This rectangle is a scaled up version of the first rectangle (its dimensions are simply 2 times the dimensions of the first one). In other words, these two rectangles are geometrically similar. Its area is \(24 \text{ cm}^2\) which is again proportional to the square of the length since</p>
 <div class="displaymath">
 \begin{equation*}
 24 = \frac{24}{6^2} (6^2) = \frac23(6^2)
 \end{equation*}
 </div>
-<p id="p-348">Notice that the constants of proportionality are the same for these two geometrically similar rectangles. The second rectangle is not geometrically similar to the other two rectangles, and its constant of proportionality is not the same as the others.</p>
-<p id="p-349">Let’s generalize this example. Suppose we have a rectangle of length \(3k\) cm and width \(2k\) cm where \(k\) is some positive number. This rectangle is geometrically similar to the first rectangle. Its area is \(6k^2 \text{ cm}^2\text{,}\) which is proportional to the square of the length since</p>
+<p id="p-370">Notice that the constants of proportionality are the same for these two geometrically similar rectangles. The second rectangle is not geometrically similar to the other two rectangles, and its constant of proportionality is not the same as the others.</p>
+<p id="p-371">Let’s generalize this example. Suppose we have a rectangle of length \(3k\) cm and width \(2k\) cm where \(k\) is some positive number. This rectangle is geometrically similar to the first rectangle. Its area is \(6k^2 \text{ cm}^2\text{,}\) which is proportional to the square of the length since</p>
 <div class="displaymath">
 \begin{equation*}
 6k^2 = \frac{6k^2}{(3k)^2}(3k)^2 = \frac23(3k)^2
 \end{equation*}
 </div>
-<p id="p-350">Again note that the constant of proportionality is the same as the other geometrically similar rectangles. What does this mean? Suppose we have a bag of rectangles each of length \(3k\) cm and width \(2k\) cm where \(k &gt; 0\) is different for each rectangle. If we reached into the bag and pulled out one rectangle and wanted to know its area, we wouldn’t need to measure both the length and the height. We could simply measure the length, square it, and take it times 2/3. This simplifies the process of finding the area.</p>
-<p id="p-351">The length is an example of a <em class="emphasis">characteristic dimension</em>. A characteristic dimension is simply a dimension of the object that is easy to measure. We could have chosen height as the characteristic dimension and done the same analysis as above, but the constant of proportionality would have been different.</p>
-<p id="p-352">This generalization illustrates the first important property of geometrically similar objects.</p>
+<p id="p-372">Again note that the constant of proportionality is the same as the other geometrically similar rectangles. What does this mean? Suppose we have a bag of rectangles each of length \(3k\) cm and width \(2k\) cm where \(k &gt; 0\) is different for each rectangle. If we reached into the bag and pulled out one rectangle and wanted to know its area, we wouldn’t need to measure both the length and the height. We could simply measure the length, square it, and take it times 2/3. This simplifies the process of finding the area.</p>
+<p id="p-373">The length is an example of a <em class="emphasis">characteristic dimension</em>. A characteristic dimension is simply a dimension of the object that is easy to measure. We could have chosen height as the characteristic dimension and done the same analysis as above, but the constant of proportionality would have been different.</p>
+<p id="p-374">This generalization illustrates the first important property of geometrically similar objects.</p>
 <article class="theorem theorem-like" id="theorem-2"><h6 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">6.4.2</span><span class="period">.</span>
 </h6>
-<p id="p-353">Suppose \(H\) is a set of geometrically similar objects. Let \(A\) denote the surface area of an object and \(\ell\) denote a characteristic dimension. Then</p>
+<p id="p-375">Suppose \(H\) is a set of geometrically similar objects. Let \(A\) denote the surface area of an object and \(\ell\) denote a characteristic dimension. Then</p>
 <div class="displaymath">
 \begin{equation*}
 A\propto \ell^2,
 \end{equation*}
 </div>
-<p id="p-354">and the constant of proportionality is the same for every object in \(H\text{.}\)</p></article><article class="example example-like" id="example-11"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-11"><h6 class="heading">
+<p id="p-376">and the constant of proportionality is the same for every object in \(H\text{.}\)</p></article><article class="example example-like" id="example-17"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-17"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">6.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Wool from a Sheep.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-11"><article class="example example-like"><p id="p-355">A shepherd wants to predict the volume of wool he will get from a sheep, \(V\text{,}\) in terms of the girth of the sheep (the distance around the fattest part of the belly). The volume is the thickness of the wool times the area from which it is shaved. This area is not a simple shape, so we will use geometric similarity to simplify the model. Consider the following assumptions:</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-17"><article class="example example-like"><p id="p-377">A shepherd wants to predict the volume of wool he will get from a sheep, \(V\text{,}\) in terms of the girth of the sheep (the distance around the fattest part of the belly). The volume is the thickness of the wool times the area from which it is shaved. This area is not a simple shape, so we will use geometric similarity to simplify the model. Consider the following assumptions:</p>
 <ol class="decimal">
-<li id="li-35"><p id="p-356">The thickness of the wool is the same for every sheep.</p></li>
-<li id="li-36"><p id="p-357">The area on each sheep from which the wool is shaved is geometrically similar.</p></li>
+<li id="li-37"><p id="p-378">The thickness of the wool is the same for every sheep.</p></li>
+<li id="li-38"><p id="p-379">The area on each sheep from which the wool is shaved is geometrically similar.</p></li>
 </ol>
-<p id="p-358">The first assumption allows us to model</p>
+<p id="p-380">The first assumption allows us to model</p>
 <div class="displaymath">
 \begin{equation*}
 V\propto A
 \end{equation*}
 </div>
-<p id="p-359">where \(A\) is the area from which the wool is shaved. The second assumption allows us to model</p>
+<p id="p-381">where \(A\) is the area from which the wool is shaved. The second assumption allows us to model</p>
 <div class="displaymath">
 \begin{equation*}
 A\propto \ell^2
 \end{equation*}
 </div>
-<p id="p-360">where \(\ell\) is some characteristic dimension. We will choose the girth (the distance around the belly of the sheep) to be this dimension. Combining the two proportionalities using transitivity, we get</p>
+<p id="p-382">where \(\ell\) is some characteristic dimension. We will choose the girth (the distance around the belly of the sheep) to be this dimension. Combining the two proportionalities using transitivity, we get</p>
 <div class="displaymath">
 \begin{equation*}
 V\propto \ell^2
 \end{equation*}
 </div>
-<p id="p-361">To find the constant of proportionality, and test the assumptions, we would need to collect data of volume and girth.</p></article></div>
-<p id="p-362">Now let’s consider a three-dimensional object. Specifically consider a rectangular box with width 4 cm, height 3 cm, and depth 2 cm. Its volume is \(24 \text{ cm}^3\text{,}\) which is proportional to the height cubed since</p>
+<p id="p-383">To find the constant of proportionality, and test the assumptions, we would need to collect data of volume and girth.</p></article></div>
+<p id="p-384">Now let’s consider a three-dimensional object. Specifically consider a rectangular box with width 4 cm, height 3 cm, and depth 2 cm. Its volume is \(24 \text{ cm}^3\text{,}\) which is proportional to the height cubed since</p>
 <div class="displaymath">
 \begin{equation*}
 24 = \frac{24}{3^3}(3^3) = \frac89(3^3)
 \end{equation*}
 </div>
-<p id="p-363">Consider a geometrically similar box with width \(4k\) cm, height \(3k\) cm, and depth \(2k\) cm where \(k &gt; 0\text{.}\) Its volume is \(24k^3 \text{ cm}^3\text{,}\) which again is proportional to the height cubed since</p>
+<p id="p-385">Consider a geometrically similar box with width \(4k\) cm, height \(3k\) cm, and depth \(2k\) cm where \(k &gt; 0\text{.}\) Its volume is \(24k^3 \text{ cm}^3\text{,}\) which again is proportional to the height cubed since</p>
 <div class="displaymath">
 \begin{equation*}
 24k^3 = \frac{24k^3}{(3k)^3}(3k)^3 = \frac89(3k)^3.
 \end{equation*}
 </div>
-<p id="p-364">Note that the constant of proportionality is the same. This generalization illustrates the second important property of geometrically similar objects.</p>
+<p id="p-386">Note that the constant of proportionality is the same. This generalization illustrates the second important property of geometrically similar objects.</p>
 <article class="theorem theorem-like" id="theorem-3"><h6 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">6.4.4</span><span class="period">.</span>
 </h6>
-<p id="p-365">Suppose \(H\) is a set of geometrically similar objects. Let \(V\) denote the volume of an object and \(\ell\) denote a characteristic dimension. Then</p>
+<p id="p-387">Suppose \(H\) is a set of geometrically similar objects. Let \(V\) denote the volume of an object and \(\ell\) denote a characteristic dimension. Then</p>
 <div class="displaymath">
 \begin{equation*}
 V\propto \ell^3,
 \end{equation*}
 </div>
-<p id="p-366">and the constant of proportionality is the same for every object in \(H\text{.}\)</p></article><p id="p-367">As in the first property, no special shape of the objects is assumed. This property allows us to relate the volume of an object to some characteristic dimension, and combining this with the first property we can relate volume to surface area.</p>
-<article class="example example-like" id="example-12"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-12"><h6 class="heading">
+<p id="p-388">and the constant of proportionality is the same for every object in \(H\text{.}\)</p></article><p id="p-389">As in the first property, no special shape of the objects is assumed. This property allows us to relate the volume of an object to some characteristic dimension, and combining this with the first property we can relate volume to surface area.</p>
+<article class="example example-like" id="example-18"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-18"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">6.4.5</span><span class="period">.</span><span class="space"> </span><span class="title">Surface Area of a Potato.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-12"><article class="example example-like"><p id="p-368">Suppose we want to fix a large batch of the recipe “Crispy Potato Skins” for an appetizer at our Super Bowl party. This recipe requires only the skin from a potato, so when we buy the potatoes, we want to get the maximum surface area for our money.</p>
-<p id="p-369">At the supermarket we have the choice of several different sizes of potatoes. We have to decide if we want to buy several small potatoes or a few large ones (we are assuming that we can choose individual potatoes). Let’s restrict ourselves to the following problem:</p>
-<blockquote class="blockquote" id="blockquote-2"><p id="p-370">Should we buy 8 small baking potatoes weighing 0.25 lbs each, or 4 large baking potatoes weighing 0.5 lbs each?</p></blockquote>
-<p id="p-371">To answer this question, we want to relate the surface area of a potato, \(A\text{,}\) to its weight, \(W\text{.}\) Consider the following assumptions:</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-18"><article class="example example-like"><p id="p-390">Suppose we want to fix a large batch of the recipe “Crispy Potato Skins” for an appetizer at our Super Bowl party. This recipe requires only the skin from a potato, so when we buy the potatoes, we want to get the maximum surface area for our money.</p>
+<p id="p-391">At the supermarket we have the choice of several different sizes of potatoes. We have to decide if we want to buy several small potatoes or a few large ones (we are assuming that we can choose individual potatoes). Let’s restrict ourselves to the following problem:</p>
+<blockquote class="blockquote" id="blockquote-2"><p id="p-392">Should we buy 8 small baking potatoes weighing 0.25 lbs each, or 4 large baking potatoes weighing 0.5 lbs each?</p></blockquote>
+<p id="p-393">To answer this question, we want to relate the surface area of a potato, \(A\text{,}\) to its weight, \(W\text{.}\) Consider the following assumptions:</p>
 <ol class="decimal">
-<li id="li-37"><p id="p-372">Potatoes have a constant density.</p></li>
-<li id="li-38"><p id="p-373">Potatoes are geometrically similar.</p></li>
+<li id="li-39"><p id="p-394">Potatoes have a constant density.</p></li>
+<li id="li-40"><p id="p-395">Potatoes are geometrically similar.</p></li>
 </ol>
-<p id="p-374">The first assumption seems very reasonable. The veracity of the second is arguable. However, potatoes have a very irregular shape, so we need some sort of simplifying assumption to model their surface. Similarity is a <em class="emphasis">reasonable</em> assumption.</p>
-<p id="p-375">Now, Weight = density \(\times\) volume, so the first assumption allows us to model</p>
+<p id="p-396">The first assumption seems very reasonable. The veracity of the second is arguable. However, potatoes have a very irregular shape, so we need some sort of simplifying assumption to model their surface. Similarity is a <em class="emphasis">reasonable</em> assumption.</p>
+<p id="p-397">Now, Weight = density \(\times\) volume, so the first assumption allows us to model</p>
 <div class="displaymath">
 \begin{equation*}
 W\propto V
 \end{equation*}
 </div>
-<p id="p-376">where \(W\) is the weight and \(V\) is the volume. The second assumption allows us to model</p>
+<p id="p-398">where \(W\) is the weight and \(V\) is the volume. The second assumption allows us to model</p>
 <div class="displaymath">
 \begin{equation*}
 V\propto \ell^3
 \end{equation*}
 </div>
-<p id="p-377">where \(\ell\) is any characteristic dimension (such as length). Combining the two we get</p>
+<p id="p-399">where \(\ell\) is any characteristic dimension (such as length). Combining the two we get</p>
 <div class="displaymath">
 \begin{equation}
 W\propto\ell^3.\label{weight-eqn}\tag{6.4.1}
 \end{equation}
 </div>
-<p id="p-378">The second assumption also allows us to model</p>
+<p id="p-400">The second assumption also allows us to model</p>
 <div class="displaymath">
 \begin{equation*}
 A\propto \ell^2,
 \end{equation*}
 </div>
-<p id="p-379">where \(A\) is the surface area of a potato and \(\ell\) is the same characteristic dimension used in <a class="xref" data-knowl="./knowl/weight-eqn.html" title="Equation 6.4.1">(6.4.1)</a>. Rewriting and combining the last two proportionalities, we get</p>
+<p id="p-401">where \(A\) is the surface area of a potato and \(\ell\) is the same characteristic dimension used in <a class="xref" data-knowl="./knowl/weight-eqn.html" title="Equation 6.4.1">(6.4.1)</a>. Rewriting and combining the last two proportionalities, we get</p>
 <div class="displaymath">
 \begin{equation*}
 \ell \propto W^{1/3} \longrightarrow A \propto\left(W^{1/3}\right)^2 = W^{2/3}
 \end{equation*}
 </div>
-<p id="p-380">Since potatoes are sold by the pound, each choice in the original problem will cost the same amount, so we want the choice with the largest surface area. If \(A_S\) and \(A_L\) represent the total surface area of the small and large potatoes, respectively, then the last equation gives</p>
+<p id="p-402">Since potatoes are sold by the pound, each choice in the original problem will cost the same amount, so we want the choice with the largest surface area. If \(A_S\) and \(A_L\) represent the total surface area of the small and large potatoes, respectively, then the last equation gives</p>
 <div class="displaymath">
 \begin{equation*}
 A_S = 8k(0.25)^{2/3} \qquad\text{and}\qquad A_L = 4k(0.5)^{2/3}
 \end{equation*}
 </div>
-<p id="p-381">where \(k\) is some constant (note \(k\) is the same for both \(A_S\) and \(A_L\)). Thus</p>
+<p id="p-403">where \(k\) is some constant (note \(k\) is the same for both \(A_S\) and \(A_L\)). Thus</p>
 <div class="displaymath">
 \begin{equation*}
 \frac{A_S}{A_L} = \frac{8k(0.25)^{2/3}}{4k(0.5)^{2/3}}\approx 1.26 \quad\Longrightarrow \quad A_S\approx 1.26 A_L
 \end{equation*}
 </div>
-<p id="p-382">Therefore, the surface area of the small potatoes is approximately 26% greater than the surface area of the larger potatoes. So we should buy the smaller potatoes.</p></article></div>
+<p id="p-404">Therefore, the surface area of the small potatoes is approximately 26% greater than the surface area of the larger potatoes. So we should buy the smaller potatoes.</p></article></div>
 <section class="exercises" id="exercises-6"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="exercise-19"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
-<div class="introduction" id="introduction-17">
-<p id="p-383">In our earlier example, we assumed potatoes are geometrically similar and of constant density. This yielded the model \(W\propto \ell^3\) where \(W\) is weight and \(\ell\) is some characteristic dimension. To test these assumptions, a student measured the length (inches) and weight (pounds) of several yellow and Idaho russet potatoes as shown in the table below (data collected by Brennan DeForest, 2019).</p>
+<div class="introduction" id="introduction-18">
+<p id="p-405">In our earlier example, we assumed potatoes are geometrically similar and of constant density. This yielded the model \(W\propto \ell^3\) where \(W\) is weight and \(\ell\) is some characteristic dimension. To test these assumptions, a student measured the length (inches) and weight (pounds) of several yellow and Idaho russet potatoes as shown in the table below (data collected by Brennan DeForest, 2019).</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{c|c}\hline\hline
@@ -336,11 +338,11 @@ A_S = 8k(0.25)^{2/3} \qquad\text{and}\qquad A_L = 4k(0.5)^{2/3}
 </div>
 </div>
 <article class="task exercise-like" id="task-28"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-384">Use the data to determine if the model \(W\propto \ell^3\) is reasonable for the yellow potatoes.</p></article><article class="task exercise-like" id="task-29"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-385">Repeat the previous part for the Idaho russet potatoes.</p></article><article class="task exercise-like" id="task-30"><h6 class="heading"><span class="codenumber">(c)</span></h6>
-<p id="p-386">Combine the two types of potatoes into one large sample and repeat part (a).</p></article><article class="task exercise-like" id="task-31"><h6 class="heading"><span class="codenumber">(d)</span></h6>
-<p id="p-387">What do these results suggest about the validity of the assumptions?</p></article></article><article class="exercise exercise-like" id="exercise-20"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
-<p id="p-388">The table below gives the overall length (inches) and weight (pounds) of several male black bears (data collected by Brent Troyer, 2011).  If we assume male black bears are geometrically similar, then we would expect that Weight \(\propto\) Length\({}^3\text{.}\) Use this data in the table to determine if geometric similarity is a reasonable assumption.</p>
+<p id="p-406">Use the data to determine if the model \(W\propto \ell^3\) is reasonable for the yellow potatoes.</p></article><article class="task exercise-like" id="task-29"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-407">Repeat the previous part for the Idaho russet potatoes.</p></article><article class="task exercise-like" id="task-30"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-408">Combine the two types of potatoes into one large sample and repeat part (a).</p></article><article class="task exercise-like" id="task-31"><h6 class="heading"><span class="codenumber">(d)</span></h6>
+<p id="p-409">What do these results suggest about the validity of the assumptions?</p></article></article><article class="exercise exercise-like" id="exercise-20"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<p id="p-410">The table below gives the overall length (inches) and weight (pounds) of several male black bears (data collected by Brent Troyer, 2011).  If we assume male black bears are geometrically similar, then we would expect that Weight \(\propto\) Length\({}^3\text{.}\) Use this data in the table to determine if geometric similarity is a reasonable assumption.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{l|cccccccccc}\hline\hline
@@ -352,5 +354,6 @@ A_S = 8k(0.25)^{2/3} \qquad\text{and}\qquad A_L = 4k(0.5)^{2/3}
 \end{equation*}
 </div></article></section></section></div></main>
 </div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>
