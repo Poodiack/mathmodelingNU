@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-01-11T18:13:40-05:00       *-->
+<!--*       on 2026-01-16T08:43:04-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,15 +15,13 @@
 </head>
 <body>
 <h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading"><span class="type">Paragraph</span></h6>
-<p>SageMath can solve systems of equations, where we use the square brackets to let SageMath know we're providing a list of functions, rather than just one. So to solve the system:</p>
+<p>We can compose two functions very easily in SageMath. Consider the two functions:</p>
 <div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
-\begin{align*}
-9a+3b+c \amp =32\\
-4a+2b+c \amp =15\\
-a+b+c \amp = 6 
-\end{align*}
+\begin{equation*}
+f(x) = 3x+5\quad\text{and}\quad g(x)=x^3 + 1.
+\end{equation*}
 </div>
-<p class="continuation">we type</p>
+<p class="continuation">Perhaps we wish to explore \(f(g(x))\text{.}\) The easy way to do this is to define a third function, \(h(x) = f(g(x))\text{.}\) Then, we can print this function, and the values of \(h(x)\) whenever we like.</p>
 <span class="incontext"><a href="sage-misc-functions.html#p-83">in-context</a></span>
 </body>
 </html>
