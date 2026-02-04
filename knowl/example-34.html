@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-02T17:58:44-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">The Leontief Input-Output Model.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">In this example we present another economics application that resembles equilibrium prices, but there are some key differences. One difference is that there will be an “open” sector which consumes products but doesn't produce anything.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Consider an open economy with three sectors: mining, electrical, and auto. To produce $1 of mined material, the mining operation must purchase $0.1 of its own product, $0.3 of electricity, and $0.1 worth of autos for its transportation. To produce $1 of electricity, it takes $0.25 of mined material, $0.4 of electricity, and $0.15 of autos. Finally, to produce $1 worth of autos, the auto-manufacturing plant must purchase $0.2 of mined material, $0.5 of electricity, and consumes $0.1 of autos. Assume also that during a period of one year, the open sector has a demand of $50 million worth of mined material, $75 million worth of electricity, and $125 million worth of autos. Find the annual output of each sector in order to satisfy demand.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">To solve this problem we first organize the inter-sector demands in <a class="xref" data-knowl="./knowl/leontief-table.html" title="Table 7.2.7">Table 7.2.7</a> called an <dfn class="terminology">input-output matrix</dfn>. This matrix looks much like an exchange table, but the entries of the matrix represent dollar amounts, not proportions. Also note that the columns do not add up to one and that the columns represent the purchaser, not the rows as in an exchange table.</p>
+<figure class="table table-like"><figcaption xmlns:svg="http://www.w3.org/2000/svg"><span class="type">Table</span><span class="space"> </span><span class="codenumber">7.2.7<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table xmlns:svg="http://www.w3.org/2000/svg" class="tabular">
+<tr class="header-horizontal">
+<th class="c m b0 r0 l0 t3 lines" colspan="3">$ Purchased by</th>
+<th class="l m b0 r0 l0 t3 lines"></th>
+</tr>
+<tr class="header-horizontal">
+<th class="c m b1 r0 l0 t0 lines">Mining</th>
+<th class="c m b1 r0 l0 t0 lines">Electrical</th>
+<th class="c m b1 r1 l0 t0 lines">Auto</th>
+<th class="l m b1 r0 l0 t0 lines">Purchased from</th>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">0.1</td>
+<td class="c m b0 r0 l0 t0 lines">0.25</td>
+<td class="c m b0 r1 l0 t0 lines">0.2</td>
+<td class="l m b0 r0 l0 t0 lines">Mining</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">0.3</td>
+<td class="c m b0 r0 l0 t0 lines">0.40</td>
+<td class="c m b0 r1 l0 t0 lines">0.5</td>
+<td class="l m b0 r0 l0 t0 lines">Electrical</td>
+</tr>
+<tr>
+<td class="c m b3 r0 l0 t0 lines">0.1</td>
+<td class="c m b3 r0 l0 t0 lines">0.15</td>
+<td class="c m b3 r1 l0 t0 lines">0.1</td>
+<td class="l m b3 r0 l0 t0 lines">Auto</td>
+</tr>
+</table></div></figure><p xmlns:svg="http://www.w3.org/2000/svg">A reasonable assumption about this scenario is:</p>
+<blockquote class="blockquote">The total demand from each sector must equal its output.</blockquote>
+<p xmlns:svg="http://www.w3.org/2000/svg">Let \(x_m\text{,}\) \(x_e\text{,}\) and \(x_a\) denote the annual outputs from mining, electrical, and auto, respectively. The assumption yields the system of equations</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+0.1 x_m + 0.25 x_e + 0.2 x_a + 50 &amp; = x_m \\
+0.3 x_m + 0.40 x_e + 0.5 x_a + 75 &amp; = x_e \\
+0.1 x_m + 0.15 x_e + 0.1 x_a + 125 &amp; = x_a
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We could solve this system by rewriting and row-reducing like we did in <a class="xref" data-knowl="./knowl/equilibrium-example.html" title="Example 7.2.3: Equilibrium Prices">Example 7.2.3</a>, but we'll take a different approach. First we'll rewrite the system in matrix form</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{bmatrix}
+0.1 &amp; 0.25 &amp; 0.2 \\
+0.3 &amp; 0.40 &amp; 0.5 \\
+0.1 &amp; 0.15 &amp; 0.1
+\end{bmatrix}
+\begin{bmatrix}
+x_m \\
+x_e \\
+x_a
+\end{bmatrix} + \begin{bmatrix}
+50 \\
+75 \\
+125
+\end{bmatrix} = \begin{bmatrix}
+x_m \\
+x_e \\
+x_a
+\end{bmatrix}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">or more generically,</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+A\pmb{x}+\pmb{d} = \pmb{x}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">where \(A\) is the input-output matrix, \(\pmb{d}\) is the demand vector from the open sector, and \(\pmb{x}\) is the unknown output vector. Then we rewrite this matrix equation:</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+\pmb{x} - A\pmb{x} &amp;= \pmb{d} \\
+(I_n - A)\pmb{x} &amp;= \pmb{d} \\
+\pmb{x} &amp;=(I_n-A)^{-1}\pmb{d}.
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">For this example,</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+I_n - A = \begin{bmatrix}
+0.9 &amp; -0.25 &amp; -0.2 \\
+-0.3 &amp; 0.60 &amp; -0.5 \\
+-0.1 &amp; -0.15 &amp; 0.9
+\end{bmatrix}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We can compute the inverse of this matrix and solve for the output vector \(\pmb{x}\) in SageMath:</p>
+<div class="sagecell-sage" id="sage-220"><script type="text/x-sage">A = matrix([[0.1, 0.25, 0.2], [0.3, 0.40, 0.5], [0.1, 0.15, 0.1]])
+d = matrix(3, 1, [50, 75, 125])
+x = (identity_matrix(3)-A).inverse()*d
+x
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">So mining should produce $229.9 million, electricity $437.8 million, and auto $237.4 million. One benefit of doing the calculations with matrices rather than row-reduction is that if the demand from the open sector were to change, then all we need to do is change \(\pmb{d}\) in the calculation \(\pmb{x} = (I_n - A)^{-1} \pmb{d}\text{.}\)</p></article><span class="incontext"><a href="modeling-with-linear-algebra.html#example-34">in-context</a></span>
+</body>
+</html>
