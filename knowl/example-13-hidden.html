@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-01-08T11:03:29-05:00       *-->
+<!--*       on 2026-02-02T17:58:43-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -12,38 +12,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<script>$(function () {
-    // Make *any* div with class 'sagecell-sage' an executable Sage cell
-    // Their results will be linked, only within language type
-    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
-                           linked: true,
-                           languages: ['sage'],
-                           evalButtonText: 'Evaluate (Sage)'});
-});
-</script>
 </head>
-<body><article class="example example-like"><p xmlns:svg="http://www.w3.org/2000/svg">We will fit a curve of the form \(L = a + b\ln(P)\) by graphing \(L\) versus \(\ln(P)\) and fitting a straight line.  The value of \(b\) is the slope of the line and the value of \(a\) is the \(y\)-intercept.</p>
-<div class="sagecell-sage" id="sage-144"><script type="text/x-sage">datapoints = [(275, 74), (410, 72), (467, 73), (559, 67), 
-	(643, 68), (1010, 70), (1037, 67), (1216, 66), 
-	(2471, 57),(4873, 62), (6166, 54), (7174, 59)]
-logpoints = [(ln(P), L) for (P,L) in datapoints]
-sp2 = scatter_plot(logpoints, title = "Transformed Data", 
-	axes_labels = ["$\\ln(P)$", "$L$"], frame = True)
-show(sp2)
-</script></div>
-<p xmlns:svg="http://www.w3.org/2000/svg">This data looks to be more along a straight line than our original data set, so we can then ask Sage to fit a straight line to it.</p>
-<div class="sagecell-sage" id="sage-145"><script type="text/x-sage">var('b a')
-model(x) = b*x + a
-sol = find_fit(logpoints,model, solution_dict = True)
-sol
-</script></div>
-<p xmlns:svg="http://www.w3.org/2000/svg">So the model is \(L = 103.4 - 5.2876\ln P\text{.}\)</p>
-<div class="sagecell-sage" id="sage-146"><script type="text/x-sage">sp2 + plot(sol[b]*x + sol[a], (x, 5, 9) )
-</script></div>
-<p xmlns:svg="http://www.w3.org/2000/svg">Now we want to create a graph to compare the observed values of \(L\) to the predicted ones from our model.</p>
-<div class="sagecell-sage" id="sage-147"><script type="text/x-sage">predpoints = [(x,sol[b]*ln(x) + sol[a]) for (x,y) in datapoints]
-show(sp + list_plot(predpoints, size=75, marker='v'), 
-     axes_labels = ["People/Physician", "Life Expectancy"], frame = True,
-    xmin = 0, xmax = 8000, ymin = 50, ymax = 80)
-</script></div></article></body>
+<body><article class="example example-like"><p xmlns:svg="http://www.w3.org/2000/svg">One-half of the amount of a radioactive substance decays after each half-life. Radioactive Carbon-14 (\({}^{14}\)C) has a half-life of 5715 years. If we start with 10 g of \({}^{14}\)C, the table below shows the amount of material remaining after each half-life along with the rate of change between time periods.</p>
+<div class="tabular-box natural-width"><table xmlns:svg="http://www.w3.org/2000/svg" class="tabular">
+<tr class="header-horizontal">
+<th class="c m b1 r0 l0 t3 lines">Time (years)</th>
+<th class="c m b1 r0 l0 t3 lines">Amount</th>
+<th class="c m b1 r0 l0 t3 lines">Change</th>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">0</td>
+<td class="c m b0 r0 l0 t0 lines">10</td>
+<td class="c m b0 r0 l0 t0 lines">5</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">5,715</td>
+<td class="c m b0 r0 l0 t0 lines">5</td>
+<td class="c m b0 r0 l0 t0 lines">2.5</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">11,430</td>
+<td class="c m b0 r0 l0 t0 lines">2.5</td>
+<td class="c m b0 r0 l0 t0 lines">1.25</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines">17,415</td>
+<td class="c m b0 r0 l0 t0 lines">1.25</td>
+<td class="c m b0 r0 l0 t0 lines">0.625</td>
+</tr>
+<tr>
+<td class="c m b3 r0 l0 t0 lines">22,860</td>
+<td class="c m b3 r0 l0 t0 lines">0.625</td>
+<td class="c m b3 r0 l0 t0 lines"></td>
+</tr>
+</table></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Note that as the amount of \({}^{14}\)C decreases, the rate at which it decreases also changes. This suggests a proportionality relationship between the amount of \({}^{14}\)C and the rate at which it decreases.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">If we let \(y(t)\) represent the amount of \({}^{14}\)C at time \(t\text{,}\) this proportionality relationship gives the differential equation</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\frac{dy}{dt} = k\,y.
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">That is, the derivative of \(y\) is a multiple of \(y\text{.}\) The exponential function \(y(t) = Ce^{kt}\) solves the differential equation, where \(C\) is the initial amount of material.</p></article></body>
 </html>
