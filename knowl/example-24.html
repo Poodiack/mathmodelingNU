@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-02T17:58:43-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.7</span><span class="period">.</span><span class="space"> </span><span class="title">Length of a Vector.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">Geometrically a 2-dimensional vector \(\mathbf{b} = (b_1, b_2)\) can be thought of as an arrow that starts at the origin \((0, 0)\) and terminates at the point \((b_1, b_2)\) on the \(x\)-\(y\) plane. The length of the vector \(\mathbf{b}\text{,}\) denoted \(\|\mathbf{b}\|\text{,}\) is the distance of this point from the origin. The length is also called the <dfn class="terminology">norm</dfn> or <dfn class="terminology">Euclidean norm</dfn> of the vector and is calculated as</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\|\mathbf{b}\| = \sqrt{b_1^2 + b_2^2}.
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">This definition can be generalized to vectors of any dimension. The distance between two vectors \(\mathbf{d}\) and \(\mathbf{c}\) of the same dimension is defined as \(\|\mathbf{d}-\mathbf{c}\|\text{,}\) where \(\mathbf{d}-\mathbf{c}\) is the component-by-component difference of the vectors. So if \(\mathbf{d} = (1,1)\) and \(\mathbf{c}= (2,1)\text{,}\) we have</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\|\mathbf{d} - \mathbf{c}\| = \left\|\begin{bmatrix}
+1 \\
+1
+\end{bmatrix} - \begin{bmatrix}
+2 \\
+1
+\end{bmatrix} \right\| = \left\| \begin{bmatrix}
+-1 \\
+0
+\end{bmatrix} \right\| = \sqrt{(-1)^2 + 0^2} = 1.
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">In SageMath, we can enter this as</p>
+<div class="sagecell-sage" id="sage-202"><script type="text/x-sage">d = matrix(2, 1, [1, 1])
+c = matrix(2, 1, [2, 1])
+
+norm(d - c)
+</script></div></article><span class="incontext"><a href="linear-algebra-basics.html#example-24">in-context</a></span>
+</body>
+</html>

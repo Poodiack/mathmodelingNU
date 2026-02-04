@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-02T17:58:43-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.3</span><span class="period">.</span><span class="space"> </span><span class="title">Scalar Multiplication.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">In the context of linear algebra, a <dfn class="terminology">scalar</dfn> is another word for a real number. So scalar multiplication means we multiply a real number by a matrix or vector. To do this, we simply multiply each element of the matrix or vector by the real number. For the matrix \(A\) and vector \(\mathbf{b}\) defined above we can calculate, for example,</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+3A = \begin{bmatrix}
+3(1) &amp; 3(2) &amp; 3(3) \\
+3(4) &amp; 3(0) &amp; 3(-1) 
+\end{bmatrix} \quad\text{and} \quad 
+-2\mathbf{b} = \begin{bmatrix}
+-2(-2) \\
+-2(1) \\
+-2(3)
+\end{bmatrix} = \begin{bmatrix}
+4 \\
+-2 \\
+-6 \end{bmatrix}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">To enter these matrices into SageMath, we type</p>
+<div class="sagecell-sage" id="sage-190"><script type="text/x-sage">A = matrix([[1, 2, 3], [4, 0, -1]]) # A = matrix(2,3,[1, 2, 3, 4, 0, -1])
+b = matrix(3,1,[-2,1,3])
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Note two different ways of entering matrices into Sage. We entered \(A\) by typing in the matrix as a list of its rows. For \(\mathbf{b}\text{,}\) we put in the dimensions of the matrix, then entered all the entries as one list.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">If we want \(3A\) or \(-2\mathbf{b}\) for instance, we would type</p>
+<div class="sagecell-sage" id="sage-191"><script type="text/x-sage">3*A
+</script></div>
+<div class="sagecell-sage" id="sage-192"><script type="text/x-sage">-2*b
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Note that we cannot do a calculation such as \(3+A\) or \(-2-\mathbf{b}\text{.}\) In other words, we cannot do “scalar addition” or “scalar subtraction,” although we can add or subtract two scalars.</p></article><span class="incontext"><a href="linear-algebra-basics.html#example-20">in-context</a></span>
+</body>
+</html>
