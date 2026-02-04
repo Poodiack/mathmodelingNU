@@ -1,6 +1,6 @@
 %********************************************%
 %*       Generated from PreTeXt source      *%
-%*       on 2026-01-16T08:43:06-05:00       *%
+%*       on 2026-02-02T17:58:46-05:00       *%
 %*   A recent stable commit (2020-08-09):   *%
 %* 98f21740783f166a773df4dc83cab5293ab63a4a *%
 %*                                          *%
@@ -668,7 +668,7 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 {\LARGE Mathematical Computation and Modeling}\\[3\baselineskip]
 {\Large Robert D. Poodiack}\\[0.5\baselineskip]
 {\Large Norwich University}\\[3\baselineskip]
-{\Large January 16, 2026}\\}
+{\Large February 2, 2026}\\}
 \clearpage
 %% end:   title page
 %% begin: copyright-page
@@ -4114,6 +4114,1107 @@ The data below contain the diameter of the trunk at chest height and volume of w
 \end{center}%
 \end{divisionexercise}%
 \end{exercises-subsection}
+\end{sectionptx}
+\end{chapterptx}
+ %
+%
+\typeout{************************************************}
+\typeout{Chapter 7 Linear Algebra}
+\typeout{************************************************}
+%
+\begin{chapterptx}{Linear Algebra}{}{Linear Algebra}{}{}{x:chapter:linearalgebra}
+%
+%
+\typeout{************************************************}
+\typeout{Section 7.1 Linear Algebra Basics}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Linear Algebra Basics}{}{Linear Algebra Basics}{}{}{x:section:linear-algebra-basics}
+Elementary linear algebra deals with solving systems of linear equations and operations on matrices. As we will see throughout this unit, systems of linear equations and matrices have a wide variety of applications. We introduce some basic matrix operations and techniques for solving systems of equations. We begin with an example of solving simple systems of linear equations.%
+\begin{example}{Systems of Linear Equations.}{x:example:systems-linear-eqns}%
+Consider the system of linear equations%
+%
+\begin{equation*}
+\begin{aligned}
+x + 2y &=2\\
+3x-4y &=6
+\end{aligned}
+\end{equation*}
+A \terminology{solution} to this system is a value of \(x\) and a value of \(y\) that satisfy both equations simultaneously. To algebraically find a solution, if it exists, one approach is to multiply the equations by appropriate non-zero constants and add them in such a way that only one variable remains. For instance, we could multiply the first equation by \(-3\):%
+%
+\begin{equation*}
+\begin{aligned}
+-3x-6y &= -6 \\
+3x-4y &= 6
+\end{aligned}
+\end{equation*}
+and then add the two equations together to get%
+%
+\begin{equation*}
+0x-10 y = 0
+\end{equation*}
+which can easily be solved to get \(y=0\). Then we can plug this value into one of the original equations, say the first equation, to get%
+\begin{equation*}
+x = 2(0) + 2 \quad\Longrightarrow \quad x=2.
+\end{equation*}
+Thus the unique solution is \(x = 2\), \(y = 0\). Graphically, we can think of solving a system of equations such as this as finding the point of intersection of the lines \(x + 2y = 2\) and \(3x - 4y = 6\) (or equivalently, \(y = -x/2 + 1\) and \(y = 3x/4 - 3/2\). This graph is shown below. We see the lines intersect at the unique point \((2, 0)\).%
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/linearalgebra1.png}
+\end{image}%
+Not every system of linear equations has a unique solution. Consider the system%
+%
+\begin{equation*}
+\begin{aligned}
+x+2y &= 2 \\
+x + 2y &= -2
+\end{aligned}
+\end{equation*}
+The graphs of these two lines are shown below. We see that the lines are parallel, so they never intersect meaning there is no solution.%
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/linearalgebra2.png}
+\end{image}%
+Other systems have infinitely many solutions. Consider the system%
+%
+\begin{equation*}
+\begin{aligned}
+x + 2y &= 2 \\
+2x + 4y &= 4 \\
+\end{aligned}
+\end{equation*}
+Note that the second equation is simply 2 times the first equation. This means that any solution to the first equation will be a solution to the second equation. Graphically, this means these two equations have the same graph. The graphs of these two lines are shown below. There appears to be only one line because the lines lie on top of each other. These two lines intersect in infinitely many points, so there are infinitely many solutions to this system.%
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/linearalgebra3.png}
+\end{image}%
+This analysis applies to systems with any number of variables. In general, a system of linear equations can have either one unique solution, no solution, or infinitely many solutions.%
+\end{example}
+Observe that the method for algebraically solving a system of equations presented in the example involved only arithmetic and that the most important part of the process is the numbers involved. If we keep our work neatly organized, we don’t really need to write the variables in each step. To this end, we write the coefficients of the variables and the constants on the right-hand sides of the equations in the following form:%
+%
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 \\
+3 & -4
+\end{bmatrix} \quad\text{and} \quad
+\begin{bmatrix}
+2 \\
+6
+\end{bmatrix}
+\end{equation*}
+This leads to our definition of a \terminology{matrix} and a \terminology{vector}.%
+\begin{definition}{}{g:definition:id84}%
+%
+\begin{itemize}[label=\textbullet]
+\item{}A \terminology{matrix} is a two-dimensional array of numbers.%
+\item{}The size of a matrix is denoted \(a\times b\) where \(a\) is the number of rows and \(b\) is the number of columns (rows are horizontal and columns are vertical).%
+\item{}A \terminology{column vector} is a matrix with one column and a \terminology{row vector} is a matrix with one row. When we refer to a generic vector, we mean a column vector.%
+\item{}The size of a vector is denoted by the number of rows and is referred to as the \terminology{dimension} of the vector.%
+\item{}The symbol \(R^n\) denotes the set of all vectors of dimension \(n\).%
+\end{itemize}
+\end{definition}
+Matrices are usually named with capital letters, such as \(A\), and vectors are named with bold-face lower-case letters, such as \(\mathbf{b}\). When writing a vector by hand, we often use a lower-case letter with an overhead arrow, such as \(\vec{b}\). For example,%
+%
+\begin{equation*}
+A = \begin{bmatrix}
+1 & 2 & 3 \\
+4 & 0 & -1
+\end{bmatrix}
+\end{equation*}
+is a \(2\times 3\) matrix and%
+%
+\begin{equation*}
+\mathbf{b} = \begin{bmatrix}
+-2 \\
+1 \\
+3
+\end{bmatrix}
+\end{equation*}
+is a \(3\times 1\) matrix, or a 3-dimensional vector. A vector can be written vertically using square brackets, as above, or it may be written horizontally using parentheses, as \(\mathbf{b} = (-2,1,3)\).%
+\par
+The numbers inside a matrix are called \terminology{elements}. The position of an element is described by its row and column. For example, the element \(-1\) in matrix \(A\) is in row 2, column 3. We say that it is in location \((2, 3)\).%
+\par
+Next we present by example some operations we can do in SageMath with matrices and vectors.%
+\begin{example}{Scalar Multiplication.}{g:example:id85}%
+In the context of linear algebra, a \terminology{scalar} is another word for a real number. So scalar multiplication means we multiply a real number by a matrix or vector. To do this, we simply multiply each element of the matrix or vector by the real number. For the matrix \(A\) and vector \(\mathbf{b}\) defined above we can calculate, for example,%
+%
+\begin{equation*}
+3A = \begin{bmatrix}
+3(1) & 3(2) & 3(3) \\
+3(4) & 3(0) & 3(-1) 
+\end{bmatrix} \quad\text{and} \quad 
+-2\mathbf{b} = \begin{bmatrix}
+-2(-2) \\
+-2(1) \\
+-2(3)
+\end{bmatrix} = \begin{bmatrix}
+4 \\
+-2 \\
+-6 \end{bmatrix}
+\end{equation*}
+To enter these matrices into SageMath, we type%
+\begin{sageinput}
+A = matrix([[1, 2, 3], [4, 0, -1]]) # A = matrix(2,3,[1, 2, 3, 4, 0, -1])
+b = matrix(3,1,[-2,1,3])
+\end{sageinput}
+Note two different ways of entering matrices into Sage. We entered \(A\) by typing in the matrix as a list of its rows. For \(\mathbf{b}\), we put in the dimensions of the matrix, then entered all the entries as one list.%
+\par
+If we want \(3A\) or \(-2\mathbf{b}\) for instance, we would type%
+\begin{sageinput}
+3*A
+\end{sageinput}
+\begin{sageoutput}
+[ 3  6  9]
+[12  0 -3]
+\end{sageoutput}
+\begin{sageinput}
+-2*b
+\end{sageinput}
+\begin{sageoutput}
+[ 4]
+[-2]
+[-6]
+\end{sageoutput}
+Note that we cannot do a calculation such as \(3+A\) or \(-2-\mathbf{b}\). In other words, we cannot do ``scalar addition'' or ``scalar subtraction,'' although we can add or subtract two scalars.%
+\end{example}
+\begin{example}{Matrix Addition.}{g:example:id86}%
+Matrices of the same size may be added by adding corresponding entries. For example%
+%
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix} + \begin{bmatrix}
+5 & 6 \\
+7 & 8
+\end{bmatrix} = \begin{bmatrix}
+1+ 5 & 2+6 \\
+3+7 & 4+8
+\end{bmatrix} = \begin{bmatrix}
+6 & 8 \\
+10 & 12
+\end{bmatrix}
+\end{equation*}
+In SageMath, we could type%
+\begin{sageinput}
+C = matrix(2, 2, [1, 2, 3, 4])
+D = matrix(2, 2, [5, 6, 7, 8])
+C + D
+\end{sageinput}
+\begin{sageoutput}
+[ 6  8]
+[10 12]
+\end{sageoutput}
+Subtraction works in the same way. Note that only matrices, or vectors, of the same size may be added or subtracted.%
+\end{example}
+\begin{example}{Matrix Multiplication.}{g:example:id87}%
+Consider multiplying the matrix \(A\) times the vector \(\mathbf{b}\) as defined above. This can be done as follows:%
+%
+\begin{equation*}
+A\mathbf{b} = \begin{bmatrix}
+1 & 2 & 3 \\
+4 & 0 & -1 
+\end{bmatrix}\,\begin{bmatrix}
+-2 \\
+1 \\
+3
+\end{bmatrix} = \begin{bmatrix}
+1(-2) + 2(1) + 3(3) \\
+4(-2) + 0(1) + (-1)(3)
+\end{bmatrix} = \begin{bmatrix}
+9 \\
+-11
+\end{bmatrix}
+\end{equation*}
+Note that this calculation involves multiplying a \(2 \times 3\) matrix by a \(3 \times 1\) matrix and the product is a \(2\times 1\) matrix. For a product of matrices to be defined, the ``inside'' dimensions of the factors must be equal. The ``outside'' dimensions of the factors give the size of the product. More precisely, the column dimension of the first matrix must equal the row dimension of the second matrix. The row dimension of the first matrix and the column dimension of the second matrix give the size of the product. In this example the product \(\mathbf{b}A\) is not defined because the dimensions do not match up. Also note that we do not use the symbols \(\times\) or \(\cdot\) to denote matrix multiplication. These symbols are reserved for other linear algebra operations.%
+\par
+We can do matrix multiplication in SageMath by typing:%
+\begin{sageinput}
+A = matrix([[1, 2, 3], [4, 0, -1]]) # A = matrix(2,3,[1, 2, 3, 4, 0, -1])
+b = matrix(3,1,[-2,1,3])
+
+A*b
+\end{sageinput}
+\begin{sageoutput}
+[  9]
+[-11]
+\end{sageoutput}
+Asking for \(\mathbf{b}A\) will result in an error message.%
+\begin{sageinput}
+b*A
+\end{sageinput}
+\begin{sageoutput}
+(Long error message happens here.)
+\end{sageoutput}
+We can also multiply a matrix by a non-vector matrix as follows:%
+%
+\begin{equation*}
+CD = \begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}\begin{bmatrix}
+-1 & 0 \\
+-2 & 1
+\end{bmatrix} = \begin{bmatrix}
+1(-1) + 2(-2) & 1(0) + 2(1) \\
+3(-1) + 4(-2) & 3(0) + 4(1)
+\end{bmatrix} = \begin{bmatrix}
+-5 & 2 \\
+-11 & 4
+\end{bmatrix}
+\end{equation*}
+The product \(DC\) can be calculated,%
+%
+\begin{equation*}
+DC = \begin{bmatrix}
+-1 & 0 \\
+-2 & 1
+\end{bmatrix}\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix} = \begin{bmatrix}
+-1(1) + 0(3) & -1(2) + 0(4) \\
+-2(1) + 1(3) & -2(2) + 1(4)
+\end{bmatrix} = \begin{bmatrix}
+-1 & -2 \\
+1 & 0
+\end{bmatrix},
+\end{equation*}
+but note that \(CD\ne DC\). This illustrates that matrix multiplication is not commutative.%
+\par
+We use the \mono{*} to indicate matrix multiplication in SageMath.%
+\begin{sageinput}
+C = matrix([[1,2],[3,4]])
+D = matrix([[-1,0],[-2,1]])
+\end{sageinput}
+\begin{sageinput}
+C*D
+\end{sageinput}
+\begin{sageoutput}
+[ -5   2]
+[-11   4]
+\end{sageoutput}
+\begin{sageinput}
+D*C
+\end{sageinput}
+\begin{sageoutput}
+[-1 -2]
+[ 1  0]
+\end{sageoutput}
+\begin{sageinput}
+C*D == D*C
+\end{sageinput}
+\begin{sageoutput}
+False
+\end{sageoutput}
+\end{example}
+\begin{example}{Transpose.}{g:example:id88}%
+To calculate the \terminology{transpose} of a matrix \(A\), denoted \(A^T\), we simply switch the rows and columns. Using the matrix \(A\) from above,%
+%
+\begin{equation*}
+A^T = \begin{bmatrix}
+1 & 4 \\
+2 & 0 \\
+3 & -1
+\end{bmatrix} 
+\end{equation*}
+Note that the dimensions of \(A^T\) are the dimensions of \(A\) switched around.%
+\begin{sageinput}
+A = matrix(2, 3, [1, 2, 3, 4, 0, -1])
+transpose(A)
+\end{sageinput}
+\begin{sageoutput}
+[ 1  4]
+[ 2  0]
+[ 3 -1]
+\end{sageoutput}
+\begin{sageinput}
+A
+\end{sageinput}
+\begin{sageoutput}
+[ 1  2  3]
+[ 4  0 -1]
+\end{sageoutput}
+\end{example}
+\begin{example}{Length of a Vector.}{g:example:id89}%
+Geometrically a 2-dimensional vector \(\mathbf{b} = (b_1, b_2)\) can be thought of as an arrow that starts at the origin \((0, 0)\) and terminates at the point \((b_1, b_2)\) on the \(x\)-\(y\) plane. The length of the vector \(\mathbf{b}\), denoted \(\|\mathbf{b}\|\), is the distance of this point from the origin. The length is also called the \terminology{norm} or \terminology{Euclidean norm} of the vector and is calculated as%
+%
+\begin{equation*}
+\|\mathbf{b}\| = \sqrt{b_1^2 + b_2^2}.
+\end{equation*}
+This definition can be generalized to vectors of any dimension. The distance between two vectors \(\mathbf{d}\) and \(\mathbf{c}\) of the same dimension is defined as \(\|\mathbf{d}-\mathbf{c}\|\), where \(\mathbf{d}-\mathbf{c}\) is the component-by-component difference of the vectors. So if \(\mathbf{d} = (1,1)\) and \(\mathbf{c}= (2,1)\), we have%
+%
+\begin{equation*}
+\|\mathbf{d} - \mathbf{c}\| = \left\|\begin{bmatrix}
+1 \\
+1
+\end{bmatrix} - \begin{bmatrix}
+2 \\
+1
+\end{bmatrix} \right\| = \left\| \begin{bmatrix}
+-1 \\
+0
+\end{bmatrix} \right\| = \sqrt{(-1)^2 + 0^2} = 1.
+\end{equation*}
+In SageMath, we can enter this as%
+\begin{sageinput}
+d = matrix(2, 1, [1, 1])
+c = matrix(2, 1, [2, 1])
+
+norm(d - c)
+\end{sageinput}
+\begin{sageoutput}
+1.0
+\end{sageoutput}
+\end{example}
+In the real numbers, 1 acts as a multiplicative identity, in that for any real number \(a\), we have \(1\cdot a = a\cdot 1 = a\). There is a special matrix that plays this part for matrix multiplication called the \terminology{identity matrix}.%
+\begin{definition}{}{g:definition:id90}%
+The \terminology{identity matrix} \(I_n\) is an \(n\times n\) matrix (meaning the number of rows equals the number of columns, called a \terminology{square} matrix) with 1's along the main diagonal (from the top left corner to the bottom right corner) and 0's everywhere else. For example, the \(2\times 2\) identity matrix is%
+%
+\begin{equation*}
+I_2 = \begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+\end{equation*}
+\end{definition}
+In SageMath, we can type%
+\begin{sageinput}
+identity_matrix(2)
+\end{sageinput}
+\begin{sageoutput}
+[1 0]
+[0 1]
+\end{sageoutput}
+\begin{sageinput}
+identity_matrix(5)
+\end{sageinput}
+\begin{sageoutput}
+[1 0 0 0 0]
+[0 1 0 0 0]
+[0 0 1 0 0]
+[0 0 0 1 0]
+[0 0 0 0 1]
+\end{sageoutput}
+\(I_n\) is called an identity matrix because \(I_n \mathbf{v} = \mathbf{v}\) for any \(n\)-dimensional vector \(\mathbf{v}\).%
+\par
+Earlier, we defined matrix multiplication, so we might wonder about matrix division. We cannot divide matrices, but we can multiply a matrix by its multiplicative inverse, when it exists.%
+\begin{definition}{}{g:definition:id91}%
+The inverse of a \(n\times n\) matrix \(A\), denoted \(A^{-1}\), is a matrix such that%
+%
+\begin{equation*}
+AA^{-1} = A^{-1} A = I_n.
+\end{equation*}
+\end{definition}
+We stress three important points about inverse matrices:%
+%
+\begin{enumerate}
+\item{}Only square matrices can have inverses.%
+\item{}Not every square matrix \(A\) has an inverse. If an inverse exists, \(A\) is said to be \terminology{invertible}.%
+\item{}Calculating an inverse by hand is not a trivial matter.%
+\end{enumerate}
+\begin{example}{Calculating a Matrix Inverse.}{g:example:id92}%
+We can easily calculate the inverse of the matrix \(A=\begin{bmatrix} 1 & 2 \\ 3 & -4 
+\end{bmatrix}\) using SageMath.%
+\begin{sageinput}
+A = matrix(2, 2, [1, 2, 3, -4])
+A.inverse()
+\end{sageinput}
+\begin{sageoutput}
+[  2/5   1/5]
+[ 3/10 -1/10]
+\end{sageoutput}
+We can confirm this is correct by verifying \(AA^{-1}=A^{-1}A=I_2\):%
+\begin{sageinput}
+matrix([[2/5,1/5],[3/10,-1/10]]) * A
+\end{sageinput}
+\begin{sageoutput}
+[1 0]
+[0 1]
+\end{sageoutput}
+\begin{sageinput}
+A * matrix([[2/5,1/5],[3/10,-1/10]])
+\end{sageinput}
+\begin{sageoutput}
+[1 0]
+[0 1]
+\end{sageoutput}
+\end{example}
+\begin{example}{Systems of Linear Equations.}{g:example:id93}%
+Consider again the system of linear equations%
+%
+\begin{equation*}
+\begin{aligned}
+x + 2y &= 2 \\
+3x - 4y & = 6
+\end{aligned}
+\end{equation*}
+from \hyperref[x:example:systems-linear-eqns]{Example~{\xreffont\ref{x:example:systems-linear-eqns}}}, which we solved algebraically and graphically. Now we show how it can be solved with matrices. First we write the system in the following matrix form:%
+%
+\begin{equation*}
+\begin{bmatrix}
+1 & 2 \\
+3 & -4
+\end{bmatrix}\,\begin{bmatrix}
+x \\
+y
+\end{bmatrix} = \begin{bmatrix}
+2 \\
+6
+\end{bmatrix}
+\end{equation*}
+which we will abbreviate to the shorthand \(A\mathbf{x} = \mathbf{b}\). Matrix \(A = \begin{bmatrix} 1 & 2 \\ 3 & -4 \end{bmatrix}\) is called the \terminology{coefficient matrix}, vector \(\mathbf{x} = \begin{bmatrix} x \\ y \end{bmatrix}\) is called the \terminology{unknown vector}, and vector \(\mathbf{b} = \begin{bmatrix} 2 \\ 6 \end{bmatrix}\) is called the \terminology{constant vector}.%
+\par
+To solve a system \(A\mathbf{x} = \mathbf{b}\) where \(A\) is \(n\times n\) we can multiply both sides by \(A^{-1}\) (assuming \(A^{-1}\) exists):%
+%
+\begin{equation*}
+\begin{aligned}
+A^{-1}&(A\mathbf{x} = \mathbf{b}) \\
+A^{-1}A\mathbf{x} &= A^{-1}\mathbf{b} \\
+I_n\mathbf{x} &= A^{-1}\mathbf{b} \\
+\mathbf{x} &= A^{-1}\mathbf{b}.
+\end{aligned}
+\end{equation*}
+To solve this particular system in SageMath, we can type%
+\begin{sageinput}
+A = matrix(2, 2, [1, 2, 3, -4])
+b = matrix(2, 1, [2, 6])
+x = A.inverse() * b
+x
+\end{sageinput}
+\begin{sageoutput}
+[2]
+[0]
+\end{sageoutput}
+The results show that the solution to the system is \(x=2\) and \(y=0\), the same as we found algebraically and graphically. Observe that the coefficient matrix in this example is invertible and there is a unique solution. This observation is true in general for systems with any number of variables.%
+\end{example}
+\begin{example}{Augmented Matrices.}{g:example:id94}%
+A linear system such as the previous example can also be solved using an \terminology{augmented matrix}. To form this augmented matrix we combine matrix \(A\) and vector \(\mathbf{b}\) into one \(2\times 3\) matrix:%
+%
+\begin{equation*}
+\left[ \begin{array}{cc|c}
+1 & 2 & 2 \\
+3 & -4 & 6
+\end{array} \right]
+\end{equation*}
+(We draw the vertical line to indicate where we've fused the matrix and the vector together.)%
+\par
+Next we perform elementary row operations on the augmented matrix. There are three possible elementary row operations:%
+%
+\begin{enumerate}
+\item{}Switch two rows of a matrix.%
+\item{}Multiply all elements of a row by a nonzero constant.%
+\item{}Add the elements of a row to the corresponding elements of another row.%
+\end{enumerate}
+These row operations are inspired by the algebraic solution we did in \hyperref[x:example:systems-linear-eqns]{Example~{\xreffont\ref{x:example:systems-linear-eqns}}}. Any combination of these operations is also allowed. In this example, we first multiply the first row by \(-3\) and add it to the second row and place the result in row 2, denoted \(-3R_1 + R_2 \to R_2\):%
+%
+\begin{equation*}
+\left[ \begin{array}{cc|c}
+1 & 2 & 2 \\
+0 & -10 & 0
+\end{array} \right]
+\end{equation*}
+The first row does not change. Next we perform \(-(1/10)R_2 \to R_2\):%
+%
+\begin{equation*}
+\left[ \begin{array}{cc|c}
+1 & 2 & 2 \\
+0 & 1 & 0
+\end{array} \right]
+\end{equation*}
+Lastly we perform \(-2R_2 + R_1 \to R_1\):%
+%
+\begin{equation*}
+\left[ \begin{array}{cc|c}
+1 & 0 & 2 \\
+0 & 1 & 0
+\end{array} \right]
+\end{equation*}
+Call this matrix \(B\). The sequence of operations we just performed is generically called row-reduction or \terminology{Gauss-Jordan elimination}. Matrix \(B\) is called the \terminology{reduced row echelon form} (RREF) of the system. We say that \(B\) is \terminology{row equivalent} to the original matrix. This means that \(B\) represents a system of equations with the same set of solutions as the original system. Converting \(B\) to a system of equations yields \(x = 2\) and \(y = 0\), the solution to the original system.%
+\par
+A matrix is in RREF if the following two conditions are met:%
+%
+\begin{enumerate}
+\item{}The first non-zero element in each row is a 1 (called a \terminology{leading} 1).%
+\item{}Each element above or below a leading 1 is 0.%
+\end{enumerate}
+Once an augumented matrix is reduced to its RREF, we can simply read the solution off the matrix (assuming there is a unique solution). No additional work is necessary. We can show theoretically that every matrix is row equivalent to exactly one matrix in RREF. The sequence of row operations used to find the RREF of a matrix is not unique, but the final result is unique.%
+\par
+Notice that the piece of the matrix to the left of the line is \(I_2\). This will always happen if our system has one solution: we get the identity matrix on the left after row reducing the augmented matrix.%
+\par
+We can augment two matrices in SageMath as well as request the RREF of the equivalent system.%
+\begin{sageinput}
+A = matrix(2, 2, [1, 2, 3, -4])
+b = matrix(2, 1, [2, 6])
+
+A.augment(b)
+\end{sageinput}
+\begin{sageoutput}
+[ 1  2  2]
+[ 3 -4  6]
+\end{sageoutput}
+\begin{sageinput}
+B = (A.augment(b)).rref()
+B
+\end{sageinput}
+\begin{sageoutput}
+[1 0 2]
+[0 1 0]
+\end{sageoutput}
+\end{example}
+\begin{example}{Solving a System with 3 Variables.}{g:example:id95}%
+Row-reduce the augmented matrix to its RREF to solve the system:%
+%
+\begin{equation*}
+\begin{aligned}
+2x + y + 3z & = 10 \\
+x + y + z & = 6 \\
+x + 3y + 2z & = 13
+\end{aligned}
+\end{equation*}
+The augmented matrix is%
+%
+\begin{equation*}
+\left[\begin{array}{rrr|r}
+2 & 1 & 3 & 10 \\
+1 & 1 & 1 & 6 \\
+1 & 3 & 2 & 13
+\end{array}\right]
+\end{equation*}
+First we perform the row operations \(R_1-2R_2\to R_2\) and \(R_1-2R_3\to R_3\):%
+%
+\begin{equation*}
+\left[\begin{array}{rrr|r}
+2 & 1 & 3 & 10 \\
+0 & -1 & 1 & -2 \\
+0 & -5 & -1 & -16
+\end{array}\right]
+\end{equation*}
+Next we perform \(-5R_2+R_3 \to R_3\):%
+%
+\begin{equation*}
+\left[\begin{array}{rrr|r}
+2 & 1 & 3 & 10 \\
+0 & -1 & 1 & -2 \\
+0 & 0 & -6 & -6
+\end{array}\right]
+\end{equation*}
+Then we perform \(R_1+R_2\to R_1\), \(-R_2\to R_2\), and \(-(1/6)R_3\to R_3\):%
+%
+\begin{equation*}
+\left[\begin{array}{rrr|r}
+2 & 0 & 4 & 8 \\
+0 & 1 & -1 & 2 \\
+0 & 0 & 1 & 1
+\end{array}\right]
+\end{equation*}
+Lastly, we perform \((1/2)R_1 - 2R_3\to R_1\) and \(R_2+R_3\to R_2\):%
+%
+\begin{equation*}
+\left[\begin{array}{rrr|r}
+1 & 0 & 0 & 2 \\
+0 & 1 & 0 & 3 \\
+0 & 0 & 1 & 1
+\end{array}\right]
+\end{equation*}
+This final matrix is in RREF and we see the solution is \(x = 2\), \(y = 3\), and \(z = 1\).%
+\par
+We can use the same commands as we did in the \(2\times 2\) case to do the row reduction in SageMath:%
+\begin{sageinput}
+A = matrix([[2, 1, 3], [1, 1, 1], [1, 3, 2]])
+b = matrix(3, 1, [10, 6, 13])
+(A.augment(b)).rref()
+\end{sageinput}
+\begin{sageoutput}
+[1 0 0 2]
+[0 1 0 3]
+[0 0 1 1]
+\end{sageoutput}
+\end{example}
+\begin{example}{A System with No Solution.}{g:example:id96}%
+As shown in \hyperref[x:example:systems-linear-eqns]{Example~{\xreffont\ref{x:example:systems-linear-eqns}}}, some systems have no solution. In this example we examine what this means in terms of an augmented matrix. Consider the system%
+%
+\begin{equation*}
+\begin{aligned}
+3x + 6y - 3z &= 6 \\
+3x + 6y - 2z &= 10 \\
+-2x - 4y - 3z &= -1
+\end{aligned}
+\end{equation*}
+\begin{sageinput}
+A = matrix([[3, 6, -3], [3, 6, -2], [-2, -4, -3]])
+b = matrix(3, 1, [6, 10, -1])
+(A.augment(b)).rref()
+\end{sageinput}
+\begin{sageoutput}
+[1 2 0 0]
+[0 0 1 0]
+[0 0 0 1]
+\end{sageoutput}
+Converting this last row to an equation yields \(0 = 1\), an obvious contradiction. This means there is no solution to this system.%
+\end{example}
+\begin{example}{A System with Many Solutions.}{g:example:id97}%
+As shown in \hyperref[x:example:systems-linear-eqns]{Example~{\xreffont\ref{x:example:systems-linear-eqns}}}, some systems have infinitely many solutions. In this example we examine what this means in terms of the reduced form of an augmented matrix. As we will see in the next section, systems of this type occur frequently in applications. Consider the system%
+%
+\begin{equation*}
+\begin{aligned}
+x + 2y - z &= 3 \\
+2x + 4y - 2z &= 6 \\
+3x + 6y +2z &= -1
+\end{aligned}
+\end{equation*}
+We use SageMath to set up the system's augmented matrix and to row-reduce it:%
+\begin{sageinput}
+A = matrix([[1, 2, -1], [2, 4, -2], [3, 6, 2]])
+b = matrix(3, 1, [3, 6, -1])
+(A.augment(b)).rref()
+\end{sageinput}
+\begin{sageoutput}
+[ 1  2  0  1]
+[ 0  0  1 -2]
+[ 0  0  0  0]
+\end{sageoutput}
+Converting this augmented matrix back to a system of equations yields%
+%
+\begin{equation*}
+\begin{aligned}
+x+2y &=1 \\
+z &= -2 \\
+0 &= 0
+\end{aligned}
+\end{equation*}
+The last equation is meaningless. The second equation gives us the value of \(z\). The first equation doesn’t give a specific value of any variable, but it does give us a relationship between \(x\) and \(y\). We can rewrite this equation as \(x = 1 - 2y\). The variable \(y\) is called a \terminology{free variable}, meaning it can take any value it wants. We rewrite the result in this form:%
+%
+\begin{equation*}
+\begin{aligned}
+x & =1-2y \\
+y & \text{ is free} \\
+z & =-2
+\end{aligned}
+\end{equation*}
+This result is called the \terminology{general solution} of the system. We get a specific solution by choosing a value of \(y\) and calculating \(x\). For instance, choosing \(y = 1\) yields the \terminology{specific solution} \(x = -1\), \(y = 1\), \(z = 0\).%
+\end{example}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 7.1 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id98}
+\begin{divisionexercise}{1}{}{}{g:exercise:id99}%
+Calculate%
+%
+\begin{equation*}
+\begin{bmatrix}
+1 & 7 & 8 \\
+5 & 0 & -1 \\
+2 & 7 & 0 
+\end{bmatrix}\,\begin{bmatrix}
+4 \\
+0 \\
+-3
+\end{bmatrix}
+\end{equation*}
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id100}%
+Calculate%
+%
+\begin{equation*}
+\begin{bmatrix}
+1 & 0 \\
+2 & 3 \\
+4 & 5
+\end{bmatrix}^{\,T}
+\end{equation*}
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id101}%
+Find the distance between%
+%
+\begin{equation*}
+\begin{bmatrix}
+1 \\
+7 \\
+-9
+\end{bmatrix} \quad\text{and} \quad \begin{bmatrix}
+-9 \\
+1\\
+7
+\end{bmatrix}
+\end{equation*}
+\end{divisionexercise}%
+\begin{divisionexercise}{4}{}{}{g:exercise:id102}%
+Let \(B = \begin{bmatrix} 7 & 1 & -8 \\
+2 & 7 & -3 \\ -1 & 0 & -2 \end{bmatrix}\). Calculate \(B^{-1}\) and show that \(B^{-1}B= I_3\) and \(BB^{-1} = I_3\).%
+\end{divisionexercise}%
+\begin{divisionexercise}{5}{}{}{g:exercise:id103}%
+Use matrices to solve the system%
+%
+\begin{equation*}
+\begin{aligned}
+2x + 3y + z &= 2 \\
+-3x - 4y + 9z &= 1 \\
+8x + 6y - 9z & = 3.
+\end{aligned}
+\end{equation*}
+\end{divisionexercise}%
+\begin{divisionexercise}{6}{}{}{g:exercise:id104}%
+Find the augmented matrix for the system of linear equations and find the solution by row-reducing.%
+%
+\begin{equation*}
+\begin{aligned}
+x_1 - 3x_2 & = 5 \\
+-x_1 + x_2 + 5x_3 & = 2 \\
+x_2 + x_3 & = 0
+\end{aligned}
+\end{equation*}
+\end{divisionexercise}%
+\end{exercises-subsection-numberless}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 7.2 Modeling with Systems of Equations}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Modeling with Systems of Equations}{}{Modeling with Systems of Equations}{}{}{x:section:modeling-with-linear-algebra}
+Elementary applications of linear algebra often involve describing a scenario with a system of equations and then solving the system. In this section we present four such applications: traffic flow, balancing chemical equations, and two economics applications.%
+\begin{example}{Traffic Flow.}{g:example:id105}%
+Consider the network of streets in the figure below. The numbers and variables in the figure represent the traffic flow, measured in vehicles per hour (vph), along each street segment. The goal is to find the values of \(x_1\) through \(x_4\) and analyze the flow of traffic.%
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/241Notes030121-1.png}
+\end{image}%
+Our model is based on the following rather obvious assumption:%
+\begin{quote}%
+All traffic that enters an intersection must leave the intersection.\end{quote}
+We organize the flow in and out of each intersection in the following table:%
+%
+\begin{equation*}
+\begin{array}{clll}\hline\hline
+\textbf{Intersection} & \textbf{Traffic In} & \textbf{Traffic Out} & \textbf{Equation} \\\hline
+\textrm{A} &  x_1 + x_2 & 450 + 275 = 725 & x_1 + x_2 = 725 \\
+\textrm{B} &  400 + 175 = 575 & x_1 + x_4 & 575 = x_1 + x_4 \\
+\textrm{C} & x_3 + x_4 & 650 + 350 = 1000 & x_3 + x_4 = 1000 \\
+\textrm{D} & 850 + 300 = 1150 & x_2 + x_3 & 1150 = x_2 + x_3 \\\hline\hline
+\end{array}
+\end{equation*}
+Rewriting the four equations results in the final model:%
+%
+\begin{equation*}
+\begin{aligned}
+& x_1 && + && x_2 && && && && &&= 725 \\
+& x_1 && && && &&  && + && x_4 &&= 575 \\
+& && && && && x_3 && + && x_4 && = 1000 \\
+& && && x_2 && + && x_3  && && &&= 1150
+\end{aligned}
+\end{equation*}
+To solve this system, we use techniques from \hyperref[x:section:linear-algebra-basics]{Section~{\xreffont\ref{x:section:linear-algebra-basics}}}. We can write this system in the form \(A\mathbf{x} = \mathbf{b}\) and try to calculate \(\mathbf{x} = A^{-1}\mathbf{b}\), but it turns out the matrix \(A\) is not invertible.%
+\begin{sageinput}
+A = matrix(4, 4, [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0])
+b = matrix(4, 1, [725, 575, 1000, 1150])
+x = A.inverse()*b
+x
+\end{sageinput}
+\begin{sageoutput}
+(Annoying error message)
+\end{sageoutput}
+Thus we must use row-reduction. We write the augmented matrix and row-reduce it:%
+\begin{sageinput}
+A.augment(b)
+\end{sageinput}
+\begin{sageoutput}
+[   1    1    0    0  725]
+[   1    0    0    1  575]
+[   0    0    1    1 1000]
+[   0    1    1    0 1150]
+\end{sageoutput}
+\begin{sageinput}
+(A.augment(b)).rref()
+\end{sageinput}
+\begin{sageoutput}
+[   1    0    0    1  575]
+[   0    1    0   -1  150]
+[   0    0    1    1 1000]
+[   0    0    0    0    0]
+\end{sageoutput}
+This yields the general solution:%
+%
+\begin{equation*}
+\begin{aligned}
+x_1 & = 575 - x_4 \\
+x_2 & = 150 + x_4 \\
+x_3 & = 1000 - x_4 \\
+x_4 & \text{ is free}
+\end{aligned}
+\end{equation*}
+The fact that there is a free variable means that traffic can flow through this network in infinitely many ways, a result that should not be surprising. For example, if we know that on a given day, \(x_4 = 250\), we would have \(x_1 = 325\), \(x_2 = 400\), and \(x_3 = 750\) vph.%
+\par
+With this general solution we can do more than simply calculate specific traffic flows. From the equation \(x_1 = 575-x_4\) we see that the maximum value of \(x_4\) is 575 vph; otherwise \(x_1\) would be negative. Also, the equation \(x_2 = 150+x_4\) tells us the minimum value of \(x_2\) is 150 since \(x_4\) cannot be negative. Thus if we were planning roadwork along the road segment corresponding to \(x_2\) resulting in restricted traffic flow, we would need to make sure the road could handle at least 150 vph.%
+\end{example}
+\begin{example}{Balancing Chemical Equations.}{g:example:id106}%
+In a chemical reaction, substances (called \terminology{reactants}, often in the form of \terminology{molecules}) composed of atoms react to form new substances (called \terminology{products}). A simple assumption behind every chemical reaction is:%
+\begin{quote}%
+Atoms cannot be created or destroyed in a reaction.\end{quote}
+As a simple example, sulfur (\(\text{S}_8\)) reacts with oxygen (\(\text{O}_2\)) to form sulfur dioxide (\(\text{SO}_2\)). This is represented by the chemical equation%
+%
+\begin{equation*}
+\text{S}_8 + \text{O}_2\to \text{SO}_2.
+\end{equation*}
+A quick inspection of this equation reveals there are more sulfur atoms (S) on the left than the right, which violates the assumption. Thus we need to determine how many of each molecule react to form how many molecules of the product. This is called \terminology{balancing the equation}. By inspection, a balanced version of this equation is%
+%
+\begin{equation*}
+\text{S}_8 + 8\text{O}_2\to 8\text{SO}_2.
+\end{equation*}
+Not every chemical equation can be balanced so easily by inspection. For example, ethylenediamine (\(\text{C}_2\text{H}_8\text{N}_2\)) reacts with dinitrogen tetroxide (\(\text{N}_2\text{O}_4\)) to form nitrogen (\(\text{N}_2\)), carbon dioxide (\(\text{CO}_2\)), and water (\(\text{H}_2\text{O}\)) according to the equation%
+%
+\begin{equation*}
+x_1\,\text{C}_2\text{H}_8\text{N}_2 + x_2\,\text{N}_2\text{O}_4 \to x_3 \,\text{N}_2 + x_4\, \text{CO}_2 + x_5\,\text{H}_2\text{O}.
+\end{equation*}
+The coefficients \(x_1, \dots, x_5\) represent the unknown number of each molecule involved. The goal is to find appropriate integer values of these unknowns. We begin by equating the number of each atom from each side of the equation:%
+%
+\begin{equation*}
+\begin{array}{cl}\hline\hline
+\textbf{Atom} & \textbf{Equation} \\\hline
+\textrm{C} & 2x_1 = x_4 \\
+\textrm{H} & 8x_1 = 2x_5 \\
+\textrm{N} & 2x_1 + 2x_2 = 2x_3 \\
+\textrm{O} & 4x_2 = 2x_4 + x_5 \\\hline\hline
+\end{array}
+\end{equation*}
+Rewriting the four equations results in the final model:%
+\begin{image}{0.25}{0.5}{0.25}%
+\includegraphics[width=\linewidth]{./images/systemeq2.png}
+\end{image}%
+We solve this model by row-reduction:%
+\begin{sageinput}
+A = matrix([[2, 0, 0, -1, 0], [8, 0, 0, 0, -2], 
+	[2, 2, -2, 0, 0], [0, 4, 0, -2, -1]])
+b = matrix(4, 1, [0, 0, 0, 0])
+A.augment(b)
+\end{sageinput}
+\begin{sageoutput}
+[ 2  0  0 -1  0  0]
+[ 8  0  0  0 -2  0]
+[ 2  2 -2  0  0  0]
+[ 0  4  0 -2 -1  0]
+\end{sageoutput}
+\begin{sageinput}
+(A.augment(b)).rref()
+\end{sageinput}
+\begin{sageoutput}
+[   1    0    0    0 -1/4    0]
+[   0    1    0    0 -1/2    0]
+[   0    0    1    0 -3/4    0]
+[   0    0    0    1 -1/2    0]
+\end{sageoutput}
+This yields the general solution%
+%
+\begin{equation*}
+\begin{aligned}
+x_1 &= 1/4\, x_5 \\
+x_2 &= 1/2\, x_5 \\
+x_3 &= 3/4\, x_5 \\
+x_4 &= 1/2\, x_5 \\
+x_5 &\text{ is free}
+\end{aligned}
+\end{equation*}
+To find a particular solution, we choose the smallest positive integer value of the free variable so that all the other variables are positive integers. We choose \(x_5 = 4\), yielding \(x_1 = 1\), \(x_2 = 2\), \(x_3 = 3\), and \(x_4 = 2\) so that the balanced equation is%
+%
+\begin{equation*}
+\text{C}_2\text{H}_8\text{N}_2 + 2\text{N}_2\text{O}_4 \to 3\text{N}_2 + 2\text{CO}_2 + 4\text{H}_2\text{O}.
+\end{equation*}
+\end{example}
+\begin{example}{Equilibrium Prices.}{x:example:equilibrium-example}%
+Consider a simple economy that consists of three sectors: Chemical, Electric, and Metal. Each sector produces some yearly output (measured in millions of dollars). Each sector also consumes a certain proportion of the output of the other sectors as illustrated in \hyperref[x:figure:equil-diagram]{Figure~{\xreffont\ref{x:figure:equil-diagram}}}. (A sector consuming a portion of its own output can be thought of as an operational expense.)%
+\begin{figureptx}{}{x:figure:equil-diagram}{}%
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/241diagram1.png}
+\end{image}%
+\tcblower
+\end{figureptx}%
+\hyperref[x:table:exch-table]{Table~{\xreffont\ref{x:table:exch-table}}}, called an \terminology{exchange table}, summarizes this information. Note that each column in this table adds up to exactly 1 to model the fact that each sector’s output is totally consumed by the other sectors.%
+\begin{tableptx}{\textbf{}}{x:table:exch-table}{}%
+\centering%
+{\tabularfont%
+\begin{tabular}{cccl}\hrulethick
+\multicolumn{3}{c}{\textbf{Proportion of Output From}}&\textbf{}\tabularnewline[0pt]
+\textbf{Chemical}&\textbf{Electrical}&\multicolumn{1}{cA}{\textbf{Metal}}&\textbf{Purchased by}\tabularnewline\hrulethin
+0.1&0.6&\multicolumn{1}{cA}{0.7}&Chemical\tabularnewline[0pt]
+0.5&0&\multicolumn{1}{cA}{0.1}&Electrical\tabularnewline[0pt]
+0.4&0.4&\multicolumn{1}{cA}{0.2}&Metal\tabularnewline\hrulethick
+\end{tabular}
+}%
+\end{tableptx}%
+A reasonable assumption about a healthy economy is:%
+\begin{quote}%
+The total expenses of each sector must equal its output.\end{quote}
+In other words, a sector’s expenses must equal its income. An economy satisfying this assumption is said to be in \terminology{equilibrium}, and the resulting outputs are called \terminology{equilibrium prices}. To find equilibrium prices, let \(x_c\), \(x_e\), and \(x_m\) denote the outputs from chemical, electrical, and metal, respectively. The assumption yields the system of equations%
+%
+\begin{equation*}
+\begin{aligned}
+0.1 x_c +  0.6 x_e +  0.7 x_m &= x_c \\
+0.5 x_c \hphantom{{}+ 0.6 x_e} + 0.1 x_m &= x_e \\
+0.4 x_c +  0.4 x_e +  0.2 x_m &= x_m
+\end{aligned}
+\end{equation*}
+We rewrite this system by subtracting the quantities on the right hand side of the equation:%
+%
+\begin{equation*}
+\begin{aligned}
+-0.9 x_c +  0.6 x_e +  0.7 x_m & = 0 \\
+0.5 x_c -\hphantom{0.6} x_e + 0.1 x_m & = 0 \\
+0.4 x_c +  0.4 x_e -  0.8 x_m & = 0
+\end{aligned}
+\end{equation*}
+Then we solve by row-reduction:%
+\begin{sageinput}
+A = matrix([[-0.9, 0.6, 0.7], [0.5, -1, 0.1], [0.4, 0.4, -0.8]])
+b = matrix(3, 1, [0, 0, 0])
+(A.augment(b)).rref()
+\end{sageinput}
+\begin{sageoutput}
+[  1.00000000000000  0.000000000000000  -1.26666666666667  0.000000000000000]
+[ 0.000000000000000   1.00000000000000 -0.733333333333333  0.000000000000000]
+[ 0.000000000000000  0.000000000000000  0.000000000000000  0.000000000000000]
+\end{sageoutput}
+This yields the general solution:%
+%
+\begin{equation*}
+\begin{aligned}
+x_c & = 1.26666666666667\,x_m \\
+x_e & = 0.733333333333333\, x_m \\
+x_m & \text{ is free}
+\end{aligned}
+\end{equation*}
+Any nonnegative choice for \(x_m\) yields a specific set of equilibrium prices. For example, if \(x_m = 15\), then \(x_c = 19\) and \(x_e = 11\).%
+\end{example}
+\begin{example}{The Leontief Input-Output Model.}{g:example:id107}%
+In this example we present another economics application that resembles equilibrium prices, but there are some key differences. One difference is that there will be an ``open'' sector which consumes products but doesn't produce anything.%
+\par
+Consider an open economy with three sectors: mining, electrical, and auto. To produce \textdollar{}1 of mined material, the mining operation must purchase \textdollar{}0.1 of its own product, \textdollar{}0.3 of electricity, and \textdollar{}0.1 worth of autos for its transportation. To produce \textdollar{}1 of electricity, it takes \textdollar{}0.25 of mined material, \textdollar{}0.4 of electricity, and \textdollar{}0.15 of autos. Finally, to produce \textdollar{}1 worth of autos, the auto-manufacturing plant must purchase \textdollar{}0.2 of mined material, \textdollar{}0.5 of electricity, and consumes \textdollar{}0.1 of autos. Assume also that during a period of one year, the open sector has a demand of \textdollar{}50 million worth of mined material, \textdollar{}75 million worth of electricity, and \textdollar{}125 million worth of autos. Find the annual output of each sector in order to satisfy demand.%
+\par
+To solve this problem we first organize the inter-sector demands in \hyperref[x:table:leontief-table]{Table~{\xreffont\ref{x:table:leontief-table}}} called an \terminology{input-output matrix}. This matrix looks much like an exchange table, but the entries of the matrix represent dollar amounts, not proportions. Also note that the columns do not add up to one and that the columns represent the purchaser, not the rows as in an exchange table.%
+\begin{tableptx}{\textbf{}}{x:table:leontief-table}{}%
+\centering%
+{\tabularfont%
+\begin{tabular}{cccl}\hrulethick
+\multicolumn{3}{c}{\textbf{\textdollar{} Purchased by}}&\textbf{}\tabularnewline[0pt]
+\textbf{Mining}&\textbf{Electrical}&\multicolumn{1}{cA}{\textbf{Auto}}&\textbf{Purchased from}\tabularnewline\hrulethin
+0.1&0.25&\multicolumn{1}{cA}{0.2}&Mining\tabularnewline[0pt]
+0.3&0.40&\multicolumn{1}{cA}{0.5}&Electrical\tabularnewline[0pt]
+0.1&0.15&\multicolumn{1}{cA}{0.1}&Auto\tabularnewline\hrulethick
+\end{tabular}
+}%
+\end{tableptx}%
+A reasonable assumption about this scenario is:%
+\begin{quote}%
+The total demand from each sector must equal its output.\end{quote}
+Let \(x_m\), \(x_e\), and \(x_a\) denote the annual outputs from mining, electrical, and auto, respectively. The assumption yields the system of equations%
+%
+\begin{equation*}
+\begin{aligned}
+0.1 x_m + 0.25 x_e + 0.2 x_a + 50 & = x_m \\
+0.3 x_m + 0.40 x_e + 0.5 x_a + 75 & = x_e \\
+0.1 x_m + 0.15 x_e + 0.1 x_a + 125 & = x_a
+\end{aligned}
+\end{equation*}
+We could solve this system by rewriting and row-reducing like we did in \hyperref[x:example:equilibrium-example]{Example~{\xreffont\ref{x:example:equilibrium-example}}}, but we'll take a different approach. First we'll rewrite the system in matrix form%
+%
+\begin{equation*}
+\begin{bmatrix}
+0.1 & 0.25 & 0.2 \\
+0.3 & 0.40 & 0.5 \\
+0.1 & 0.15 & 0.1
+\end{bmatrix}
+\begin{bmatrix}
+x_m \\
+x_e \\
+x_a
+\end{bmatrix} + \begin{bmatrix}
+50 \\
+75 \\
+125
+\end{bmatrix} = \begin{bmatrix}
+x_m \\
+x_e \\
+x_a
+\end{bmatrix}
+\end{equation*}
+or more generically,%
+%
+\begin{equation*}
+A\pmb{x}+\pmb{d} = \pmb{x}
+\end{equation*}
+where \(A\) is the input-output matrix, \(\pmb{d}\) is the demand vector from the open sector, and \(\pmb{x}\) is the unknown output vector. Then we rewrite this matrix equation:%
+%
+\begin{equation*}
+\begin{aligned}
+\pmb{x} - A\pmb{x} &= \pmb{d} \\
+(I_n - A)\pmb{x} &= \pmb{d} \\
+\pmb{x} &=(I_n-A)^{-1}\pmb{d}.
+\end{aligned}
+\end{equation*}
+For this example,%
+%
+\begin{equation*}
+I_n - A = \begin{bmatrix}
+0.9 & -0.25 & -0.2 \\
+-0.3 & 0.60 & -0.5 \\
+-0.1 & -0.15 & 0.9
+\end{bmatrix}
+\end{equation*}
+We can compute the inverse of this matrix and solve for the output vector \(\pmb{x}\) in SageMath:%
+\begin{sageinput}
+A = matrix([[0.1, 0.25, 0.2], [0.3, 0.40, 0.5], [0.1, 0.15, 0.1]])
+d = matrix(3, 1, [50, 75, 125])
+x = (identity_matrix(3)-A).inverse()*d
+x
+\end{sageinput}
+\begin{sageoutput}
+[229.921259842520]
+[437.795275590551]
+[237.401574803150]
+\end{sageoutput}
+So mining should produce \textdollar{}229.9 million, electricity \textdollar{}437.8 million, and auto \textdollar{}237.4 million. One benefit of doing the calculations with matrices rather than row-reduction is that if the demand from the open sector were to change, then all we need to do is change \(\pmb{d}\) in the calculation \(\pmb{x} = (I_n - A)^{-1} \pmb{d}\).%
+\end{example}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 7.2 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id108}
+\begin{divisionexercise}{1}{}{}{g:exercise:id109}%
+Consider the road network pictured below.%
+\begin{image}{0.1}{0.8}{0.1}%
+\includegraphics[width=\linewidth]{./images/roadnetwork2.png}
+\end{image}%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Construct a system of linear equations that models the traffic flow and find the general solution.%
+\item{}What is the minimum possible value of \(x_3\)?%
+\item{}What is the maximum possible value of \(x_4\)?%
+\item{}Suppose the 650 vph flowing into intersection D from the bottom were changed to 600 vph. Explain why there would be no solution to the resulting system of linear equations that models the traffic flow.%
+\end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id110}%
+Balance each of the following chemical equations:%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Potassium permanganate reacts with hydrochloric acid to form potassium chloride, manganese (II) chloride, water, and chlorine gas:%
+%
+\begin{equation*}
+\text{KMnO}_4 + \text{HCl} \to \text{KCl} + \text{MnCl}_2 + \text{H}_2\text{O} + \text{Cl}_2.
+\end{equation*}
+\item{}Sodium bicarbonate reacts with citric acid to form sodium citrate, water, and carbon dioxide:%
+%
+\begin{equation*}
+\text{NaHCO}_3 + \text{H}_3\text{C}_6\text{H}_5\text{O}_7 \to \text{Na}_3\text{C}_6\text{H}_5\text{O}_7 + \text{H}_2\text{O} + \text{CO}_2.
+\end{equation*}
+\end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id111}%
+Consider an economy with two sectors: Manufacturing and Services. Each year, Manufacturing sells 75\% of its output to Services and the rest is an operational expense. Likewise, Services sells 85\% of its output to Manufacturing and consumes the rest.%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Set up an exchange table for this economy.%
+\item{}Find the equilibrium prices if the annual output from Services is \textdollar{}30 million.%
+\end{enumerate}
+\end{divisionexercise}%
+\end{exercises-subsection-numberless}
 \end{sectionptx}
 \end{chapterptx}
 \end{partptx}
