@@ -1,6 +1,6 @@
 %********************************************%
 %*       Generated from PreTeXt source      *%
-%*       on 2026-02-04T11:22:18-05:00       *%
+%*       on 2026-02-23T11:38:57-05:00       *%
 %*   A recent stable commit (2020-08-09):   *%
 %* 98f21740783f166a773df4dc83cab5293ab63a4a *%
 %*                                          *%
@@ -595,6 +595,14 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 \tcbset{ tableptxstyle/.style={bwminimalstyle, middle=1ex, blockspacingstyle, coltitle=black, bottomtitle=2ex, titlerule=-0.3pt, fonttitle=\blocktitlefont} }
 \newtcolorbox[use counter from=block]{tableptx}[3]{title={{\textbf{Table~\thetcbcounter}\space#1}}, phantomlabel={#2}, unbreakable, parbox=false, tableptxstyle, }
 %%
+%% tcolorbox, with styles, for (SUB)FIGURE-LIKE
+%%
+%% subfigureptx: 2-D display structure
+\tcbset{ subfigureptxstyle/.style={bwminimalstyle, middle=1ex, blockspacingstyle, fontlower=\blocktitlefont} }
+\makeatletter
+\newtcolorbox[use counter from=subdisplay]{subfigureptx}[3]{lower separated=false, before lower={{\textbf{\StrSubstitute{\thetcbcounter}{\thetcb@cnt@block}{}}\space#1}}, phantomlabel={#2}, unbreakable, parbox=false, subfigureptxstyle, }
+\makeatother
+%%
 %% xparse environments for introductions and conclusions of divisions
 %%
 %% introduction: in a structured division
@@ -668,7 +676,7 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 {\LARGE Mathematical Computation and Modeling}\\[3\baselineskip]
 {\Large Robert D. Poodiack}\\[0.5\baselineskip]
 {\Large Norwich University}\\[3\baselineskip]
-{\Large February 4, 2026}\\}
+{\Large February 23, 2026}\\}
 \clearpage
 %% end:   title page
 %% begin: copyright-page
@@ -3270,7 +3278,7 @@ Shapes such as circles and rectangles are easy to work with. We can calculate th
 Two objects are \emph{geometrically similar} if the following two conditions are met:%
 %
 \begin{enumerate}
-\item{}There is a one-to-one correspondence between points of the objects (i.e. the two objects have the same ``shape''\textgreater{}).%
+\item{}There is a one-to-one correspondence between points of the objects (i.e. the two objects have the same ``shape'').%
 \item{}The ratio of distances between corresponding points is the same for all pairs of points.%
 \end{enumerate}
 \end{definition}
@@ -5213,6 +5221,778 @@ Consider an economy with two sectors: Manufacturing and Services. Each year, Man
 \item{}Set up an exchange table for this economy.%
 \item{}Find the equilibrium prices if the annual output from Services is \textdollar{}30 million.%
 \end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{4}{}{}{g:exercise:id112}%
+Consider an economy whose exchange table is given below. Find the equilibrium prices if the annual output from Services is \textdollar{}46 million.%
+\begin{center}%
+{\tabularfont%
+\begin{tabular}{cccl}\hrulethick
+\multicolumn{3}{c}{\textbf{Prop. of Output from}}&\textbf{}\tabularnewline[0pt]
+\textbf{Auto}&\textbf{Services}&\multicolumn{1}{cA}{\textbf{Food}}&\textbf{Purchased by}\tabularnewline\hrulethin
+0.1&0.35&\multicolumn{1}{cA}{0.1}&Auto\tabularnewline[0pt]
+0.6&0.45&\multicolumn{1}{cA}{0.7}&Services\tabularnewline[0pt]
+0.3&0.2&\multicolumn{1}{cA}{0.2}&Food\tabularnewline\hrulethick
+\end{tabular}
+}%
+\end{center}%
+\end{divisionexercise}%
+\begin{divisionexercise}{5}{}{}{g:exercise:id113}%
+An economy is based on three sectors, agriculture, energy, and manufacturing, plus an open sector. Production of each dollar of agriculture requires an input of \textdollar{}0.2 from the agriculture sector and \textdollar{}0.4 from the energy sector. Production of each dollar of energy requires an input of \textdollar{}0.2 from the energy sector and \textdollar{}0.4 from the manufacturing sector. Production of each dollar of manufacturing requires an input of \textdollar{}0.1 from the agriculture sector, \textdollar{}0.1 from the energy sector, and \textdollar{}0.3 from the manufacturing sector. Find the output from each sector that is needed to satisfy a demand of \textdollar{}20 billion for agriculture, \textdollar{}10 billion for energy, and \textdollar{}30 billion for manufacturing from the open sector.%
+\end{divisionexercise}%
+\end{exercises-subsection-numberless}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 7.3 Polynomials}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Polynomials}{}{Polynomials}{}{}{x:section:polynomials}
+\begin{introduction}{}%
+Polynomial models are often convenient to use because they are easy to differentiate and integrate. \hyperref[x:theorem:poly-thm-1]{Theorem~{\xreffont\ref{x:theorem:poly-thm-1}}} is a well-known result from algebra about fitting a polynomial model to data.%
+\begin{theorem}{}{}{x:theorem:poly-thm-1}%
+Given a set of data \(\{(x_i, y_i)\mid i=1, 2, \dots, n\}\), where \(x_i\ne x_j\) for all \(i\ne j\), there exists a unique polynomial \(p(x)\) of degree at most \(n-1\) such that%
+%
+\begin{equation*}
+p(x_i) = y_i \text{ for all } i=1, 2, \dots, n.
+\end{equation*}
+\end{theorem}
+Graphically, this theorem means that the graph of \(y = p (x)\) goes through each data point (i.e. it is a perfect fitting model). This sounds like a utopia, but is it really?%
+\end{introduction}%
+\begin{example}{Three Data Points.}{x:example:three-data-points}%
+Consider the problem of fitting a second-degree polynomial of the form \(y = ax^2 +bx+c\) to the set of three data points \(\{(1, 2), (2, 4), (3, 5)\}\). This means we want values of \(a\), \(b\), and \(c\) such that%
+%
+\begin{equation*}
+\begin{aligned}
+a(1^2) + b(1) + c & = 2 \\
+a(2^2) + b(2) + c & = 4 \\
+a(3^2) + b(3) + c & = 5
+\end{aligned}
+\end{equation*}
+This set of linear equations can be written in matrix form as%
+%
+\begin{equation*}
+\begin{bmatrix}
+1^2 & 1 & 1 \\
+2^2 & 2 & 1 \\
+3^2 & 3 & 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+a \\
+b \\
+c
+\end{bmatrix} = \begin{bmatrix}
+2 \\
+4 \\
+5
+\end{bmatrix}
+\end{equation*}
+This matrix equation has the generic form \(A\mathbf{x} = \mathbf{b}\) where \(\mathbf{x} = (a, b, c)\) is the vector of unknowns. It can be shown that \(A\) is invertible. Thus there is a unique solution to this matrix equation, \(\mathbf{x} = A^{-1}\mathbf{b}\).%
+\begin{sageinput}
+A = matrix(3, 3, [1^2, 1, 1, 2^2, 2, 1, 3^2, 3, 1])
+b = matrix(3, 1, [2, 4, 5])
+A.inverse()*b
+\end{sageinput}
+\begin{sageoutput}
+[-1/2]
+[ 7/2]
+[  -1]
+\end{sageoutput}
+So we get the solution \(\mathbf{x} = (-1/2, 7/2, -1)\) so that the model is \(y=-\frac12 x^2 + \frac72 x -1\).%
+\par
+SageMath will automatically calculate this polynomial for us using an algorithm equivalent to the one described above.%
+\begin{sageinput}
+points = [(1, 2), (2, 4), (3, 5)]
+scatter_plot(points) + plot(-(1/2)*x^2 + (7/2)*x - 1, (x, 1, 3))
+\end{sageinput}
+Next we add \((4,2)\) to the data set and fit a second degree polynomial to these four data points. Ideally, we want to find \(a\), \(b\), and \(c\) such that%
+%
+\begin{equation*}
+\begin{aligned}
+a(1^2) + b(1) + c & = 2 \\
+a(2^2) + b(2) + c & = 4 \\
+a(3^2) + b(3) + c & = 5 \\
+a(4^2) + b(4) + c & = 2
+\end{aligned}
+\end{equation*}
+This set of linear equations can be written in matrix form as%
+%
+\begin{equation*}
+\begin{bmatrix}
+1^2 & 1 & 1 \\
+2^2 & 2 & 1 \\
+3^2 & 3 & 1 \\
+4^2 & 4 & 1
+\end{bmatrix}
+\begin{bmatrix}
+a \\
+b \\
+c
+\end{bmatrix} = \begin{bmatrix}
+2 \\
+4 \\
+5 \\
+2
+\end{bmatrix}
+\end{equation*}
+which, as before, has the generic form \(A\mathbf{x} = \mathbf{b}\). However, note that \(A\) is not square, so it is not invertible. Further analysis reveals that this equation does not even have a solution, so there is no polynomial that fits these four data points perfectly. We will have to settle for a ``best–fit'' polynomial model. As in \hyperref[x:chapter:proportionality]{Chapter~{\xreffont\ref{x:chapter:proportionality}}} when we fit a linear model to a set of data, we will use a least–squares criterion to find our model. That is, we want a polynomial \(p(x)\) that minimizes the number%
+%
+\begin{equation*}
+S = \sum_{i=1}^n (y_i - p(x_i))^2.
+\end{equation*}
+The resulting model is called a \terminology{least–squares} polynomial model. To find this model we will find a \terminology{least-squares solution} to the above matrix equation.%
+\begin{definition}{Least-squares Solution.}{g:definition:id114}%
+Let \(A\) be an \(m\times n\) matrix and \(\mathbf{b}\) be an \(m\times 1\) vector. A \terminology{least-squares} solution of \(A\mathbf{x}=\mathbf{b}\) is an \(n\times 1\) vector \(\hat{\mathbf{x}}\) such that%
+%
+\begin{equation*}
+\|\mathbf{b} - A\hat{\mathbf{x}}\|\le \|\mathbf{b} - A\mathbf{x}\| \text{ for all $n\times 1$ vectors 
+$\mathbf{x}$}.
+\end{equation*}
+\end{definition}
+The idea behind this definition is that \(\hat{\mathbf{x}}\) gets \(A\mathbf{x}\) as close to \(\mathbf{b}\) as possible. The following theorem which we present without proof tells us how to find \(\hat{\mathbf{x}}\).%
+\begin{theorem}{}{}{g:theorem:id115}%
+Every least-squares solution of \(A\mathbf{x} = \mathbf{b}\) must satisfy the Normal equation%
+%
+\begin{equation*}
+A^TA\mathbf{x} = A^T\mathbf{b}.
+\end{equation*}
+If \(A^T A\) is invertible, then there is a unique least-squares solution \(\mathbf{x}\) given by%
+%
+\begin{equation*}
+\mathbf{x} = (A^T A)^{-1} A^T \mathbf{b}.
+\end{equation*}
+\end{theorem}
+Note that this does not say that a general matrix equation \(A\mathbf{x} = \mathbf{b}\) has a unique least-squares solution. In general, there may be many least-squares solutions. However, if \(A^T A\) is invertible, then the solution is unique. When fitting curves to data, \(A^T A\) is usually invertible so we can this formula to calculate \(\hat{\mathbf{x}}\). This technique can also be used to fit other types of models to data, as we will see later.%
+\par
+For our current example, we can enter%
+\begin{sageinput}
+A = matrix(4, 3, [1^2, 1, 1, 2^2, 2, 1, 3^2, 3, 1, 4^2, 4, 1])
+b = matrix(4, 1, [2, 4, 5, 2])
+A.transpose()
+\end{sageinput}
+\begin{sageoutput}
+[ 1  4  9 16]
+[ 1  2  3  4]
+[ 1  1  1  1]
+\end{sageoutput}
+\begin{sageinput}
+sol = ((A.transpose()*A).inverse())*A.transpose()*b
+sol
+\end{sageinput}
+\begin{sageoutput}
+[  -5/4]
+[127/20]
+[ -13/4]
+\end{sageoutput}
+So a least-squares solution is \(y = -\frac54 x^2 + \frac{127}{20}x - \frac{13}4\).%
+\begin{sageinput}
+points = [(1, 2), (2, 4), (3, 5), (4, 2)]
+scatter_plot(points) + plot(sol[0][0]*x^2 + sol[1][0]*x + sol[2][0], (x, 1, 4))
+\end{sageinput}
+\end{example}
+\begin{example}{Calculating \(R^2\) Value.}{g:example:id116}%
+In \hyperref[x:section:coefficient-of-determination]{Section~{\xreffont\ref{x:section:coefficient-of-determination}}} we defined the coefficient of variation \(R^2\) as a measure of how well a line fits a set of data. We then applied this idea to linearizable models by calculating the \(R^2\) value for the straight–line fit to the transformed data. Polynomial models are not linearizable, so to calculate \(R^2\) values for these types of models, we must use the definition. The definition is%
+%
+\begin{equation*}
+R^2 = \frac{SS_{Tot} - SS_{Res}}{SS_{Tot}}
+\end{equation*}
+where \(SS_{Tot} = \sum (y_i - \overline{y})^2\), \(SS_{Res} = \sum (y_i - \hat{y}_i)^2\), \(\overline{y}\) is the mean of all the \(y\)-values in the data set, and \(\hat{y}_i\) is the \terminology{predicted} value of \(y_i\) based on the model. Here we use our model \(y = -\frac54 x^2 + \frac{127}{20}x - \frac{13}4\) to calculate \(\hat{y}_i\).%
+\begin{sageinput}
+A = matrix(4, 3, [1^2, 1, 1, 2^2, 2, 1, 3^2, 3, 1, 4^2, 4, 1])
+b = matrix(4, 1, [2, 4, 5, 2])
+
+sol = ((A.transpose()*A).inverse())*A.transpose()*b
+
+points = [(1, 2), (2, 4), (3, 5), (4, 2)]
+
+import numpy as np # need so we can use Sage's desired 'mean' command
+
+yvalues = [y for (x,y) in points]
+ymean = np.mean(yvalues)
+ymean
+\end{sageinput}
+\begin{sageoutput}
+3.25
+\end{sageoutput}
+\begin{sageinput}
+SStot = sum((yvalues[i]-ymean)^2 for i in range(len(points)))
+yhatvalues = [sol[0][0]*x^2 + sol[1][0]*x + sol[2][0] for (x,y) in points]
+SSres = sum((yvalues[i] - yhatvalues[i])^2 for i in range(len(points)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+\end{sageinput}
+\begin{sageoutput}
+0.933333333333333
+\end{sageoutput}
+ This indicates a very good fit.\end{example}
+\begin{example}{Selecting a Best Polynomial Model.}{g:example:id117}%
+Consider the data in the table below which gives the area \(A\) (in thousands of square miles) and the total length of railroad track \(R\) (in thousands of miles) of seven different countries (data from The World Almanac and Book of Facts, 2007, World Almanac Books). We want to use a polynomial to model \(R\) in terms of \(A\).%
+%
+\begin{equation*}
+\begin{array}{c|ccccccc}\hline\hline
+& \textbf{Luxembourg} & \textbf{Ireland} & \textbf{Azerbaiijan} & 
+\textbf{S Korea} & \textbf{Greece} & \textbf{Finland} & \textbf{Japan} \\\hline
+A & 0.998 & 27.135 & 33.436 & 38.023 & 50.942 & 130.559 & 292.26 \\
+R & 0.170 & 2.058 & 1.834 & 2.157 & 1.598 & 3.635 & 4.092 \\\hline\hline
+\end{array}
+\end{equation*}
+According to \hyperref[x:theorem:poly-thm-1]{Theorem~{\xreffont\ref{x:theorem:poly-thm-1}}}, there is a unique polynomial of degree at most 6 that fits this data perfectly. We can easily graph \(R\) vs. \(A\) and fit a sixth degree polynomial trendline. The result is shown below.%
+\begin{sageinput}
+railroaddata = [(0.998, 0.170), (27.135, 2.058), 
+	(33.436, 1.834), (38.023, 2.157), 
+    (50.942, 1.598), (130.559, 3.635), (292.26, 4.092)]
+var('a0 a1 a2 a3 a4 a5 a6')
+model(x) = a6*x^6 + a5*x^5 + a4*x^4 + \
+a3*x^3 + a2*x^2 + a1*x + a0
+sol = find_fit(railroaddata, model, solution_dict = True)
+
+f(x) = sol[a6]*x^6 + sol[a5]*x^5 + sol[a4]*x^4 \
++ sol[a3]*x^3 + sol[a2]*x^2 + sol[a1]*x + sol[a0]
+show(scatter_plot(railroaddata) + plot(f(x), (x,0,293) ),
+	 axes_labels = ['$A$', '$R$'])
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/railroad-graph-6.png}
+\end{image}%
+\begin{sageinput}
+Rvalues = [R for (A,R) in railroaddata]
+Rmean = numpy.mean(Rvalues)
+SStot = sum((Rvalues[i]-Rmean)^2 for i in range(len(railroaddata)))
+Rhatvalues = [f(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+\end{sageinput}
+\begin{sageoutput}
+1.00000000000000
+\end{sageoutput}
+Notice that the \(R^2\) value is 1, so the model fits the data perfectly. However, note the large oscillation between \(A = 130\) and \(300\) and that the model predicts negative values of \(R\) for \(A\) around 100. This is totally unreasonable, so this is a terrible model even though it fits the data perfectly. The large oscillation seen in the graph of this model is typical of a high–degree polynomial model such as this. To find a better model, we can fit polynomials of degree 1 through 5 to the data, and keep track of their \(R^2\) values. The code and graphs are shown below.%
+\begin{sageinput}
+# Linear (degree 1)
+
+Rvalues = [R for (A,R) in railroaddata]
+Rmean = numpy.mean(Rvalues)
+SStot = sum((Rvalues[i]-Rmean)^2 for i in range(len(railroaddata)))
+model(x) = a0 + a1*x
+sol1 = find_fit(railroaddata, model, solution_dict=True)
+f1(x) = sol1[a0] + sol1[a1]*x
+show(scatter_plot(railroaddata) + plot(f1(x), (x,0,293) ), axes_labels = ['$A$', '$R$'])
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/railroad-graph-1.png}
+\end{image}%
+\begin{sageinput}
+Rhatvalues = [f1(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+\end{sageinput}
+\begin{sageoutput}
+0.728873713454167
+\end{sageoutput}
+\begin{sageinput}
+# Quadratic (degree 2)
+
+model(x) = a0 + a1*x + a2*x^2
+sol2 = find_fit(railroaddata, model, solution_dict=True)
+f2(x) = sol2[a0] + sol2[a1]*x + sol2[a2]*x^2
+show(scatter_plot(railroaddata) + plot(f2(x), (x,0,293) ), 
+	axes_labels = ['$A$', '$R$'])
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/railroad-graph-2.png}
+\end{image}%
+\begin{sageinput}
+Rvalues = [R for (A,R) in railroaddata]
+Rhatvalues = [f2(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+\end{sageinput}
+\begin{sageoutput}
+0.898901888420191
+\end{sageoutput}
+\begin{sageinput}
+# Cubic (degree 3)
+
+model(x) = a0 + a1*x + a2*x^2 + a3*x^3
+sol3 = find_fit(railroaddata, model, solution_dict=True)
+f3(x) = sol3[a0] + sol3[a1]*x + sol3[a2]*x^2 + sol3[a3]*x^3
+show(scatter_plot(railroaddata) + plot(f3(x), (x,0,293) ),
+	axes_labels = ['$A$', '$R$'])
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/railroad-graph-3.png}
+\end{image}%
+\begin{sageinput}
+Rvalues = [R for (A,R) in railroaddata]
+Rhatvalues = [f3(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+\end{sageinput}
+\begin{sageoutput}
+0.912353150053013
+\end{sageoutput}
+\begin{sageinput}
+# Quartic (degree 4)
+
+model(x) = a0 + a1*x + a2*x^2 + a3*x^3 + a4*x^4
+sol4 = find_fit(railroaddata, model, solution_dict=True)
+f4(x) = sol4[a0] + sol4[a1]*x + sol4[a2]*x^2 + sol4[a3]*x^3 + sol4[a4]*x^4
+show(scatter_plot(railroaddata) + plot(f4(x), (x,0,293) ), 
+	axes_labels = ['$A$', '$R$'])
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/railroad-graph-4.png}
+\end{image}%
+\begin{sageinput}
+Rvalues = [R for (A,R) in railroaddata]
+Rhatvalues = [f4(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+\end{sageinput}
+\begin{sageoutput}
+0.992705996813433
+\end{sageoutput}
+\begin{sageinput}
+# Quintic (degree 5)
+
+model(x) = a0 + a1*x + a2*x^2 + a3*x^3 + a4*x^4 + a5*x^5
+sol5 = find_fit(railroaddata, model, solution_dict=True)
+f5(x) = sol5[a0] + sol5[a1]*x + sol5[a2]*x^2 + sol5[a3]*x^3 + sol5[a4]*x^4 + sol5[a5]*x^5
+show(scatter_plot(railroaddata) + plot(f5(x), (x,0,293) ), 
+	axes_labels = ['$A$', '$R$'])
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/railroad-graph-5.png}
+\end{image}%
+\begin{sageinput}
+Rvalues = [R for (A,R) in railroaddata]
+Rhatvalues = [f5(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+\end{sageinput}
+\begin{sageoutput}
+0.992981494879485
+\end{sageoutput}
+To choose the best model, we need to examine more than just the \(R^2\) values. We also need to consider how well they will make predictions and their simplicity. The fourth and fifth degree models have the highest \(R^2\) values, but they both have oscillations that seem unreasonable in the context of the problem, so they are not the best options. The first degree model does not capture the trend of the data very well, so it is not a good option either. The second and third degree models have very similar \(R^2\) values and their graphs look very similar. So we will choose the simpler of the two options, the second degree model, as the best. However, one could make a case that the third degree model is the best.%
+\end{example}
+This least-squares matrix approach can be applied to models other than polynomials as illustrated in the next example.%
+\begin{example}{Deer Population.}{x:example:deer-population}%
+The following table gives the number of deer in a hypothetical forest for various years between 1941 and 1982. Our goal is to model the population in terms of the year.%
+%
+\begin{equation*}
+\begin{array}{r|ccccccccc}\hline\hline
+\textbf{Year} & 1941 & 1947 & 1951 & 1957 & 1962 & 1965 & 1971 & 1977 & 1982 \\\hline
+\textbf{Population} & 12,500 & 28,500 & 7,000 & 20,000 & 6,500 & 12,000 & 4,000 & 11,000 & 3,500 \\\hline\hline
+\end{array}
+\end{equation*}
+To make the data values smaller and easier to work with, we transform them by subtracting 1941 from the year and dividing the population by 1000, yielding the data in the table below.%
+%
+\begin{equation*}
+\begin{array}{r|ccccccccc}\hline\hline
+\pmb{x} & 0 & 6 & 10 & 16 & 21 & 24 & 30 & 36 & 41 \\\hline
+\pmb{y} & 12.5 & 28.5 & 7 & 20 & 6.5 & 12 & 4 & 11 & 3.5 \\\hline\hline
+\end{array}
+\end{equation*}
+\begin{sageinput}
+points = [(0, 12.5), (6, 28.5), (10, 7), (16, 20), 
+	(21, 6.5), (24, 12), (30, 4), (36, 11), (41, 3.5)]
+sp = scatter_plot(points, axes_labels=['$x$', '$y$'],
+	title="Deer Population")
+sp
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/deerpopgraph.png}
+\end{image}%
+Examining the graph of the transformed data in the graph we see that the population fluctuates from a high to a low and back to a high in about a 10–year cycle.%
+\par
+The periodic nature of the data suggests we use sine or cosine functions to model it. Since the period is approximately 10, our model will have terms of \(\cos (\pi x/5)\) and \(\sin (\pi x/5)\). Also note that the population shows a downward trend. So we will include an \(x\) term in the model with a (likely) negative coefficient. Thus our model is of the form%
+%
+\begin{equation*}
+y = a + bx + c\cos\left(\frac{\pi x}5\right) + d\sin\left(\frac{\pi x}5\right).
+\end{equation*}
+Ideally we want to satisfy the system of equations:%
+%
+\begin{equation*}
+\begin{aligned}
+a + b(0) + c\cos\left(\frac{0\pi}5\right) + d\sin\left(\frac{0\pi}5\right) & = 12.5 \\
+a + b(6) + c\cos\left(\frac{6\pi}5\right) + d\sin\left(\frac{6\pi}5\right) & = 28.5 \\
+\vdots \\
+a + b(41) + c\cos\left(\frac{41\pi}5\right) + d\sin\left(\frac{41\pi}5\right) & = 3.5 \\
+\end{aligned}
+\end{equation*}
+which has the matrix form%
+%
+\begin{equation*}
+\begin{bmatrix}
+1 & 0 & \cos(0\pi/5) & \sin(0\pi/5) \\
+1 & 6 & \cos(6\pi/5) & \sin(6\pi/5) \\
+\vdots & \vdots & \vdots & \vdots \\
+1 & 0 & \cos(41\pi/5) & \sin(41\pi/5)
+\end{bmatrix} \begin{bmatrix}
+a \\
+b \\
+c \\
+d \\
+\end{bmatrix} = \begin{bmatrix}
+12.5 \\
+28.5 \\
+\vdots \\
+3.5
+\end{bmatrix}
+\end{equation*}
+As before, this matrix equation has the generic form \(A\mathbf{x} = \mathbf{b}\). Calculating the least-squares solution, \(\hat{\mathbf{x}} = (A^T A)^{-1} A^T \mathbf{b}\), to this system as done previously, gives the approximate solution \(\hat{\mathbf{x}} = (18.965, -0.314, -5.693, -2.915)\). So the model is%
+%
+\begin{equation*}
+y = 18.965 -0.314x - 5.693\cos\left(\frac{\pi x}5\right) -2.915\sin\left(\frac{\pi x}5\right)
+\end{equation*}
+Luckily, these calculations are built right into Sage's \mono{find\_fit} command.%
+\begin{sageinput}
+var('a b c d')
+model(x) = a + b*x + c*cos((pi*x)/5) + d*sin((pi*x)/5)
+sol = find_fit(points, model, solution_dict=True)
+sol
+\end{sageinput}
+\begin{sageoutput}
+{a: 18.964803924754708,
+ b: -0.31421708432754114,
+ c: -5.692825831084026,
+ d: -2.914769395035289}
+\end{sageoutput}
+\begin{sageinput}
+f(x) = sol[a] + sol[b]*x + sol[c]*cos((pi*x)/5) + sol[d]*sin((pi*x)/5)
+sp + plot(f(x), (x, 0, 42))
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/deerpopgraphcurve.png}
+\end{image}%
+The figure above shows a graph of the model on top of the data. The model appears to fit the data relatively well, but many refinements could be made.%
+\end{example}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 7.3.1 General Guidelines for Selecting a Best Model}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{General Guidelines for Selecting a Best Model}{}{General Guidelines for Selecting a Best Model}{}{}{g:subsection:id118}
+In general when constructing empirical models, one has many different types of models from which to choose. Deciding which one is best is not easy and is often very subjective, but here are a few simple guidelines:%
+%
+\begin{enumerate}
+\item{}Consider the \(R^2\) value, but don’t rely solely on it.%
+\item{}Look for a pattern in the residuals. If there is a pattern, the model should be refined.%
+\item{}Consider how good the model is for making predictions between data values. If it oscillates or would give unreasonable values, look for a better model.%
+\item{}Consider ``end'' behavior. If the data appears to be ``leveling off'' at the end, but the model is increasing (or vice-versa), consider a different model.%
+\item{}Consider the simplicity of a model. In general, the fewer the terms, the better.%
+\end{enumerate}
+We must also stress that when using an empirical model such as those discussed in this section and in \hyperref[x:chapter:proportionality]{Chapter~{\xreffont\ref{x:chapter:proportionality}}} to make predictions, the predictions are always point–estimates of the true values. These predictions should never be presented as precise certainties. Books on statistics and regression discuss how to use a point–estimate to form a confidence interval for the true value (a range of possible values), but this topic is beyond the scope of this course.%
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 7.3.2 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id119}
+\begin{divisionexercise}{1}{}{}{g:exercise:id120}%
+Fit different polynomial models to the data in the table below and select the best one. Explain how you determined which one is best.%
+%
+\begin{equation*}
+\begin{array}{c|ccccccc}\hline\hline
+\pmb{x} & 1.4 & 2.4 & 7.1 & 13.8 & 34.2 & 109.3 & 134 \\\hline
+\pmb{y} & 2.7 & 2.27 & 3.31 & 3.39 & 3.81 & 4.88 & 4.62 \\\hline\hline
+\end{array}
+\end{equation*}
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{x:exercise:deer-pop-R2}%
+Calculate the \(R^2\) value for the model fit to deer population data in \hyperref[x:example:deer-population]{Example~{\xreffont\ref{x:example:deer-population}}}.%
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id121}%
+One useful property of polynomials is that they are easy to differentiate and integrate. Suppose a researcher observes a particle moving in a straight line and measures the particle’s velocity relative to its starting position at several points in time as shown in the table below.%
+%
+\begin{equation*}
+\begin{array}{l|cccccccc}\hline\hline
+\pmb{t} & 0 & 1.2 & 2.5 & 3.2 & 4.6 & 5.4 & 6.3 & 7.3 \\\hline
+\pmb{v(t)} & 0 & 3.6 & 5.5 & 7.4 & 6.7 & 5.8 & 3.5 & 0 \\\hline\hline
+\end{array}
+\end{equation*}
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Fit several polynomial models to the data and choose the one that best models the velocity. (Suggestion: When choosing the best model, don’t rely strictly on the \(R^2\) value. Put a large emphasis on simplicity.)%
+\begin{sageinput}
+data = [(0, 0), (1.2, 3.6), (2.5, 5.5), (3.2, 7.4), 
+(4.6, 6.7), (5.4, 5.8), (6.3, 3.5), (7.3, 0)]
+\end{sageinput}
+\item{}The acceleration of the particle at time \(t\) is \(a(t) = v'(t)\). Use your model in part (a) to estimate \(a(1.8)\). (The command to take the derivative of a function \(f(x)\) is \mono{diff(f,x)}.)%
+\item{}The total distance traveled over the time interval \([a, b]\) is%
+\begin{equation*}
+\text{Total distance traveled} = \int_a^b |v(t)|\,dt.
+\end{equation*}
+Use your model from part (a) to estimate the total distance the particle traveled over the interval \([0,7.3]\). (The command to obtain the definite integral of \(f(x)\) from \(a\) to \(b\) is \mono{integrate(f(x),(x,a,b))}.)%
+\end{enumerate}
+\end{divisionexercise}%
+\end{exercises-subsection}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 7.4 Multiple Regression}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Multiple Regression}{}{Multiple Regression}{}{}{x:section:multiple-regression}
+\begin{introduction}{}%
+In previous sections we have discussed predicting the value of one response variable \(y\) with one predictor variable \(x\). In this section we will discuss using two or more predictor variables \(x_1, x_2, \dots , x_n\). This topic is called \terminology{multiple regression.}%
+\par
+Consider the problem of predicting the selling price of a house. The selling price is affected by many factors including the age of the house, living area, number of bedrooms, etc. The table below lists the selling price, living area (in ft\({}^2\)), acres of land, and the number of bedrooms of 10 homes in a neighborhood.%
+%
+\begin{equation*}
+\begin{array}{cccc}\hline\hline
+\textbf{Selling Price} & \textbf{Area} & \textbf{Acres} & \textbf{Bedrooms}\\\hline
+100,000 & 2,205 & 2.5 & 3 \\
+93,500 & 2,155 & 0.8 & 3 \\
+95,650 & 2,600 & 1.1 & 4 \\
+75,025 & 1,900 & 0.35 & 3 \\
+95,000 & 1,200 & 2.5 & 2 \\
+80,250 & 2,050 & 1.8 & 3 \\
+85,250 & 2,250 & 0.9 & 4 \\
+121,250 & 2,490 & 1.8 & 3 \\
+94,575 & 2,390 & 1.6 & 2 \\
+109,000 & 3,100 & 1.0 & 4 \\\hline\hline
+\end{array}
+\end{equation*}
+\end{introduction}%
+\begin{example}{Single Predictor Variable.}{g:example:id122}%
+Consider the graphs of Selling Price vs. Area and Selling Price vs. Acres as shown in \hyperref[x:figure:spsinglepredictor]{Figure~{\xreffont\ref{x:figure:spsinglepredictor}}} below along with the linear regression equation for each.%
+\begin{figureptx}{}{x:figure:spsinglepredictor}{}%
+\begin{sidebyside}{2}{0}{0}{0}%
+\begin{sbspanel}{0.5}%
+\begin{subfigureptx}{Selling Price vs. Area}{g:figure:id123}{}%
+\includegraphics[width=\linewidth]{./images/spvsarea.png}
+\tcblower
+\end{subfigureptx}%
+\end{sbspanel}%
+\begin{sbspanel}{0.5}%
+\begin{subfigureptx}{Selling Price vs. Acres}{g:figure:id124}{}%
+\includegraphics[width=\linewidth]{./images/spvsacres.png}
+\tcblower
+\end{subfigureptx}%
+\end{sbspanel}%
+\end{sidebyside}%
+\tcblower
+\end{figureptx}%
+Notice that the \(R^2\) value for the predictor variable Area is higher than the \(R^2\) value for Acres. This means that the regression equation for Selling Price in terms of Area will give a better predicted Selling Price than the equation in terms of Acres. We say that out of these two variables, Area is the best single-variable predictor of selling price.%
+\par
+Suppose a house has an area of 2,800 ft\({}^2\).We could use the regression equation for Selling Price in terms of Area to predict that the house would sell for \(12.852(2,800) + 66,239 =
+\$102,224\). This, of course, is only a point–estimate of the price, and probably not a very good estimate because the \(R^2\) value for the regression equation is only 0.2232.%
+\end{example}
+\begin{example}{Multiple Predictor Variables.}{g:example:id125}%
+Considering only one predictor variable is a bit too simple. Many variables affect the selling price, so we should consider more than one predictor variable in our regression equation. Suppose we consider both Area and Acres.%
+\par
+If we let \(y =\) Selling Price, \(x_1 =\) Area, and \(x_2 =\) Acres, we want to fit a model of the form%
+%
+\begin{equation*}
+y = a_0 + a_1 x_1 + a_2 x_2
+\end{equation*}
+to the data where \(a_0\), \(a_1\), and \(a_2\) are constants. As in \hyperref[x:section:polynomials]{Section~{\xreffont\ref{x:section:polynomials}}}, ideally we want to satisfy the system of equations%
+%
+\begin{equation*}
+\begin{aligned}
+a_0 + a_1(2205) + 2.5a_2 &= 100,000 \\
+\vdots \\
+a_0 + a_1(3100) + 1a_2 &= 109,000
+\end{aligned}
+\end{equation*}
+We could take a matrix approach to find a least–squares solution to this system as we did before, but \mono{find\_fit} will do this automatically for us.%
+\begin{sageinput}
+housepoints = \
+[(100000, 2205, 2.5, 3), (93500, 2155, 0.8, 3), 
+(95650, 2600, 1.1, 4), (75025, 1900, 0.35, 3), 
+(95000, 1200, 2.5, 2), (80250, 2050, 1.8, 3),
+(85250, 2250, 0.9, 4), (121250, 2490, 1.8, 3), 
+(94575, 2390, 1.6, 2), (109000, 3100, 1.0, 4)]
+sellingprice = [sp for (sp, a, ac, bdrm) in housepoints]
+area = [a for (sp, a, ac, bdrm) in housepoints]
+acres = [ac for (sp, a, ac, bdrm) in housepoints]
+bedrooms = [bdrm for (sp, a, ac, bdrm) in housepoints]
+
+var('a0 a1 a2')
+model(x1, x2) = a0 + a1*x1 + a2*x2
+newpoints = list(zip(area, acres, sellingprice))
+sol = find_fit(newpoints, model, solution_dict = True)
+pretty_print(html(r"$y=%s + %s x_1 + %s x_2$" % 
+	(latex(n(sol[a0],digits=6)), 
+    latex(n(sol[a1],digits=3)), 
+    latex(n(sol[a2],digits=6)))))
+\end{sageinput}
+%
+\begin{gather*}
+y=36669.6+18.9x_1+11239.2x_2
+\end{gather*}
+%
+\par
+Such a model is called a \terminology{multiple-regression equation.}%
+\par
+We can compute the \(R^2\) value in the usual way.%
+\begin{sageinput}
+import numpy as np
+spmean = np.mean(sellingprice)
+sphatvalues = [sol[a0] + sol[a1]*x1 + sol[a2]*x2 for (x1, x2, y) in newpoints]
+sstot = sum((sellingprice[i]-spmean)^2 for i in range(len(sellingprice)))
+ssres = sum((sellingprice[i] - sphatvalues[i])^2 for i in range(len(sellingprice)))
+rsquared = (sstot - ssres)/sstot
+rsquared
+\end{sageinput}
+\begin{sageoutput}
+0.5421339850228069
+\end{sageoutput}
+Another important statistic is the \terminology{Adjusted \(\pmb{R^2}\)} value which is defined by%
+%
+\begin{equation*}
+\text{Adjusted $R^2$} = 1 - \left[\frac{n-1}{n-(k+1)} \right](1-R^2)
+\end{equation*}
+where \(n\) is the number of data points and \(k\) is the number of predictor variables (\(n = 10\) and \(k = 2\) in this case).%
+\begin{sageinput}
+adjusted_rsquared  = 1 - ((10 - 1)/(10 - (2 + 1))*(1 - rsquared))
+adjusted_rsquared
+\end{sageinput}
+\begin{sageoutput}
+0.4113151236007516
+\end{sageoutput}
+The adjusted \(R^2\) value takes into account the number of data points (the more data points, the higher the adjusted \(R^2\) value) and the number of predictor variables (the more predictor variables, the lower the adjusted \(R^2\) value). We want as simple a model as possible, so the fewer the variables, the better. We will compare different sets of predictor variables using adjusted \(R^2\) values.%
+\par
+The results for all the different combinations of predictor variables are shown in the table below.%
+%
+\begin{equation*}
+\begin{array}{r|cc}\hline\hline
+\textbf{Predictor Variables} & \pmb{R}^2 & \textbf{Adjusted $\pmb{R}^2$} \\\hline
+\textrm{Area, Acres} & 0.542 & 0.411 \\
+\textrm{Area, Bedrooms} & 0.328 & 0.135\\
+\textrm{Acres, Bedrooms} & 0.209 & -0.017 \\
+\textrm{Area, Acres, Bedrooms} & 0.552 & 0.328 \\\hline\hline
+\end{array}
+\end{equation*}
+Note that including the variable Bedrooms results in low \(R^2\) values. This indicates that the number of bedrooms is not a good predictor of the selling price. Also note that the \(R^2\) value for the set of all three predictor variables is the highest, but the adjusted \(R^2\) value is lower than that for Area and Acres. This indicates that the set of three variables gives better predictions (a higher \(R^2\) value), but the additional variable makes it more complicated, so it is less desirable as a model (a lower adjusted \(R^2\) value).%
+\par
+If we simply compare the adjusted \(R^2\) values, we conclude that the best combination of predictor variables is Area and Acres. To refine our model we might want to collect data on other variables that might affect the selling price such as age, total number of rooms, etc. With more variables, there are many different combinations of predictor variables we could consider. The process of determining which set of variables is best is very complicated. We have presented a very simple strategy here.%
+\end{example}
+\begin{example}{Polynomial Models.}{g:example:id126}%
+Let’s return to the problem of fitting a 2nd degree polynomial model of the form \(y = a + bx + cx^2\) to the set of four data points \(\{(1, 2) , (2, 4) , (3, 5) , (4, 2)\}\) as considered in \hyperref[x:example:three-data-points]{Example~{\xreffont\ref{x:example:three-data-points}}}. We could think of this as predicting the values of \(y\) with the ``predictor'' variables \(x\) and \(x^2\), so it can be treated as a multiple regression problem.%
+\begin{sageinput}
+points = [(1, 2), (2, 4), (3, 5), (4, 2)]
+ourpoints = [(x, x^2, y) for (x, y) in points]
+
+var('a b c')
+model(x1, x2) = a + b*x1 + c*x2
+sol = find_fit(ourpoints, model, solution_dict = True)
+pretty_print(html(r"$y=%s + %s x + %s x^2$" % 
+	(latex(n(sol[a],digits=3)), 
+	latex(n(sol[b],digits=3)), 
+    latex(n(sol[c],digits=3)))))
+\end{sageinput}
+%
+\begin{gather*}
+y=-3.25 + 6.35x + - 1.25 x^2
+\end{gather*}
+%
+\begin{sageinput}
+import numpy as np
+
+yvalues = [y for (x, y) in points]
+ymean = np.mean(yvalues)
+yhatvalues = [sol[a] + sol[b]*x1 + sol[c]*x2 for (x1, x2, y) in ourpoints]
+sstot = sum((yvalues[i]-ymean)^2 for i in range(len(yvalues)))
+ssres = sum((yvalues[i] - yhatvalues[i])^2 for i in range(len(yvalues)))
+rsquared = (sstot - ssres)/sstot
+rsquared
+\end{sageinput}
+\begin{sageoutput}
+0.9333333333333333
+\end{sageoutput}
+These results give us the model \(y = -3.25+6.35x-1.25x^2\), which is exactly the same as we got previously. Also note that the \(R^2\) value is 0.9333, exactly the same as before.%
+\end{example}
+\begin{example}{Deer Population Again.}{g:example:id127}%
+We can use a multiple regression approach to fit a model of the form \(y = a + bx +
+c \cos (\pi x/5) + d \sin (\pi x/5)\) to the transformed deer population data from the previous section.%
+%
+\begin{equation*}
+\begin{array}{r|ccccccccc}\hline\hline
+\pmb{x} & 0 & 6 & 10 & 16 & 21 & 24 & 30 & 36 & 41 \\\hline
+\pmb{y} & 12.5 & 28.5 & 7 & 20 & 6.5 & 12 & 4 & 11 & 3.5 \\\hline\hline
+\end{array}
+\end{equation*}
+In this case we have 3 predictor variables: \(x\), \(\cos (\pi x/5)\), and \(\sin (\pi x/5)\).%
+\begin{sageinput}
+points = [(0, 12.5), (6, 28.5), (10, 7), (16, 20), 
+	(21, 6.5), (24, 12), (30, 4), (36, 11), (41, 3.5)]
+ourpoints = [(x, cos(pi*x/5), sin(pi*x/5), y) for (x,y) in points]
+
+var('a b c d')
+model(x1, x2, x3) = a + b*x1 + c*x2 + d*x3
+sol = find_fit(ourpoints, model, solution_dict = True)
+pretty_print(html(r"$y=%s + %s x + %s \cos(\pi x/5) + %s \sin(\pi x/5)$" % 
+	(latex(n(sol[a],digits=5)), 
+	latex(n(sol[b],digits=3)), 
+    latex(n(sol[c],digits=4)),
+    latex(n(sol[d],digits=4)))))
+\end{sageinput}
+%
+\begin{gather*}
+y=18.965 + -0.314 x + -5.693\cos(\pi x/5) + - 2.915\sin(\pi x/5)
+\end{gather*}
+%
+\begin{sageinput}
+import numpy as np
+
+yvalues = [y for (x, y) in points]
+ymean = np.mean(yvalues)
+yhatvalues = [sol[a] + sol[b]*x1 + sol[c]*x2 + sol[d]*x3 for (x1, x2, x3, y) in ourpoints]
+sstot = sum((yvalues[i]-ymean)^2 for i in range(len(yvalues)))
+ssres = sum((yvalues[i] - yhatvalues[i])^2 for i in range(len(yvalues)))
+rsquared = (sstot - ssres)/sstot
+rsquared.n()
+\end{sageinput}
+\begin{sageoutput}
+0.877134568184287
+\end{sageoutput}
+These coefficients give us the approximate model%
+%
+\begin{equation*}
+y = 18.965 - 0.314 - 5.693\cos\left(\frac{\pi x}5\right) - 2.915\sin\left(\frac{\pi x}5\right)
+\end{equation*}
+which is exactly the same as in \hyperref[x:example:deer-population]{Example~{\xreffont\ref{x:example:deer-population}}}. Also note that the \(R^2\) value is 0.8771 which should be (approximately) the same as that calculated in \hyperlink{x:exercise:deer-pop-R2}{Exercise~{\xreffont 7.3.2.2}}.%
+\end{example}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 7.4 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id128}
+\begin{divisionexercise}{1}{}{}{g:exercise:id129}%
+In an attempt to predict the final grade of students in an Introduction to Statistics class, the professor gives each student a 20-point pretest at the beginning of the year. The table below gives the final grade, pretest score, ACT score, and year (1 = freshman, 2 = sophomore, etc.) of 10 students.%
+%
+\begin{equation*}
+\begin{array}{r|cccccccccc}\hline\hline
+\textbf{Grade} & 84.5 & 82.3 & 69.2 & 65.1 & 80.1 & 85.9 & 88.1 & 90.7 & 87.2 & 92.7 \\
+\textbf{Pretest} & 9 & 8 & 18 & 10 & 6 & 8 & 16 & 11 & 15 & 19 \\
+\textbf{Year} & 1 & 2 & 2 & 4 & 3 & 3 & 1 & 4 & 4 & 3 \\
+\textbf{ACT} & 25 & 20 & 18 & 17 & 20 & 22 & 30 & 28 & 27 & 31 \\\hline\hline
+\end{array}
+\end{equation*}
+Find the regression equation that predicts Grade in terms of Pretest Score. Repeat using Year and then ACT. Which of these single-variable predictors is best at predicting the final grade based on the \(R^2\) values? Does the pretest score alone appear to be a good predictor of the final grade? Explain.%
+\begin{sageinput}
+gradepoints = \
+[(84.5, 9, 1, 25), (82.3, 8, 2, 20), (69.2, 18, 2, 18), (65.1, 10, 4, 17), 
+(80.1, 6, 3, 20), (85.9, 8, 3, 22), (88.1, 16, 1, 30),
+(90.7, 11, 4, 28), (87.2, 15, 4, 27), (92.7, 19, 3, 31)]
+
+grades = [g for (g, p, y, a) in gradepoints]
+pretests = [p for (g, p, y, a) in gradepoints]
+years = [y for (g, p, y, a) in gradepoints]
+ACTs = [a for (g, p, y, a) in gradepoints]
+\end{sageinput}
 \end{divisionexercise}%
 \end{exercises-subsection-numberless}
 \end{sectionptx}
