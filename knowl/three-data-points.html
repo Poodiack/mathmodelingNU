@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-23T11:38:54-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.3.2</span><span class="period">.</span><span class="space"> </span><span class="title">Three Data Points.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">Consider the problem of fitting a second-degree polynomial of the form \(y = ax^2 +bx+c\) to the set of three data points \(\{(1, 2), (2, 4), (3, 5)\}\text{.}\) This means we want values of \(a\text{,}\) \(b\text{,}\) and \(c\) such that</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+a(1^2) + b(1) + c &amp; = 2 \\
+a(2^2) + b(2) + c &amp; = 4 \\
+a(3^2) + b(3) + c &amp; = 5
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">This set of linear equations can be written in matrix form as</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{bmatrix}
+1^2 &amp; 1 &amp; 1 \\
+2^2 &amp; 2 &amp; 1 \\
+3^2 &amp; 3 &amp; 1 \\
+\end{bmatrix}
+\begin{bmatrix}
+a \\
+b \\
+c
+\end{bmatrix} = \begin{bmatrix}
+2 \\
+4 \\
+5
+\end{bmatrix}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">This matrix equation has the generic form \(A\mathbf{x} = \mathbf{b}\) where \(\mathbf{x} = (a, b, c)\) is the vector of unknowns. It can be shown that \(A\) is invertible. Thus there is a unique solution to this matrix equation, \(\mathbf{x} = A^{-1}\mathbf{b}\text{.}\)</p>
+<div class="sagecell-sage" id="sage-221"><script type="text/x-sage">A = matrix(3, 3, [1^2, 1, 1, 2^2, 2, 1, 3^2, 3, 1])
+b = matrix(3, 1, [2, 4, 5])
+A.inverse()*b
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">So we get the solution \(\mathbf{x} = (-1/2, 7/2, -1)\) so that the model is \(y=-\frac12 x^2 + \frac72 x -1\text{.}\)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">SageMath will automatically calculate this polynomial for us using an algorithm equivalent to the one described above.</p>
+<div class="sagecell-sage" id="sage-222"><script type="text/x-sage">points = [(1, 2), (2, 4), (3, 5)]
+scatter_plot(points) + plot(-(1/2)*x^2 + (7/2)*x - 1, (x, 1, 3))
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Next we add \((4,2)\) to the data set and fit a second degree polynomial to these four data points. Ideally, we want to find \(a\text{,}\) \(b\text{,}\) and \(c\) such that</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+a(1^2) + b(1) + c &amp; = 2 \\
+a(2^2) + b(2) + c &amp; = 4 \\
+a(3^2) + b(3) + c &amp; = 5 \\
+a(4^2) + b(4) + c &amp; = 2
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">This set of linear equations can be written in matrix form as</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{bmatrix}
+1^2 &amp; 1 &amp; 1 \\
+2^2 &amp; 2 &amp; 1 \\
+3^2 &amp; 3 &amp; 1 \\
+4^2 &amp; 4 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+a \\
+b \\
+c
+\end{bmatrix} = \begin{bmatrix}
+2 \\
+4 \\
+5 \\
+2
+\end{bmatrix}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">which, as before, has the generic form \(A\mathbf{x} = \mathbf{b}\text{.}\) However, note that \(A\) is not square, so it is not invertible. Further analysis reveals that this equation does not even have a solution, so there is no polynomial that fits these four data points perfectly. We will have to settle for a “best–fit” polynomial model. As in <a href="proportionality.html" class="internal" title="Chapter 6: Proportionality and Geometric Similarity">Chapter 6</a> when we fit a linear model to a set of data, we will use a least–squares criterion to find our model. That is, we want a polynomial \(p(x)\) that minimizes the number</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+S = \sum_{i=1}^n (y_i - p(x_i))^2.
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The resulting model is called a <dfn class="terminology">least–squares</dfn> polynomial model. To find this model we will find a <dfn class="terminology">least-squares solution</dfn> to the above matrix equation.</p>
+<article class="definition definition-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Least-squares Solution.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">Let \(A\) be an \(m\times n\) matrix and \(\mathbf{b}\) be an \(m\times 1\) vector. A <dfn class="terminology">least-squares</dfn> solution of \(A\mathbf{x}=\mathbf{b}\) is an \(n\times 1\) vector \(\hat{\mathbf{x}}\) such that</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\|\mathbf{b} - A\hat{\mathbf{x}}\|\le \|\mathbf{b} - A\mathbf{x}\| \text{ for all $n\times 1$ vectors 
+$\mathbf{x}$}.
+\end{equation*}
+</div></article><p xmlns:svg="http://www.w3.org/2000/svg">The idea behind this definition is that \(\hat{\mathbf{x}}\) gets \(A\mathbf{x}\) as close to \(\mathbf{b}\) as possible. The following theorem which we present without proof tells us how to find \(\hat{\mathbf{x}}\text{.}\)</p>
+<article class="theorem theorem-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">7.3.4</span><span class="period">.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">Every least-squares solution of \(A\mathbf{x} = \mathbf{b}\) must satisfy the Normal equation</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+A^TA\mathbf{x} = A^T\mathbf{b}.
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">If \(A^T A\) is invertible, then there is a unique least-squares solution \(\mathbf{x}\) given by</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\mathbf{x} = (A^T A)^{-1} A^T \mathbf{b}.
+\end{equation*}
+</div></article><p xmlns:svg="http://www.w3.org/2000/svg">Note that this does not say that a general matrix equation \(A\mathbf{x} = \mathbf{b}\) has a unique least-squares solution. In general, there may be many least-squares solutions. However, if \(A^T A\) is invertible, then the solution is unique. When fitting curves to data, \(A^T A\) is usually invertible so we can this formula to calculate \(\hat{\mathbf{x}}\text{.}\) This technique can also be used to fit other types of models to data, as we will see later.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">For our current example, we can enter</p>
+<div class="sagecell-sage" id="sage-223"><script type="text/x-sage">A = matrix(4, 3, [1^2, 1, 1, 2^2, 2, 1, 3^2, 3, 1, 4^2, 4, 1])
+b = matrix(4, 1, [2, 4, 5, 2])
+A.transpose()
+</script></div>
+<div class="sagecell-sage" id="sage-224"><script type="text/x-sage">sol = ((A.transpose()*A).inverse())*A.transpose()*b
+sol
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">So a least-squares solution is \(y = -\frac54 x^2 + \frac{127}{20}x - \frac{13}4\text{.}\)</p>
+<div class="sagecell-sage" id="sage-225"><script type="text/x-sage">points = [(1, 2), (2, 4), (3, 5), (4, 2)]
+scatter_plot(points) + plot(sol[0][0]*x^2 + sol[1][0]*x + sol[2][0], (x, 1, 4))
+</script></div></article><span class="incontext"><a href="polynomials.html#three-data-points">in-context</a></span>
+</body>
+</html>
