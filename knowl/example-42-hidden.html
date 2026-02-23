@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-23T11:38:55-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example example-like"><p xmlns:svg="http://www.w3.org/2000/svg">We can use a multiple regression approach to fit a model of the form \(y = a + bx +
+c \cos (\pi x/5) + d \sin (\pi x/5)\) to the transformed deer population data from the previous section.</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{array}{r|ccccccccc}\hline\hline
+\pmb{x} &amp; 0 &amp; 6 &amp; 10 &amp; 16 &amp; 21 &amp; 24 &amp; 30 &amp; 36 &amp; 41 \\\hline
+\pmb{y} &amp; 12.5 &amp; 28.5 &amp; 7 &amp; 20 &amp; 6.5 &amp; 12 &amp; 4 &amp; 11 &amp; 3.5 \\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">In this case we have 3 predictor variables: \(x\text{,}\) \(\cos (\pi x/5)\text{,}\) and \(\sin (\pi x/5)\text{.}\)</p>
+<div class="sagecell-sage" id="sage-249"><script type="text/x-sage">points = [(0, 12.5), (6, 28.5), (10, 7), (16, 20), 
+	(21, 6.5), (24, 12), (30, 4), (36, 11), (41, 3.5)]
+ourpoints = [(x, cos(pi*x/5), sin(pi*x/5), y) for (x,y) in points]
+
+var('a b c d')
+model(x1, x2, x3) = a + b*x1 + c*x2 + d*x3
+sol = find_fit(ourpoints, model, solution_dict = True)
+pretty_print(html(r"$y=%s + %s x + %s \cos(\pi x/5) + %s \sin(\pi x/5)$" % 
+	(latex(n(sol[a],digits=5)), 
+	latex(n(sol[b],digits=3)), 
+    latex(n(sol[c],digits=4)),
+    latex(n(sol[d],digits=4)))))
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{gather*}
+y=18.965 + -0.314 x + -5.693\cos(\pi x/5) + - 2.915\sin(\pi x/5)
+\end{gather*}
+</div>
+<div class="sagecell-sage" id="sage-250"><script type="text/x-sage">import numpy as np
+
+yvalues = [y for (x, y) in points]
+ymean = np.mean(yvalues)
+yhatvalues = [sol[a] + sol[b]*x1 + sol[c]*x2 + sol[d]*x3 for (x1, x2, x3, y) in ourpoints]
+sstot = sum((yvalues[i]-ymean)^2 for i in range(len(yvalues)))
+ssres = sum((yvalues[i] - yhatvalues[i])^2 for i in range(len(yvalues)))
+rsquared = (sstot - ssres)/sstot
+rsquared.n()
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">These coefficients give us the approximate model</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+y = 18.965 - 0.314 - 5.693\cos\left(\frac{\pi x}5\right) - 2.915\sin\left(\frac{\pi x}5\right)
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">which is exactly the same as in <a class="xref" data-knowl="./knowl/deer-population.html" title="Example 7.3.7: Deer Population">Example 7.3.7</a>. Also note that the \(R^2\) value is 0.8771 which should be (approximately) the same as that calculated in <a class="xref" data-knowl="./knowl/deer-pop-R2.html" title="Exercise 7.3.2.2">Exercise 7.3.2.2</a>.</p></article></body>
+</html>

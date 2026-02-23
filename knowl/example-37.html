@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-23T11:38:54-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.3.6</span><span class="period">.</span><span class="space"> </span><span class="title">Selecting a Best Polynomial Model.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">Consider the data in the table below which gives the area \(A\) (in thousands of square miles) and the total length of railroad track \(R\) (in thousands of miles) of seven different countries (data from The World Almanac and Book of Facts, 2007, World Almanac Books). We want to use a polynomial to model \(R\) in terms of \(A\text{.}\)</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{array}{c|ccccccc}\hline\hline
+&amp; \textbf{Luxembourg} &amp; \textbf{Ireland} &amp; \textbf{Azerbaiijan} &amp; 
+\textbf{S Korea} &amp; \textbf{Greece} &amp; \textbf{Finland} &amp; \textbf{Japan} \\\hline
+A &amp; 0.998 &amp; 27.135 &amp; 33.436 &amp; 38.023 &amp; 50.942 &amp; 130.559 &amp; 292.26 \\
+R &amp; 0.170 &amp; 2.058 &amp; 1.834 &amp; 2.157 &amp; 1.598 &amp; 3.635 &amp; 4.092 \\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">According to <a class="xref" data-knowl="./knowl/poly-thm-1.html" title="Theorem 7.3.1">Theorem 7.3.1</a>, there is a unique polynomial of degree at most 6 that fits this data perfectly. We can easily graph \(R\) vs. \(A\) and fit a sixth degree polynomial trendline. The result is shown below.</p>
+<div class="sagecell-sage" id="sage-228"><script type="text/x-sage">railroaddata = [(0.998, 0.170), (27.135, 2.058), 
+	(33.436, 1.834), (38.023, 2.157), 
+    (50.942, 1.598), (130.559, 3.635), (292.26, 4.092)]
+var('a0 a1 a2 a3 a4 a5 a6')
+model(x) = a6*x^6 + a5*x^5 + a4*x^4 + \
+a3*x^3 + a2*x^2 + a1*x + a0
+sol = find_fit(railroaddata, model, solution_dict = True)
+
+f(x) = sol[a6]*x^6 + sol[a5]*x^5 + sol[a4]*x^4 \
++ sol[a3]*x^3 + sol[a2]*x^2 + sol[a1]*x + sol[a0]
+show(scatter_plot(railroaddata) + plot(f(x), (x,0,293) ),
+	 axes_labels = ['$A$', '$R$'])
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/railroad-graph-6.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-229"><script type="text/x-sage">Rvalues = [R for (A,R) in railroaddata]
+Rmean = numpy.mean(Rvalues)
+SStot = sum((Rvalues[i]-Rmean)^2 for i in range(len(railroaddata)))
+Rhatvalues = [f(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Notice that the \(R^2\) value is 1, so the model fits the data perfectly. However, note the large oscillation between \(A = 130\) and \(300\) and that the model predicts negative values of \(R\) for \(A\) around 100. This is totally unreasonable, so this is a terrible model even though it fits the data perfectly. The large oscillation seen in the graph of this model is typical of a high–degree polynomial model such as this. To find a better model, we can fit polynomials of degree 1 through 5 to the data, and keep track of their \(R^2\) values. The code and graphs are shown below.</p>
+<div class="sagecell-sage" id="sage-230"><script type="text/x-sage"># Linear (degree 1)
+
+Rvalues = [R for (A,R) in railroaddata]
+Rmean = numpy.mean(Rvalues)
+SStot = sum((Rvalues[i]-Rmean)^2 for i in range(len(railroaddata)))
+model(x) = a0 + a1*x
+sol1 = find_fit(railroaddata, model, solution_dict=True)
+f1(x) = sol1[a0] + sol1[a1]*x
+show(scatter_plot(railroaddata) + plot(f1(x), (x,0,293) ), axes_labels = ['$A$', '$R$'])
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/railroad-graph-1.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-231"><script type="text/x-sage">Rhatvalues = [f1(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+</script></div>
+<div class="sagecell-sage" id="sage-232"><script type="text/x-sage"># Quadratic (degree 2)
+
+model(x) = a0 + a1*x + a2*x^2
+sol2 = find_fit(railroaddata, model, solution_dict=True)
+f2(x) = sol2[a0] + sol2[a1]*x + sol2[a2]*x^2
+show(scatter_plot(railroaddata) + plot(f2(x), (x,0,293) ), 
+	axes_labels = ['$A$', '$R$'])
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/railroad-graph-2.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-233"><script type="text/x-sage">Rvalues = [R for (A,R) in railroaddata]
+Rhatvalues = [f2(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+</script></div>
+<div class="sagecell-sage" id="sage-234"><script type="text/x-sage"># Cubic (degree 3)
+
+model(x) = a0 + a1*x + a2*x^2 + a3*x^3
+sol3 = find_fit(railroaddata, model, solution_dict=True)
+f3(x) = sol3[a0] + sol3[a1]*x + sol3[a2]*x^2 + sol3[a3]*x^3
+show(scatter_plot(railroaddata) + plot(f3(x), (x,0,293) ),
+	axes_labels = ['$A$', '$R$'])
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/railroad-graph-3.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-235"><script type="text/x-sage">Rvalues = [R for (A,R) in railroaddata]
+Rhatvalues = [f3(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+</script></div>
+<div class="sagecell-sage" id="sage-236"><script type="text/x-sage"># Quartic (degree 4)
+
+model(x) = a0 + a1*x + a2*x^2 + a3*x^3 + a4*x^4
+sol4 = find_fit(railroaddata, model, solution_dict=True)
+f4(x) = sol4[a0] + sol4[a1]*x + sol4[a2]*x^2 + sol4[a3]*x^3 + sol4[a4]*x^4
+show(scatter_plot(railroaddata) + plot(f4(x), (x,0,293) ), 
+	axes_labels = ['$A$', '$R$'])
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/railroad-graph-4.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-237"><script type="text/x-sage">Rvalues = [R for (A,R) in railroaddata]
+Rhatvalues = [f4(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+</script></div>
+<div class="sagecell-sage" id="sage-238"><script type="text/x-sage"># Quintic (degree 5)
+
+model(x) = a0 + a1*x + a2*x^2 + a3*x^3 + a4*x^4 + a5*x^5
+sol5 = find_fit(railroaddata, model, solution_dict=True)
+f5(x) = sol5[a0] + sol5[a1]*x + sol5[a2]*x^2 + sol5[a3]*x^3 + sol5[a4]*x^4 + sol5[a5]*x^5
+show(scatter_plot(railroaddata) + plot(f5(x), (x,0,293) ), 
+	axes_labels = ['$A$', '$R$'])
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/railroad-graph-5.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-239"><script type="text/x-sage">Rvalues = [R for (A,R) in railroaddata]
+Rhatvalues = [f5(A) for (A,R) in railroaddata]
+SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
+R2 = (SStot - SSres)/SStot
+n(R2)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">To choose the best model, we need to examine more than just the \(R^2\) values. We also need to consider how well they will make predictions and their simplicity. The fourth and fifth degree models have the highest \(R^2\) values, but they both have oscillations that seem unreasonable in the context of the problem, so they are not the best options. The first degree model does not capture the trend of the data very well, so it is not a good option either. The second and third degree models have very similar \(R^2\) values and their graphs look very similar. So we will choose the simpler of the two options, the second degree model, as the best. However, one could make a case that the third degree model is the best.</p></article><span class="incontext"><a href="polynomials.html#example-37">in-context</a></span>
+</body>
+</html>

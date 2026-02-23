@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-23T11:38:54-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example example-like"><p xmlns:svg="http://www.w3.org/2000/svg">The following table gives the number of deer in a hypothetical forest for various years between 1941 and 1982. Our goal is to model the population in terms of the year.</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{array}{r|ccccccccc}\hline\hline
+\textbf{Year} &amp; 1941 &amp; 1947 &amp; 1951 &amp; 1957 &amp; 1962 &amp; 1965 &amp; 1971 &amp; 1977 &amp; 1982 \\\hline
+\textbf{Population} &amp; 12,500 &amp; 28,500 &amp; 7,000 &amp; 20,000 &amp; 6,500 &amp; 12,000 &amp; 4,000 &amp; 11,000 &amp; 3,500 \\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">To make the data values smaller and easier to work with, we transform them by subtracting 1941 from the year and dividing the population by 1000, yielding the data in the table below.</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{array}{r|ccccccccc}\hline\hline
+\pmb{x} &amp; 0 &amp; 6 &amp; 10 &amp; 16 &amp; 21 &amp; 24 &amp; 30 &amp; 36 &amp; 41 \\\hline
+\pmb{y} &amp; 12.5 &amp; 28.5 &amp; 7 &amp; 20 &amp; 6.5 &amp; 12 &amp; 4 &amp; 11 &amp; 3.5 \\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+<div class="sagecell-sage" id="sage-240"><script type="text/x-sage">points = [(0, 12.5), (6, 28.5), (10, 7), (16, 20), 
+	(21, 6.5), (24, 12), (30, 4), (36, 11), (41, 3.5)]
+sp = scatter_plot(points, axes_labels=['$x$', '$y$'],
+	title="Deer Population")
+sp
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/deerpopgraph.png" class="contained" alt=""></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Examining the graph of the transformed data in the graph we see that the population fluctuates from a high to a low and back to a high in about a 10–year cycle.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">The periodic nature of the data suggests we use sine or cosine functions to model it. Since the period is approximately 10, our model will have terms of \(\cos (\pi x/5)\) and \(\sin (\pi x/5)\text{.}\) Also note that the population shows a downward trend. So we will include an \(x\) term in the model with a (likely) negative coefficient. Thus our model is of the form</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+y = a + bx + c\cos\left(\frac{\pi x}5\right) + d\sin\left(\frac{\pi x}5\right).
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Ideally we want to satisfy the system of equations:</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+a + b(0) + c\cos\left(\frac{0\pi}5\right) + d\sin\left(\frac{0\pi}5\right) &amp; = 12.5 \\
+a + b(6) + c\cos\left(\frac{6\pi}5\right) + d\sin\left(\frac{6\pi}5\right) &amp; = 28.5 \\
+\vdots \\
+a + b(41) + c\cos\left(\frac{41\pi}5\right) + d\sin\left(\frac{41\pi}5\right) &amp; = 3.5 \\
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">which has the matrix form</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{bmatrix}
+1 &amp; 0 &amp; \cos(0\pi/5) &amp; \sin(0\pi/5) \\
+1 &amp; 6 &amp; \cos(6\pi/5) &amp; \sin(6\pi/5) \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+1 &amp; 0 &amp; \cos(41\pi/5) &amp; \sin(41\pi/5)
+\end{bmatrix} \begin{bmatrix}
+a \\
+b \\
+c \\
+d \\
+\end{bmatrix} = \begin{bmatrix}
+12.5 \\
+28.5 \\
+\vdots \\
+3.5
+\end{bmatrix}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">As before, this matrix equation has the generic form \(A\mathbf{x} = \mathbf{b}\text{.}\) Calculating the least-squares solution, \(\hat{\mathbf{x}} = (A^T A)^{-1} A^T \mathbf{b}\text{,}\) to this system as done previously, gives the approximate solution \(\hat{\mathbf{x}} = (18.965, -0.314, -5.693, -2.915)\text{.}\) So the model is</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+y = 18.965 -0.314x - 5.693\cos\left(\frac{\pi x}5\right) -2.915\sin\left(\frac{\pi x}5\right)
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Luckily, these calculations are built right into Sage's <code class="code-inline tex2jax_ignore">find_fit</code> command.</p>
+<div class="sagecell-sage" id="sage-241"><script type="text/x-sage">var('a b c d')
+model(x) = a + b*x + c*cos((pi*x)/5) + d*sin((pi*x)/5)
+sol = find_fit(points, model, solution_dict=True)
+sol
+</script></div>
+<div class="sagecell-sage" id="sage-242"><script type="text/x-sage">f(x) = sol[a] + sol[b]*x + sol[c]*cos((pi*x)/5) + sol[d]*sin((pi*x)/5)
+sp + plot(f(x), (x, 0, 42))
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/deerpopgraphcurve.png" class="contained" alt=""></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The figure above shows a graph of the model on top of the data. The model appears to fit the data relatively well, but many refinements could be made.</p></article></body>
+</html>

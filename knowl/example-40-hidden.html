@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-23T11:38:54-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example example-like"><p xmlns:svg="http://www.w3.org/2000/svg">Considering only one predictor variable is a bit too simple. Many variables affect the selling price, so we should consider more than one predictor variable in our regression equation. Suppose we consider both Area and Acres.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">If we let \(y =\) Selling Price, \(x_1 =\) Area, and \(x_2 =\) Acres, we want to fit a model of the form</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+y = a_0 + a_1 x_1 + a_2 x_2
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">to the data where \(a_0\text{,}\) \(a_1\text{,}\) and \(a_2\) are constants. As in <a href="polynomials.html" class="internal" title="Section 7.3: Polynomials">Section 7.3</a>, ideally we want to satisfy the system of equations</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+a_0 + a_1(2205) + 2.5a_2 &amp;= 100,000 \\
+\vdots \\
+a_0 + a_1(3100) + 1a_2 &amp;= 109,000
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We could take a matrix approach to find a least–squares solution to this system as we did before, but <code class="code-inline tex2jax_ignore">find_fit</code> will do this automatically for us.</p>
+<div class="sagecell-sage" id="sage-244"><script type="text/x-sage">housepoints = \
+[(100000, 2205, 2.5, 3), (93500, 2155, 0.8, 3), 
+(95650, 2600, 1.1, 4), (75025, 1900, 0.35, 3), 
+(95000, 1200, 2.5, 2), (80250, 2050, 1.8, 3),
+(85250, 2250, 0.9, 4), (121250, 2490, 1.8, 3), 
+(94575, 2390, 1.6, 2), (109000, 3100, 1.0, 4)]
+sellingprice = [sp for (sp, a, ac, bdrm) in housepoints]
+area = [a for (sp, a, ac, bdrm) in housepoints]
+acres = [ac for (sp, a, ac, bdrm) in housepoints]
+bedrooms = [bdrm for (sp, a, ac, bdrm) in housepoints]
+
+var('a0 a1 a2')
+model(x1, x2) = a0 + a1*x1 + a2*x2
+newpoints = list(zip(area, acres, sellingprice))
+sol = find_fit(newpoints, model, solution_dict = True)
+pretty_print(html(r"$y=%s + %s x_1 + %s x_2$" % 
+	(latex(n(sol[a0],digits=6)), 
+    latex(n(sol[a1],digits=3)), 
+    latex(n(sol[a2],digits=6)))))
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{gather*}
+y=36669.6+18.9x_1+11239.2x_2
+\end{gather*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Such a model is called a <dfn class="terminology">multiple-regression equation.</dfn></p>
+<p xmlns:svg="http://www.w3.org/2000/svg">We can compute the \(R^2\) value in the usual way.</p>
+<div class="sagecell-sage" id="sage-245"><script type="text/x-sage">import numpy as np
+spmean = np.mean(sellingprice)
+sphatvalues = [sol[a0] + sol[a1]*x1 + sol[a2]*x2 for (x1, x2, y) in newpoints]
+sstot = sum((sellingprice[i]-spmean)^2 for i in range(len(sellingprice)))
+ssres = sum((sellingprice[i] - sphatvalues[i])^2 for i in range(len(sellingprice)))
+rsquared = (sstot - ssres)/sstot
+rsquared
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Another important statistic is the <dfn class="terminology">Adjusted \(\pmb{R^2}\)</dfn> value which is defined by</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\text{Adjusted $R^2$} = 1 - \left[\frac{n-1}{n-(k+1)} \right](1-R^2)
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">where \(n\) is the number of data points and \(k\) is the number of predictor variables (\(n = 10\) and \(k = 2\) in this case).</p>
+<div class="sagecell-sage" id="sage-246"><script type="text/x-sage">adjusted_rsquared  = 1 - ((10 - 1)/(10 - (2 + 1))*(1 - rsquared))
+adjusted_rsquared
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The adjusted \(R^2\) value takes into account the number of data points (the more data points, the higher the adjusted \(R^2\) value) and the number of predictor variables (the more predictor variables, the lower the adjusted \(R^2\) value). We want as simple a model as possible, so the fewer the variables, the better. We will compare different sets of predictor variables using adjusted \(R^2\) values.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">The results for all the different combinations of predictor variables are shown in the table below.</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{array}{r|cc}\hline\hline
+\textbf{Predictor Variables} &amp; \pmb{R}^2 &amp; \textbf{Adjusted $\pmb{R}^2$} \\\hline
+\textrm{Area, Acres} &amp; 0.542 &amp; 0.411 \\
+\textrm{Area, Bedrooms} &amp; 0.328 &amp; 0.135\\
+\textrm{Acres, Bedrooms} &amp; 0.209 &amp; -0.017 \\
+\textrm{Area, Acres, Bedrooms} &amp; 0.552 &amp; 0.328 \\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Note that including the variable Bedrooms results in low \(R^2\) values. This indicates that the number of bedrooms is not a good predictor of the selling price. Also note that the \(R^2\) value for the set of all three predictor variables is the highest, but the adjusted \(R^2\) value is lower than that for Area and Acres. This indicates that the set of three variables gives better predictions (a higher \(R^2\) value), but the additional variable makes it more complicated, so it is less desirable as a model (a lower adjusted \(R^2\) value).</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">If we simply compare the adjusted \(R^2\) values, we conclude that the best combination of predictor variables is Area and Acres. To refine our model we might want to collect data on other variables that might affect the selling price such as age, total number of rooms, etc. With more variables, there are many different combinations of predictor variables we could consider. The process of determining which set of variables is best is very complicated. We have presented a very simple strategy here.</p></article></body>
+</html>

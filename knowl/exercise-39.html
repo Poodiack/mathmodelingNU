@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-23T11:38:55-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="exercise exercise-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1<span class="period">.</span></span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">In an attempt to predict the final grade of students in an Introduction to Statistics class, the professor gives each student a 20-point pretest at the beginning of the year. The table below gives the final grade, pretest score, ACT score, and year (1 = freshman, 2 = sophomore, etc.) of 10 students.</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{array}{r|cccccccccc}\hline\hline
+\textbf{Grade} &amp; 84.5 &amp; 82.3 &amp; 69.2 &amp; 65.1 &amp; 80.1 &amp; 85.9 &amp; 88.1 &amp; 90.7 &amp; 87.2 &amp; 92.7 \\
+\textbf{Pretest} &amp; 9 &amp; 8 &amp; 18 &amp; 10 &amp; 6 &amp; 8 &amp; 16 &amp; 11 &amp; 15 &amp; 19 \\
+\textbf{Year} &amp; 1 &amp; 2 &amp; 2 &amp; 4 &amp; 3 &amp; 3 &amp; 1 &amp; 4 &amp; 4 &amp; 3 \\
+\textbf{ACT} &amp; 25 &amp; 20 &amp; 18 &amp; 17 &amp; 20 &amp; 22 &amp; 30 &amp; 28 &amp; 27 &amp; 31 \\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Find the regression equation that predicts Grade in terms of Pretest Score. Repeat using Year and then ACT. Which of these single-variable predictors is best at predicting the final grade based on the \(R^2\) values? Does the pretest score alone appear to be a good predictor of the final grade? Explain.</p>
+<div class="sagecell-sage" id="sage-251"><script type="text/x-sage">gradepoints = \
+[(84.5, 9, 1, 25), (82.3, 8, 2, 20), (69.2, 18, 2, 18), (65.1, 10, 4, 17), 
+(80.1, 6, 3, 20), (85.9, 8, 3, 22), (88.1, 16, 1, 30),
+(90.7, 11, 4, 28), (87.2, 15, 4, 27), (92.7, 19, 3, 31)]
+
+grades = [g for (g, p, y, a) in gradepoints]
+pretests = [p for (g, p, y, a) in gradepoints]
+years = [y for (g, p, y, a) in gradepoints]
+ACTs = [a for (g, p, y, a) in gradepoints]
+</script></div></article><span class="incontext"><a href="multiple-regression.html#exercise-39">in-context</a></span>
+</body>
+</html>

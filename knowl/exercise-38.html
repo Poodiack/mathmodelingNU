@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-23T11:38:54-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="exercise exercise-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">3<span class="period">.</span></span>
+</h6>
+<div class="introduction">
+<p xmlns:svg="http://www.w3.org/2000/svg">One useful property of polynomials is that they are easy to differentiate and integrate. Suppose a researcher observes a particle moving in a straight line and measures the particle’s velocity relative to its starting position at several points in time as shown in the table below.</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{array}{l|cccccccc}\hline\hline
+\pmb{t} &amp; 0 &amp; 1.2 &amp; 2.5 &amp; 3.2 &amp; 4.6 &amp; 5.4 &amp; 6.3 &amp; 7.3 \\\hline
+\pmb{v(t)} &amp; 0 &amp; 3.6 &amp; 5.5 &amp; 7.4 &amp; 6.7 &amp; 5.8 &amp; 3.5 &amp; 0 \\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+</div>
+<article class="task exercise-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading"><span class="codenumber">(a)</span></h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">Fit several polynomial models to the data and choose the one that best models the velocity. (Suggestion: When choosing the best model, don’t rely strictly on the \(R^2\) value. Put a large emphasis on simplicity.)</p>
+<div class="sagecell-sage" id="sage-243"><script type="text/x-sage">data = [(0, 0), (1.2, 3.6), (2.5, 5.5), (3.2, 7.4), 
+(4.6, 6.7), (5.4, 5.8), (6.3, 3.5), (7.3, 0)]
+</script></div></article><article class="task exercise-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading"><span class="codenumber">(b)</span></h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">The acceleration of the particle at time \(t\) is \(a(t) = v'(t)\text{.}\) Use your model in part (a) to estimate \(a(1.8)\text{.}\) (The command to take the derivative of a function \(f(x)\) is <code class="code-inline tex2jax_ignore">diff(f,x)</code>.)</p></article><article class="task exercise-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading"><span class="codenumber">(c)</span></h6>
+<p>The total distance traveled over the time interval \([a, b]\) is</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\text{Total distance traveled} = \int_a^b |v(t)|\,dt.
+\end{equation*}
+</div>
+<p class="continuation">Use your model from part (a) to estimate the total distance the particle traveled over the interval \([0,7.3]\text{.}\) (The command to obtain the definite integral of \(f(x)\) from \(a\) to \(b\) is <code xmlns:svg="http://www.w3.org/2000/svg" class="code-inline tex2jax_ignore">integrate(f(x),(x,a,b))</code>.)</p></article></article><span class="incontext"><a href="polynomials.html#exercise-38">in-context</a></span>
+</body>
+</html>

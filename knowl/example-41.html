@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-02-23T11:38:55-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.4.4</span><span class="period">.</span><span class="space"> </span><span class="title">Polynomial Models.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">Let’s return to the problem of fitting a 2nd degree polynomial model of the form \(y = a + bx + cx^2\) to the set of four data points \(\{(1, 2) , (2, 4) , (3, 5) , (4, 2)\}\) as considered in <a class="xref" data-knowl="./knowl/three-data-points.html" title="Example 7.3.2: Three Data Points">Example 7.3.2</a>. We could think of this as predicting the values of \(y\) with the “predictor” variables \(x\) and \(x^2\text{,}\) so it can be treated as a multiple regression problem.</p>
+<div class="sagecell-sage" id="sage-247"><script type="text/x-sage">points = [(1, 2), (2, 4), (3, 5), (4, 2)]
+ourpoints = [(x, x^2, y) for (x, y) in points]
+
+var('a b c')
+model(x1, x2) = a + b*x1 + c*x2
+sol = find_fit(ourpoints, model, solution_dict = True)
+pretty_print(html(r"$y=%s + %s x + %s x^2$" % 
+	(latex(n(sol[a],digits=3)), 
+	latex(n(sol[b],digits=3)), 
+    latex(n(sol[c],digits=3)))))
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{gather*}
+y=-3.25 + 6.35x + - 1.25 x^2
+\end{gather*}
+</div>
+<div class="sagecell-sage" id="sage-248"><script type="text/x-sage">import numpy as np
+
+yvalues = [y for (x, y) in points]
+ymean = np.mean(yvalues)
+yhatvalues = [sol[a] + sol[b]*x1 + sol[c]*x2 for (x1, x2, y) in ourpoints]
+sstot = sum((yvalues[i]-ymean)^2 for i in range(len(yvalues)))
+ssres = sum((yvalues[i] - yhatvalues[i])^2 for i in range(len(yvalues)))
+rsquared = (sstot - ssres)/sstot
+rsquared
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">These results give us the model \(y = -3.25+6.35x-1.25x^2\text{,}\) which is exactly the same as we got previously. Also note that the \(R^2\) value is 0.9333, exactly the same as before.</p></article><span class="incontext"><a href="multiple-regression.html#example-41">in-context</a></span>
+</body>
+</html>
