@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-03-18T11:48:07-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">8.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Long-term Behavior.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">Let's graphically examine the long-term behavior of a linear dynamical system \(a_{n+1} = ba_n\) for various values of \(b\text{.}\)  For simplicity, suppose that \(a_0 = 0.1\text{.}\)</p>
+<div class="sagecell-sage" id="sage-284"><script type="text/x-sage">var('b')
+b = 2.1
+f(x) = b*x
+a = [0.1] # Note that this is a *list* containing our initial value.  So a[0]=0.1.
+n = 15
+for i in range(n):
+    a.append(f(a[i]))
+</script></div>
+<div class="sagecell-sage" id="sage-285"><script type="text/x-sage">a
+</script></div>
+<div class="sagecell-sage" id="sage-286"><script type="text/x-sage">points = list(zip(range(n),a))
+points
+</script></div>
+<div class="sagecell-sage" id="sage-287"><script type="text/x-sage">point(points,size=50) + \
+list_plot(points,plotjoined=True,axes_labels=['$n$','$a_n$'], 
+            title="Dynamical Systems")
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/dynsystemgraph.png" class="contained" alt=""></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Up above, we can change the value of \(b\text{,}\) re-execute all these cells and get a different set of points and a different graph.  However, this can get tedious fast, especially if we want to investigate behavior of a lot of different values for \(b\text{.}\) We can make this process interactive by use of sliders.</p>
+<div class="sagecell-sage" id="sage-288"><script type="text/x-sage">@interact
+def dynamical(b=(0.5,(-2,2,0.04)), 
+				a0 = input_box(default=0.1), 
+				n = (15,(1,50,1))):
+    f(x) = b*x
+    a = [float(a0)]
+    for i in range(n):
+        a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True,
+         axes_labels=['$n$','$a_n$'],
+        title="Dynamical Systems"))
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Move the slider on the scroll bar for \(b\) left and right and notice how the behavior of the system changes, especially when \(b\) passes \(-1, 0,\) and +1. Our observations are summarized in the table below. As we can see, the long–term behavior of the system is dramatically affected by the value of \(b\text{.}\)</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{array}{r|l}\hline\hline
+\textbf{Value of $\pmb{b}$} \amp \textbf{Behavior of $\pmb{a_n}$} \\\hline
+b \lt -1 \amp \textrm{Oscillates between pos. and neg., $|a_n|$ grows without bound} \\\hline
+b = -1 \amp \textrm{Oscillates between $-a_0$ and $+a_0$} \\\hline
+-1 \lt b \lt 0 \amp \textrm{Oscillates between pos. and neg., $|a_n|$ approaches 0} \\\hline
+b = 0 \amp \textrm{$a_n = 0$ for $n &gt; 0$} \\\hline
+0\lt b \lt 1 \amp \textrm{$a_n$ approaches 0} \\\hline 
+b = 1 \amp \textrm{$a_n = a_0$ for all $n$} \\\hline
+b \gt 1 \amp \textrm{$a_n$ grows without bound} \\\hline\hline
+\end{array}
+\end{equation*}
+</div></article><span class="incontext"><a href="long-term-behavior-dds.html#long-term-behavior">in-context</a></span>
+</body>
+</html>

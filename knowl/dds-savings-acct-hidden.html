@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-03-18T11:48:07-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example example-like"><div class="introduction"><p xmlns:svg="http://www.w3.org/2000/svg">We will take a graphical approach to analyze what happens for initial values other than the equilibrium value of $40,000.</p></div>
+<div class="sagecell-sage" id="sage-289"><script type="text/x-sage">@interact
+def dynamical(b=(1.05,(-2,2,0.05)), m=input_box(default=0), 
+              a0 = slider(0,80000,1, default=40000, \
+              label=r'\(a_0\)'), \
+              n = slider(1,50,step_size=1, \
+              default=15,label='Number of steps')):
+    f(x) = b*x+m
+    a = [float(a0)]
+    for i in range(n):
+        a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True, \
+         axes_labels=['$n$','$a_n$'], \
+         title="Generalized Savings Account", \
+         ymin=0, ymax=80000))
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Type in -2000 for \(m\) and then move the slider for \(a_0\) left and right and observe how the long–term behavior of the system changes. Specifically, note that for \(a_0\) less than $40,000, the amount in the account eventually decreases to 0 and for \(a_0\) greater than $40,000, the amount grows without bound.</p></article></body>
+</html>
