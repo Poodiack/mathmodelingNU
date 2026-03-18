@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-03-18T11:48:06-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example example-like"><section class="paragraphs"><h5 class="heading"><span class="title">Concept development.</span></h5>
+<p xmlns:svg="http://www.w3.org/2000/svg">Before actually coding anything, we should try to define precisely what we want the interact to do.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Generally, the best example for illustrating a mathematical idea should be neither too complex nor too simple. In this case, we want to draw a tangent line and show an early calculus student (perhaps two or three weeks into the course) what a tangent line looks like. It will be useful to choose the drawn function to be something simple -- like a polynomial. We will choose the function \(f(x) = x^3 -x\text{.}\)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Next, we will focus on what the user will be allowed to change, and what the user will not be allowed to change. These will become the controls for the interact. The user should be able to change the \(x\)-coordinate of the point where the tangent line is drawn, but not the \(y\)-coordinate, which should be computed by the interact. In this way, the user will never choose a point that is not on the curve \(y = x^3 - x\text{.}\)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">It may be useful to make a sketch of what the output will look like. How can we optimally display the circumstances to show sufficient detail -- but not so much detail as to confuse someone?</p></section><section class="paragraphs"><h5 class="heading"><span class="title">Design the subroutine.</span></h5>
+<p xmlns:svg="http://www.w3.org/2000/svg">Here is the code for the subroutine.</p></section><div class="sagecell-sage" id="sage-263"><script type="text/x-sage">f(x) = x^3 - x
+
+f_prime(x) = diff(f(x), x)
+
+def tangent_at_point( x_0 ):
+    y_0 = f(x_0)
+    m = f_prime(x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x), (x, -2, 2), color='blue')
+    p2 = plot(m*x + b, (x, -2, 2), color='tan')
+    p3 = point((x_0, y_0), color='red', size=100)
+    
+    show(p1+p2+p3)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We first declare the function \(f(x) = x^3 - x\) and then declare a second function for the derivative. One point to note: we all know that \(f'(x) = 3x^2-1\text{,}\) so why didn't we just hard-code that function instead of having SageMath compute it as we did? Because we may wish to use another function later on, and an easy mistake to make is to change \(f\) but forget to change \(f'\text{.}\)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">We next use the <code class="code-inline tex2jax_ignore">def</code> command to define our subroutine and name it <code class="code-inline tex2jax_ignore">tangent_at_point</code>. This subroutine will be the nucleus of our working interact. (We will slowly evolve it.)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">A tangent line can be produced when we have three ingredients: the slope, the \(x\)-coordinate, and the \(y\)-coordinate. The \(x\)-coordinate will eventually come from a slider when we're through, but right now it's a real number input (called \(x_0\)) to the subroutine we are creating with the <code class="code-inline tex2jax_ignore">def</code> command. Most interacts have multiple sliders because they need more parameters.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">We then have SageMath compute the \(y\)-coordinate and the slope from \(f(x_0)\) and \(f'(x_0)\text{,}\) respectivly. Usually a student would use the point-slope formula \(y-y_0 = m(x-x_0)\) to get the equation of the tangent line and then use algebra to change it into the slope-intercept form \(y=mx+b\text{.}\) However, when coding, we should have an explicit formula for \(b\text{.}\) The four lines of comments in the code show the derivation of our formula for \(b\text{.}\)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Three plot commands follow. The first plots \(f(x)\) on the interval \((-2,2)\) in blue; the second plots the tangent line in tan; the third puts a big red dot at their intersection and is useful to draw the user's attention. We then show the plots all superimposed together.</p>
+<section class="paragraphs"><h5 class="heading"><span class="title">Polish the subroutine.</span></h5>
+<p xmlns:svg="http://www.w3.org/2000/svg">We are at the point where we should run the subroutine and tinker with it if needed: adjust the framing of the graphs, change colors, etc.</p></section><div class="sagecell-sage" id="sage-264"><script type="text/x-sage">tangent_at_point(0.5)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline1.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-265"><script type="text/x-sage">tangent_at_point(1.5)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline2.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-266"><script type="text/x-sage">tangent_at_point(-1.75)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline3.png" class="contained" alt=""></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">These aren't bad but there's room for improvement. For example, in the last plot, the tangent line is relatively steep (with a slope of 8.1875), thus the tangent line actually goes up to \(y = 25\) before exiting the plot. This makes the cubic curve appear tiny, because the curve goes up only to \(y = 6\text{.}\) Therefore, we will bound the \(y\)-coordinates of the plots. We do this for both \(f(x)\) and the tangent line, restricting them to \(-6 &lt; y &lt; 6\text{,}\) because that is the range of \(f(x) = x^3 - x\) over the domain \(-2 &lt; x &lt; 2\text{.}\)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">If you look at the new and improved code below, you will see <code class="code-inline tex2jax_ignore">ymin</code> and <code class="code-inline tex2jax_ignore">ymax</code> options inside the first two <code class="code-inline tex2jax_ignore">plot</code> commands.</p>
+<div class="sagecell-sage" id="sage-267"><script type="text/x-sage">f(x) = x^3 - x
+
+f_prime(x) = diff(f(x), x)
+
+def tangent_at_point( x_0 ):
+    y_0 = f(x_0)
+    m = f_prime(x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x), (x, -2, 2), color='blue', ymin = -6, ymax = 6, gridlines = 'minor')
+    p2 = plot(m*x + b, (x, -2, 2), color='tan', ymin = -6, ymax = 6)
+    p3 = point((x_0, y_0), color='red', size=50)
+    
+    show(p1+p2+p3)
+    
+    print()
+    print("x_0 = ", x_0)
+    print("y_0 = f(x_0) = ", y_0)
+    print("m = f'(x_0) = ", m)
+    print("tangent line: y = ", m, "x + ", b)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">There are other changes to the code. The red dot seemed large, so we lowered its area from 100 to 50. We also thought a gridline background would be helpful so we added the option <code class="code-inline tex2jax_ignore">gridlines = 'minor'</code> in the command for <code class="code-inline tex2jax_ignore">p1</code>. Since <code class="code-inline tex2jax_ignore">p1</code> is the “bottom” of the superimposed plots, it will show up when we actually do superimpose the three plots.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Sometimes, showing information about what the user is seeing is useful, so we have the <code class="code-inline tex2jax_ignore">print</code> statements at the end. We can now re-execute our test cases and show that they look much better.</p>
+<div class="sagecell-sage" id="sage-268"><script type="text/x-sage">tangent_at_point(0.5)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline4.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-269"><script type="text/x-sage">tangent_at_point(1.5)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline5.png" class="contained" alt=""></div>
+<div class="sagecell-sage" id="sage-270"><script type="text/x-sage">tangent_at_point(-1.75)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline6.png" class="contained" alt=""></div>
+<section class="paragraphs"><h5 class="heading"><span class="title">Convert to an interactive subroutine.</span></h5>
+<p xmlns:svg="http://www.w3.org/2000/svg">Now we'll invoke the <code class="code-inline tex2jax_ignore">@interact</code> command and see how to make sliders for the parameters in our subroutine. Three changes will be made in the code now, two of which are minor, but one of which takes a bit of explaining.</p></section><div class="sagecell-sage" id="sage-271"><script type="text/x-sage">f(x) = x^3 - x
+
+f_prime(x) = diff(f(x), x)
+
+@interact
+def tangent_at_point( x_0 = slider(-2, 2, 0.1, default = -1.5, label = "x-coordinate") ):
+    y_0 = f(x_0)
+    m = f_prime(x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x), (x, -2, 2), color='blue', ymin = -6, ymax = 6, gridlines = 'minor')
+    p2 = plot(m*x + b, (x, -2, 2), color='tan', ymin = -6, ymax = 6)
+    p3 = point((x_0, y_0), color='red', size=50)
+    
+    show(p1+p2+p3)
+    
+    print()
+    print("x_0 = ", x_0)
+    print("y_0 = f(x_0) = ", y_0)
+    print("m = f'(x_0) = ", m)
+    print("tangent line: y = ", m, "x + ", b)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanlineinteractive.png" class="contained" alt=""></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">First, note that we've added the <code class="code-inline tex2jax_ignore">@interact</code> command on the line right above the <code class="code-inline tex2jax_ignore">def</code> command. This signals SageMath that what follows is an interact.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Second, and this requires a bit of explaining, we have used the <code class="code-inline tex2jax_ignore">slider</code> command to change \(x_0\) from a numerical input into a slider that the user can manipulate. The first two parameters tell SageMath that the \(x_0\) variable will be restricted to the interval \(-2 \le x \le 2\text{.}\) The third parameter tells SageMath the granularity of the slider. In this case, we want each move to represent 1/10. Thus if the slider is at \(x_0 = 0.5\text{,}\) the two positions to either side would be 0.4 and 0.6. The fourth parameter represents the initial condition. In this case, the slider will start out with \(x_0\) set to \(-1.5\text{,}\) but the user can move it around to other values. Finally, the fifth parameter (which is optional) will give a human-readable label to the slider.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">This means that if we have to call this subroutine now, we would call it without an argument and just type <code class="code-inline tex2jax_ignore">tangent_at_point()</code> because we are no longer passing \(x_0\) to the subroutine.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">We can increase the interactivity of this app. We can have the user type in their own function \(f\text{,}\) and we can also use sliders to have the user control the domain of the graph (\(x_1\) to \(x_2\)) as well as the range (\(y_1\) to \(y_2\)). Note that weird things can happen if either \(x_1\ge x_2\) or \(y_1\ge y_2\text{.}\) (There is a way to make sure this doesn't happen but it's more complicated -- for now, we'll just assume users know to always have \(x_1\lt x_2\) and \(y_1 \lt y_2\text{.}\))</p>
+<div class="sagecell-sage" id="sage-272"><script type="text/x-sage">@interact
+def tangent_at_point( f = (r'\(f\)', x^3-x), x_0 = slider(-2, 2, 0.1, default = -1.5, label = "x-coordinate"),
+                    x1 = slider(-10, 10, 0.1, default = -2, label = "xmin"),
+                    x2 = slider(-10, 10, 0.1, default = 2, label = "xmax"),
+                    y1 = slider(-10, 10, 0.1, default = -6, label = "ymin"),
+                    y2 = slider(-10, 10, 0.1, default = 6, label = "ymax")):
+
+    y_0 = f(x=x_0)
+    f_prime(x) = diff(f, x)
+    m = f_prime(x=x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x=x), (x, x1, x2), color='blue', ymin = y1, ymax = y2, gridlines = 'minor')
+    p2 = plot(m*x + b, (x, x1, x2), color='tan', ymin = y1, ymax = y2)
+    p3 = point((x_0, y_0), color='red', size=50)
+    
+    show(p1+p2+p3)
+    
+    print()
+    print("x_0 = ", x_0)
+    print("y_0 = f(x_0) = ", y_0)
+    print("m = f'(x_0) = ", m)
+    print("tangent line: y = ", m, "x + ", b)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanlinesuperinteractive.png" class="contained" alt=""></div></article></body>
+</html>
