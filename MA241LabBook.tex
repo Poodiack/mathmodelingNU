@@ -1,6 +1,6 @@
 %********************************************%
 %*       Generated from PreTeXt source      *%
-%*       on 2026-02-23T11:38:57-05:00       *%
+%*       on 2026-03-18T11:48:09-04:00       *%
 %*   A recent stable commit (2020-08-09):   *%
 %* 98f21740783f166a773df4dc83cab5293ab63a4a *%
 %*                                          *%
@@ -250,6 +250,19 @@ colback=white, colbacktitle=white, coltitle=black, opacityfill=0.0} }
 \newcommand{\authorsptx}{\relax}%
 \newcommand{\epigraphptx}{\relax}%
 %% Create environments for possible occurences of each division
+%% Environment for a PTX "preface" at the level of a LaTeX "chapter"
+\NewDocumentEnvironment{preface}{mmmmmm}
+{%
+\renewcommand{\divisionnameptx}{Preface}%
+\renewcommand{\titleptx}{#1}%
+\renewcommand{\subtitleptx}{#2}%
+\renewcommand{\shortitleptx}{#3}%
+\renewcommand{\authorsptx}{#4}%
+\renewcommand{\epigraphptx}{#5}%
+\chapter*{#1}%
+\addcontentsline{toc}{chapter}{#3}
+\label{#6}%
+}{}%
 %% Environment for a PTX "part" at the level of a LaTeX "part"
 \NewDocumentEnvironment{partptx}{mmmmmm}
 {%
@@ -615,6 +628,12 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 \tcbset{ proofstyle/.style={bwminimalstyle, fonttitle=\blocktitlefont\itshape, attach title to upper, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\blacksquare\)},
 } }
 \newtcolorbox{proof}[2]{title={\notblank{#1}{#1}{Proof.}}, phantom={\hypertarget{#2}{}}, breakable, parbox=false, after={\par}, proofstyle }
+%% paragraphs: the terminal, pseudo-division
+%% We use the lowest LaTeX traditional division
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{#1}
+\titlespacing*{\subparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+\NewDocumentEnvironment{paragraphs}{mm}
+{\subparagraph*{#1}\hypertarget{#2}{}}{}
 %% Graphics Preamble Entries
 %% If tikz has been loaded, replace ampersand with \amp macro
 %% tcolorbox styles for sidebyside layout
@@ -676,7 +695,7 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 {\LARGE Mathematical Computation and Modeling}\\[3\baselineskip]
 {\Large Robert D. Poodiack}\\[0.5\baselineskip]
 {\Large Norwich University}\\[3\baselineskip]
-{\Large February 23, 2026}\\}
+{\Large March 18, 2026}\\}
 \clearpage
 %% end:   title page
 %% begin: copyright-page
@@ -685,6 +704,15 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 \vspace*{\stretch{1}}
 \null\clearpage
 %% end:   copyright-page
+%
+%
+\typeout{************************************************}
+\typeout{Preface  Preface}
+\typeout{************************************************}
+%
+\begin{preface}{Preface}{}{Preface}{}{}{g:preface:id1}
+This work is an adaptation of \emph{Mathematical Modeling with Excel}, 2nd edition, by Brian Albright and William P. Fox, CRC Press, 2020. If you are using this text then, dear God, do not try to sell it!!%
+\end{preface}
 %% begin: table of contents
 %% Adjust Table of Contents
 \setcounter{tocdepth}{0}
@@ -789,7 +817,7 @@ While SageMath can be used within a terminal environment, using SageMath in a Ju
 \typeout{Subsection 2.2.1 Getting started with Jupyter}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Getting started with Jupyter}{}{Getting started with Jupyter}{}{}{g:subsection:id1}
+\begin{subsectionptx}{Getting started with Jupyter}{}{Getting started with Jupyter}{}{}{g:subsection:id2}
 When you open a new notebook in either SageMath or CoCalc, you'll have one of two similar but not identical experiences.%
 \par
 %
@@ -817,7 +845,7 @@ You may have to go to the Kernel menu in CoCalc to select the most recent versio
 \typeout{Subsection 2.2.2 Adding plain text in Jupyter notebooks}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Adding plain text in Jupyter notebooks}{}{Adding plain text in Jupyter notebooks}{}{}{g:subsection:id2}
+\begin{subsectionptx}{Adding plain text in Jupyter notebooks}{}{Adding plain text in Jupyter notebooks}{}{}{g:subsection:id3}
 We assume that you have a blank Jupyter notebook open either in CoCalc or in SageMath itself.%
 \par
 We will introduce SageMath code in the next section. For now, we will look at ways of entering and formatting plain text in our notebook. This is useful for adding titles, section headings, and longer comments on your code.%
@@ -855,9 +883,9 @@ In SageMath, we can click on the pulldown menu right and choose ``Markdown'' as 
 \typeout{Subsection 2.2.3 Formatting plain text}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Formatting plain text}{}{Formatting plain text}{}{}{g:subsection:id3}
+\begin{subsectionptx}{Formatting plain text}{}{Formatting plain text}{}{}{g:subsection:id4}
 Here, we provide several examples of ways to enter and format plain text in Jupyter notebooks. Jupyter notebooks use HTML tags and commands to format text. We only need a few basic commands to make our notebooks look spiffy. Once our Markdown commands are entered, we hit \mono{SHIFT}-\mono{ENTER} to render the text.%
-\begin{example}{Entering plain text.}{g:example:id4}%
+\begin{example}{Entering plain text.}{g:example:id5}%
 Plain text in Jupyter notebooks must begin with a \mono{<p>} tag (for \emph{paragraph}) and end with a \mono{</p>} tag. Each new paragraph must begin with \mono{<p>} and end with \mono{</p>}.%
 \begin{program}{HTML}{0}{1}{0}
 <p>This is a piece of plain text (not code).</p>
@@ -867,7 +895,7 @@ Plain text in Jupyter notebooks must begin with a \mono{<p>} tag (for \emph{para
 \end{image}%
 %
 \end{example}
-\begin{example}{Entering bold or italic text.}{g:example:id5}%
+\begin{example}{Entering bold or italic text.}{g:example:id6}%
 \begin{program}{HTML}{0}{1}{0}
 <p>This is a piece of <b>bold</b> text and this is a piece 
 of <i>italic</i> text.</p>
@@ -877,7 +905,7 @@ of <i>italic</i> text.</p>
 \end{image}%
 %
 \end{example}
-\begin{example}{Entering large text.}{g:example:id6}%
+\begin{example}{Entering large text.}{g:example:id7}%
 Here, we ask SageMath to render our text two sizes bigger than usual.%
 \begin{program}{HTML}{0}{1}{0}
 <font size=+2>
@@ -889,7 +917,7 @@ Here, we ask SageMath to render our text two sizes bigger than usual.%
 \end{image}%
 %
 \end{example}
-\begin{example}{Entering large text with color.}{g:example:id7}%
+\begin{example}{Entering large text with color.}{g:example:id8}%
 \begin{program}{HTML}{0}{1}{0}
 <font color='red' size=+1>
  		<p>This is a piece of large (though not <br />
@@ -903,7 +931,7 @@ Here, we ask SageMath to render our text two sizes bigger than usual.%
 \par
 The \mono{<br />} command inserts a line break in the text.%
 \end{example}
-\begin{example}{Adding a big header.}{g:example:id8}%
+\begin{example}{Adding a big header.}{g:example:id9}%
 \begin{program}{HTML}{0}{1}{0}
 # Big header
 \end{program}
@@ -914,7 +942,7 @@ The \mono{<br />} command inserts a line break in the text.%
 \par
 Equivalently, we could enclose the header text in the HTML style commands \mono{<h1>} and \mono{</h1>}.%
 \end{example}
-\begin{example}{Adding a medium header.}{g:example:id9}%
+\begin{example}{Adding a medium header.}{g:example:id10}%
 \begin{program}{HTML}{0}{1}{0}
 ## Medium header
 \end{program}
@@ -1176,7 +1204,7 @@ h(-1)
 \typeout{Subsection 2.8.1 Limits}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Limits}{}{Limits}{}{}{g:subsection:id10}
+\begin{subsectionptx}{Limits}{}{Limits}{}{}{g:subsection:id11}
 We can compute \(\lim\limits_{x\to 1} f(x)\) by entering the following command:%
 \begin{sageinput}
 limit(f(x),x=1)
@@ -1222,7 +1250,7 @@ limit(h(x),x=4, dir='left')
 \typeout{Subsection 2.8.2 Derivatives}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Derivatives}{}{Derivatives}{}{}{g:subsection:id11}
+\begin{subsectionptx}{Derivatives}{}{Derivatives}{}{}{g:subsection:id12}
 To compute the derivatives of functions, we can use the \mono{diff()} command. (The \mono{derivative()} command works just as well ... but it's longer.)%
 \begin{sageinput}
 fprime = diff(f,x)
@@ -1268,7 +1296,7 @@ solve(hprime(x)==0,x)
 \typeout{Subsection 2.8.3 Integrals}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Integrals}{}{Integrals}{}{}{g:subsection:id12}
+\begin{subsectionptx}{Integrals}{}{Integrals}{}{}{g:subsection:id13}
 Sage can compute both definite and indefinite integrals for many common functions.%
 \begin{sageinput}
 print(integral(f(x),x))
@@ -1431,7 +1459,7 @@ Notice that SageMath remembers what \(f\) and \(g\) are -{}-{} we don't have to 
 \typeout{Subsection 3.3.1 Composition of functions}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Composition of functions}{}{Composition of functions}{}{}{g:subsection:id13}
+\begin{subsectionptx}{Composition of functions}{}{Composition of functions}{}{}{g:subsection:id14}
 We can compose two functions very easily in SageMath. Consider the two functions:%
 \begin{equation*}
 f(x) = 3x+5\quad\text{and}\quad g(x)=x^3 + 1.
@@ -1488,7 +1516,7 @@ g(f(x)) \amp = g(3x+5)\\
 \typeout{Subsection 3.3.2 Manipulating polynomials}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Manipulating polynomials}{}{Manipulating polynomials}{}{}{g:subsection:id14}
+\begin{subsectionptx}{Manipulating polynomials}{}{Manipulating polynomials}{}{}{g:subsection:id15}
 If we enter the following code%
 \begin{sageinput}
 a(x) = x^2 - 5*x + 6
@@ -1605,7 +1633,7 @@ Factored:
 \typeout{Subsection 3.3.3 Solving problems symbolically}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Solving problems symbolically}{}{Solving problems symbolically}{}{}{g:subsection:id15}
+\begin{subsectionptx}{Solving problems symbolically}{}{Solving problems symbolically}{}{}{g:subsection:id16}
 Computer algebra systems like SageMath can solve problems in two ways: symbolically or numerically. When we solve numerically, we get a decimal approximation (a good one!) of the answer. When we solve symbolically, we get an exact answer, often in terms of radicals, logarithms, or other constants and functions. Computer algebra systems like SageMath can solve problems in two ways: symbolically or numerically. When we solve numerically, we get a decimal approximation (a good one!) of the answer. When we solve symbolically, we get an exact answer, often in terms of radicals, logarithms, or other constants and functions.%
 \begin{sageinput}
 solve(x^2 + 3*x + 2, x)
@@ -1772,7 +1800,7 @@ In the case where we have a command that's overlong, SageMath will continue type
 \typeout{Subsection 4.1.1 Function calls}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Function calls}{}{Function calls}{}{}{g:subsection:id16}
+\begin{subsectionptx}{Function calls}{}{Function calls}{}{}{g:subsection:id17}
 To evaluate a function, its arguments should be put inside parentheses -{}-{} for example, \mono{cos(pi)}. If a function has no argument, we include empty parentheses. If we simply type a function without an argument or parentheses, no computation is performed.%
 \end{subsectionptx}
 %
@@ -1781,7 +1809,7 @@ To evaluate a function, its arguments should be put inside parentheses -{}-{} fo
 \typeout{Subsection 4.1.2 More about variables}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{More about variables}{}{More about variables}{}{}{g:subsection:id17}
+\begin{subsectionptx}{More about variables}{}{More about variables}{}{}{g:subsection:id18}
 As seen previously, SageMath denotes the assignment of a value to a variable by the equals sign. The expression to the right of the equals sign is first evaluated, then its value is saved in the variable whose name is on the left. Thus we have%
 \begin{sageinput}
 y = 3; y = 3*y + 1; y = 3*y + 1; y
@@ -1845,7 +1873,7 @@ In many ways, learning to program in SageMath or Python is very similar to learn
 \typeout{Subsection 4.2.1 Loops}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Loops}{}{Loops}{}{}{g:subsection:id18}
+\begin{subsectionptx}{Loops}{}{Loops}{}{}{g:subsection:id19}
 An \emph{enumeration loop} performs the same computation for all integer values of some index \(k\in\{a,\dots,b\}\). For example:%
 \begin{sageinput}
 for k in [1..5]:
@@ -1891,7 +1919,7 @@ S = (0+1+2+3)\cdot 2 = 12 \qquad S = ((((0+1)\cdot 2)+2)\cdot 2) + 3)\cdot 2 = 2
 \par
 This kind of loop will be useful to compute a given term of a recurrence.  The syntax is very simple and can be used without any problem for thousands, tens of thousands, or hundreds of thousands of iterations.  The main problem is that it constructs the list of all possible values of the loop variable first before executing the instructions in the block.  Some of the options below can make the repetitions go faster.%
 \par
-\begin{tableptx}{\textbf{}}{g:table:id19}{}%
+\begin{tableptx}{\textbf{}}{g:table:id20}{}%
 \centering%
 {\tabularfont%
 \begin{tabular}{ll}
@@ -1916,7 +1944,7 @@ This kind of loop will be useful to compute a given term of a recurrence.  The s
 \typeout{Subsection 4.2.2 While loops}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{While loops}{}{While loops}{}{}{g:subsection:id20}
+\begin{subsectionptx}{While loops}{}{While loops}{}{}{g:subsection:id21}
 The other kind of loops are \mono{while} loops. The difference here is that, as opposed to enumeration loops, rather than execute a set of instructions a fixed number of times, SageMath will execute the instructions based on a given condition being true.%
 \begin{sageinput}
 S = 0; k = 0   # The sum S is initialized to 0
@@ -1945,12 +1973,12 @@ Notice that there are two instructions inside the loop block: one to accumulate 
 \typeout{Exercises 4.2.3 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id21}
-\begin{divisionexercise}{1}{}{}{g:exercise:id22}%
+\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id22}
+\begin{divisionexercise}{1}{}{}{g:exercise:id23}%
 Use a \mono{while} loop to solve the following problem: With \(x = 10000\), determine the unique integer \(n\) such that \(2^n\le x < 2^{n+1}\).\end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id23}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id24}%
 Compute the sum of the first 1001 positive integers. Print only the final total.\end{divisionexercise}%
-\begin{divisionexercise}{3}{}{}{g:exercise:id24}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id25}%
 Use a loop to investigate \(\lim_{x\to 8} e^{1/(8-x)}\). In other words, find a way to produce values for \(f(x) = e^{1/(8-x)}\) as \(x\to 8\). (Don't forget we're checking a two-sided limit. A plot may be helpful.)\end{divisionexercise}%
 \end{exercises-subsection}
 \end{sectionptx}
@@ -1968,7 +1996,7 @@ When we use loops to repeat instructions, we can have a loop that carries on lon
 \typeout{Subsection 4.3.1 Aborting a loop execution}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Aborting a loop execution}{}{Aborting a loop execution}{}{}{g:subsection:id25}
+\begin{subsectionptx}{Aborting a loop execution}{}{Aborting a loop execution}{}{}{g:subsection:id26}
 The \mono{for} and \mono{while} loops repeat a given number of times the same instructions. The \mono{break} command inside a loop interrupts it before its end, and the \mono{continue} command goes directly to the next iteration.  Those commands allow to check the terminating condition at every place in the loop.%
 \par
 The four examples below determine the smallest determine the smallest positive integer \(x\) satisfying \(\log(x+1)\le x/10\).%
@@ -2018,7 +2046,7 @@ The first of the four examples uses a \mono{for} loop with at most 100 tries whi
 \typeout{Subsection 4.3.2 Conditionals}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Conditionals}{}{Conditionals}{}{}{g:subsection:id26}
+\begin{subsectionptx}{Conditionals}{}{Conditionals}{}{}{g:subsection:id27}
 Notice that we had a new keyword -{}-{} \mono{if} -{}-{} in the first example.  The last two lines are an example of a \emph{conditional}.  This is a test that enables us to execute code based on the result of a boolean (true\slash{}false) condition.  Some possible examples of the syntax are:%
 \par
 %
@@ -2097,7 +2125,7 @@ else:
 \typeout{Subsection 4.3.3 Procedures and Functions}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Procedures and Functions}{}{Procedures and Functions}{}{}{g:subsection:id27}
+\begin{subsectionptx}{Procedures and Functions}{}{Procedures and Functions}{}{}{g:subsection:id28}
 As in other computer languages, we can define our own procedures and functions, using the \mono{def} command whose syntax we detail below. (The difference between a function and a procedure is that a function always returns a result, whereas a procedure does not.) Either can be defined to take as input one or several arguments, or none at all. For instance, we can define the function that takes \(x\) and \(y\) to \(x^2+y^2\) in this way:%
 \begin{sageinput}
 var('x y')
@@ -2135,7 +2163,7 @@ f(); a, b
 (2, 1)
 \end{sageoutput}
 \end{subsectionptx}
-\begin{example}{Working with Coins.}{g:example:id28}%
+\begin{example}{Working with Coins.}{g:example:id29}%
 We're going to start with a very easy subroutine, which would be part of the programming of a vending machine or a cash register.  It is going to reply with the dollar value for some number of quarters, dimes, nickels, and pennies, which of course have respective values \textdollar{}0.25, \textdollar{}0.10, \textdollar{}0.05, and \textdollar{}0.01.  This is a simple task, so that we can concentrate on the programming rather than the underlying mathematics.%
 \begin{sageinput}
 def coinCount( quarters,dimes,nickels,pennies ):
@@ -2213,9 +2241,9 @@ Cell In[1], line 1
 TypeError: coinCount() got an unexpected keyword argument 'quaters'
 \end{sageoutput}
 \end{example}
-\begin{inlineexercise}{}{g:exercise:id29}%
+\begin{inlineexercise}{}{g:exercise:id30}%
 Simulate a cash register as follows. Suppose a small foodstand in a subway station sells sodas (\textdollar{}1.50 each), bananas (\textdollar{}0.75 each), sandwiches of various types (all \textdollar{}3.75 each), and bottles of water (\textdollar{}2 each). Write a subroutine that takes five inputs: the number of sodas, bananas, sandwiches and bottles of water, as well as the amount of cash tendered (for example, \textdollar{}20 or \textdollar{}10). Your program should tell the user how much change, in dollars and cents, is therefore due.\end{inlineexercise}%
-\begin{inlineexercise}{Designing Aquariums.}{g:exercise:id30}%
+\begin{inlineexercise}{Designing Aquariums.}{g:exercise:id31}%
 Now we're going to write a subroutine that is suitable for a company that builds custom display aquariums for use in dentist's offices and other upscale businesses. Customers come with orders and the cost must be correctly calculated, based on the sizes of the six panels which comprise the rectangular aquarium.%
 \par
 It turns out that the particular materials that the company is using have the following costs:%
@@ -2350,7 +2378,7 @@ Lucas (Lucas, William F., The Impact and Benefits of Mathematical Modeling, in \
 A \emph{mathematical model} then can be defined as a model constructed using mathematical terms, symbols, and ideas. Giordano et. al. (Frank R. Giordano, M. D. Weir, and W. P. Fox, \emph{A First Course in Mathematical Modeling}, Third ed., Thomson Brooks\slash{}Cole, 2003, pg. 54) defines a mathematical model as “a mathematical construct designed to study a particular real world system or phenomenon.” Mathematical models can take many different forms. They may involve equations, inequalities, differential equations, matrices, logic, or any other type of “mathematical” idea.%
 \par
 The key idea is that we use mathematics to describe a portion of the real world. Therefore, a very simple but general definition of the process of mathematical modeling is:%
-\begin{definition}{}{g:definition:id31}%
+\begin{definition}{}{g:definition:id32}%
 \terminology{Mathematical modeling} is the application of mathematics to real world problems.%
 \end{definition}
 \end{sectionptx}
@@ -2578,16 +2606,16 @@ The right half of this diagram is done in the “math world” and the left half
 \emph{Every} model is based on some set of assumptions. Sometimes those assumptions are rather trivial and obvious, but most times they are significant enough to potentially affect the validity of the model. We will never be able to describe each component of a real world system exactly. Assumptions are needed to fill in these gaps, and whenever possible, the reasonableness of assumptions should be tested. In fact, assumptions are so important that any mention of a model should include the assumptions behind it.%
 \par
 Here are a few examples of well–known models and some of their underlying assumptions.%
-\begin{example}{Range of an Electric Car.}{g:example:id32}%
+\begin{example}{Range of an Electric Car.}{g:example:id33}%
 When considering the purchase of an electric car, the first question most consumers ask is, “what’s the range?” The exact answer depends on many factors including the battery size and condition, driving style, vehicle speed, wind speed and direction, temperature, and elevation change. Any numeric answer to this question must be accompanied with many assumptions about these factors.%
 \end{example}
-\begin{example}{Carbon-14 Dating.}{g:example:id33}%
+\begin{example}{Carbon-14 Dating.}{g:example:id34}%
 Carbon–14 dating methods are used to date organic material, such as a piece of bone, found at archaeological sites. The underlying mathematical model requires knowledge of the proportion of Carbon–14 originally present in the sample. Obviously we cannot measure this precisely, so we assume that this proportion is the same as in a modern bone. This assumption can’t be tested directly, but if a date can be confirmed via independent means, it would be an indication that the assumption is correct.%
 \end{example}
-\begin{example}{Newtonian Mechanics.}{g:example:id34}%
+\begin{example}{Newtonian Mechanics.}{g:example:id35}%
 Newton’s second law says that the force exerted on an object is equal to its rest mass times the acceleration, or \(F = ma\). This was assumed to hold at any velocity. In the 20th century, it was discovered that for speeds approaching the speed of light, this rest mass must be replaced with the relativistic mass, which is larger.%
 \end{example}
-\begin{example}{Relativity.}{g:example:id35}%
+\begin{example}{Relativity.}{g:example:id36}%
 Einstein’s theory of special relativity is really a mathematical model. It is based on several postulates (a type of assumption), one of which is that the speed of light in a vacuum is constant to any observer in an inertial frame of reference. These assumptions cannot be tested in every circumstance imaginable, but the results of Einstein’s theory can be tested. These results have been shown to be correct, so it suggests that the underlying assumptions are also correct.%
 \end{example}
 %
@@ -2596,8 +2624,8 @@ Einstein’s theory of special relativity is really a mathematical model. It is 
 \typeout{Exercises 5.4 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id36}
-\begin{divisionexercise}{1}{}{}{g:exercise:id37}%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id37}
+\begin{divisionexercise}{1}{}{}{g:exercise:id38}%
 Each part below describes a calculated number. Think about how this number was calculated and identify at least one assumption behind the calculation.\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
 \item{}A consumer magazine reports that a laundry detergent costs \textdollar{}0.31 per load.%
 \item{}An exercise bike displays the number of calories burned.%
@@ -2607,7 +2635,7 @@ Each part below describes a calculated number. Think about how this number was c
 \item{}A cooking magazine lists one ingredient for a recipe as 1-2 cups of shredded cheddar cheese. It then claims that each serving has 320 calories.%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id38}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id39}%
 Identify at least two possible variables and two parameters involved in each of the following models. Clearly identify which is a variable and which is a parameter.\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
 \item{}A biologist wants to model the population of foxes and rabbits in a forest over a period of time.%
 \item{}A consumer wants to model the monthly balance in his credit card.%
@@ -2616,22 +2644,22 @@ Identify at least two possible variables and two parameters involved in each of 
 \item{}A market researcher wants to model the number of viewers of a TV show over the span of the season.%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{3}{}{}{g:exercise:id39}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id40}%
 To predict the time at which the bacteria population in \hyperref[x:section:process]{Section~{\xreffont\ref{x:section:process}}} reached 600, we solved the equation \(600 = (1 + 0.05)^n \cdot 500\) and concluded that at the beginning of day 4 we will have over 600.\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
 \item{}Show how this equation was solved for \(n\).%
 \item{}A student argues that we should be more precise in our conclusion. She argues that we should say, “on day 3.736850652 there will be exactly 600 bacteria” because this is the value given by her calculator. How would you explain to her that such a level of precision is not appropriate?%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{4}{}{}{g:exercise:id40}%
+\begin{divisionexercise}{4}{}{}{g:exercise:id41}%
 A cashier at a supermarket can checkout, on average, 3 customers a minute (this is called the \emph{service rate}). Customers arrive, on average, 2 a minute (this is called the \emph{arrival rate}). The manager figures that since the service rate is greater than the arrival rate, customers will never have to wait in line. What assumptions is the manager making? Do these assumptions seem reasonable? What does this say about the validity of the conclusion?%
 \end{divisionexercise}%
-\begin{divisionexercise}{5}{}{}{g:exercise:id41}%
+\begin{divisionexercise}{5}{}{}{g:exercise:id42}%
 A college student plans to ask 100 different girls for a date. He calculates the number who will say yes with the following reasoning:%
 \begin{quote}%
 Since every girl can say yes or no, exactly half will say yes. Since half of 100 is 50, exactly 50 girls will say yes.\end{quote}
 What, if anything, is faulty with this model? Explain.%
 \end{divisionexercise}%
-\begin{divisionexercise}{6}{}{}{g:exercise:id42}%
+\begin{divisionexercise}{6}{}{}{g:exercise:id43}%
 A model for the population of the United States (in millions) for the years 1800-1960 is%
 %
 \begin{equation*}
@@ -2727,7 +2755,7 @@ Thus, when we have a weight of 13 newtons attached to the spring, the spring wil
 \typeout{Subsection 6.1.1 Inverse Proportionality}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Inverse Proportionality}{}{Inverse Proportionality}{}{}{g:subsection:id43}
+\begin{subsectionptx}{Inverse Proportionality}{}{Inverse Proportionality}{}{}{g:subsection:id44}
 Not all pairs of variables are proportional.  But some that don't initially appear to have that sort of relationship can be recast to become proportional.%
 \par
 Another well-known proportionality relationship is \emph{Boyle's Law}, which relates the volume of a gas to its pressure at a constant temperature,%
@@ -2794,8 +2822,8 @@ soln[k]
 \typeout{Exercises 6.1.2 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id44}
-\begin{divisionexercise}{1}{}{}{g:exercise:id45}%
+\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id45}
+\begin{divisionexercise}{1}{}{}{g:exercise:id46}%
 For each of the data sets below, determine if it is reasonable to assume that \(y\) is proportional to \(x\). If it is, approximate the constant of proportionality. If it is not, describe why this assumption is not reasonable.%
 \begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
 \item{}\begin{center}%
@@ -2824,7 +2852,7 @@ For each of the data sets below, determine if it is reasonable to assume that \(
 \end{center}%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id46}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id47}%
 Determine which model best fits the data below.  Find the constant of proportionality for each model.%
 %
 \begin{equation*}
@@ -2849,7 +2877,7 @@ y = kx, \quad y = k\cdot \frac1{x}, \quad y = k x^2, \quad y = k\sqrt{x}, \quad 
 %
 \begin{sectionptx}{Modeling with Proportionality}{}{Modeling with Proportionality}{}{}{x:section:modeling-with-proportionality}
 One important observation about a proportionality relationship is that if one of the variables increases, so does the other, and if one variable decreases, so does the other. (We saw this previously in the examples on spring force.) Whenever we encounter a situation where two variables increase or decrease at the same time, we should consider a proportionality relationship.%
-\begin{example}{Population Growth.}{g:example:id47}%
+\begin{example}{Population Growth.}{g:example:id48}%
 In many situations involving populations, the larger the population, the faster it grows. This suggests a proportionality relationship between the population and the rate of growth. The table below shows the population (in thousands) of bacteria in a Petri dish at different points in time. The third column contains the change in population between time periods.%
 \par
 \begin{tableptx}{\textbf{}}{x:table:petri-pop-growth}{}%
@@ -2898,7 +2926,7 @@ We see that the points do fall near a straight line through the origin, suggesti
 \end{equation*}
 This model predicts that the population grows by about 50\% each time period, which means the population will grow without bound. This seems unreasonable, so the model needs to be refined. We will do just this later in the course.%
 \end{example}
-\begin{example}{Radioactive Decay.}{g:example:id48}%
+\begin{example}{Radioactive Decay.}{g:example:id49}%
 One-half of the amount of a radioactive substance decays after each half-life. Radioactive Carbon-14 (\({}^{14}\)C) has a half-life of 5715 years. If we start with 10 g of \({}^{14}\)C, the table below shows the amount of material remaining after each half-life along with the rate of change between time periods.%
 \begin{center}%
 {\tabularfont%
@@ -2924,7 +2952,7 @@ If we let \(y(t)\) represent the amount of \({}^{14}\)C at time \(t\), this prop
 \par
 That is, the derivative of \(y\) is a multiple of \(y\). The exponential function \(y(t) = Ce^{kt}\) solves the differential equation, where \(C\) is the initial amount of material.%
 \end{example}
-\begin{example}{Free-falling Object.}{g:example:id49}%
+\begin{example}{Free-falling Object.}{g:example:id50}%
 An object in free–fall encounters two basic forces. The first is its weight due to gravity. The second is air resistance which slows the rate of fall. Air resistance is typically negligible at low speeds so it is often not modeled. If we ignore air resistance, then the only force acting on the object comes from acceleration due to gravity. This leads to the simple differential equation%
 \par
 %
@@ -2994,9 +3022,9 @@ Note that in this model,%
 This suggests a terminal velocity, so this model is more realistic.%
 \end{example}
 Proportionality relationships satisfy the following transitive property:%
-\begin{theorem}{}{}{g:theorem:id50}%
+\begin{theorem}{}{}{g:theorem:id51}%
 If \(a\propto b\) and \(b\propto c\), then \(a\propto c\).\end{theorem}
-\begin{proof}{}{g:proof:id51}
+\begin{proof}{}{g:proof:id52}
 By definition, \(a\propto b\) and \(b\propto c\) mean that \(a=k_1 b\) and \(b=k_2 c\) for some nonzero constants \(k_1\) and \(k_2\). So, substituting we get%
 %
 \begin{equation*}
@@ -3005,7 +3033,7 @@ a=k_1k_2c
 but \(k_1k_2\) is a nonzero constant, so \(a\propto c\) by definition.%
 \end{proof}
 The next example illustrates an application of this property.%
-\begin{example}{Work Done by a Train.}{g:example:id52}%
+\begin{example}{Work Done by a Train.}{g:example:id53}%
 If a constant force is applied to an object moving it some distance, the work done is defined to be%
 %
 \begin{equation*}
@@ -3046,8 +3074,8 @@ units of work, which is exactly one–quarter as much work as if the tank were f
 \typeout{Exercises 6.2 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id53}
-\begin{divisionexercise}{1}{}{}{g:exercise:id54}%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id54}
+\begin{divisionexercise}{1}{}{}{g:exercise:id55}%
 A very simple assumption about the population of rabbits in a forest is that it grows at a rate proportional to the size of the population and the rabbits die at a rate proportional to the number of foxes in the forest. If \(p_n\) denotes the population of rabbits at time \(n\), and \(F\) denotes the (constant) number of foxes, this assumption yields a model for the change in the rabbit population:%
 %
 \begin{equation*}
@@ -3060,7 +3088,7 @@ where \(k_1, k_2\ge 0\).%
 \item{}Use SageMath to numerically and graphically support your answer above.%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id55}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id56}%
 Refer back to the Population Growth example at the start of this section. We will analyze a refined model. Assume that \(\Delta p_n\) is proportional to the product of the population and its difference from 621, that is%
 %
 \begin{equation*}
@@ -3072,7 +3100,7 @@ Refer back to the Population Growth example at the start of this section. We wil
 \item{}Does this model seem more or less reasonable than the original one? Why or why not?%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{3}{}{}{g:exercise:id56}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id57}%
 Refer again back to the Population Growth example at the start of this section, and consider the assumption that \(\Delta p_n\) is proportional to \(p_n^2\). Use the data in the table to test this assumption. Does this assumption appear to be reasonable? Why or why not?%
 \end{divisionexercise}%
 \end{exercises-subsection-numberless}
@@ -3098,7 +3126,7 @@ What’s the difference between these two lines? There are probably many ways to
 We see that in the right graph, the line is very close to the right-most point, but further from the other two points than the line in the left graph. We might say that the line in the left graph is ``closer'' to the data points in general than the line in the right graph. The idea of minimizing the distance between the line and the points will form the basis of the definition of a best-fit line.%
 \par
 These distances (also called \emph{errors}) are illustrated in the figure below with the dashed lines.%
-\begin{figureptx}{}{g:figure:id57}{}%
+\begin{figureptx}{}{g:figure:id58}{}%
 \begin{image}{0.05}{0.9}{0.05}%
 \includegraphics[width=\linewidth]{./images/Fig2.15.png}
 \end{image}%
@@ -3134,7 +3162,7 @@ The most widely used criterion, called the \emph{least–squares} criterion, use
 S = \sum_{n=1}^\infty (y_i-f(x_i))^2.
 \end{equation*}
 To see how this might work, consider the example below.%
-\begin{example}{Illustrating the Least-Squares Criterion.}{g:example:id58}%
+\begin{example}{Illustrating the Least-Squares Criterion.}{g:example:id59}%
 We start with a data set and then ask SageMath to produce a scatterplot of the data.%
 \begin{sageinput}
 datapoints = [(0.8, 2), (2.5, 4.2), (3.5, 3.5), (4.2, 5.3), (5.8, 4.5), (7.5, 7)]
@@ -3218,8 +3246,8 @@ sp + plot(sol[m1]*x + sol[b1], (x, 0, 8))
 \typeout{Exercises 6.3 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id59}
-\begin{divisionexercise}{1}{}{}{g:exercise:id60}%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id60}
+\begin{divisionexercise}{1}{}{}{g:exercise:id61}%
 Suppose a biologist records the number of pulses per second of the chirps of a cricket at different temperatures (in \({}^\circ\)F). The data collected is shown below.%
 \begin{center}%
 {\tabularfont%
@@ -3234,7 +3262,7 @@ Suppose a biologist records the number of pulses per second of the chirps of a c
 \item{}What is the slope of this line? What does the sign of the slope tell you about the relationship between pulses\slash{}sec and temperature?%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id61}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id62}%
 The table below gives the win\slash{}loss percentage and other key statistics of 15 NCAA Division 1 women’s basketball teams (data collected by Quinn Wragge, 2019).%
 %
 \begin{equation*}
@@ -3274,7 +3302,7 @@ The table below gives the win\slash{}loss percentage and other key statistics of
 %
 \begin{sectionptx}{Geometric Similarity}{}{Geometric Similarity}{}{}{x:section:geometric-similarity}
 Shapes such as circles and rectangles are easy to work with. We can calculate the area and volume of objects with these shapes using very simple formulas. Real world objects rarely come in these simple forms. This necessitates some simplifying assumptions. Geometric similarity is one such assumption.%
-\begin{definition}{}{g:definition:id62}%
+\begin{definition}{}{g:definition:id63}%
 Two objects are \emph{geometrically similar} if the following two conditions are met:%
 %
 \begin{enumerate}
@@ -3311,7 +3339,7 @@ Again note that the constant of proportionality is the same as the other geometr
 The length is an example of a \emph{characteristic dimension}. A characteristic dimension is simply a dimension of the object that is easy to measure. We could have chosen height as the characteristic dimension and done the same analysis as above, but the constant of proportionality would have been different.%
 \par
 This generalization illustrates the first important property of geometrically similar objects.%
-\begin{theorem}{}{}{g:theorem:id63}%
+\begin{theorem}{}{}{g:theorem:id64}%
 Suppose \(H\) is a set of geometrically similar objects. Let \(A\) denote the surface area of an object and \(\ell\) denote a characteristic dimension. Then%
 %
 \begin{equation*}
@@ -3319,7 +3347,7 @@ A\propto \ell^2,
 \end{equation*}
 and the constant of proportionality is the same for every object in \(H\).%
 \end{theorem}
-\begin{example}{Wool from a Sheep.}{g:example:id64}%
+\begin{example}{Wool from a Sheep.}{g:example:id65}%
 A shepherd wants to predict the volume of wool he will get from a sheep, \(V\), in terms of the girth of the sheep (the distance around the fattest part of the belly). The volume is the thickness of the wool times the area from which it is shaved. This area is not a simple shape, so we will use geometric similarity to simplify the model. Consider the following assumptions:%
 %
 \begin{enumerate}
@@ -3354,7 +3382,7 @@ Consider a geometrically similar box with width \(4k\) cm, height \(3k\) cm, and
 24k^3 = \frac{24k^3}{(3k)^3}(3k)^3 = \frac89(3k)^3.
 \end{equation*}
 Note that the constant of proportionality is the same. This generalization illustrates the second important property of geometrically similar objects.%
-\begin{theorem}{}{}{g:theorem:id65}%
+\begin{theorem}{}{}{g:theorem:id66}%
 Suppose \(H\) is a set of geometrically similar objects. Let \(V\) denote the volume of an object and \(\ell\) denote a characteristic dimension. Then%
 %
 \begin{equation*}
@@ -3363,7 +3391,7 @@ V\propto \ell^3,
 and the constant of proportionality is the same for every object in \(H\).%
 \end{theorem}
 As in the first property, no special shape of the objects is assumed. This property allows us to relate the volume of an object to some characteristic dimension, and combining this with the first property we can relate volume to surface area.%
-\begin{example}{Surface Area of a Potato.}{g:example:id66}%
+\begin{example}{Surface Area of a Potato.}{g:example:id67}%
 Suppose we want to fix a large batch of the recipe ``Crispy Potato Skins'' for an appetizer at our Super Bowl party. This recipe requires only the skin from a potato, so when we buy the potatoes, we want to get the maximum surface area for our money.%
 \par
 At the supermarket we have the choice of several different sizes of potatoes. We have to decide if we want to buy several small potatoes or a few large ones (we are assuming that we can choose individual potatoes). Let’s restrict ourselves to the following problem:%
@@ -3421,8 +3449,8 @@ Therefore, the surface area of the small potatoes is approximately 26\% greater 
 \typeout{Exercises 6.4 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id67}
-\begin{divisionexercise}{1}{}{}{g:exercise:id68}%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id68}
+\begin{divisionexercise}{1}{}{}{g:exercise:id69}%
 In our earlier example, we assumed potatoes are geometrically similar and of constant density. This yielded the model \(W\propto \ell^3\) where \(W\) is weight and \(\ell\) is some characteristic dimension. To test these assumptions, a student measured the length (inches) and weight (pounds) of several yellow and Idaho russet potatoes as shown in the table below (data collected by Brennan DeForest, 2019).%
 %
 \begin{equation*}
@@ -3467,7 +3495,7 @@ In our earlier example, we assumed potatoes are geometrically similar and of con
 \item{}What do these results suggest about the validity of the assumptions?%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id69}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id70}%
 The table below gives the overall length (inches) and weight (pounds) of several male black bears (data collected by Brent Troyer, 2011).  If we assume male black bears are geometrically similar, then we would expect that Weight \(\propto\) Length\({}^3\). Use this data in the table to determine if geometric similarity is a reasonable assumption.%
 %
 \begin{equation*}
@@ -3548,7 +3576,7 @@ Notice that as the number of people per physician increases, the life expectancy
 \typeout{Subsection 6.5.1 Logarithmic model}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Logarithmic model}{}{Logarithmic model}{}{}{g:subsection:id70}
+\begin{subsectionptx}{Logarithmic model}{}{Logarithmic model}{}{}{g:subsection:id71}
 We will fit a curve of the form \(L = a + b\ln(P)\) by graphing \(L\) versus \(\ln(P)\) and fitting a straight line.  The value of \(b\) is the slope of the line and the value of \(a\) is the \(y\)-intercept.%
 \begin{sageinput}
 logpoints = [(ln(P), L) for (P,L) in datapoints]
@@ -3604,7 +3632,7 @@ find_fit(datapoints, model)
 \typeout{Subsection 6.5.2 Power model}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Power model}{}{Power model}{}{}{g:subsection:id71}
+\begin{subsectionptx}{Power model}{}{Power model}{}{}{g:subsection:id72}
 We will fit a curve of the form \(L=aP^b\) to the data.  To find the values of this, we linearize the model by taking the natural logarithm of both sides of its equation to get%
 %
 \begin{equation*}
@@ -3663,7 +3691,7 @@ list_plot(respoints, size=75,
 \typeout{Subsection 6.5.3 Exponential model}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Exponential model}{}{Exponential model}{}{}{g:subsection:id72}
+\begin{subsectionptx}{Exponential model}{}{Exponential model}{}{}{g:subsection:id73}
 Now try and fit a model of the form \(L = ae^{bP}\) to the data, plot the residuals and tell whether the model is a good fit.%
 \par
 Note that%
@@ -3726,7 +3754,7 @@ The \mono{find\_fit} has some issues when working on exponential models. So when
 \typeout{Subsection 6.5.4 Using the models to predict}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Using the models to predict}{}{Using the models to predict}{}{}{g:subsection:id73}
+\begin{subsectionptx}{Using the models to predict}{}{Using the models to predict}{}{}{g:subsection:id74}
 Out of the three models, the logarithmic and power models are the ``best'' based on an analysis of the graph of the models and of the residuals. In the next section we will look at more analytical techniques for measuring how well a model fits a set of data.%
 \par
 Now that we have two good–fitting models for the data, what can we do with them? There are at least two uses. First of all, the graphs of the models help us to see the trend of the data. The graphs decrease from left to right, helping us to illustrate the point that as the number of people per physician increases, life expectancy decreases. The plot of the data also shows this, but a curve helps exemplify the relationship.%
@@ -3769,8 +3797,8 @@ However, note that \(P = 100\) is outside the range of the original data. We do 
 \typeout{Exercises 6.5.5 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id74}
-\begin{divisionexercise}{1}{}{}{g:exercise:id75}%
+\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id75}
+\begin{divisionexercise}{1}{}{}{g:exercise:id76}%
 The table below contains the total length and weight of 20 black bears (data collected by Brent Troyer, 2011). Graph weight vs. length, fit different linearizable models to the data, and select the one that best fits the data. Briefly explain your reasoning.%
 %
 \begin{equation*}
@@ -3782,7 +3810,7 @@ The table below contains the total length and weight of 20 black bears (data col
 \end{array}
 \end{equation*}
 \end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id76}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id77}%
 Consider the data below:%
 \begin{center}%
 {\tabularfont%
@@ -3947,7 +3975,7 @@ If we re-execute the cells above to re-do the noise, we should get different poi
 \typeout{Subsection 6.6.1 Finding \(R^2\) for linearizable models}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{Finding \(R^2\) for linearizable models}{}{Finding \(R^2\) for linearizable models}{}{}{g:subsection:id77}
+\begin{subsectionptx}{Finding \(R^2\) for linearizable models}{}{Finding \(R^2\) for linearizable models}{}{}{g:subsection:id78}
 Consider the linearizable models fit to the life expectancy data in \hyperref[x:section:linearizable-models]{Section~{\xreffont\ref{x:section:linearizable-models}}}. We can compare how well the different models fit the data by calculating the \(R^2\) value for each model and then comparing the \(R^2\) values. To calculate the \(R^2\) value for a linearizable model, we calculate the \(R^2\) value for the straight line fit to the \emph{transformed} data.%
 %
 %
@@ -3955,7 +3983,7 @@ Consider the linearizable models fit to the life expectancy data in \hyperref[x:
 \typeout{Subsubsection 6.6.1.1 Power model}
 \typeout{************************************************}
 %
-\begin{subsubsectionptx}{Power model}{}{Power model}{}{}{g:subsubsection:id78}
+\begin{subsubsectionptx}{Power model}{}{Power model}{}{}{g:subsubsection:id79}
 \leavevmode%
 \begin{sageinput}
 datapoints = [(275, 74), (410, 72), (467, 73), (559, 67), (643, 68), (1010, 70), (1037, 67), (1216, 66), (2471, 57), (4873, 62), (6166, 54), (7174, 59)]
@@ -3997,7 +4025,7 @@ rsquared
 \typeout{Subsubsection 6.6.1.2 Logarithmic model}
 \typeout{************************************************}
 %
-\begin{subsubsectionptx}{Logarithmic model}{}{Logarithmic model}{}{}{g:subsubsection:id79}
+\begin{subsubsectionptx}{Logarithmic model}{}{Logarithmic model}{}{}{g:subsubsection:id80}
 \leavevmode%
 \begin{sageinput}
 datapoints = [(275, 74), (410, 72), (467, 73), (559, 67), (643, 68), (1010, 70), (1037, 67), (1216, 66), (2471, 57), (4873, 62), (6166, 54), (7174, 59)]
@@ -4039,7 +4067,7 @@ rsquared
 \typeout{Subsubsection 6.6.1.3 Exponential model}
 \typeout{************************************************}
 %
-\begin{subsubsectionptx}{Exponential model}{}{Exponential model}{}{}{g:subsubsection:id80}
+\begin{subsubsectionptx}{Exponential model}{}{Exponential model}{}{}{g:subsubsection:id81}
 \leavevmode%
 \begin{sageinput}
 datapoints = [(275, 74), (410, 72), (467, 73), (559, 67), (643, 68), (1010, 70), (1037, 67), (1216, 66), (2471, 57), (4873, 62), (6166, 54), (7174, 59)]
@@ -4098,8 +4126,8 @@ In ``Modeling the U.S. Population'' (AMATYC Review, Vol. 20, No. 2, Spring 1999,
 \typeout{Exercises 6.6.2 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id81}
-\begin{divisionexercise}{1}{}{}{g:exercise:id82}%
+\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id82}
+\begin{divisionexercise}{1}{}{}{g:exercise:id83}%
 The data below contain the weights (in lbs) and highway miles per gallon (MPG) of several cars. Calculate \(SS_{Reg}\), \(SS_{Res}\), \(SS_{Tot}\), and \(R^2\) for the linear regression equation fit to this data.%
 \begin{center}%
 {\tabularfont%
@@ -4110,7 +4138,7 @@ The data below contain the weights (in lbs) and highway miles per gallon (MPG) o
 }%
 \end{center}%
 \end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id83}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id84}%
 The data below contain the diameter of the trunk at chest height and volume of wood in several pine trees. Model Volume in terms of Diameter with several different linearizable models and select the best one. Briefly explain how you decided which one is best.%
 \begin{center}%
 {\tabularfont%
@@ -4208,7 +4236,7 @@ Observe that the method for algebraically solving a system of equations presente
 \end{bmatrix}
 \end{equation*}
 This leads to our definition of a \terminology{matrix} and a \terminology{vector}.%
-\begin{definition}{}{g:definition:id84}%
+\begin{definition}{}{g:definition:id85}%
 %
 \begin{itemize}[label=\textbullet]
 \item{}A \terminology{matrix} is a two-dimensional array of numbers.%
@@ -4240,7 +4268,7 @@ is a \(3\times 1\) matrix, or a 3-dimensional vector. A vector can be written ve
 The numbers inside a matrix are called \terminology{elements}. The position of an element is described by its row and column. For example, the element \(-1\) in matrix \(A\) is in row 2, column 3. We say that it is in location \((2, 3)\).%
 \par
 Next we present by example some operations we can do in SageMath with matrices and vectors.%
-\begin{example}{Scalar Multiplication.}{g:example:id85}%
+\begin{example}{Scalar Multiplication.}{g:example:id86}%
 In the context of linear algebra, a \terminology{scalar} is another word for a real number. So scalar multiplication means we multiply a real number by a matrix or vector. To do this, we simply multiply each element of the matrix or vector by the real number. For the matrix \(A\) and vector \(\mathbf{b}\) defined above we can calculate, for example,%
 %
 \begin{equation*}
@@ -4282,7 +4310,7 @@ If we want \(3A\) or \(-2\mathbf{b}\) for instance, we would type%
 \end{sageoutput}
 Note that we cannot do a calculation such as \(3+A\) or \(-2-\mathbf{b}\). In other words, we cannot do ``scalar addition'' or ``scalar subtraction,'' although we can add or subtract two scalars.%
 \end{example}
-\begin{example}{Matrix Addition.}{g:example:id86}%
+\begin{example}{Matrix Addition.}{g:example:id87}%
 Matrices of the same size may be added by adding corresponding entries. For example%
 %
 \begin{equation*}
@@ -4312,7 +4340,7 @@ C + D
 \end{sageoutput}
 Subtraction works in the same way. Note that only matrices, or vectors, of the same size may be added or subtracted.%
 \end{example}
-\begin{example}{Matrix Multiplication.}{g:example:id87}%
+\begin{example}{Matrix Multiplication.}{g:example:id88}%
 Consider multiplying the matrix \(A\) times the vector \(\mathbf{b}\) as defined above. This can be done as follows:%
 %
 \begin{equation*}
@@ -4413,7 +4441,7 @@ C*D == D*C
 False
 \end{sageoutput}
 \end{example}
-\begin{example}{Transpose.}{g:example:id88}%
+\begin{example}{Transpose.}{g:example:id89}%
 To calculate the \terminology{transpose} of a matrix \(A\), denoted \(A^T\), we simply switch the rows and columns. Using the matrix \(A\) from above,%
 %
 \begin{equation*}
@@ -4441,7 +4469,7 @@ A
 [ 4  0 -1]
 \end{sageoutput}
 \end{example}
-\begin{example}{Length of a Vector.}{g:example:id89}%
+\begin{example}{Length of a Vector.}{g:example:id90}%
 Geometrically a 2-dimensional vector \(\mathbf{b} = (b_1, b_2)\) can be thought of as an arrow that starts at the origin \((0, 0)\) and terminates at the point \((b_1, b_2)\) on the \(x\)-\(y\) plane. The length of the vector \(\mathbf{b}\), denoted \(\|\mathbf{b}\|\), is the distance of this point from the origin. The length is also called the \terminology{norm} or \terminology{Euclidean norm} of the vector and is calculated as%
 %
 \begin{equation*}
@@ -4473,7 +4501,7 @@ norm(d - c)
 \end{sageoutput}
 \end{example}
 In the real numbers, 1 acts as a multiplicative identity, in that for any real number \(a\), we have \(1\cdot a = a\cdot 1 = a\). There is a special matrix that plays this part for matrix multiplication called the \terminology{identity matrix}.%
-\begin{definition}{}{g:definition:id90}%
+\begin{definition}{}{g:definition:id91}%
 The \terminology{identity matrix} \(I_n\) is an \(n\times n\) matrix (meaning the number of rows equals the number of columns, called a \terminology{square} matrix) with 1's along the main diagonal (from the top left corner to the bottom right corner) and 0's everywhere else. For example, the \(2\times 2\) identity matrix is%
 %
 \begin{equation*}
@@ -4504,7 +4532,7 @@ identity_matrix(5)
 \(I_n\) is called an identity matrix because \(I_n \mathbf{v} = \mathbf{v}\) for any \(n\)-dimensional vector \(\mathbf{v}\).%
 \par
 Earlier, we defined matrix multiplication, so we might wonder about matrix division. We cannot divide matrices, but we can multiply a matrix by its multiplicative inverse, when it exists.%
-\begin{definition}{}{g:definition:id91}%
+\begin{definition}{}{g:definition:id92}%
 The inverse of a \(n\times n\) matrix \(A\), denoted \(A^{-1}\), is a matrix such that%
 %
 \begin{equation*}
@@ -4518,7 +4546,7 @@ We stress three important points about inverse matrices:%
 \item{}Not every square matrix \(A\) has an inverse. If an inverse exists, \(A\) is said to be \terminology{invertible}.%
 \item{}Calculating an inverse by hand is not a trivial matter.%
 \end{enumerate}
-\begin{example}{Calculating a Matrix Inverse.}{g:example:id92}%
+\begin{example}{Calculating a Matrix Inverse.}{g:example:id93}%
 We can easily calculate the inverse of the matrix \(A=\begin{bmatrix} 1 & 2 \\ 3 & -4 
 \end{bmatrix}\) using SageMath.%
 \begin{sageinput}
@@ -4545,7 +4573,7 @@ A * matrix([[2/5,1/5],[3/10,-1/10]])
 [0 1]
 \end{sageoutput}
 \end{example}
-\begin{example}{Systems of Linear Equations.}{g:example:id93}%
+\begin{example}{Systems of Linear Equations.}{g:example:id94}%
 Consider again the system of linear equations%
 %
 \begin{equation*}
@@ -4593,7 +4621,7 @@ x
 \end{sageoutput}
 The results show that the solution to the system is \(x=2\) and \(y=0\), the same as we found algebraically and graphically. Observe that the coefficient matrix in this example is invertible and there is a unique solution. This observation is true in general for systems with any number of variables.%
 \end{example}
-\begin{example}{Augmented Matrices.}{g:example:id94}%
+\begin{example}{Augmented Matrices.}{g:example:id95}%
 A linear system such as the previous example can also be solved using an \terminology{augmented matrix}. To form this augmented matrix we combine matrix \(A\) and vector \(\mathbf{b}\) into one \(2\times 3\) matrix:%
 %
 \begin{equation*}
@@ -4667,7 +4695,7 @@ B
 [0 1 0]
 \end{sageoutput}
 \end{example}
-\begin{example}{Solving a System with 3 Variables.}{g:example:id95}%
+\begin{example}{Solving a System with 3 Variables.}{g:example:id96}%
 Row-reduce the augmented matrix to its RREF to solve the system:%
 %
 \begin{equation*}
@@ -4736,7 +4764,7 @@ b = matrix(3, 1, [10, 6, 13])
 [0 0 1 1]
 \end{sageoutput}
 \end{example}
-\begin{example}{A System with No Solution.}{g:example:id96}%
+\begin{example}{A System with No Solution.}{g:example:id97}%
 As shown in \hyperref[x:example:systems-linear-eqns]{Example~{\xreffont\ref{x:example:systems-linear-eqns}}}, some systems have no solution. In this example we examine what this means in terms of an augmented matrix. Consider the system%
 %
 \begin{equation*}
@@ -4758,7 +4786,7 @@ b = matrix(3, 1, [6, 10, -1])
 \end{sageoutput}
 Converting this last row to an equation yields \(0 = 1\), an obvious contradiction. This means there is no solution to this system.%
 \end{example}
-\begin{example}{A System with Many Solutions.}{g:example:id97}%
+\begin{example}{A System with Many Solutions.}{g:example:id98}%
 As shown in \hyperref[x:example:systems-linear-eqns]{Example~{\xreffont\ref{x:example:systems-linear-eqns}}}, some systems have infinitely many solutions. In this example we examine what this means in terms of the reduced form of an augmented matrix. As we will see in the next section, systems of this type occur frequently in applications. Consider the system%
 %
 \begin{equation*}
@@ -4805,8 +4833,8 @@ This result is called the \terminology{general solution} of the system. We get a
 \typeout{Exercises 7.1 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id98}
-\begin{divisionexercise}{1}{}{}{g:exercise:id99}%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id99}
+\begin{divisionexercise}{1}{}{}{g:exercise:id100}%
 Calculate%
 %
 \begin{equation*}
@@ -4821,7 +4849,7 @@ Calculate%
 \end{bmatrix}
 \end{equation*}
 \end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id100}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id101}%
 Calculate%
 %
 \begin{equation*}
@@ -4832,7 +4860,7 @@ Calculate%
 \end{bmatrix}^{\,T}
 \end{equation*}
 \end{divisionexercise}%
-\begin{divisionexercise}{3}{}{}{g:exercise:id101}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id102}%
 Find the distance between%
 %
 \begin{equation*}
@@ -4847,11 +4875,11 @@ Find the distance between%
 \end{bmatrix}
 \end{equation*}
 \end{divisionexercise}%
-\begin{divisionexercise}{4}{}{}{g:exercise:id102}%
+\begin{divisionexercise}{4}{}{}{g:exercise:id103}%
 Let \(B = \begin{bmatrix} 7 & 1 & -8 \\
 2 & 7 & -3 \\ -1 & 0 & -2 \end{bmatrix}\). Calculate \(B^{-1}\) and show that \(B^{-1}B= I_3\) and \(BB^{-1} = I_3\).%
 \end{divisionexercise}%
-\begin{divisionexercise}{5}{}{}{g:exercise:id103}%
+\begin{divisionexercise}{5}{}{}{g:exercise:id104}%
 Use matrices to solve the system%
 %
 \begin{equation*}
@@ -4862,7 +4890,7 @@ Use matrices to solve the system%
 \end{aligned}
 \end{equation*}
 \end{divisionexercise}%
-\begin{divisionexercise}{6}{}{}{g:exercise:id104}%
+\begin{divisionexercise}{6}{}{}{g:exercise:id105}%
 Find the augmented matrix for the system of linear equations and find the solution by row-reducing.%
 %
 \begin{equation*}
@@ -4883,7 +4911,7 @@ x_2 + x_3 & = 0
 %
 \begin{sectionptx}{Modeling with Systems of Equations}{}{Modeling with Systems of Equations}{}{}{x:section:modeling-with-linear-algebra}
 Elementary applications of linear algebra often involve describing a scenario with a system of equations and then solving the system. In this section we present four such applications: traffic flow, balancing chemical equations, and two economics applications.%
-\begin{example}{Traffic Flow.}{g:example:id105}%
+\begin{example}{Traffic Flow.}{g:example:id106}%
 Consider the network of streets in the figure below. The numbers and variables in the figure represent the traffic flow, measured in vehicles per hour (vph), along each street segment. The goal is to find the values of \(x_1\) through \(x_4\) and analyze the flow of traffic.%
 \begin{image}{0}{1}{0}%
 \includegraphics[width=\linewidth]{./images/241Notes030121-1.png}
@@ -4955,7 +4983,7 @@ The fact that there is a free variable means that traffic can flow through this 
 \par
 With this general solution we can do more than simply calculate specific traffic flows. From the equation \(x_1 = 575-x_4\) we see that the maximum value of \(x_4\) is 575 vph; otherwise \(x_1\) would be negative. Also, the equation \(x_2 = 150+x_4\) tells us the minimum value of \(x_2\) is 150 since \(x_4\) cannot be negative. Thus if we were planning roadwork along the road segment corresponding to \(x_2\) resulting in restricted traffic flow, we would need to make sure the road could handle at least 150 vph.%
 \end{example}
-\begin{example}{Balancing Chemical Equations.}{g:example:id106}%
+\begin{example}{Balancing Chemical Equations.}{g:example:id107}%
 In a chemical reaction, substances (called \terminology{reactants}, often in the form of \terminology{molecules}) composed of atoms react to form new substances (called \terminology{products}). A simple assumption behind every chemical reaction is:%
 \begin{quote}%
 Atoms cannot be created or destroyed in a reaction.\end{quote}
@@ -5092,7 +5120,7 @@ x_m & \text{ is free}
 \end{equation*}
 Any nonnegative choice for \(x_m\) yields a specific set of equilibrium prices. For example, if \(x_m = 15\), then \(x_c = 19\) and \(x_e = 11\).%
 \end{example}
-\begin{example}{The Leontief Input-Output Model.}{g:example:id107}%
+\begin{example}{The Leontief Input-Output Model.}{g:example:id108}%
 In this example we present another economics application that resembles equilibrium prices, but there are some key differences. One difference is that there will be an ``open'' sector which consumes products but doesn't produce anything.%
 \par
 Consider an open economy with three sectors: mining, electrical, and auto. To produce \textdollar{}1 of mined material, the mining operation must purchase \textdollar{}0.1 of its own product, \textdollar{}0.3 of electricity, and \textdollar{}0.1 worth of autos for its transportation. To produce \textdollar{}1 of electricity, it takes \textdollar{}0.25 of mined material, \textdollar{}0.4 of electricity, and \textdollar{}0.15 of autos. Finally, to produce \textdollar{}1 worth of autos, the auto-manufacturing plant must purchase \textdollar{}0.2 of mined material, \textdollar{}0.5 of electricity, and consumes \textdollar{}0.1 of autos. Assume also that during a period of one year, the open sector has a demand of \textdollar{}50 million worth of mined material, \textdollar{}75 million worth of electricity, and \textdollar{}125 million worth of autos. Find the annual output of each sector in order to satisfy demand.%
@@ -5187,8 +5215,8 @@ So mining should produce \textdollar{}229.9 million, electricity \textdollar{}43
 \typeout{Exercises 7.2 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id108}
-\begin{divisionexercise}{1}{}{}{g:exercise:id109}%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id109}
+\begin{divisionexercise}{1}{}{}{g:exercise:id110}%
 Consider the road network pictured below.%
 \begin{image}{0.1}{0.8}{0.1}%
 \includegraphics[width=\linewidth]{./images/roadnetwork2.png}
@@ -5200,7 +5228,7 @@ Consider the road network pictured below.%
 \item{}Suppose the 650 vph flowing into intersection D from the bottom were changed to 600 vph. Explain why there would be no solution to the resulting system of linear equations that models the traffic flow.%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{2}{}{}{g:exercise:id110}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id111}%
 Balance each of the following chemical equations:%
 \begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
 \item{}Potassium permanganate reacts with hydrochloric acid to form potassium chloride, manganese (II) chloride, water, and chlorine gas:%
@@ -5215,14 +5243,14 @@ Balance each of the following chemical equations:%
 \end{equation*}
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{3}{}{}{g:exercise:id111}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id112}%
 Consider an economy with two sectors: Manufacturing and Services. Each year, Manufacturing sells 75\% of its output to Services and the rest is an operational expense. Likewise, Services sells 85\% of its output to Manufacturing and consumes the rest.%
 \begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
 \item{}Set up an exchange table for this economy.%
 \item{}Find the equilibrium prices if the annual output from Services is \textdollar{}30 million.%
 \end{enumerate}
 \end{divisionexercise}%
-\begin{divisionexercise}{4}{}{}{g:exercise:id112}%
+\begin{divisionexercise}{4}{}{}{g:exercise:id113}%
 Consider an economy whose exchange table is given below. Find the equilibrium prices if the annual output from Services is \textdollar{}46 million.%
 \begin{center}%
 {\tabularfont%
@@ -5236,7 +5264,7 @@ Consider an economy whose exchange table is given below. Find the equilibrium pr
 }%
 \end{center}%
 \end{divisionexercise}%
-\begin{divisionexercise}{5}{}{}{g:exercise:id113}%
+\begin{divisionexercise}{5}{}{}{g:exercise:id114}%
 An economy is based on three sectors, agriculture, energy, and manufacturing, plus an open sector. Production of each dollar of agriculture requires an input of \textdollar{}0.2 from the agriculture sector and \textdollar{}0.4 from the energy sector. Production of each dollar of energy requires an input of \textdollar{}0.2 from the energy sector and \textdollar{}0.4 from the manufacturing sector. Production of each dollar of manufacturing requires an input of \textdollar{}0.1 from the agriculture sector, \textdollar{}0.1 from the energy sector, and \textdollar{}0.3 from the manufacturing sector. Find the output from each sector that is needed to satisfy a demand of \textdollar{}20 billion for agriculture, \textdollar{}10 billion for energy, and \textdollar{}30 billion for manufacturing from the open sector.%
 \end{divisionexercise}%
 \end{exercises-subsection-numberless}
@@ -5341,7 +5369,7 @@ which, as before, has the generic form \(A\mathbf{x} = \mathbf{b}\). However, no
 S = \sum_{i=1}^n (y_i - p(x_i))^2.
 \end{equation*}
 The resulting model is called a \terminology{least–squares} polynomial model. To find this model we will find a \terminology{least-squares solution} to the above matrix equation.%
-\begin{definition}{Least-squares Solution.}{g:definition:id114}%
+\begin{definition}{Least-squares Solution.}{g:definition:id115}%
 Let \(A\) be an \(m\times n\) matrix and \(\mathbf{b}\) be an \(m\times 1\) vector. A \terminology{least-squares} solution of \(A\mathbf{x}=\mathbf{b}\) is an \(n\times 1\) vector \(\hat{\mathbf{x}}\) such that%
 %
 \begin{equation*}
@@ -5350,7 +5378,7 @@ $\mathbf{x}$}.
 \end{equation*}
 \end{definition}
 The idea behind this definition is that \(\hat{\mathbf{x}}\) gets \(A\mathbf{x}\) as close to \(\mathbf{b}\) as possible. The following theorem which we present without proof tells us how to find \(\hat{\mathbf{x}}\).%
-\begin{theorem}{}{}{g:theorem:id115}%
+\begin{theorem}{}{}{g:theorem:id116}%
 Every least-squares solution of \(A\mathbf{x} = \mathbf{b}\) must satisfy the Normal equation%
 %
 \begin{equation*}
@@ -5390,7 +5418,7 @@ points = [(1, 2), (2, 4), (3, 5), (4, 2)]
 scatter_plot(points) + plot(sol[0][0]*x^2 + sol[1][0]*x + sol[2][0], (x, 1, 4))
 \end{sageinput}
 \end{example}
-\begin{example}{Calculating \(R^2\) Value.}{g:example:id116}%
+\begin{example}{Calculating \(R^2\) Value.}{g:example:id117}%
 In \hyperref[x:section:coefficient-of-determination]{Section~{\xreffont\ref{x:section:coefficient-of-determination}}} we defined the coefficient of variation \(R^2\) as a measure of how well a line fits a set of data. We then applied this idea to linearizable models by calculating the \(R^2\) value for the straight–line fit to the transformed data. Polynomial models are not linearizable, so to calculate \(R^2\) values for these types of models, we must use the definition. The definition is%
 %
 \begin{equation*}
@@ -5425,7 +5453,7 @@ n(R2)
 0.933333333333333
 \end{sageoutput}
  This indicates a very good fit.\end{example}
-\begin{example}{Selecting a Best Polynomial Model.}{g:example:id117}%
+\begin{example}{Selecting a Best Polynomial Model.}{g:example:id118}%
 Consider the data in the table below which gives the area \(A\) (in thousands of square miles) and the total length of railroad track \(R\) (in thousands of miles) of seven different countries (data from The World Almanac and Book of Facts, 2007, World Almanac Books). We want to use a polynomial to model \(R\) in terms of \(A\).%
 %
 \begin{equation*}
@@ -5678,7 +5706,7 @@ The figure above shows a graph of the model on top of the data. The model appear
 \typeout{Subsection 7.3.1 General Guidelines for Selecting a Best Model}
 \typeout{************************************************}
 %
-\begin{subsectionptx}{General Guidelines for Selecting a Best Model}{}{General Guidelines for Selecting a Best Model}{}{}{g:subsection:id118}
+\begin{subsectionptx}{General Guidelines for Selecting a Best Model}{}{General Guidelines for Selecting a Best Model}{}{}{g:subsection:id119}
 In general when constructing empirical models, one has many different types of models from which to choose. Deciding which one is best is not easy and is often very subjective, but here are a few simple guidelines:%
 %
 \begin{enumerate}
@@ -5696,8 +5724,8 @@ We must also stress that when using an empirical model such as those discussed i
 \typeout{Exercises 7.3.2 Exercises}
 \typeout{************************************************}
 %
-\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id119}
-\begin{divisionexercise}{1}{}{}{g:exercise:id120}%
+\begin{exercises-subsection}{Exercises}{}{Exercises}{}{}{g:exercises:id120}
+\begin{divisionexercise}{1}{}{}{g:exercise:id121}%
 Fit different polynomial models to the data in the table below and select the best one. Explain how you determined which one is best.%
 %
 \begin{equation*}
@@ -5710,7 +5738,7 @@ Fit different polynomial models to the data in the table below and select the be
 \begin{divisionexercise}{2}{}{}{x:exercise:deer-pop-R2}%
 Calculate the \(R^2\) value for the model fit to deer population data in \hyperref[x:example:deer-population]{Example~{\xreffont\ref{x:example:deer-population}}}.%
 \end{divisionexercise}%
-\begin{divisionexercise}{3}{}{}{g:exercise:id121}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id122}%
 One useful property of polynomials is that they are easy to differentiate and integrate. Suppose a researcher observes a particle moving in a straight line and measures the particle’s velocity relative to its starting position at several points in time as shown in the table below.%
 %
 \begin{equation*}
@@ -5763,18 +5791,18 @@ Consider the problem of predicting the selling price of a house. The selling pri
 \end{array}
 \end{equation*}
 \end{introduction}%
-\begin{example}{Single Predictor Variable.}{g:example:id122}%
+\begin{example}{Single Predictor Variable.}{g:example:id123}%
 Consider the graphs of Selling Price vs. Area and Selling Price vs. Acres as shown in \hyperref[x:figure:spsinglepredictor]{Figure~{\xreffont\ref{x:figure:spsinglepredictor}}} below along with the linear regression equation for each.%
 \begin{figureptx}{}{x:figure:spsinglepredictor}{}%
 \begin{sidebyside}{2}{0}{0}{0}%
 \begin{sbspanel}{0.5}%
-\begin{subfigureptx}{Selling Price vs. Area}{g:figure:id123}{}%
+\begin{subfigureptx}{Selling Price vs. Area}{g:figure:id124}{}%
 \includegraphics[width=\linewidth]{./images/spvsarea.png}
 \tcblower
 \end{subfigureptx}%
 \end{sbspanel}%
 \begin{sbspanel}{0.5}%
-\begin{subfigureptx}{Selling Price vs. Acres}{g:figure:id124}{}%
+\begin{subfigureptx}{Selling Price vs. Acres}{g:figure:id125}{}%
 \includegraphics[width=\linewidth]{./images/spvsacres.png}
 \tcblower
 \end{subfigureptx}%
@@ -5787,7 +5815,7 @@ Notice that the \(R^2\) value for the predictor variable Area is higher than the
 Suppose a house has an area of 2,800 ft\({}^2\).We could use the regression equation for Selling Price in terms of Area to predict that the house would sell for \(12.852(2,800) + 66,239 =
 \$102,224\). This, of course, is only a point–estimate of the price, and probably not a very good estimate because the \(R^2\) value for the regression equation is only 0.2232.%
 \end{example}
-\begin{example}{Multiple Predictor Variables.}{g:example:id125}%
+\begin{example}{Multiple Predictor Variables.}{g:example:id126}%
 Considering only one predictor variable is a bit too simple. Many variables affect the selling price, so we should consider more than one predictor variable in our regression equation. Suppose we consider both Area and Acres.%
 \par
 If we let \(y =\) Selling Price, \(x_1 =\) Area, and \(x_2 =\) Acres, we want to fit a model of the form%
@@ -5877,7 +5905,7 @@ Note that including the variable Bedrooms results in low \(R^2\) values. This in
 \par
 If we simply compare the adjusted \(R^2\) values, we conclude that the best combination of predictor variables is Area and Acres. To refine our model we might want to collect data on other variables that might affect the selling price such as age, total number of rooms, etc. With more variables, there are many different combinations of predictor variables we could consider. The process of determining which set of variables is best is very complicated. We have presented a very simple strategy here.%
 \end{example}
-\begin{example}{Polynomial Models.}{g:example:id126}%
+\begin{example}{Polynomial Models.}{g:example:id127}%
 Let’s return to the problem of fitting a 2nd degree polynomial model of the form \(y = a + bx + cx^2\) to the set of four data points \(\{(1, 2) , (2, 4) , (3, 5) , (4, 2)\}\) as considered in \hyperref[x:example:three-data-points]{Example~{\xreffont\ref{x:example:three-data-points}}}. We could think of this as predicting the values of \(y\) with the ``predictor'' variables \(x\) and \(x^2\), so it can be treated as a multiple regression problem.%
 \begin{sageinput}
 points = [(1, 2), (2, 4), (3, 5), (4, 2)]
@@ -5912,7 +5940,7 @@ rsquared
 \end{sageoutput}
 These results give us the model \(y = -3.25+6.35x-1.25x^2\), which is exactly the same as we got previously. Also note that the \(R^2\) value is 0.9333, exactly the same as before.%
 \end{example}
-\begin{example}{Deer Population Again.}{g:example:id127}%
+\begin{example}{Deer Population Again.}{x:example:deer-pop-example-2}%
 We can use a multiple regression approach to fit a model of the form \(y = a + bx +
 c \cos (\pi x/5) + d \sin (\pi x/5)\) to the transformed deer population data from the previous section.%
 %
@@ -5981,7 +6009,6 @@ In an attempt to predict the final grade of students in an Introduction to Stati
 \textbf{ACT} & 25 & 20 & 18 & 17 & 20 & 22 & 30 & 28 & 27 & 31 \\\hline\hline
 \end{array}
 \end{equation*}
-Find the regression equation that predicts Grade in terms of Pretest Score. Repeat using Year and then ACT. Which of these single-variable predictors is best at predicting the final grade based on the \(R^2\) values? Does the pretest score alone appear to be a good predictor of the final grade? Explain.%
 \begin{sageinput}
 gradepoints = \
 [(84.5, 9, 1, 25), (82.3, 8, 2, 20), (69.2, 18, 2, 18), (65.1, 10, 4, 17), 
@@ -5993,8 +6020,870 @@ pretests = [p for (g, p, y, a) in gradepoints]
 years = [y for (g, p, y, a) in gradepoints]
 ACTs = [a for (g, p, y, a) in gradepoints]
 \end{sageinput}
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Find the regression equation that predicts Grade in terms of Pretest Score. Repeat using Year and then ACT. Which of these single-variable predictors is best at predicting the final grade based on the \(R^2\) values? Does the pretest score alone appear to be a good predictor of the final grade? Explain.%
+\item{}Consider all four different combinations of two or three predictor variables. Determine which combination is best at predicting the final grade using the methods described in this section. Based on your results, does it seem worthwhile to give the pretest as a way of predicting the final grade? Does the year of the student appear to affect the final grade? Explain.%
+\item{}Use the multiple regression equation that predicts Grade in terms of Pretest and ACT to predict the grade of a student who has a pretest score of 18 and an ACT score of 28.%
+\end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id130}%
+Use a multiple regression approach to fit a 7th degree polynomial to the 8 data points shown in the table below. Create a graph of the resulting polynomial on top of the data points.%
+%
+\begin{equation*}
+\begin{array}{c|cccccccc}\hline\hline
+\pmb{x} & 0.50 & 0.55 & 0.60 & 0.65 & 0.70 & 0.75  & 0.80 & 0.85 \\\hline
+\pmb{y} & 0.90 & 9.00 & 2.10 & 7.80 & 13.50 & 9.30 & 0.40 & 6.20 \\\hline\hline
+\end{array}
+\end{equation*}
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id131}%
+The sin and cos terms in the deer population model in \hyperref[x:example:deer-pop-example-2]{Example~{\xreffont\ref{x:example:deer-pop-example-2}}} were included to capture the oscillating pattern of the data. One might wonder if both terms are really necessary. Fit a model of the form \(y=a+bx+\cos(\pi x/5)\) and then fit a model of the form \(y=a+bx+\sin(\pi x/5)\) to the data. Compare the \(R^2\) value for each model to the original model. Does the inclusion of both sin and cos terms yield a significantly better model? Explain why or why not.%
 \end{divisionexercise}%
 \end{exercises-subsection-numberless}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 7.5 Sidetrip: Interactivity in SageMath}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Sidetrip: Interactivity in SageMath}{}{Sidetrip: Interactivity in SageMath}{}{}{x:section:interactivity}
+\begin{introduction}{}%
+We have programmed modules to be interactive in nature by having them prompt a user for input (credit card interest example). Other ways of employing interactivity is through the use of things like sliders, checkboxes, and radio buttons. We will build a working example slowly that will lead to more complex ones, and your next homework assignment.%
+\par
+Let's build a graph plotter that has some options. We'll start by getting the commands for what we want the output to look like. Here we just want a simple plot.%
+\end{introduction}%
+\begin{sageinput}
+plot(x^2,(x,-3,3))
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/x2curve.png}
+\end{image}%
+Now we abstract out the parts we want to change. We’ll be letting the user change the function, so let’s make that a variable \(f\).%
+\begin{sageinput}
+f = x^2
+plot(f, (x, -3, 3))
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/x2curve.png}
+\end{image}%
+This was important because it allowed us to step back and think about what we would really be doing.%
+\par
+Now for the technical part. We make this a \mono{def} function.%
+\begin{sageinput}
+def myplot(f = x^2):
+    show(plot(f, (x, -3, 3)))
+\end{sageinput}
+\begin{sageinput}
+myplot()
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/x2curve.png}
+\end{image}%
+If we call it with a different value for \(f\), we should get a different plot.%
+\begin{sageinput}
+myplot(x^3)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/x3curve.png}
+\end{image}%
+So far, we’ve only defined a new function, so this was review. To make a ``control'' to allow the user to interactively enter the function, we just preface the function with \mono{@interact}.%
+\begin{sageinput}
+@interact
+def myplot(f=x^2):
+    show(plot(f, (x, -3, 3)))
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/x2interactive.png}
+\end{image}%
+Note that we can still call our function, even when we’ve used \mono{@interact}. This is often useful in debugging it.%
+\begin{sageinput}
+myplot(x^4)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/x4curve.png}
+\end{image}%
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 7.5.1 Adding complexity}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{Adding complexity}{}{Adding complexity}{}{}{g:subsection:id132}
+We can go ahead and replace other parts of the expression with variables. Note that \mono{\_} is the function name now. That is a just convention for throw-away names that we don’t care about.%
+\begin{sageinput}
+@interact
+def _(f = x^2, a = -3, b = 3):
+    show(plot(f, (x, a, b)))
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/x2interactive2.png}
+\end{image}%
+If we pass ('label', default\textunderscore{}value) in for a control, then the control gets the label when printed. Here, we’ve put in some text for all three of them. Remember that the text must be in quotes! Otherwise Sage will think that you are referring (for example) to some variable called ``lower'', which it will think you forgot to define.%
+\begin{sageinput}
+@interact
+def _(f=(r'\(f\)', x^2), a=('lower', -3), b=('upper', 3)):
+    show(plot(f,(x,a,b)))
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/x2interactive3.png}
+\end{image}%
+On the label above for the function \(f\), note that we use the \mono{r} indicator for raw string because of the backslashes in the LaTeX code.%
+\par
+We can specify the type of control explicitly, along with options. (We will look more closely at the various types of controls in a moment.)%
+\begin{sageinput}
+@interact
+def _(f=input_box(x^2, width=10, label=r'\(f\)')):
+    show(plot(f,(x,-3,3)))
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/x2interactive4.png}
+\end{image}%
+For this version, we demonstrate a bunch of options. Notice the new controls:%
+%
+\begin{itemize}[label=\textbullet]
+\item{}\mono{range\_slider}, which passes in two values, \mono{zoom[0]} and \mono{zoom[1]}.%
+\item{}\mono{True/False} gets converted to checkboxes for the end user.%
+\end{itemize}
+\begin{sageinput}
+@interact
+def _(f=input_box(x^2,width=20),
+     color=color_selector(widget='colorpicker', label=""),
+     axes=True,
+     fill=True,
+     zoom=range_slider(-3,3,default=(-3,3))):
+    show(plot(f,(x,zoom[0], zoom[1]), color=color, axes=axes,fill=fill))
+\end{sageinput}
+\end{subsectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Subsection 7.5.2 The process for building interacts}
+\typeout{************************************************}
+%
+\begin{subsectionptx}{The process for building interacts}{}{The process for building interacts}{}{}{g:subsection:id133}
+Interactive modules (or interacts) are the types of things that are generally put together to install on a webpage. (For instance, I have various interacts installed on my Differential Equations Brightspace page.) We will walk together through the process of building an interact that, for instance, Calculus I students might find useful: drawing a moving tangent line to a simple second-degree polynomial. Here are the stages:%
+%
+\begin{itemize}[label=\textbullet]
+\item{}Concept development -{}-{} take time to actually nail down precisely what you want the interact to do. Think of this as not only a layout, but a behavior model. (If I click here, this happens; if I click there, this other thing happens, et cetera. . . )%
+\item{}Design a subroutine in SageMath (using \mono{def}) that represents one round, cycle, or phase of the interact.%
+\item{}Polish this subroutine until it is just right, with all the input and output just as you want it to be, including colors and so forth.%
+\item{}Convert this subroutine into an interact subroutine within SageMath or CoCalc, using the \mono{@interact} and \mono{slider} commands.%
+\end{itemize}
+If we were building this for, say, an internal webpage for a company, we would then use some HTML code to install our interact on the webpage so that anyone with access to the page could use it. For now, we will rest with getting an interactive to work in SageMath\slash{}CoCalc.%
+\end{subsectionptx}
+\begin{example}{Tangent line interact.}{g:example:id134}%
+\begin{paragraphs}{Concept development.}{g:paragraphs:id135}%
+Before actually coding anything, we should try to define precisely what we want the interact to do.%
+\par
+Generally, the best example for illustrating a mathematical idea should be neither too complex nor too simple. In this case, we want to draw a tangent line and show an early calculus student (perhaps two or three weeks into the course) what a tangent line looks like. It will be useful to choose the drawn function to be something simple -{}-{} like a polynomial. We will choose the function \(f(x) = x^3 -x\).%
+\par
+Next, we will focus on what the user will be allowed to change, and what the user will not be allowed to change. These will become the controls for the interact. The user should be able to change the \(x\)-coordinate of the point where the tangent line is drawn, but not the \(y\)-coordinate, which should be computed by the interact. In this way, the user will never choose a point that is not on the curve \(y = x^3 - x\).%
+\par
+It may be useful to make a sketch of what the output will look like. How can we optimally display the circumstances to show sufficient detail -{}-{} but not so much detail as to confuse someone?%
+\end{paragraphs}%
+\begin{paragraphs}{Design the subroutine.}{g:paragraphs:id136}%
+Here is the code for the subroutine.%
+\end{paragraphs}%
+\begin{sageinput}
+f(x) = x^3 - x
+
+f_prime(x) = diff(f(x), x)
+
+def tangent_at_point( x_0 ):
+    y_0 = f(x_0)
+    m = f_prime(x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x), (x, -2, 2), color='blue')
+    p2 = plot(m*x + b, (x, -2, 2), color='tan')
+    p3 = point((x_0, y_0), color='red', size=100)
+    
+    show(p1+p2+p3)
+\end{sageinput}
+We first declare the function \(f(x) = x^3 - x\) and then declare a second function for the derivative. One point to note: we all know that \(f'(x) = 3x^2-1\), so why didn't we just hard-code that function instead of having SageMath compute it as we did? Because we may wish to use another function later on, and an easy mistake to make is to change \(f\) but forget to change \(f'\).%
+\par
+We next use the \mono{def} command to define our subroutine and name it \mono{tangent\_at\_point}. This subroutine will be the nucleus of our working interact. (We will slowly evolve it.)%
+\par
+A tangent line can be produced when we have three ingredients: the slope, the \(x\)-coordinate, and the \(y\)-coordinate. The \(x\)-coordinate will eventually come from a slider when we're through, but right now it's a real number input (called \(x_0\)) to the subroutine we are creating with the \mono{def} command. Most interacts have multiple sliders because they need more parameters.%
+\par
+We then have SageMath compute the \(y\)-coordinate and the slope from \(f(x_0)\) and \(f'(x_0)\), respectivly. Usually a student would use the point-slope formula \(y-y_0 = m(x-x_0)\) to get the equation of the tangent line and then use algebra to change it into the slope-intercept form \(y=mx+b\). However, when coding, we should have an explicit formula for \(b\). The four lines of comments in the code show the derivation of our formula for \(b\).%
+\par
+Three plot commands follow. The first plots \(f(x)\) on the interval \((-2,2)\) in blue; the second plots the tangent line in tan; the third puts a big red dot at their intersection and is useful to draw the user's attention. We then show the plots all superimposed together.%
+\begin{paragraphs}{Polish the subroutine.}{g:paragraphs:id137}%
+We are at the point where we should run the subroutine and tinker with it if needed: adjust the framing of the graphs, change colors, etc.%
+\end{paragraphs}%
+\begin{sageinput}
+tangent_at_point(0.5)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/tanline1.png}
+\end{image}%
+\begin{sageinput}
+tangent_at_point(1.5)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/tanline2.png}
+\end{image}%
+\begin{sageinput}
+tangent_at_point(-1.75)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/tanline3.png}
+\end{image}%
+These aren't bad but there's room for improvement. For example, in the last plot, the tangent line is relatively steep (with a slope of 8.1875), thus the tangent line actually goes up to \(y = 25\) before exiting the plot. This makes the cubic curve appear tiny, because the curve goes up only to \(y = 6\). Therefore, we will bound the \(y\)-coordinates of the plots. We do this for both \(f(x)\) and the tangent line, restricting them to \(-6 < y < 6\), because that is the range of \(f(x) = x^3 - x\) over the domain \(-2 < x < 2\).%
+\par
+If you look at the new and improved code below, you will see \mono{ymin} and \mono{ymax} options inside the first two \mono{plot} commands.%
+\begin{sageinput}
+f(x) = x^3 - x
+
+f_prime(x) = diff(f(x), x)
+
+def tangent_at_point( x_0 ):
+    y_0 = f(x_0)
+    m = f_prime(x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x), (x, -2, 2), color='blue', ymin = -6, ymax = 6, gridlines = 'minor')
+    p2 = plot(m*x + b, (x, -2, 2), color='tan', ymin = -6, ymax = 6)
+    p3 = point((x_0, y_0), color='red', size=50)
+    
+    show(p1+p2+p3)
+    
+    print()
+    print("x_0 = ", x_0)
+    print("y_0 = f(x_0) = ", y_0)
+    print("m = f'(x_0) = ", m)
+    print("tangent line: y = ", m, "x + ", b)
+\end{sageinput}
+There are other changes to the code. The red dot seemed large, so we lowered its area from 100 to 50. We also thought a gridline background would be helpful so we added the option \mono{gridlines = \textquotesingle{}minor\textquotesingle{}} in the command for \mono{p1}. Since \mono{p1} is the ``bottom'' of the superimposed plots, it will show up when we actually do superimpose the three plots.%
+\par
+Sometimes, showing information about what the user is seeing is useful, so we have the \mono{print} statements at the end. We can now re-execute our test cases and show that they look much better.%
+\begin{sageinput}
+tangent_at_point(0.5)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/tanline4.png}
+\end{image}%
+\begin{sageinput}
+tangent_at_point(1.5)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/tanline5.png}
+\end{image}%
+\begin{sageinput}
+tangent_at_point(-1.75)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/tanline6.png}
+\end{image}%
+\begin{paragraphs}{Convert to an interactive subroutine.}{g:paragraphs:id138}%
+Now we'll invoke the \mono{@interact} command and see how to make sliders for the parameters in our subroutine. Three changes will be made in the code now, two of which are minor, but one of which takes a bit of explaining.%
+\end{paragraphs}%
+\begin{sageinput}
+f(x) = x^3 - x
+
+f_prime(x) = diff(f(x), x)
+
+@interact
+def tangent_at_point( x_0 = slider(-2, 2, 0.1, default = -1.5, label = "x-coordinate") ):
+    y_0 = f(x_0)
+    m = f_prime(x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x), (x, -2, 2), color='blue', ymin = -6, ymax = 6, gridlines = 'minor')
+    p2 = plot(m*x + b, (x, -2, 2), color='tan', ymin = -6, ymax = 6)
+    p3 = point((x_0, y_0), color='red', size=50)
+    
+    show(p1+p2+p3)
+    
+    print()
+    print("x_0 = ", x_0)
+    print("y_0 = f(x_0) = ", y_0)
+    print("m = f'(x_0) = ", m)
+    print("tangent line: y = ", m, "x + ", b)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/tanlineinteractive.png}
+\end{image}%
+First, note that we've added the \mono{@interact} command on the line right above the \mono{def} command. This signals SageMath that what follows is an interact.%
+\par
+Second, and this requires a bit of explaining, we have used the \mono{slider} command to change \(x_0\) from a numerical input into a slider that the user can manipulate. The first two parameters tell SageMath that the \(x_0\) variable will be restricted to the interval \(-2 \le x \le 2\). The third parameter tells SageMath the granularity of the slider. In this case, we want each move to represent 1\slash{}10. Thus if the slider is at \(x_0 = 0.5\), the two positions to either side would be 0.4 and 0.6. The fourth parameter represents the initial condition. In this case, the slider will start out with \(x_0\) set to \(-1.5\), but the user can move it around to other values. Finally, the fifth parameter (which is optional) will give a human-readable label to the slider.%
+\par
+This means that if we have to call this subroutine now, we would call it without an argument and just type \mono{tangent\_at\_point()} because we are no longer passing \(x_0\) to the subroutine.%
+\par
+We can increase the interactivity of this app. We can have the user type in their own function \(f\), and we can also use sliders to have the user control the domain of the graph (\(x_1\) to \(x_2\)) as well as the range (\(y_1\) to \(y_2\)). Note that weird things can happen if either \(x_1\ge x_2\) or \(y_1\ge y_2\). (There is a way to make sure this doesn't happen but it's more complicated -{}-{} for now, we'll just assume users know to always have \(x_1\lt x_2\) and \(y_1 \lt y_2\).)%
+\begin{sageinput}
+@interact
+def tangent_at_point( f = (r'\(f\)', x^3-x), x_0 = slider(-2, 2, 0.1, default = -1.5, label = "x-coordinate"),
+                    x1 = slider(-10, 10, 0.1, default = -2, label = "xmin"),
+                    x2 = slider(-10, 10, 0.1, default = 2, label = "xmax"),
+                    y1 = slider(-10, 10, 0.1, default = -6, label = "ymin"),
+                    y2 = slider(-10, 10, 0.1, default = 6, label = "ymax")):
+
+    y_0 = f(x=x_0)
+    f_prime(x) = diff(f, x)
+    m = f_prime(x=x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x=x), (x, x1, x2), color='blue', ymin = y1, ymax = y2, gridlines = 'minor')
+    p2 = plot(m*x + b, (x, x1, x2), color='tan', ymin = y1, ymax = y2)
+    p3 = point((x_0, y_0), color='red', size=50)
+    
+    show(p1+p2+p3)
+    
+    print()
+    print("x_0 = ", x_0)
+    print("y_0 = f(x_0) = ", y_0)
+    print("m = f'(x_0) = ", m)
+    print("tangent line: y = ", m, "x + ", b)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/tanlinesuperinteractive.png}
+\end{image}%
+\end{example}
+\begin{inlineexercise}{}{g:exercise:id139}%
+Suppose you are going to teach about sine waves as they occur in light, electricity, sound and so forth. For example, maybe you wish to explain to the student the role of amplitude and angular velocity (radians per second). In summary, imagine that you want to make an interact which will graph%
+%
+\begin{equation*}
+f(t) = A\sin(\omega t)
+\end{equation*}
+where \(A\) and \(\omega\) are controlled by sliders.%
+\par
+For the plot, I recommend using \(-10 \lt x \lt 10\) and \(-5 \lt y \lt 5\). For the amplitude, while one could see advantages to forcing the amplitude to be positive, I think it might be nice for students to learn the effect of \(A \le 0\), so I recommend \(-5 \le A \le 5\) volts. For \(\omega\), it might be confusing to explain what \(\omega = 0\) represents, so perhaps \(0.5 \le \omega \le 5\) is a good choice. Try \(A\) in a granularity of each step being \(1/4\)th of a volt and \(\omega\) in a granularity of \(1/2\) radians per second.%
+\end{inlineexercise}%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 7.6 Spline Models}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Spline Models}{}{Spline Models}{}{}{x:section:spline-models}
+\begin{introduction}{}%
+Consider the data below that gives the liter of milk given by a dairy cow on each of several different days after she begins producing.%
+%
+\begin{equation*}
+\begin{array}{r|cccccccccc}
+\textbf{Day} \amp 5 \amp 13 \amp 25 \amp 42 \amp 50 \amp 62 \amp 75 \amp 90 \amp 100 \amp 120 \\\hline
+\textbf{Liters} \amp 10 \amp 19 \amp 30 \amp 25 \amp 22 \amp 35 \amp 50 \amp 55 \amp 40 \amp 35
+\end{array}
+\end{equation*}
+A graph of the data is shown below.%
+\end{introduction}%
+\begin{sageinput}
+data=[(5, 10), (13, 19), (25, 30), (42, 25), (50, 22), 
+	(62, 35), (75, 50), (90, 55), (100, 40), (120, 35)]
+plot1 = point(data, size=50, axes_labels=['Day','Liters'], 
+              title="Milk Production", 
+              frame=True, ymin=0, ymax=60)
+show(plot1)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/milkproduction1.png}
+\end{image}%
+Our goal is to model liters in terms of day so that we can predict how much milk was given on the days not listed in the table.%
+\par
+The graph of the data certainly does not resemble an exponential, logarithmic, or power curve, so a linearizable model does not seem appropriate.  Low-order polynomials do not capture the trend of the data, and higher-order polynomials produce oscillations that do not seem appropriate.  We instead consider \terminology{spline} models where we simply ``connect the dots'' with either straight lines, forming a \terminology{linear spline} model, or with cubic polynomials, forming a \terminology{cubic spline} model.%
+\begin{example}{Linear Spline Model.}{g:example:id140}%
+The graph of a linear spline is easy to form:%
+\begin{sageinput}
+data=[(5, 10), (13, 19), (25, 30), (42, 25), (50, 22), 
+	(62, 35), (75, 50), (90, 55), (100, 40), (120, 35)]
+plot1 = point(data, size=50, axes_labels=['Day','Liters'], 
+              title="Milk Production", 
+              frame=True, ymin=0, ymax=60)
+
+plot1 + list_plot(data, plotjoined=True)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/milkproductionlinspline.png}
+\end{image}%
+To use the model to make predictions, we need to know the slope and intercept of each line segment.  This is not difficult to obtain.  So for example, if we want to predict the liters of milk produced on Day 12, we would use the line segment between \((5,10)\) and \((13,19)\):%
+\begin{sageinput}
+var('m b')
+model(x) = m*x+b
+sol = find_fit([(5, 10), (13, 19)], model, solution_dict=True)
+sol
+\end{sageinput}
+\begin{sageoutput}
+{b: 4.375, m: 1.125}
+\end{sageoutput}
+\begin{sageinput}
+sol[m]*12 + sol[b]
+\end{sageinput}
+\begin{sageoutput}
+17.875
+\end{sageoutput}
+So the model predicts the cow will produce 17.875 liters of milk on Day 12.%
+\end{example}
+\begin{example}{Cubic Spline Model.}{g:example:id141}%
+Linear spline models are easy to calculate, but they do not form smooth curves.  In fact, the curve is not differentiable at any one of the data points.  This type of model predicts sharp changes at each data point that do not seem realistic.  To solve this problem we connect the dots with cubic polynomials instead of straight lines and put conditions on the derivatives of each segment.%
+\par
+To illustrate this process, we consider a set of three data points \(\{(x_1, y_1), 
+(x_2, y_2), (x_3, y_3)\}\) where \(x_1 \lt x_2 \lt x_3\).  Each \(x\)-value is called a \terminology{knot}.  We connect them using two cubic polynomials:%
+%
+\begin{equation*}
+\begin{aligned}
+p_1(x) \amp= a_1 + b_1 x + c_1 x^2 + d_1 x^3 \quad\text{for } x_1\le x \lt x_2 \\
+p_2(x) \amp= a_2 + b_2 x + c_2 x^2 + d_2 x^3 \quad\text{for } x_2\le x\le x_3.
+\end{aligned}
+\end{equation*}
+We now need to find the values of the eight parameters \(a_1\), \(b_1\), \(c_1\), \(d_1\), \(a_2\), \(b_2\), \(c_2\), and \(d_2\).  For the model to form a smooth curve that goes through each data point, we need to satisfy the following three conditions:%
+%
+\begin{enumerate}
+\item{}Each polynomial must pass through the two data points at the ends of the interval over which it is defined.%
+\item{}The first derivatives of two polynomials that meet must be equal at the point at which they meet.%
+\item{}The second derivatives of two polynomials that meet must be equal at the point at which they meet.%
+\end{enumerate}
+The first condition gives us the following four equations:%
+%
+\begin{equation*}
+\begin{aligned}
+p_1(x_1) \amp= a_1 + b_1 x_1 + c_1 x_1^2 + d_1 x_1^3 = y_1 \\
+p_1(x_2) \amp= a_1 + b_1 x_2 + c_1 x_2^2 + d_1 x_2^3 = y_2 \\
+p_2(x_2) \amp= a_2 + b_2 x_2 + c_2 x_2^2 + d_2 x_2^3 = y_2 \\
+p_2(x_3) \amp= a_2 + b_2 x_3 + c_2 x_3^2 + d_2 x_3^3 = y_3
+\end{aligned}
+\end{equation*}
+The first derivatives of the polynomial are%
+%
+\begin{equation*}
+p_1'(x) = b_1 + 2c_1 x + 3d_1 x^2, \qquad p_2'(x) = b_2 + 2c_2 x + 3d_2 x^2.
+\end{equation*}
+The second condition gives us the equation\slash{}%
+%
+\begin{equation*}
+p_1'(x_2) = b_1 + 2c_1 x_2 + 3d_1 x_2^2 = b_2 + 2c_2 x_2 + 3d_2 x_2^2 = p_2'(x_2)
+\end{equation*}
+The second derivatives of the polynomials are%
+%
+\begin{equation*}
+p_1''(x) = 2c_1 + 6d_1 x, \qquad p_2''(x) = 2c_2 + 6d_2 x.
+\end{equation*}
+The third condition then gives us the equation%
+%
+\begin{equation*}
+p_1''(x_2) = 2c_1 + 6d_1x_2 = 2c_2 + 6d_2x_2 = p_2''(x_2)
+\end{equation*}
+This gives us six equations for eight unknowns.  To uniquely determine the values of these unknowns, we need two more equations.  To this end, we specify the values of the second derivatives at the end points of the data set (at \(x_1\) and \(x_3\)).%
+\par
+If we want these second derivatives to be some known values, say \(m_1\) and \(m_2\), we would add the equations%
+%
+\begin{equation*}
+\begin{aligned}
+p_1''(x_1) \amp= 2c_1 + 6d_1 x_1 = m_1 \\
+p_2''(x_3) \amp= 2c_2 + 6d_2 x_3 = m_2
+\end{aligned}
+\end{equation*}
+The resulting model is called a \terminology{clamped spline}. If, however, we do not know the values of the derivatives, we simply set them equal to 0 and have the equations:%
+%
+\begin{equation*}
+\begin{aligned}
+p_1''(x_1) \amp= 2c_1 + 6d_1 x_1 = 0 \\
+p_2''(x_3) \amp= 2c_2 + 6d_2 x_3 = 0
+\end{aligned}
+\end{equation*}
+The resulting model is called a \terminology{natural spline} and is what's implemented by SageMath.%
+\par
+We can rewrite the above equations so that the constants are on the right-hand side:%
+%
+\begin{equation*}
+\begin{aligned}
+a_1 \amp + b_1 x_1 \amp + \hphantom{3}c_1 x_1^2 \amp + \hphantom{3}d_1 x_1^3 \amp \amp \amp \amp \amp = y_1 \\
+a_1 \amp + b_1 x_2 \amp + \hphantom{3}c_1 x_2^2 \amp + \hphantom{3}d_1 x_2^3 \amp \amp \amp \amp \amp = y_2 \\
+\amp \amp \amp \amp a_2 \amp + b_2 x_2 \amp + \hphantom{3}c_2 x_2^2 \amp + \hphantom{3}d_2 x_2^3 \amp  = y_2 \\
+\amp \amp \amp \amp a_2 \amp + b_2 x_3 \amp + \hphantom{3}c_2 x_3^2 \amp + \hphantom{3}d_2 x_3^3 \amp  = y_3 \\
+\amp \hphantom{{}+{}}b_1 \amp + 2c_1 x_2 \amp + 3d_1 x_2^2 \amp \amp -b_2 \amp - 2c_2 x_2 \amp - 3d_2 x_2^2 \amp = 0 \\
+\amp \amp 2c_1\hphantom{x_2} \amp + 6d_1x_2 \amp \amp \amp -2c_2\hphantom{x_2} \amp -6d_2 x_2 \amp = 0 \\
+\amp \amp 2c_1\hphantom{x_1} \amp + 6d_1x_1 \amp \amp \amp  \amp \amp = 0 \\
+\amp \amp \amp \amp \amp \amp \hphantom{{}-{}}2c_2\hphantom{x_2} \amp +6d_2 x_3 \amp = 0
+\end{aligned}
+\end{equation*}
+Rewriting this system in matrix form yields:%
+%
+\begin{equation*}
+\begin{bmatrix}
+1 \amp x_1 \amp x_1^2 \amp x_1^3 \amp 0 \amp 0 \amp 0\amp 0 \\
+1 \amp x_2 \amp x_2^2 \amp x_2^3 \amp 0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 1 \amp x_2 \amp x_2^2 \amp x_2^3 \\
+0 \amp 0 \amp 0 \amp 0 \amp 1 \amp x_3 \amp x_3^2 \amp x_3^3 \\
+0 \amp 1 \amp 2x_2 \amp 3x_2^2 \amp 0 \amp -1 \amp -2x_2 \amp -3x_2^2 \\
+0 \amp 0 \amp 2 \amp 6x_2 \amp 0 \amp 0 \amp -2 \amp -6x_2 \\
+0 \amp 0 \amp 2 \amp 6x_1 \amp 0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 2 \amp 6x_3	
+\end{bmatrix}
+\begin{bmatrix}
+a_1 \\
+b_1 \\
+c_1 \\
+d_1 \\
+a_2 \\
+b_2 \\
+c_2 \\
+d_2
+\end{bmatrix} = \begin{bmatrix}
+y_1 \\
+y_2 \\
+y_2 \\
+y_3 \\
+0 \\
+0 \\
+0 \\
+0
+\end{bmatrix}
+\end{equation*}
+which has the general form \(A\pmb{x}=\pmb{b}\) where \(\pmb{x}=(a_1, b_1, c_1, d_1, 
+a_2, b_2, c_2, d_2)\) is the vector of unknowns. We can solve this system using inverses, \(\pmb{x}=A^{-1}\pmb{b}\).%
+\par
+The good news is that rather than enter a large matrix into SageMath, we can take advantage of built-in commands to build cubic splines given a set of data. (For large sets of data the calculations for a cubic spline model can get quite complicated. For 11 data points, the model is made up of 10 separate cubic polynomials with a total of 40 unknown parameters. This results in a \(40 \times 40\) matrix \(A\).)%
+Suppose we want to fit a cubic spline to the three data points \(\{(75, 50), (95, 55), (100,40)\}\). We can enter the following commands into SageMath:%
+\begin{sageinput}
+data = [(75, 50), (95, 55), (100, 40)]
+S = spline(data)
+point(data, size=50, title="Natural Cubic Spline", 
+	axes_labels=["$x$", "$y$"],frame=True) + plot(S,75,100)
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/spline.png}
+\end{image}%
+We note that while we do not get a formula for the spline (as we would if we computed the solution with matrices), we can ask for the value of \(S\) or its derivative at a point, or the value of the definite integral (area under the curve) over an interval.%
+\begin{sageinput}
+S(82)
+\end{sageinput}
+\begin{sageoutput}
+59.73525
+\end{sageoutput}
+\begin{sageinput}
+S.derivative(95)
+\end{sageinput}
+\begin{sageoutput}
+-2.35
+\end{sageoutput}
+\begin{sageinput}
+S.definite_integral(75,100)
+\end{sageinput}
+\begin{sageoutput}
+1419.53125
+\end{sageoutput}
+What we cannot do is ask for any of these things outside the domain defined by the three points.%
+\begin{sageinput}
+S(70)
+\end{sageinput}
+\begin{sageoutput}
+nan
+\end{sageoutput}
+(``nan'' is short for ``not a number.'')%
+\par
+We can find cubic splines for any set of points with the same commands.%
+\begin{sageinput}
+data=[(5, 10), (13, 19), (25, 30), (42, 25), (50, 22), 
+	(62, 35), (75, 50), (90, 55), (100, 40), (120, 35)]
+plot1 = point(data, size=50, axes_labels=['Day','Liters'], 
+              title="Milk Production", 
+              frame=True, ymin=0, ymax=60)
+S = spline(data)
+show(plot1 + plot(S,5,120))
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/spline2.png}
+\end{image}%
+Notice how we avoid the problem we had with using a single polynomial model: the transition between points seems natural, and does not have wild oscillations. Thus we can use the spline to predict values in between data points.%
+\begin{sageinput}
+S(12)
+\end{sageinput}
+\begin{sageoutput}
+17.86114852882163
+\end{sageoutput}
+The cubic spline model predicts that the cow will produce 17.861 liters of milk on Day 12. (The linear spline model predicted 17.875 liters.)%
+\end{example}
+\begin{inlineexercise}{}{g:exercise:id142}%
+A researcher observes a particle moving in a straight line and measures its velocity at three points in time as recorded in the table below. He wants to estimate how far the particle traveled over the interval of time \([0, 5]\).%
+%
+\begin{equation*}
+\begin{array}{r|ccc}\hline\hline
+\textbf{Time (sec)} \amp 0 \amp 2 \amp 5 \\\hline
+\textbf{Velocity (m/sec)} \amp 0 \amp 60 \amp 85 \\\hline\hline
+\end{array}
+\end{equation*}
+In general, if \(f(t)\) = velocity of an object at time \(t\), we can calculate the distance it traveled over an interval of time \([t_0, t_1]\) by%
+%
+\begin{equation*}
+\textrm{Distance} = \int_{t_0}^{t_1} |f(t)|\,dt 
+\end{equation*}
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Fit a linear spline model to the data to estimate \(f(t)\) and use the result to estimate the distance traveled. What is the meaning of the slope of each of the line segments?%
+\item{}Fit a cubic spline model to the data to estimate \(f(t)\) and use the result to estimate the distance traveled. Also, estimate the acceleration at time \(t=1.5\).%
+\item{}Which of the two estimates of the distance traveled do you think is more accurate? Why?%
+\end{enumerate}
+\end{inlineexercise}%
+\end{sectionptx}
+\end{chapterptx}
+ %
+%
+\typeout{************************************************}
+\typeout{Chapter 8 Discrete Dynamical Systems}
+\typeout{************************************************}
+%
+\begin{chapterptx}{Discrete Dynamical Systems}{}{Discrete Dynamical Systems}{}{}{x:chapter:discrete-dynamical}
+%
+%
+\typeout{************************************************}
+\typeout{Section 8.1 Introduction}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Introduction}{}{Introduction}{}{}{x:section:introduction-dds}
+\begin{introduction}{}%
+A dynamical system is simply a system that changes over time.  The bacterial growth model from \hyperref[x:part:part-modeling-intro]{Part~{\xreffont\ref{x:part:part-modeling-intro}}} is one such example. When time is measured in discrete increments, as in the bacterial growth example, the system is called a discrete dynamical system.%
+\par
+Dynamical systems are ``easy to [model] and hard to solve'' (Meerschaert, Mark M., \emph{Mathematical Modeling}, Second ed., Academic Press, 1999, p. 127). In this chapter we will introduce basic techniques for formulating dynamical models and graphical approaches to their analysis.%
+\par
+In mathematical terms, a discrete dynamical system is simply a sequence of numbers. Consider a savings account that is compouned yearly and the interest is added at the end of each year. If \(a_n\) is the amount in the account at the end of year \(n\) (\(n = 0, 1, \dots\)) and \(r\) is the interest rate, we have the sequence%
+\end{introduction}%
+%
+\begin{equation*}
+\begin{aligned}
+a_1 \amp= a_0 + r\,a_0 = (1+r)\,a_0 \\
+a_2 \amp= a_1 + r\,a_1 = (1+r)\,a_1 \\
+\amp \vdots \\
+a_{n+1} \amp= a_n + r\,a_n = (1+r)\,a_n
+\end{aligned}
+\end{equation*}
+This last equation leads us to the formal definition of a dynamical system.%
+\begin{definition}{Discrete Dynamical System.}{g:definition:id143}%
+A \terminology{discrete dynamical system} is a sequence of numbers \(\{a_n\mid n=0, 1, \dots\}\) defined by a relation of the form%
+%
+\begin{equation*}
+a_{n+1} = f(n)
+\end{equation*}
+where \(f\) is some real-valued function.%
+\end{definition}
+The variable \(a_n\) is generically called the \terminology{state of the system}. In simpler terms, a discrete dynamical system is one in which the state of the system is determined by the previous state. In the savings account example there is only one component to the system (the amount in the account), so it is called \terminology{one-dimensional}.%
+\par
+When the function \(f\) has the form \(f(x) = bx\) where \(b\) is a constant, the dynamical system is called \terminology{linear}.%
+\begin{definition}{Linear Discrete Dynamical System.}{g:definition:id144}%
+A \terminology{linear discrete dynamical system} is a sequence of numbers \(\{a_n\mid n=0, 1, \dots\}\) defined by a relation of the form%
+%
+\begin{equation*}
+a_{n+1} = ba_n
+\end{equation*}
+where \(b\ne 0\) is a constant.%
+\end{definition}
+A dynamical system that does not have this form is generically referred to as \terminology{non-linear}. A \terminology{solution} of a discrete dynamical system is an explicit description of \(a_n\) in terms of \(n\) and the initial state \(a_0\).%
+\begin{theorem}{}{}{x:theorem:lindynsolution}%
+The solution of a linear dynamical system \(a_{n+1}=b a_n\) for \(b\ne 0\) is%
+%
+\begin{equation}
+a_n = b^n a_0\label{x:men:linsol}
+\end{equation}
+where \(a_0\) is the initial state.%
+\end{theorem}
+\begin{proof}{}{g:proof:id145}
+We first need to show that \hyperref[x:men:linsol]{({\xreffont\ref{x:men:linsol}})} satisfies the initial condition. Note that in \hyperref[x:men:linsol]{({\xreffont\ref{x:men:linsol}})},%
+%
+\begin{equation*}
+a_0=b^0a_0=a_0,
+\end{equation*}
+so the initial condition is satisfied. Next, we need to show that \hyperref[x:men:linsol]{({\xreffont\ref{x:men:linsol}})} satisfies the defiinition of a linear discrete dynamical system. Note that%
+%
+\begin{equation*}
+a_{n+1}=b_{n+1}a_0 = b(b^na_0) = ba_n
+\end{equation*}
+as required.%
+\end{proof}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 8.2 Long-Term Behavior and Equilibria}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Long-Term Behavior and Equilibria}{}{Long-Term Behavior and Equilibria}{}{}{x:section:long-term-behavior-dds}
+\begin{introduction}{}%
+\hyperref[x:men:linsol]{({\xreffont\ref{x:men:linsol}})} gives us an easy–to–use formula for finding the exact value of \(a_n\). However we are usually more interested in describing the long–term behavior of the system than in finding exact values at points in time. That is, we want to know what happens to \(a_n\) for large values of \(n\).%
+\end{introduction}%
+\begin{example}{Long-term Behavior.}{x:example:long-term-behavior}%
+Let's graphically examine the long-term behavior of a linear dynamical system \(a_{n+1} = ba_n\) for various values of \(b\).  For simplicity, suppose that \(a_0 = 0.1\).%
+\begin{sageinput}
+var('b')
+b = 2.1
+f(x) = b*x
+a = [0.1] # Note that this is a *list* containing our initial value.  So a[0]=0.1.
+n = 15
+for i in range(n):
+    a.append(f(a[i]))
+\end{sageinput}
+\begin{sageinput}
+a
+\end{sageinput}
+\begin{sageoutput}
+[0.100000000000000,
+ 0.210000000000000,
+ 0.441000000000000,
+ 0.926100000000000,
+ 1.94481000000000,
+ 4.08410100000000,
+ 8.57661210000000,
+ 18.0108854100000,
+ 37.8228593610000,
+ 79.4280046581001,
+ 166.798809782010,
+ 350.277500542221,
+ 735.582751138665,
+ 1544.72377739120,
+ 3243.91993252151,
+ 6812.23185829517]
+\end{sageoutput}
+\begin{sageinput}
+points = list(zip(range(n),a))
+points
+\end{sageinput}
+\begin{sageoutput}
+[(0, 0.100000000000000),
+ (1, 0.210000000000000),
+ (2, 0.441000000000000),
+ (3, 0.926100000000000),
+ (4, 1.94481000000000),
+ (5, 4.08410100000000),
+ (6, 8.57661210000000),
+ (7, 18.0108854100000),
+ (8, 37.8228593610000),
+ (9, 79.4280046581001),
+ (10, 166.798809782010),
+ (11, 350.277500542221),
+ (12, 735.582751138665),
+ (13, 1544.72377739120),
+ (14, 3243.91993252151)]
+\end{sageoutput}
+\begin{sageinput}
+point(points,size=50) + \
+list_plot(points,plotjoined=True,axes_labels=['$n$','$a_n$'], 
+            title="Dynamical Systems")
+\end{sageinput}
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/dynsystemgraph.png}
+\end{image}%
+Up above, we can change the value of \(b\), re-execute all these cells and get a different set of points and a different graph.  However, this can get tedious fast, especially if we want to investigate behavior of a lot of different values for \(b\). We can make this process interactive by use of sliders.%
+\begin{sageinput}
+@interact
+def dynamical(b=(0.5,(-2,2,0.04)), 
+				a0 = input_box(default=0.1), 
+				n = (15,(1,50,1))):
+    f(x) = b*x
+    a = [float(a0)]
+    for i in range(n):
+        a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True,
+         axes_labels=['$n$','$a_n$'],
+        title="Dynamical Systems"))
+\end{sageinput}
+Move the slider on the scroll bar for \(b\) left and right and notice how the behavior of the system changes, especially when \(b\) passes \(-1, 0,\) and +1. Our observations are summarized in the table below. As we can see, the long–term behavior of the system is dramatically affected by the value of \(b\).%
+%
+\begin{equation*}
+\begin{array}{r|l}\hline\hline
+\textbf{Value of $\pmb{b}$} \amp \textbf{Behavior of $\pmb{a_n}$} \\\hline
+b \lt -1 \amp \textrm{Oscillates between pos. and neg., $|a_n|$ grows without bound} \\\hline
+b = -1 \amp \textrm{Oscillates between $-a_0$ and $+a_0$} \\\hline
+-1 \lt b \lt 0 \amp \textrm{Oscillates between pos. and neg., $|a_n|$ approaches 0} \\\hline
+b = 0 \amp \textrm{$a_n = 0$ for $n > 0$} \\\hline
+0\lt b \lt 1 \amp \textrm{$a_n$ approaches 0} \\\hline 
+b = 1 \amp \textrm{$a_n = a_0$ for all $n$} \\\hline
+b \gt 1 \amp \textrm{$a_n$ grows without bound} \\\hline\hline
+\end{array}
+\end{equation*}
+\end{example}
+Now consider a savings account that pays 5\% interest compounded yearly. We saw in \hyperref[x:section:introduction-dds]{Section~{\xreffont\ref{x:section:introduction-dds}}} that a model for an account with an interest rate \(r\) is%
+%
+\begin{equation*}
+a_{n+1} = (1+r)a_n 
+\end{equation*}
+In this case, we have \(r = 0.05\), so our model is%
+%
+\begin{equation*}
+a_{n+1} = 1.05a_n.
+\end{equation*}
+Suppose now that we want to withdraw \textdollar{}2,000 at the end of each year to supplement our income. We want to know how much money we need to deposit now so that we never run out of money.%
+\par
+To answer this question, we will analyze a slightly more general problem: What happens to the amount in the account in terms of the initial deposit? First we will construct our model. The amount in the account grows at 5\% compounded yearly but we are withdrawing \textdollar{}2,000 each year. A dynamic model that describes this scenario is%
+%
+\begin{equation*}
+a_{n+1} = 1.05 a_n - 2000. 
+\end{equation*}
+As before, \(a_n\) is the amount in the account at the end of year \(n\). We are also assuming that there is no penalty for withdrawing money each year and that we withdraw the money after the interest from the previous year has been added. This system is an example of an \terminology{affine dynamical system.}%
+\begin{definition}{Affine Discrete Dynamical System.}{g:definition:id146}%
+An \terminology{affine discrete dynamical system} is a sequence of numbers \(\{a_n\mid n = 0, 1, 2, \dots\}\) described by a relation of the form%
+%
+\begin{equation*}
+a_{n+1} = ba_n + m 
+\end{equation*}
+where \(b\ne 0\).%
+\end{definition}
+Central to the analysis of the long–term behavior of any dynamical system are \terminology{equilibrium values} (also called \terminology{fixed points}).%
+\begin{definition}{Equilibrium Value.}{g:definition:id147}%
+A number \(a\) is called an \terminology{equilibrium value} for the dynamical system \(a_{n+1} = f(a_n)\) if \(a_n = a\) for all \(n\) whenever \(a_0 = a\).%
+\end{definition}
+To find equilibrium values, note that if \(a\) is an equilibrium value, we must have%
+%
+\begin{equation*}
+a_{n+1} = a_n = a \quad\Rightarrow \quad f(a) = a 
+\end{equation*}
+So finding equilibrium values simply requires us to solve the equation \(f(a) = a\). For an affine system, we have%
+%
+\begin{equation*}
+a = ba+m \quad\Rightarrow \quad a = \frac{m}{1-b} 
+\end{equation*}
+In this example, \(b=1.05\) and \(m=-2000\), so the equilibrium value is \(a=\frac{-2000}{1-1.05} = 40,000\). Thus if we start with \textdollar{}40,000 in the account and withdraw \textdollar{}2,000 at the end of each year, we will always have the same amount in the account at the end of each year.%
+\begin{example}{Savings Account.}{x:example:dds-savings-acct}%
+We will take a graphical approach to analyze what happens for initial values other than the equilibrium value of \textdollar{}40,000.%
+\begin{sageinput}
+@interact
+def dynamical(b=(1.05,(-2,2,0.05)), m=input_box(default=0), 
+              a0 = slider(0,80000,1, default=40000, \
+              label=r'\(a_0\)'), \
+              n = slider(1,50,step_size=1, \
+              default=15,label='Number of steps')):
+    f(x) = b*x+m
+    a = [float(a0)]
+    for i in range(n):
+        a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True, \
+         axes_labels=['$n$','$a_n$'], \
+         title="Generalized Savings Account", \
+         ymin=0, ymax=80000))
+\end{sageinput}
+Type in -2000 for \(m\) and then move the slider for \(a_0\) left and right and observe how the long–term behavior of the system changes. Specifically, note that for \(a_0\) less than \textdollar{}40,000, the amount in the account eventually decreases to 0 and for \(a_0\) greater than \textdollar{}40,000, the amount grows without bound.%
+\end{example}
+In \hyperref[x:example:dds-savings-acct]{Example~{\xreffont\ref{x:example:dds-savings-acct}}} we saw that the long–term behavior of the system changed quite dramatically with a small change in \(a_0\). In situations like this we say that the system is sensitive to the initial condition.%
+\par
+We note that if \(a_0\ne 40,000\), the system either approaches 0 or increases without bound. This is an example of an \terminology{unstable} or \terminology{repelling} equilibrium.%
 \end{sectionptx}
 \end{chapterptx}
 \end{partptx}
