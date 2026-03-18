@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-03-18T11:48:05-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Sidetrip: Interactivity in SageMath</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="multiple-regression.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="linearalgebra.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="spline-models.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="multiple-regression.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="linearalgebra.html" title="Up">Up</a><a class="next-button button toolbar-item" href="spline-models.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks">Working with Jupyter notebooks</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination">Coefficient of Determination</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="linearalgebra.html" data-scroll="linearalgebra"><span class="codenumber">7</span> <span class="title">Linear Algebra</span></a><ul>
+<li><a href="linear-algebra-basics.html" data-scroll="linear-algebra-basics">Linear Algebra Basics</a></li>
+<li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
+<li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
+<li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity" class="active">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="interactivity"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">7.5</span> <span class="title">Sidetrip: Interactivity in SageMath</span>
+</h2>
+<section class="introduction" id="introduction-28"><p id="p-716">We have programmed modules to be interactive in nature by having them prompt a user for input (credit card interest example). Other ways of employing interactivity is through the use of things like sliders, checkboxes, and radio buttons. We will build a working example slowly that will lead to more complex ones, and your next homework assignment.</p>
+<p id="p-717">Let's build a graph plotter that has some options. We'll start by getting the commands for what we want the output to look like. Here we just want a simple plot.</p></section><div class="sagecell-sage" id="sage-252"><script type="text/x-sage">plot(x^2,(x,-3,3))
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x2curve.png" class="contained" alt=""></div>
+<p id="p-718">Now we abstract out the parts we want to change. We’ll be letting the user change the function, so let’s make that a variable \(f\text{.}\)</p>
+<div class="sagecell-sage" id="sage-253"><script type="text/x-sage">f = x^2
+plot(f, (x, -3, 3))
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x2curve.png" class="contained" alt=""></div>
+<p id="p-719">This was important because it allowed us to step back and think about what we would really be doing.</p>
+<p id="p-720">Now for the technical part. We make this a <code class="code-inline tex2jax_ignore">def</code> function.</p>
+<div class="sagecell-sage" id="sage-254"><script type="text/x-sage">def myplot(f = x^2):
+    show(plot(f, (x, -3, 3)))
+</script></div>
+<div class="sagecell-sage" id="sage-255"><script type="text/x-sage">myplot()
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x2curve.png" class="contained" alt=""></div>
+<p id="p-721">If we call it with a different value for \(f\text{,}\) we should get a different plot.</p>
+<div class="sagecell-sage" id="sage-256"><script type="text/x-sage">myplot(x^3)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x3curve.png" class="contained" alt=""></div>
+<p id="p-722">So far, we’ve only defined a new function, so this was review. To make a “control” to allow the user to interactively enter the function, we just preface the function with <code class="code-inline tex2jax_ignore">@interact</code>.</p>
+<div class="sagecell-sage" id="sage-257"><script type="text/x-sage">@interact
+def myplot(f=x^2):
+    show(plot(f, (x, -3, 3)))
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x2interactive.png" class="contained" alt=""></div>
+<p id="p-723">Note that we can still call our function, even when we’ve used <code class="code-inline tex2jax_ignore">@interact</code>. This is often useful in debugging it.</p>
+<div class="sagecell-sage" id="sage-258"><script type="text/x-sage">myplot(x^4)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x4curve.png" class="contained" alt=""></div>
+<section class="subsection" id="subsection-24"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.5.1</span> <span class="title">Adding complexity</span>
+</h3>
+<p id="p-724">We can go ahead and replace other parts of the expression with variables. Note that <code class="code-inline tex2jax_ignore">_</code> is the function name now. That is a just convention for throw-away names that we don’t care about.</p>
+<div class="sagecell-sage" id="sage-259"><script type="text/x-sage">@interact
+def _(f = x^2, a = -3, b = 3):
+    show(plot(f, (x, a, b)))
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x2interactive2.png" class="contained" alt=""></div>
+<p id="p-725">If we pass ('label', default_value) in for a control, then the control gets the label when printed. Here, we’ve put in some text for all three of them. Remember that the text must be in quotes! Otherwise Sage will think that you are referring (for example) to some variable called “lower”, which it will think you forgot to define.</p>
+<div class="sagecell-sage" id="sage-260"><script type="text/x-sage">@interact
+def _(f=(r'\(f\)', x^2), a=('lower', -3), b=('upper', 3)):
+    show(plot(f,(x,a,b)))
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x2interactive3.png" class="contained" alt=""></div>
+<p id="p-726">On the label above for the function \(f\text{,}\) note that we use the <code class="code-inline tex2jax_ignore">r</code> indicator for raw string because of the backslashes in the LaTeX code.</p>
+<p id="p-727">We can specify the type of control explicitly, along with options. (We will look more closely at the various types of controls in a moment.)</p>
+<div class="sagecell-sage" id="sage-261"><script type="text/x-sage">@interact
+def _(f=input_box(x^2, width=10, label=r'\(f\)')):
+    show(plot(f,(x,-3,3)))
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/x2interactive4.png" class="contained" alt=""></div>
+<p id="p-728">For this version, we demonstrate a bunch of options. Notice the new controls:</p>
+<ul class="disc">
+<li id="li-62"><p id="p-729"><code class="code-inline tex2jax_ignore">range_slider</code>, which passes in two values, <code class="code-inline tex2jax_ignore">zoom[0]</code> and <code class="code-inline tex2jax_ignore">zoom[1]</code>.</p></li>
+<li id="li-63"><p id="p-730"><code class="code-inline tex2jax_ignore">True/False</code> gets converted to checkboxes for the end user.</p></li>
+</ul>
+<div class="sagecell-sage" id="sage-262"><script type="text/x-sage">@interact
+def _(f=input_box(x^2,width=20),
+     color=color_selector(widget='colorpicker', label=""),
+     axes=True,
+     fill=True,
+     zoom=range_slider(-3,3,default=(-3,3))):
+    show(plot(f,(x,zoom[0], zoom[1]), color=color, axes=axes,fill=fill))
+</script></div></section><section class="subsection" id="subsection-25"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">7.5.2</span> <span class="title">The process for building interacts</span>
+</h3>
+<p id="p-731">Interactive modules (or interacts) are the types of things that are generally put together to install on a webpage. (For instance, I have various interacts installed on my Differential Equations Brightspace page.) We will walk together through the process of building an interact that, for instance, Calculus I students might find useful: drawing a moving tangent line to a simple second-degree polynomial. Here are the stages:</p>
+<ul class="disc">
+<li id="li-64"><p id="p-732">Concept development -- take time to actually nail down precisely what you want the interact to do. Think of this as not only a layout, but a behavior model. (If I click here, this happens; if I click there, this other thing happens, et cetera. . . )</p></li>
+<li id="li-65"><p id="p-733">Design a subroutine in SageMath (using <code class="code-inline tex2jax_ignore">def</code>) that represents one round, cycle, or phase of the interact.</p></li>
+<li id="li-66"><p id="p-734">Polish this subroutine until it is just right, with all the input and output just as you want it to be, including colors and so forth.</p></li>
+<li id="li-67"><p id="p-735">Convert this subroutine into an interact subroutine within SageMath or CoCalc, using the <code class="code-inline tex2jax_ignore">@interact</code> and <code class="code-inline tex2jax_ignore">slider</code> commands.</p></li>
+</ul>
+<p id="p-736">If we were building this for, say, an internal webpage for a company, we would then use some HTML code to install our interact on the webpage so that anyone with access to the page could use it. For now, we will rest with getting an interactive to work in SageMath/CoCalc.</p></section><article class="example example-like" id="example-43"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-43"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.5.1</span><span class="period">.</span><span class="space"> </span><span class="title">Tangent line interact.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-43"><article class="example example-like"><section class="paragraphs" id="paragraphs-1"><h5 class="heading"><span class="title">Concept development.</span></h5>
+<p id="p-737">Before actually coding anything, we should try to define precisely what we want the interact to do.</p>
+<p id="p-738">Generally, the best example for illustrating a mathematical idea should be neither too complex nor too simple. In this case, we want to draw a tangent line and show an early calculus student (perhaps two or three weeks into the course) what a tangent line looks like. It will be useful to choose the drawn function to be something simple -- like a polynomial. We will choose the function \(f(x) = x^3 -x\text{.}\)</p>
+<p id="p-739">Next, we will focus on what the user will be allowed to change, and what the user will not be allowed to change. These will become the controls for the interact. The user should be able to change the \(x\)-coordinate of the point where the tangent line is drawn, but not the \(y\)-coordinate, which should be computed by the interact. In this way, the user will never choose a point that is not on the curve \(y = x^3 - x\text{.}\)</p>
+<p id="p-740">It may be useful to make a sketch of what the output will look like. How can we optimally display the circumstances to show sufficient detail -- but not so much detail as to confuse someone?</p></section><section class="paragraphs" id="paragraphs-2"><h5 class="heading"><span class="title">Design the subroutine.</span></h5>
+<p id="p-741">Here is the code for the subroutine.</p></section><div class="hidden-sagecell-sage" id="sage-263"><script type="text/x-sage">f(x) = x^3 - x
+
+f_prime(x) = diff(f(x), x)
+
+def tangent_at_point( x_0 ):
+    y_0 = f(x_0)
+    m = f_prime(x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x), (x, -2, 2), color='blue')
+    p2 = plot(m*x + b, (x, -2, 2), color='tan')
+    p3 = point((x_0, y_0), color='red', size=100)
+    
+    show(p1+p2+p3)
+</script></div>
+<p id="p-742">We first declare the function \(f(x) = x^3 - x\) and then declare a second function for the derivative. One point to note: we all know that \(f'(x) = 3x^2-1\text{,}\) so why didn't we just hard-code that function instead of having SageMath compute it as we did? Because we may wish to use another function later on, and an easy mistake to make is to change \(f\) but forget to change \(f'\text{.}\)</p>
+<p id="p-743">We next use the <code class="code-inline tex2jax_ignore">def</code> command to define our subroutine and name it <code class="code-inline tex2jax_ignore">tangent_at_point</code>. This subroutine will be the nucleus of our working interact. (We will slowly evolve it.)</p>
+<p id="p-744">A tangent line can be produced when we have three ingredients: the slope, the \(x\)-coordinate, and the \(y\)-coordinate. The \(x\)-coordinate will eventually come from a slider when we're through, but right now it's a real number input (called \(x_0\)) to the subroutine we are creating with the <code class="code-inline tex2jax_ignore">def</code> command. Most interacts have multiple sliders because they need more parameters.</p>
+<p id="p-745">We then have SageMath compute the \(y\)-coordinate and the slope from \(f(x_0)\) and \(f'(x_0)\text{,}\) respectivly. Usually a student would use the point-slope formula \(y-y_0 = m(x-x_0)\) to get the equation of the tangent line and then use algebra to change it into the slope-intercept form \(y=mx+b\text{.}\) However, when coding, we should have an explicit formula for \(b\text{.}\) The four lines of comments in the code show the derivation of our formula for \(b\text{.}\)</p>
+<p id="p-746">Three plot commands follow. The first plots \(f(x)\) on the interval \((-2,2)\) in blue; the second plots the tangent line in tan; the third puts a big red dot at their intersection and is useful to draw the user's attention. We then show the plots all superimposed together.</p>
+<section class="paragraphs" id="paragraphs-3"><h5 class="heading"><span class="title">Polish the subroutine.</span></h5>
+<p id="p-747">We are at the point where we should run the subroutine and tinker with it if needed: adjust the framing of the graphs, change colors, etc.</p></section><div class="hidden-sagecell-sage" id="sage-264"><script type="text/x-sage">tangent_at_point(0.5)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline1.png" class="contained" alt=""></div>
+<div class="hidden-sagecell-sage" id="sage-265"><script type="text/x-sage">tangent_at_point(1.5)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline2.png" class="contained" alt=""></div>
+<div class="hidden-sagecell-sage" id="sage-266"><script type="text/x-sage">tangent_at_point(-1.75)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline3.png" class="contained" alt=""></div>
+<p id="p-748">These aren't bad but there's room for improvement. For example, in the last plot, the tangent line is relatively steep (with a slope of 8.1875), thus the tangent line actually goes up to \(y = 25\) before exiting the plot. This makes the cubic curve appear tiny, because the curve goes up only to \(y = 6\text{.}\) Therefore, we will bound the \(y\)-coordinates of the plots. We do this for both \(f(x)\) and the tangent line, restricting them to \(-6 &lt; y &lt; 6\text{,}\) because that is the range of \(f(x) = x^3 - x\) over the domain \(-2 &lt; x &lt; 2\text{.}\)</p>
+<p id="p-749">If you look at the new and improved code below, you will see <code class="code-inline tex2jax_ignore">ymin</code> and <code class="code-inline tex2jax_ignore">ymax</code> options inside the first two <code class="code-inline tex2jax_ignore">plot</code> commands.</p>
+<div class="hidden-sagecell-sage" id="sage-267"><script type="text/x-sage">f(x) = x^3 - x
+
+f_prime(x) = diff(f(x), x)
+
+def tangent_at_point( x_0 ):
+    y_0 = f(x_0)
+    m = f_prime(x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x), (x, -2, 2), color='blue', ymin = -6, ymax = 6, gridlines = 'minor')
+    p2 = plot(m*x + b, (x, -2, 2), color='tan', ymin = -6, ymax = 6)
+    p3 = point((x_0, y_0), color='red', size=50)
+    
+    show(p1+p2+p3)
+    
+    print()
+    print("x_0 = ", x_0)
+    print("y_0 = f(x_0) = ", y_0)
+    print("m = f'(x_0) = ", m)
+    print("tangent line: y = ", m, "x + ", b)
+</script></div>
+<p id="p-750">There are other changes to the code. The red dot seemed large, so we lowered its area from 100 to 50. We also thought a gridline background would be helpful so we added the option <code class="code-inline tex2jax_ignore">gridlines = 'minor'</code> in the command for <code class="code-inline tex2jax_ignore">p1</code>. Since <code class="code-inline tex2jax_ignore">p1</code> is the “bottom” of the superimposed plots, it will show up when we actually do superimpose the three plots.</p>
+<p id="p-751">Sometimes, showing information about what the user is seeing is useful, so we have the <code class="code-inline tex2jax_ignore">print</code> statements at the end. We can now re-execute our test cases and show that they look much better.</p>
+<div class="hidden-sagecell-sage" id="sage-268"><script type="text/x-sage">tangent_at_point(0.5)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline4.png" class="contained" alt=""></div>
+<div class="hidden-sagecell-sage" id="sage-269"><script type="text/x-sage">tangent_at_point(1.5)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline5.png" class="contained" alt=""></div>
+<div class="hidden-sagecell-sage" id="sage-270"><script type="text/x-sage">tangent_at_point(-1.75)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanline6.png" class="contained" alt=""></div>
+<section class="paragraphs" id="paragraphs-4"><h5 class="heading"><span class="title">Convert to an interactive subroutine.</span></h5>
+<p id="p-752">Now we'll invoke the <code class="code-inline tex2jax_ignore">@interact</code> command and see how to make sliders for the parameters in our subroutine. Three changes will be made in the code now, two of which are minor, but one of which takes a bit of explaining.</p></section><div class="hidden-sagecell-sage" id="sage-271"><script type="text/x-sage">f(x) = x^3 - x
+
+f_prime(x) = diff(f(x), x)
+
+@interact
+def tangent_at_point( x_0 = slider(-2, 2, 0.1, default = -1.5, label = "x-coordinate") ):
+    y_0 = f(x_0)
+    m = f_prime(x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x), (x, -2, 2), color='blue', ymin = -6, ymax = 6, gridlines = 'minor')
+    p2 = plot(m*x + b, (x, -2, 2), color='tan', ymin = -6, ymax = 6)
+    p3 = point((x_0, y_0), color='red', size=50)
+    
+    show(p1+p2+p3)
+    
+    print()
+    print("x_0 = ", x_0)
+    print("y_0 = f(x_0) = ", y_0)
+    print("m = f'(x_0) = ", m)
+    print("tangent line: y = ", m, "x + ", b)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanlineinteractive.png" class="contained" alt=""></div>
+<p id="p-753">First, note that we've added the <code class="code-inline tex2jax_ignore">@interact</code> command on the line right above the <code class="code-inline tex2jax_ignore">def</code> command. This signals SageMath that what follows is an interact.</p>
+<p id="p-754">Second, and this requires a bit of explaining, we have used the <code class="code-inline tex2jax_ignore">slider</code> command to change \(x_0\) from a numerical input into a slider that the user can manipulate. The first two parameters tell SageMath that the \(x_0\) variable will be restricted to the interval \(-2 \le x \le 2\text{.}\) The third parameter tells SageMath the granularity of the slider. In this case, we want each move to represent 1/10. Thus if the slider is at \(x_0 = 0.5\text{,}\) the two positions to either side would be 0.4 and 0.6. The fourth parameter represents the initial condition. In this case, the slider will start out with \(x_0\) set to \(-1.5\text{,}\) but the user can move it around to other values. Finally, the fifth parameter (which is optional) will give a human-readable label to the slider.</p>
+<p id="p-755">This means that if we have to call this subroutine now, we would call it without an argument and just type <code class="code-inline tex2jax_ignore">tangent_at_point()</code> because we are no longer passing \(x_0\) to the subroutine.</p>
+<p id="p-756">We can increase the interactivity of this app. We can have the user type in their own function \(f\text{,}\) and we can also use sliders to have the user control the domain of the graph (\(x_1\) to \(x_2\)) as well as the range (\(y_1\) to \(y_2\)). Note that weird things can happen if either \(x_1\ge x_2\) or \(y_1\ge y_2\text{.}\) (There is a way to make sure this doesn't happen but it's more complicated -- for now, we'll just assume users know to always have \(x_1\lt x_2\) and \(y_1 \lt y_2\text{.}\))</p>
+<div class="hidden-sagecell-sage" id="sage-272"><script type="text/x-sage">@interact
+def tangent_at_point( f = (r'\(f\)', x^3-x), x_0 = slider(-2, 2, 0.1, default = -1.5, label = "x-coordinate"),
+                    x1 = slider(-10, 10, 0.1, default = -2, label = "xmin"),
+                    x2 = slider(-10, 10, 0.1, default = 2, label = "xmax"),
+                    y1 = slider(-10, 10, 0.1, default = -6, label = "ymin"),
+                    y2 = slider(-10, 10, 0.1, default = 6, label = "ymax")):
+
+    y_0 = f(x=x_0)
+    f_prime(x) = diff(f, x)
+    m = f_prime(x=x_0)
+    
+    # because y - y_0 = m*(x - x_0) we know that
+    # y - y_0 = m*x - m*x_0
+    # y = m*x + y_0 - m*x_0
+    # therefore b = y_0 - m*x_0
+    
+    b = y_0 - m*x_0
+    
+    p1 = plot(f(x=x), (x, x1, x2), color='blue', ymin = y1, ymax = y2, gridlines = 'minor')
+    p2 = plot(m*x + b, (x, x1, x2), color='tan', ymin = y1, ymax = y2)
+    p3 = point((x_0, y_0), color='red', size=50)
+    
+    show(p1+p2+p3)
+    
+    print()
+    print("x_0 = ", x_0)
+    print("y_0 = f(x_0) = ", y_0)
+    print("m = f'(x_0) = ", m)
+    print("tangent line: y = ", m, "x + ", b)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/tanlinesuperinteractive.png" class="contained" alt=""></div></article></div>
+<article class="exercise exercise-like" id="exercise-42"><a data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-42"><h6 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">7.5.2</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-42"><article class="exercise exercise-like"><p id="p-757">Suppose you are going to teach about sine waves as they occur in light, electricity, sound and so forth. For example, maybe you wish to explain to the student the role of amplitude and angular velocity (radians per second). In summary, imagine that you want to make an interact which will graph</p>
+<div class="displaymath">
+\begin{equation*}
+f(t) = A\sin(\omega t)
+\end{equation*}
+</div>
+<p id="p-758">where \(A\) and \(\omega\) are controlled by sliders.</p>
+<p id="p-759">For the plot, I recommend using \(-10 \lt x \lt 10\) and \(-5 \lt y \lt 5\text{.}\) For the amplitude, while one could see advantages to forcing the amplitude to be positive, I think it might be nice for students to learn the effect of \(A \le 0\text{,}\) so I recommend \(-5 \le A \le 5\) volts. For \(\omega\text{,}\) it might be confusing to explain what \(\omega = 0\) represents, so perhaps \(0.5 \le \omega \le 5\) is a good choice. Try \(A\) in a granularity of each step being \(1/4\)th of a volt and \(\omega\) in a granularity of \(1/2\) radians per second.</p></article></div></section></div></main>
+</div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

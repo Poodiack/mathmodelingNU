@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-03-18T11:48:05-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Spline Models</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="interactivity.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="linearalgebra.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="discrete-dynamical.html" title="Next">Next</a></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="interactivity.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="linearalgebra.html" title="Up">Up</a><a class="next-button button toolbar-item" href="discrete-dynamical.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks">Working with Jupyter notebooks</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination">Coefficient of Determination</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="linearalgebra.html" data-scroll="linearalgebra"><span class="codenumber">7</span> <span class="title">Linear Algebra</span></a><ul>
+<li><a href="linear-algebra-basics.html" data-scroll="linear-algebra-basics">Linear Algebra Basics</a></li>
+<li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
+<li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
+<li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models" class="active">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="spline-models"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">7.6</span> <span class="title">Spline Models</span>
+</h2>
+<section class="introduction" id="introduction-29"><p id="p-760">Consider the data below that gives the liter of milk given by a dairy cow on each of several different days after she begins producing.</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{r|cccccccccc}
+\textbf{Day} \amp 5 \amp 13 \amp 25 \amp 42 \amp 50 \amp 62 \amp 75 \amp 90 \amp 100 \amp 120 \\\hline
+\textbf{Liters} \amp 10 \amp 19 \amp 30 \amp 25 \amp 22 \amp 35 \amp 50 \amp 55 \amp 40 \amp 35
+\end{array}
+\end{equation*}
+</div>
+<p id="p-761">A graph of the data is shown below.</p></section><div class="sagecell-sage" id="sage-273"><script type="text/x-sage">data=[(5, 10), (13, 19), (25, 30), (42, 25), (50, 22), 
+	(62, 35), (75, 50), (90, 55), (100, 40), (120, 35)]
+plot1 = point(data, size=50, axes_labels=['Day','Liters'], 
+              title="Milk Production", 
+              frame=True, ymin=0, ymax=60)
+show(plot1)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/milkproduction1.png" class="contained" alt=""></div>
+<p id="p-762">Our goal is to model liters in terms of day so that we can predict how much milk was given on the days not listed in the table.</p>
+<p id="p-763">The graph of the data certainly does not resemble an exponential, logarithmic, or power curve, so a linearizable model does not seem appropriate.  Low-order polynomials do not capture the trend of the data, and higher-order polynomials produce oscillations that do not seem appropriate.  We instead consider <dfn class="terminology">spline</dfn> models where we simply “connect the dots” with either straight lines, forming a <dfn class="terminology">linear spline</dfn> model, or with cubic polynomials, forming a <dfn class="terminology">cubic spline</dfn> model.</p>
+<article class="example example-like" id="example-44"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-44"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.6.1</span><span class="period">.</span><span class="space"> </span><span class="title">Linear Spline Model.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-44"><article class="example example-like"><p id="p-764">The graph of a linear spline is easy to form:</p>
+<div class="hidden-sagecell-sage" id="sage-274"><script type="text/x-sage">data=[(5, 10), (13, 19), (25, 30), (42, 25), (50, 22), 
+	(62, 35), (75, 50), (90, 55), (100, 40), (120, 35)]
+plot1 = point(data, size=50, axes_labels=['Day','Liters'], 
+              title="Milk Production", 
+              frame=True, ymin=0, ymax=60)
+
+plot1 + list_plot(data, plotjoined=True)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/milkproductionlinspline.png" class="contained" alt=""></div>
+<p id="p-765">To use the model to make predictions, we need to know the slope and intercept of each line segment.  This is not difficult to obtain.  So for example, if we want to predict the liters of milk produced on Day 12, we would use the line segment between \((5,10)\) and \((13,19)\text{:}\)</p>
+<div class="hidden-sagecell-sage" id="sage-275"><script type="text/x-sage">var('m b')
+model(x) = m*x+b
+sol = find_fit([(5, 10), (13, 19)], model, solution_dict=True)
+sol
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-276"><script type="text/x-sage">sol[m]*12 + sol[b]
+</script></div>
+<p id="p-766">So the model predicts the cow will produce 17.875 liters of milk on Day 12.</p></article></div>
+<article class="example example-like" id="example-45"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-45"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.6.2</span><span class="period">.</span><span class="space"> </span><span class="title">Cubic Spline Model.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-45"><article class="example example-like"><div class="introduction" id="introduction-30">
+<p id="p-767">Linear spline models are easy to calculate, but they do not form smooth curves.  In fact, the curve is not differentiable at any one of the data points.  This type of model predicts sharp changes at each data point that do not seem realistic.  To solve this problem we connect the dots with cubic polynomials instead of straight lines and put conditions on the derivatives of each segment.</p>
+<p id="p-768">To illustrate this process, we consider a set of three data points \(\{(x_1, y_1), 
+(x_2, y_2), (x_3, y_3)\}\) where \(x_1 \lt x_2 \lt x_3\text{.}\)  Each \(x\)-value is called a <dfn class="terminology">knot</dfn>.  We connect them using two cubic polynomials:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+p_1(x) \amp= a_1 + b_1 x + c_1 x^2 + d_1 x^3 \quad\text{for } x_1\le x \lt x_2 \\
+p_2(x) \amp= a_2 + b_2 x + c_2 x^2 + d_2 x^3 \quad\text{for } x_2\le x\le x_3.
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-769">We now need to find the values of the eight parameters \(a_1\text{,}\) \(b_1\text{,}\) \(c_1\text{,}\) \(d_1\text{,}\) \(a_2\text{,}\) \(b_2\text{,}\) \(c_2\text{,}\) and \(d_2\text{.}\)  For the model to form a smooth curve that goes through each data point, we need to satisfy the following three conditions:</p>
+<ol class="decimal">
+<li id="li-68"><p id="p-770">Each polynomial must pass through the two data points at the ends of the interval over which it is defined.</p></li>
+<li id="li-69"><p id="p-771">The first derivatives of two polynomials that meet must be equal at the point at which they meet.</p></li>
+<li id="li-70"><p id="p-772">The second derivatives of two polynomials that meet must be equal at the point at which they meet.</p></li>
+</ol>
+<p id="p-773">The first condition gives us the following four equations:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+p_1(x_1) \amp= a_1 + b_1 x_1 + c_1 x_1^2 + d_1 x_1^3 = y_1 \\
+p_1(x_2) \amp= a_1 + b_1 x_2 + c_1 x_2^2 + d_1 x_2^3 = y_2 \\
+p_2(x_2) \amp= a_2 + b_2 x_2 + c_2 x_2^2 + d_2 x_2^3 = y_2 \\
+p_2(x_3) \amp= a_2 + b_2 x_3 + c_2 x_3^2 + d_2 x_3^3 = y_3
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-774">The first derivatives of the polynomial are</p>
+<div class="displaymath">
+\begin{equation*}
+p_1'(x) = b_1 + 2c_1 x + 3d_1 x^2, \qquad p_2'(x) = b_2 + 2c_2 x + 3d_2 x^2.
+\end{equation*}
+</div>
+<p id="p-775">The second condition gives us the equation/</p>
+<div class="displaymath">
+\begin{equation*}
+p_1'(x_2) = b_1 + 2c_1 x_2 + 3d_1 x_2^2 = b_2 + 2c_2 x_2 + 3d_2 x_2^2 = p_2'(x_2)
+\end{equation*}
+</div>
+<p id="p-776">The second derivatives of the polynomials are</p>
+<div class="displaymath">
+\begin{equation*}
+p_1''(x) = 2c_1 + 6d_1 x, \qquad p_2''(x) = 2c_2 + 6d_2 x.
+\end{equation*}
+</div>
+<p id="p-777">The third condition then gives us the equation</p>
+<div class="displaymath">
+\begin{equation*}
+p_1''(x_2) = 2c_1 + 6d_1x_2 = 2c_2 + 6d_2x_2 = p_2''(x_2)
+\end{equation*}
+</div>
+<p id="p-778">This gives us six equations for eight unknowns.  To uniquely determine the values of these unknowns, we need two more equations.  To this end, we specify the values of the second derivatives at the end points of the data set (at \(x_1\) and \(x_3\)).</p>
+<p id="p-779">If we want these second derivatives to be some known values, say \(m_1\) and \(m_2\text{,}\) we would add the equations</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+p_1''(x_1) \amp= 2c_1 + 6d_1 x_1 = m_1 \\
+p_2''(x_3) \amp= 2c_2 + 6d_2 x_3 = m_2
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-780">The resulting model is called a <dfn class="terminology">clamped spline</dfn>. If, however, we do not know the values of the derivatives, we simply set them equal to 0 and have the equations:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+p_1''(x_1) \amp= 2c_1 + 6d_1 x_1 = 0 \\
+p_2''(x_3) \amp= 2c_2 + 6d_2 x_3 = 0
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-781">The resulting model is called a <dfn class="terminology">natural spline</dfn> and is what's implemented by SageMath.</p>
+<p id="p-782">We can rewrite the above equations so that the constants are on the right-hand side:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+a_1 \amp + b_1 x_1 \amp + \hphantom{3}c_1 x_1^2 \amp + \hphantom{3}d_1 x_1^3 \amp \amp \amp \amp \amp = y_1 \\
+a_1 \amp + b_1 x_2 \amp + \hphantom{3}c_1 x_2^2 \amp + \hphantom{3}d_1 x_2^3 \amp \amp \amp \amp \amp = y_2 \\
+\amp \amp \amp \amp a_2 \amp + b_2 x_2 \amp + \hphantom{3}c_2 x_2^2 \amp + \hphantom{3}d_2 x_2^3 \amp  = y_2 \\
+\amp \amp \amp \amp a_2 \amp + b_2 x_3 \amp + \hphantom{3}c_2 x_3^2 \amp + \hphantom{3}d_2 x_3^3 \amp  = y_3 \\
+\amp \hphantom{{}+{}}b_1 \amp + 2c_1 x_2 \amp + 3d_1 x_2^2 \amp \amp -b_2 \amp - 2c_2 x_2 \amp - 3d_2 x_2^2 \amp = 0 \\
+\amp \amp 2c_1\hphantom{x_2} \amp + 6d_1x_2 \amp \amp \amp -2c_2\hphantom{x_2} \amp -6d_2 x_2 \amp = 0 \\
+\amp \amp 2c_1\hphantom{x_1} \amp + 6d_1x_1 \amp \amp \amp  \amp \amp = 0 \\
+\amp \amp \amp \amp \amp \amp \hphantom{{}-{}}2c_2\hphantom{x_2} \amp +6d_2 x_3 \amp = 0
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-783">Rewriting this system in matrix form yields:</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{bmatrix}
+1 \amp x_1 \amp x_1^2 \amp x_1^3 \amp 0 \amp 0 \amp 0\amp 0 \\
+1 \amp x_2 \amp x_2^2 \amp x_2^3 \amp 0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 1 \amp x_2 \amp x_2^2 \amp x_2^3 \\
+0 \amp 0 \amp 0 \amp 0 \amp 1 \amp x_3 \amp x_3^2 \amp x_3^3 \\
+0 \amp 1 \amp 2x_2 \amp 3x_2^2 \amp 0 \amp -1 \amp -2x_2 \amp -3x_2^2 \\
+0 \amp 0 \amp 2 \amp 6x_2 \amp 0 \amp 0 \amp -2 \amp -6x_2 \\
+0 \amp 0 \amp 2 \amp 6x_1 \amp 0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 2 \amp 6x_3	
+\end{bmatrix}
+\begin{bmatrix}
+a_1 \\
+b_1 \\
+c_1 \\
+d_1 \\
+a_2 \\
+b_2 \\
+c_2 \\
+d_2
+\end{bmatrix} = \begin{bmatrix}
+y_1 \\
+y_2 \\
+y_2 \\
+y_3 \\
+0 \\
+0 \\
+0 \\
+0
+\end{bmatrix}
+\end{equation*}
+</div>
+<p id="p-784">which has the general form \(A\pmb{x}=\pmb{b}\) where \(\pmb{x}=(a_1, b_1, c_1, d_1, 
+a_2, b_2, c_2, d_2)\) is the vector of unknowns. We can solve this system using inverses, \(\pmb{x}=A^{-1}\pmb{b}\text{.}\)</p>
+<p id="p-785">The good news is that rather than enter a large matrix into SageMath, we can take advantage of built-in commands to build cubic splines given a set of data. (For large sets of data the calculations for a cubic spline model can get quite complicated. For 11 data points, the model is made up of 10 separate cubic polynomials with a total of 40 unknown parameters. This results in a \(40 \times 40\) matrix \(A\text{.}\))</p>
+</div>
+<p id="p-786">Suppose we want to fit a cubic spline to the three data points \(\{(75, 50), (95, 55), (100,40)\}\text{.}\) We can enter the following commands into SageMath:</p>
+<div class="hidden-sagecell-sage" id="sage-277"><script type="text/x-sage">data = [(75, 50), (95, 55), (100, 40)]
+S = spline(data)
+point(data, size=50, title="Natural Cubic Spline", 
+	axes_labels=["$x$", "$y$"],frame=True) + plot(S,75,100)
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/spline.png" class="contained" alt=""></div>
+<p id="p-787">We note that while we do not get a formula for the spline (as we would if we computed the solution with matrices), we can ask for the value of \(S\) or its derivative at a point, or the value of the definite integral (area under the curve) over an interval.</p>
+<div class="hidden-sagecell-sage" id="sage-278"><script type="text/x-sage">S(82)
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-279"><script type="text/x-sage">S.derivative(95)
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-280"><script type="text/x-sage">S.definite_integral(75,100)
+</script></div>
+<p id="p-788">What we cannot do is ask for any of these things outside the domain defined by the three points.</p>
+<div class="hidden-sagecell-sage" id="sage-281"><script type="text/x-sage">S(70)
+</script></div>
+<p id="p-789">(“nan” is short for “not a number.”)</p>
+<p id="p-790">We can find cubic splines for any set of points with the same commands.</p>
+<div class="hidden-sagecell-sage" id="sage-282"><script type="text/x-sage">data=[(5, 10), (13, 19), (25, 30), (42, 25), (50, 22), 
+	(62, 35), (75, 50), (90, 55), (100, 40), (120, 35)]
+plot1 = point(data, size=50, axes_labels=['Day','Liters'], 
+              title="Milk Production", 
+              frame=True, ymin=0, ymax=60)
+S = spline(data)
+show(plot1 + plot(S,5,120))
+</script></div>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/spline2.png" class="contained" alt=""></div>
+<p id="p-791">Notice how we avoid the problem we had with using a single polynomial model: the transition between points seems natural, and does not have wild oscillations. Thus we can use the spline to predict values in between data points.</p>
+<div class="hidden-sagecell-sage" id="sage-283"><script type="text/x-sage">S(12)
+</script></div>
+<p id="p-792">The cubic spline model predicts that the cow will produce 17.861 liters of milk on Day 12. (The linear spline model predicted 17.875 liters.)</p></article></div>
+<article class="exercise exercise-like" id="exercise-43"><a data-knowl="" class="id-ref exercise-knowl original" data-refid="hk-exercise-43"><h6 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">7.6.3</span><span class="period">.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-exercise-43"><article class="exercise exercise-like"><div class="introduction" id="introduction-31">
+<p id="p-793">A researcher observes a particle moving in a straight line and measures its velocity at three points in time as recorded in the table below. He wants to estimate how far the particle traveled over the interval of time \([0, 5]\text{.}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{array}{r|ccc}\hline\hline
+\textbf{Time (sec)} \amp 0 \amp 2 \amp 5 \\\hline
+\textbf{Velocity (m/sec)} \amp 0 \amp 60 \amp 85 \\\hline\hline
+\end{array}
+\end{equation*}
+</div>
+<p id="p-794">In general, if \(f(t)\) = velocity of an object at time \(t\text{,}\) we can calculate the distance it traveled over an interval of time \([t_0, t_1]\) by</p>
+<div class="displaymath">
+\begin{equation*}
+\textrm{Distance} = \int_{t_0}^{t_1} |f(t)|\,dt 
+\end{equation*}
+</div>
+</div>
+<article class="task exercise-like" id="task-48"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-795">Fit a linear spline model to the data to estimate \(f(t)\) and use the result to estimate the distance traveled. What is the meaning of the slope of each of the line segments?</p></article><article class="task exercise-like" id="task-49"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-796">Fit a cubic spline model to the data to estimate \(f(t)\) and use the result to estimate the distance traveled. Also, estimate the acceleration at time \(t=1.5\text{.}\)</p></article><article class="task exercise-like" id="task-50"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-797">Which of the two estimates of the distance traveled do you think is more accurate? Why?</p></article></article></div></section></div></main>
+</div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>
