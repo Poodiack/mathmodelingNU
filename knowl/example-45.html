@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-03-18T11:48:07-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.6.2</span><span class="period">.</span><span class="space"> </span><span class="title">Cubic Spline Model.</span>
+</h6>
+<div class="introduction">
+<p xmlns:svg="http://www.w3.org/2000/svg">Linear spline models are easy to calculate, but they do not form smooth curves.  In fact, the curve is not differentiable at any one of the data points.  This type of model predicts sharp changes at each data point that do not seem realistic.  To solve this problem we connect the dots with cubic polynomials instead of straight lines and put conditions on the derivatives of each segment.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">To illustrate this process, we consider a set of three data points \(\{(x_1, y_1), 
+(x_2, y_2), (x_3, y_3)\}\) where \(x_1 \lt x_2 \lt x_3\text{.}\)  Each \(x\)-value is called a <dfn class="terminology">knot</dfn>.  We connect them using two cubic polynomials:</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+p_1(x) \amp= a_1 + b_1 x + c_1 x^2 + d_1 x^3 \quad\text{for } x_1\le x \lt x_2 \\
+p_2(x) \amp= a_2 + b_2 x + c_2 x^2 + d_2 x^3 \quad\text{for } x_2\le x\le x_3.
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We now need to find the values of the eight parameters \(a_1\text{,}\) \(b_1\text{,}\) \(c_1\text{,}\) \(d_1\text{,}\) \(a_2\text{,}\) \(b_2\text{,}\) \(c_2\text{,}\) and \(d_2\text{.}\)  For the model to form a smooth curve that goes through each data point, we need to satisfy the following three conditions:</p>
+<ol class="decimal">
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Each polynomial must pass through the two data points at the ends of the interval over which it is defined.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">The first derivatives of two polynomials that meet must be equal at the point at which they meet.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">The second derivatives of two polynomials that meet must be equal at the point at which they meet.</p></li>
+</ol>
+<p xmlns:svg="http://www.w3.org/2000/svg">The first condition gives us the following four equations:</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+p_1(x_1) \amp= a_1 + b_1 x_1 + c_1 x_1^2 + d_1 x_1^3 = y_1 \\
+p_1(x_2) \amp= a_1 + b_1 x_2 + c_1 x_2^2 + d_1 x_2^3 = y_2 \\
+p_2(x_2) \amp= a_2 + b_2 x_2 + c_2 x_2^2 + d_2 x_2^3 = y_2 \\
+p_2(x_3) \amp= a_2 + b_2 x_3 + c_2 x_3^2 + d_2 x_3^3 = y_3
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The first derivatives of the polynomial are</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+p_1'(x) = b_1 + 2c_1 x + 3d_1 x^2, \qquad p_2'(x) = b_2 + 2c_2 x + 3d_2 x^2.
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The second condition gives us the equation/</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+p_1'(x_2) = b_1 + 2c_1 x_2 + 3d_1 x_2^2 = b_2 + 2c_2 x_2 + 3d_2 x_2^2 = p_2'(x_2)
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The second derivatives of the polynomials are</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+p_1''(x) = 2c_1 + 6d_1 x, \qquad p_2''(x) = 2c_2 + 6d_2 x.
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The third condition then gives us the equation</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+p_1''(x_2) = 2c_1 + 6d_1x_2 = 2c_2 + 6d_2x_2 = p_2''(x_2)
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">This gives us six equations for eight unknowns.  To uniquely determine the values of these unknowns, we need two more equations.  To this end, we specify the values of the second derivatives at the end points of the data set (at \(x_1\) and \(x_3\)).</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">If we want these second derivatives to be some known values, say \(m_1\) and \(m_2\text{,}\) we would add the equations</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+p_1''(x_1) \amp= 2c_1 + 6d_1 x_1 = m_1 \\
+p_2''(x_3) \amp= 2c_2 + 6d_2 x_3 = m_2
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The resulting model is called a <dfn class="terminology">clamped spline</dfn>. If, however, we do not know the values of the derivatives, we simply set them equal to 0 and have the equations:</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+p_1''(x_1) \amp= 2c_1 + 6d_1 x_1 = 0 \\
+p_2''(x_3) \amp= 2c_2 + 6d_2 x_3 = 0
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The resulting model is called a <dfn class="terminology">natural spline</dfn> and is what's implemented by SageMath.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">We can rewrite the above equations so that the constants are on the right-hand side:</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{aligned}
+a_1 \amp + b_1 x_1 \amp + \hphantom{3}c_1 x_1^2 \amp + \hphantom{3}d_1 x_1^3 \amp \amp \amp \amp \amp = y_1 \\
+a_1 \amp + b_1 x_2 \amp + \hphantom{3}c_1 x_2^2 \amp + \hphantom{3}d_1 x_2^3 \amp \amp \amp \amp \amp = y_2 \\
+\amp \amp \amp \amp a_2 \amp + b_2 x_2 \amp + \hphantom{3}c_2 x_2^2 \amp + \hphantom{3}d_2 x_2^3 \amp  = y_2 \\
+\amp \amp \amp \amp a_2 \amp + b_2 x_3 \amp + \hphantom{3}c_2 x_3^2 \amp + \hphantom{3}d_2 x_3^3 \amp  = y_3 \\
+\amp \hphantom{{}+{}}b_1 \amp + 2c_1 x_2 \amp + 3d_1 x_2^2 \amp \amp -b_2 \amp - 2c_2 x_2 \amp - 3d_2 x_2^2 \amp = 0 \\
+\amp \amp 2c_1\hphantom{x_2} \amp + 6d_1x_2 \amp \amp \amp -2c_2\hphantom{x_2} \amp -6d_2 x_2 \amp = 0 \\
+\amp \amp 2c_1\hphantom{x_1} \amp + 6d_1x_1 \amp \amp \amp  \amp \amp = 0 \\
+\amp \amp \amp \amp \amp \amp \hphantom{{}-{}}2c_2\hphantom{x_2} \amp +6d_2 x_3 \amp = 0
+\end{aligned}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Rewriting this system in matrix form yields:</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\begin{bmatrix}
+1 \amp x_1 \amp x_1^2 \amp x_1^3 \amp 0 \amp 0 \amp 0\amp 0 \\
+1 \amp x_2 \amp x_2^2 \amp x_2^3 \amp 0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 1 \amp x_2 \amp x_2^2 \amp x_2^3 \\
+0 \amp 0 \amp 0 \amp 0 \amp 1 \amp x_3 \amp x_3^2 \amp x_3^3 \\
+0 \amp 1 \amp 2x_2 \amp 3x_2^2 \amp 0 \amp -1 \amp -2x_2 \amp -3x_2^2 \\
+0 \amp 0 \amp 2 \amp 6x_2 \amp 0 \amp 0 \amp -2 \amp -6x_2 \\
+0 \amp 0 \amp 2 \amp 6x_1 \amp 0 \amp 0 \amp 0 \amp 0 \\
+0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 2 \amp 6x_3	
+\end{bmatrix}
+\begin{bmatrix}
+a_1 \\
+b_1 \\
+c_1 \\
+d_1 \\
+a_2 \\
+b_2 \\
+c_2 \\
+d_2
+\end{bmatrix} = \begin{bmatrix}
+y_1 \\
+y_2 \\
+y_2 \\
+y_3 \\
+0 \\
+0 \\
+0 \\
+0
+\end{bmatrix}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">which has the general form \(A\pmb{x}=\pmb{b}\) where \(\pmb{x}=(a_1, b_1, c_1, d_1, 
+a_2, b_2, c_2, d_2)\) is the vector of unknowns. We can solve this system using inverses, \(\pmb{x}=A^{-1}\pmb{b}\text{.}\)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">The good news is that rather than enter a large matrix into SageMath, we can take advantage of built-in commands to build cubic splines given a set of data. (For large sets of data the calculations for a cubic spline model can get quite complicated. For 11 data points, the model is made up of 10 separate cubic polynomials with a total of 40 unknown parameters. This results in a \(40 \times 40\) matrix \(A\text{.}\))</p>
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Suppose we want to fit a cubic spline to the three data points \(\{(75, 50), (95, 55), (100,40)\}\text{.}\) We can enter the following commands into SageMath:</p>
+<div class="sagecell-sage" id="sage-277"><script type="text/x-sage">data = [(75, 50), (95, 55), (100, 40)]
+S = spline(data)
+point(data, size=50, title="Natural Cubic Spline", 
+	axes_labels=["$x$", "$y$"],frame=True) + plot(S,75,100)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/spline.png" class="contained" alt=""></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We note that while we do not get a formula for the spline (as we would if we computed the solution with matrices), we can ask for the value of \(S\) or its derivative at a point, or the value of the definite integral (area under the curve) over an interval.</p>
+<div class="sagecell-sage" id="sage-278"><script type="text/x-sage">S(82)
+</script></div>
+<div class="sagecell-sage" id="sage-279"><script type="text/x-sage">S.derivative(95)
+</script></div>
+<div class="sagecell-sage" id="sage-280"><script type="text/x-sage">S.definite_integral(75,100)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">What we cannot do is ask for any of these things outside the domain defined by the three points.</p>
+<div class="sagecell-sage" id="sage-281"><script type="text/x-sage">S(70)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">(“nan” is short for “not a number.”)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">We can find cubic splines for any set of points with the same commands.</p>
+<div class="sagecell-sage" id="sage-282"><script type="text/x-sage">data=[(5, 10), (13, 19), (25, 30), (42, 25), (50, 22), 
+	(62, 35), (75, 50), (90, 55), (100, 40), (120, 35)]
+plot1 = point(data, size=50, axes_labels=['Day','Liters'], 
+              title="Milk Production", 
+              frame=True, ymin=0, ymax=60)
+S = spline(data)
+show(plot1 + plot(S,5,120))
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/spline2.png" class="contained" alt=""></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Notice how we avoid the problem we had with using a single polynomial model: the transition between points seems natural, and does not have wild oscillations. Thus we can use the spline to predict values in between data points.</p>
+<div class="sagecell-sage" id="sage-283"><script type="text/x-sage">S(12)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The cubic spline model predicts that the cow will produce 17.861 liters of milk on Day 12. (The linear spline model predicted 17.875 liters.)</p></article><span class="incontext"><a href="spline-models.html#example-45">in-context</a></span>
+</body>
+</html>

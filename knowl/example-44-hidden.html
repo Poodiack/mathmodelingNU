@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-03-18T11:48:07-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example example-like"><p xmlns:svg="http://www.w3.org/2000/svg">The graph of a linear spline is easy to form:</p>
+<div class="sagecell-sage" id="sage-274"><script type="text/x-sage">data=[(5, 10), (13, 19), (25, 30), (42, 25), (50, 22), 
+	(62, 35), (75, 50), (90, 55), (100, 40), (120, 35)]
+plot1 = point(data, size=50, axes_labels=['Day','Liters'], 
+              title="Milk Production", 
+              frame=True, ymin=0, ymax=60)
+
+plot1 + list_plot(data, plotjoined=True)
+</script></div>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/milkproductionlinspline.png" class="contained" alt=""></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">To use the model to make predictions, we need to know the slope and intercept of each line segment.  This is not difficult to obtain.  So for example, if we want to predict the liters of milk produced on Day 12, we would use the line segment between \((5,10)\) and \((13,19)\text{:}\)</p>
+<div class="sagecell-sage" id="sage-275"><script type="text/x-sage">var('m b')
+model(x) = m*x+b
+sol = find_fit([(5, 10), (13, 19)], model, solution_dict=True)
+sol
+</script></div>
+<div class="sagecell-sage" id="sage-276"><script type="text/x-sage">sol[m]*12 + sol[b]
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">So the model predicts the cow will produce 17.875 liters of milk on Day 12.</p></article></body>
+</html>
