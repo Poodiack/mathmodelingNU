@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-02-23T11:38:53-05:00       *-->
+<!--*       on 2026-03-30T11:47:22-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -93,7 +93,9 @@
 </div></nav></header><div class="page">
 <div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
 <nav id="toc"><ul>
-<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
 <li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
 <li class="link">
 <a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
@@ -153,6 +155,14 @@
 <li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
 <li><a href="polynomials.html" data-scroll="polynomials" class="active">Polynomials</a></li>
 <li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -160,18 +170,18 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="polynomials"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">7.3</span> <span class="title">Polynomials</span>
 </h2>
-<section class="introduction" id="introduction-24"><p id="p-635">Polynomial models are often convenient to use because they are easy to differentiate and integrate. <a class="xref" data-knowl="./knowl/poly-thm-1.html" title="Theorem 7.3.1">Theorem 7.3.1</a> is a well-known result from algebra about fitting a polynomial model to data.</p>
+<section class="introduction" id="introduction-24"><p id="p-636">Polynomial models are often convenient to use because they are easy to differentiate and integrate. <a class="xref" data-knowl="./knowl/poly-thm-1.html" title="Theorem 7.3.1">Theorem 7.3.1</a> is a well-known result from algebra about fitting a polynomial model to data.</p>
 <article class="theorem theorem-like" id="poly-thm-1"><h6 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">7.3.1</span><span class="period">.</span>
 </h6>
-<p id="p-636">Given a set of data \(\{(x_i, y_i)\mid i=1, 2, \dots, n\}\text{,}\) where \(x_i\ne x_j\) for all \(i\ne j\text{,}\) there exists a unique polynomial \(p(x)\) of degree at most \(n-1\) such that</p>
+<p id="p-637">Given a set of data \(\{(x_i, y_i)\mid i=1, 2, \dots, n\}\text{,}\) where \(x_i\ne x_j\) for all \(i\ne j\text{,}\) there exists a unique polynomial \(p(x)\) of degree at most \(n-1\) such that</p>
 <div class="displaymath">
 \begin{equation*}
 p(x_i) = y_i \text{ for all } i=1, 2, \dots, n.
 \end{equation*}
-</div></article><p id="p-637">Graphically, this theorem means that the graph of \(y = p (x)\) goes through each data point (i.e. it is a perfect fitting model). This sounds like a utopia, but is it really?</p></section><article class="example example-like" id="three-data-points"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-three-data-points"><h6 class="heading">
+</div></article><p id="p-638">Graphically, this theorem means that the graph of \(y = p (x)\) goes through each data point (i.e. it is a perfect fitting model). This sounds like a utopia, but is it really?</p></section><article class="example example-like" id="three-data-points"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-three-data-points"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.3.2</span><span class="period">.</span><span class="space"> </span><span class="title">Three Data Points.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-three-data-points"><article class="example example-like"><p id="p-638">Consider the problem of fitting a second-degree polynomial of the form \(y = ax^2 +bx+c\) to the set of three data points \(\{(1, 2), (2, 4), (3, 5)\}\text{.}\) This means we want values of \(a\text{,}\) \(b\text{,}\) and \(c\) such that</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-three-data-points"><article class="example example-like"><p id="p-639">Consider the problem of fitting a second-degree polynomial of the form \(y = ax^2 +bx+c\) to the set of three data points \(\{(1, 2), (2, 4), (3, 5)\}\text{.}\) This means we want values of \(a\text{,}\) \(b\text{,}\) and \(c\) such that</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -181,7 +191,7 @@ a(3^2) + b(3) + c &amp; = 5
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-639">This set of linear equations can be written in matrix form as</p>
+<p id="p-640">This set of linear equations can be written in matrix form as</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -200,17 +210,17 @@ c
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-640">This matrix equation has the generic form \(A\mathbf{x} = \mathbf{b}\) where \(\mathbf{x} = (a, b, c)\) is the vector of unknowns. It can be shown that \(A\) is invertible. Thus there is a unique solution to this matrix equation, \(\mathbf{x} = A^{-1}\mathbf{b}\text{.}\)</p>
+<p id="p-641">This matrix equation has the generic form \(A\mathbf{x} = \mathbf{b}\) where \(\mathbf{x} = (a, b, c)\) is the vector of unknowns. It can be shown that \(A\) is invertible. Thus there is a unique solution to this matrix equation, \(\mathbf{x} = A^{-1}\mathbf{b}\text{.}\)</p>
 <div class="hidden-sagecell-sage" id="sage-221"><script type="text/x-sage">A = matrix(3, 3, [1^2, 1, 1, 2^2, 2, 1, 3^2, 3, 1])
 b = matrix(3, 1, [2, 4, 5])
 A.inverse()*b
 </script></div>
-<p id="p-641">So we get the solution \(\mathbf{x} = (-1/2, 7/2, -1)\) so that the model is \(y=-\frac12 x^2 + \frac72 x -1\text{.}\)</p>
-<p id="p-642">SageMath will automatically calculate this polynomial for us using an algorithm equivalent to the one described above.</p>
+<p id="p-642">So we get the solution \(\mathbf{x} = (-1/2, 7/2, -1)\) so that the model is \(y=-\frac12 x^2 + \frac72 x -1\text{.}\)</p>
+<p id="p-643">SageMath will automatically calculate this polynomial for us using an algorithm equivalent to the one described above.</p>
 <div class="hidden-sagecell-sage" id="sage-222"><script type="text/x-sage">points = [(1, 2), (2, 4), (3, 5)]
 scatter_plot(points) + plot(-(1/2)*x^2 + (7/2)*x - 1, (x, 1, 3))
 </script></div>
-<p id="p-643">Next we add \((4,2)\) to the data set and fit a second degree polynomial to these four data points. Ideally, we want to find \(a\text{,}\) \(b\text{,}\) and \(c\) such that</p>
+<p id="p-644">Next we add \((4,2)\) to the data set and fit a second degree polynomial to these four data points. Ideally, we want to find \(a\text{,}\) \(b\text{,}\) and \(c\) such that</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -221,7 +231,7 @@ a(4^2) + b(4) + c &amp; = 2
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-644">This set of linear equations can be written in matrix form as</p>
+<p id="p-645">This set of linear equations can be written in matrix form as</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -242,39 +252,39 @@ c
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-645">which, as before, has the generic form \(A\mathbf{x} = \mathbf{b}\text{.}\) However, note that \(A\) is not square, so it is not invertible. Further analysis reveals that this equation does not even have a solution, so there is no polynomial that fits these four data points perfectly. We will have to settle for a “best–fit” polynomial model. As in <a href="proportionality.html" class="internal" title="Chapter 6: Proportionality and Geometric Similarity">Chapter 6</a> when we fit a linear model to a set of data, we will use a least–squares criterion to find our model. That is, we want a polynomial \(p(x)\) that minimizes the number</p>
+<p id="p-646">which, as before, has the generic form \(A\mathbf{x} = \mathbf{b}\text{.}\) However, note that \(A\) is not square, so it is not invertible. Further analysis reveals that this equation does not even have a solution, so there is no polynomial that fits these four data points perfectly. We will have to settle for a “best–fit” polynomial model. As in <a href="proportionality.html" class="internal" title="Chapter 6: Proportionality and Geometric Similarity">Chapter 6</a> when we fit a linear model to a set of data, we will use a least–squares criterion to find our model. That is, we want a polynomial \(p(x)\) that minimizes the number</p>
 <div class="displaymath">
 \begin{equation*}
 S = \sum_{i=1}^n (y_i - p(x_i))^2.
 \end{equation*}
 </div>
-<p id="p-646">The resulting model is called a <dfn class="terminology">least–squares</dfn> polynomial model. To find this model we will find a <dfn class="terminology">least-squares solution</dfn> to the above matrix equation.</p>
+<p id="p-647">The resulting model is called a <dfn class="terminology">least–squares</dfn> polynomial model. To find this model we will find a <dfn class="terminology">least-squares solution</dfn> to the above matrix equation.</p>
 <article class="definition definition-like" id="definition-6"><h6 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Least-squares Solution.</span>
 </h6>
-<p id="p-647">Let \(A\) be an \(m\times n\) matrix and \(\mathbf{b}\) be an \(m\times 1\) vector. A <dfn class="terminology">least-squares</dfn> solution of \(A\mathbf{x}=\mathbf{b}\) is an \(n\times 1\) vector \(\hat{\mathbf{x}}\) such that</p>
+<p id="p-648">Let \(A\) be an \(m\times n\) matrix and \(\mathbf{b}\) be an \(m\times 1\) vector. A <dfn class="terminology">least-squares</dfn> solution of \(A\mathbf{x}=\mathbf{b}\) is an \(n\times 1\) vector \(\hat{\mathbf{x}}\) such that</p>
 <div class="displaymath">
 \begin{equation*}
 \|\mathbf{b} - A\hat{\mathbf{x}}\|\le \|\mathbf{b} - A\mathbf{x}\| \text{ for all $n\times 1$ vectors 
 $\mathbf{x}$}.
 \end{equation*}
-</div></article><p id="p-648">The idea behind this definition is that \(\hat{\mathbf{x}}\) gets \(A\mathbf{x}\) as close to \(\mathbf{b}\) as possible. The following theorem which we present without proof tells us how to find \(\hat{\mathbf{x}}\text{.}\)</p>
+</div></article><p id="p-649">The idea behind this definition is that \(\hat{\mathbf{x}}\) gets \(A\mathbf{x}\) as close to \(\mathbf{b}\) as possible. The following theorem which we present without proof tells us how to find \(\hat{\mathbf{x}}\text{.}\)</p>
 <article class="theorem theorem-like" id="theorem-5"><h6 class="heading">
 <span class="type">Theorem</span><span class="space"> </span><span class="codenumber">7.3.4</span><span class="period">.</span>
 </h6>
-<p id="p-649">Every least-squares solution of \(A\mathbf{x} = \mathbf{b}\) must satisfy the Normal equation</p>
+<p id="p-650">Every least-squares solution of \(A\mathbf{x} = \mathbf{b}\) must satisfy the Normal equation</p>
 <div class="displaymath">
 \begin{equation*}
 A^TA\mathbf{x} = A^T\mathbf{b}.
 \end{equation*}
 </div>
-<p id="p-650">If \(A^T A\) is invertible, then there is a unique least-squares solution \(\mathbf{x}\) given by</p>
+<p id="p-651">If \(A^T A\) is invertible, then there is a unique least-squares solution \(\mathbf{x}\) given by</p>
 <div class="displaymath">
 \begin{equation*}
 \mathbf{x} = (A^T A)^{-1} A^T \mathbf{b}.
 \end{equation*}
-</div></article><p id="p-651">Note that this does not say that a general matrix equation \(A\mathbf{x} = \mathbf{b}\) has a unique least-squares solution. In general, there may be many least-squares solutions. However, if \(A^T A\) is invertible, then the solution is unique. When fitting curves to data, \(A^T A\) is usually invertible so we can this formula to calculate \(\hat{\mathbf{x}}\text{.}\) This technique can also be used to fit other types of models to data, as we will see later.</p>
-<p id="p-652">For our current example, we can enter</p>
+</div></article><p id="p-652">Note that this does not say that a general matrix equation \(A\mathbf{x} = \mathbf{b}\) has a unique least-squares solution. In general, there may be many least-squares solutions. However, if \(A^T A\) is invertible, then the solution is unique. When fitting curves to data, \(A^T A\) is usually invertible so we can this formula to calculate \(\hat{\mathbf{x}}\text{.}\) This technique can also be used to fit other types of models to data, as we will see later.</p>
+<p id="p-653">For our current example, we can enter</p>
 <div class="hidden-sagecell-sage" id="sage-223"><script type="text/x-sage">A = matrix(4, 3, [1^2, 1, 1, 2^2, 2, 1, 3^2, 3, 1, 4^2, 4, 1])
 b = matrix(4, 1, [2, 4, 5, 2])
 A.transpose()
@@ -282,19 +292,19 @@ A.transpose()
 <div class="hidden-sagecell-sage" id="sage-224"><script type="text/x-sage">sol = ((A.transpose()*A).inverse())*A.transpose()*b
 sol
 </script></div>
-<p id="p-653">So a least-squares solution is \(y = -\frac54 x^2 + \frac{127}{20}x - \frac{13}4\text{.}\)</p>
+<p id="p-654">So a least-squares solution is \(y = -\frac54 x^2 + \frac{127}{20}x - \frac{13}4\text{.}\)</p>
 <div class="hidden-sagecell-sage" id="sage-225"><script type="text/x-sage">points = [(1, 2), (2, 4), (3, 5), (4, 2)]
 scatter_plot(points) + plot(sol[0][0]*x^2 + sol[1][0]*x + sol[2][0], (x, 1, 4))
 </script></div></article></div>
 <article class="example example-like" id="example-36"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-36"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">Calculating \(R^2\) Value.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-36"><article class="example example-like"><p id="p-654">In <a href="coefficient-of-determination.html" class="internal" title="Section 6.6: Coefficient of Determination">Section 6.6</a> we defined the coefficient of variation \(R^2\) as a measure of how well a line fits a set of data. We then applied this idea to linearizable models by calculating the \(R^2\) value for the straight–line fit to the transformed data. Polynomial models are not linearizable, so to calculate \(R^2\) values for these types of models, we must use the definition. The definition is</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-36"><article class="example example-like"><p id="p-655">In <a href="coefficient-of-determination.html" class="internal" title="Section 6.6: Coefficient of Determination">Section 6.6</a> we defined the coefficient of variation \(R^2\) as a measure of how well a line fits a set of data. We then applied this idea to linearizable models by calculating the \(R^2\) value for the straight–line fit to the transformed data. Polynomial models are not linearizable, so to calculate \(R^2\) values for these types of models, we must use the definition. The definition is</p>
 <div class="displaymath">
 \begin{equation*}
 R^2 = \frac{SS_{Tot} - SS_{Res}}{SS_{Tot}}
 \end{equation*}
 </div>
-<p id="p-655">where \(SS_{Tot} = \sum (y_i - \overline{y})^2\text{,}\) \(SS_{Res} = \sum (y_i - \hat{y}_i)^2\text{,}\) \(\overline{y}\) is the mean of all the \(y\)-values in the data set, and \(\hat{y}_i\) is the <dfn class="terminology">predicted</dfn> value of \(y_i\) based on the model. Here we use our model \(y = -\frac54 x^2 + \frac{127}{20}x - \frac{13}4\) to calculate \(\hat{y}_i\text{.}\)</p>
+<p id="p-656">where \(SS_{Tot} = \sum (y_i - \overline{y})^2\text{,}\) \(SS_{Res} = \sum (y_i - \hat{y}_i)^2\text{,}\) \(\overline{y}\) is the mean of all the \(y\)-values in the data set, and \(\hat{y}_i\) is the <dfn class="terminology">predicted</dfn> value of \(y_i\) based on the model. Here we use our model \(y = -\frac54 x^2 + \frac{127}{20}x - \frac{13}4\) to calculate \(\hat{y}_i\text{.}\)</p>
 <div class="hidden-sagecell-sage" id="sage-226"><script type="text/x-sage">A = matrix(4, 3, [1^2, 1, 1, 2^2, 2, 1, 3^2, 3, 1, 4^2, 4, 1])
 b = matrix(4, 1, [2, 4, 5, 2])
 
@@ -316,7 +326,7 @@ n(R2)
 </script></div> This indicates a very good fit.</article></div>
 <article class="example example-like" id="example-37"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-37"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.3.6</span><span class="period">.</span><span class="space"> </span><span class="title">Selecting a Best Polynomial Model.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-37"><article class="example example-like"><p id="p-656">Consider the data in the table below which gives the area \(A\) (in thousands of square miles) and the total length of railroad track \(R\) (in thousands of miles) of seven different countries (data from The World Almanac and Book of Facts, 2007, World Almanac Books). We want to use a polynomial to model \(R\) in terms of \(A\text{.}\)</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-37"><article class="example example-like"><p id="p-657">Consider the data in the table below which gives the area \(A\) (in thousands of square miles) and the total length of railroad track \(R\) (in thousands of miles) of seven different countries (data from The World Almanac and Book of Facts, 2007, World Almanac Books). We want to use a polynomial to model \(R\) in terms of \(A\text{.}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{c|ccccccc}\hline\hline
@@ -327,7 +337,7 @@ R &amp; 0.170 &amp; 2.058 &amp; 1.834 &amp; 2.157 &amp; 1.598 &amp; 3.635 &amp; 
 \end{array}
 \end{equation*}
 </div>
-<p id="p-657">According to <a class="xref" data-knowl="./knowl/poly-thm-1.html" title="Theorem 7.3.1">Theorem 7.3.1</a>, there is a unique polynomial of degree at most 6 that fits this data perfectly. We can easily graph \(R\) vs. \(A\) and fit a sixth degree polynomial trendline. The result is shown below.</p>
+<p id="p-658">According to <a class="xref" data-knowl="./knowl/poly-thm-1.html" title="Theorem 7.3.1">Theorem 7.3.1</a>, there is a unique polynomial of degree at most 6 that fits this data perfectly. We can easily graph \(R\) vs. \(A\) and fit a sixth degree polynomial trendline. The result is shown below.</p>
 <div class="hidden-sagecell-sage" id="sage-228"><script type="text/x-sage">railroaddata = [(0.998, 0.170), (27.135, 2.058), 
 	(33.436, 1.834), (38.023, 2.157), 
     (50.942, 1.598), (130.559, 3.635), (292.26, 4.092)]
@@ -350,7 +360,7 @@ SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
 R2 = (SStot - SSres)/SStot
 n(R2)
 </script></div>
-<p id="p-658">Notice that the \(R^2\) value is 1, so the model fits the data perfectly. However, note the large oscillation between \(A = 130\) and \(300\) and that the model predicts negative values of \(R\) for \(A\) around 100. This is totally unreasonable, so this is a terrible model even though it fits the data perfectly. The large oscillation seen in the graph of this model is typical of a high–degree polynomial model such as this. To find a better model, we can fit polynomials of degree 1 through 5 to the data, and keep track of their \(R^2\) values. The code and graphs are shown below.</p>
+<p id="p-659">Notice that the \(R^2\) value is 1, so the model fits the data perfectly. However, note the large oscillation between \(A = 130\) and \(300\) and that the model predicts negative values of \(R\) for \(A\) around 100. This is totally unreasonable, so this is a terrible model even though it fits the data perfectly. The large oscillation seen in the graph of this model is typical of a high–degree polynomial model such as this. To find a better model, we can fit polynomials of degree 1 through 5 to the data, and keep track of their \(R^2\) values. The code and graphs are shown below.</p>
 <div class="hidden-sagecell-sage" id="sage-230"><script type="text/x-sage"># Linear (degree 1)
 
 Rvalues = [R for (A,R) in railroaddata]
@@ -427,11 +437,11 @@ SSres = sum((Rvalues[i] - Rhatvalues[i])^2 for i in range(len(railroaddata)))
 R2 = (SStot - SSres)/SStot
 n(R2)
 </script></div>
-<p id="p-659">To choose the best model, we need to examine more than just the \(R^2\) values. We also need to consider how well they will make predictions and their simplicity. The fourth and fifth degree models have the highest \(R^2\) values, but they both have oscillations that seem unreasonable in the context of the problem, so they are not the best options. The first degree model does not capture the trend of the data very well, so it is not a good option either. The second and third degree models have very similar \(R^2\) values and their graphs look very similar. So we will choose the simpler of the two options, the second degree model, as the best. However, one could make a case that the third degree model is the best.</p></article></div>
-<p id="p-660">This least-squares matrix approach can be applied to models other than polynomials as illustrated in the next example.</p>
+<p id="p-660">To choose the best model, we need to examine more than just the \(R^2\) values. We also need to consider how well they will make predictions and their simplicity. The fourth and fifth degree models have the highest \(R^2\) values, but they both have oscillations that seem unreasonable in the context of the problem, so they are not the best options. The first degree model does not capture the trend of the data very well, so it is not a good option either. The second and third degree models have very similar \(R^2\) values and their graphs look very similar. So we will choose the simpler of the two options, the second degree model, as the best. However, one could make a case that the third degree model is the best.</p></article></div>
+<p id="p-661">This least-squares matrix approach can be applied to models other than polynomials as illustrated in the next example.</p>
 <article class="example example-like" id="deer-population"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-deer-population"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.3.7</span><span class="period">.</span><span class="space"> </span><span class="title">Deer Population.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-deer-population"><article class="example example-like"><p id="p-661">The following table gives the number of deer in a hypothetical forest for various years between 1941 and 1982. Our goal is to model the population in terms of the year.</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-deer-population"><article class="example example-like"><p id="p-662">The following table gives the number of deer in a hypothetical forest for various years between 1941 and 1982. Our goal is to model the population in terms of the year.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{r|ccccccccc}\hline\hline
@@ -440,7 +450,7 @@ n(R2)
 \end{array}
 \end{equation*}
 </div>
-<p id="p-662">To make the data values smaller and easier to work with, we transform them by subtracting 1941 from the year and dividing the population by 1000, yielding the data in the table below.</p>
+<p id="p-663">To make the data values smaller and easier to work with, we transform them by subtracting 1941 from the year and dividing the population by 1000, yielding the data in the table below.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{r|ccccccccc}\hline\hline
@@ -456,14 +466,14 @@ sp = scatter_plot(points, axes_labels=['$x$', '$y$'],
 sp
 </script></div>
 <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/deerpopgraph.png" class="contained" alt=""></div>
-<p id="p-663">Examining the graph of the transformed data in the graph we see that the population fluctuates from a high to a low and back to a high in about a 10–year cycle.</p>
-<p id="p-664">The periodic nature of the data suggests we use sine or cosine functions to model it. Since the period is approximately 10, our model will have terms of \(\cos (\pi x/5)\) and \(\sin (\pi x/5)\text{.}\) Also note that the population shows a downward trend. So we will include an \(x\) term in the model with a (likely) negative coefficient. Thus our model is of the form</p>
+<p id="p-664">Examining the graph of the transformed data in the graph we see that the population fluctuates from a high to a low and back to a high in about a 10–year cycle.</p>
+<p id="p-665">The periodic nature of the data suggests we use sine or cosine functions to model it. Since the period is approximately 10, our model will have terms of \(\cos (\pi x/5)\) and \(\sin (\pi x/5)\text{.}\) Also note that the population shows a downward trend. So we will include an \(x\) term in the model with a (likely) negative coefficient. Thus our model is of the form</p>
 <div class="displaymath">
 \begin{equation*}
 y = a + bx + c\cos\left(\frac{\pi x}5\right) + d\sin\left(\frac{\pi x}5\right).
 \end{equation*}
 </div>
-<p id="p-665">Ideally we want to satisfy the system of equations:</p>
+<p id="p-666">Ideally we want to satisfy the system of equations:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -474,7 +484,7 @@ a + b(41) + c\cos\left(\frac{41\pi}5\right) + d\sin\left(\frac{41\pi}5\right) &a
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-666">which has the matrix form</p>
+<p id="p-667">which has the matrix form</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -495,13 +505,13 @@ d \\
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-667">As before, this matrix equation has the generic form \(A\mathbf{x} = \mathbf{b}\text{.}\) Calculating the least-squares solution, \(\hat{\mathbf{x}} = (A^T A)^{-1} A^T \mathbf{b}\text{,}\) to this system as done previously, gives the approximate solution \(\hat{\mathbf{x}} = (18.965, -0.314, -5.693, -2.915)\text{.}\) So the model is</p>
+<p id="p-668">As before, this matrix equation has the generic form \(A\mathbf{x} = \mathbf{b}\text{.}\) Calculating the least-squares solution, \(\hat{\mathbf{x}} = (A^T A)^{-1} A^T \mathbf{b}\text{,}\) to this system as done previously, gives the approximate solution \(\hat{\mathbf{x}} = (18.965, -0.314, -5.693, -2.915)\text{.}\) So the model is</p>
 <div class="displaymath">
 \begin{equation*}
 y = 18.965 -0.314x - 5.693\cos\left(\frac{\pi x}5\right) -2.915\sin\left(\frac{\pi x}5\right)
 \end{equation*}
 </div>
-<p id="p-668">Luckily, these calculations are built right into Sage's <code class="code-inline tex2jax_ignore">find_fit</code> command.</p>
+<p id="p-669">Luckily, these calculations are built right into Sage's <code class="code-inline tex2jax_ignore">find_fit</code> command.</p>
 <div class="hidden-sagecell-sage" id="sage-241"><script type="text/x-sage">var('a b c d')
 model(x) = a + b*x + c*cos((pi*x)/5) + d*sin((pi*x)/5)
 sol = find_fit(points, model, solution_dict=True)
@@ -511,23 +521,23 @@ sol
 sp + plot(f(x), (x, 0, 42))
 </script></div>
 <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/deerpopgraphcurve.png" class="contained" alt=""></div>
-<p id="p-669">The figure above shows a graph of the model on top of the data. The model appears to fit the data relatively well, but many refinements could be made.</p></article></div>
+<p id="p-670">The figure above shows a graph of the model on top of the data. The model appears to fit the data relatively well, but many refinements could be made.</p></article></div>
 <section class="subsection" id="subsection-23"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">7.3.1</span> <span class="title">General Guidelines for Selecting a Best Model</span>
 </h3>
-<p id="p-670">In general when constructing empirical models, one has many different types of models from which to choose. Deciding which one is best is not easy and is often very subjective, but here are a few simple guidelines:</p>
+<p id="p-671">In general when constructing empirical models, one has many different types of models from which to choose. Deciding which one is best is not easy and is often very subjective, but here are a few simple guidelines:</p>
 <ol class="decimal">
-<li id="li-57"><p id="p-671">Consider the \(R^2\) value, but don’t rely solely on it.</p></li>
-<li id="li-58"><p id="p-672">Look for a pattern in the residuals. If there is a pattern, the model should be refined.</p></li>
-<li id="li-59"><p id="p-673">Consider how good the model is for making predictions between data values. If it oscillates or would give unreasonable values, look for a better model.</p></li>
-<li id="li-60"><p id="p-674">Consider “end” behavior. If the data appears to be “leveling off” at the end, but the model is increasing (or vice-versa), consider a different model.</p></li>
-<li id="li-61"><p id="p-675">Consider the simplicity of a model. In general, the fewer the terms, the better.</p></li>
+<li id="li-57"><p id="p-672">Consider the \(R^2\) value, but don’t rely solely on it.</p></li>
+<li id="li-58"><p id="p-673">Look for a pattern in the residuals. If there is a pattern, the model should be refined.</p></li>
+<li id="li-59"><p id="p-674">Consider how good the model is for making predictions between data values. If it oscillates or would give unreasonable values, look for a better model.</p></li>
+<li id="li-60"><p id="p-675">Consider “end” behavior. If the data appears to be “leveling off” at the end, but the model is increasing (or vice-versa), consider a different model.</p></li>
+<li id="li-61"><p id="p-676">Consider the simplicity of a model. In general, the fewer the terms, the better.</p></li>
 </ol>
-<p id="p-676">We must also stress that when using an empirical model such as those discussed in this section and in <a href="proportionality.html" class="internal" title="Chapter 6: Proportionality and Geometric Similarity">Chapter 6</a> to make predictions, the predictions are always point–estimates of the true values. These predictions should never be presented as precise certainties. Books on statistics and regression discuss how to use a point–estimate to form a confidence interval for the true value (a range of possible values), but this topic is beyond the scope of this course.</p></section><section class="exercises" id="exercises-11"><h3 class="heading hide-type">
+<p id="p-677">We must also stress that when using an empirical model such as those discussed in this section and in <a href="proportionality.html" class="internal" title="Chapter 6: Proportionality and Geometric Similarity">Chapter 6</a> to make predictions, the predictions are always point–estimates of the true values. These predictions should never be presented as precise certainties. Books on statistics and regression discuss how to use a point–estimate to form a confidence interval for the true value (a range of possible values), but this topic is beyond the scope of this course.</p></section><section class="exercises" id="exercises-11"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">7.3.2</span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="exercise-36"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
-<p id="p-677">Fit different polynomial models to the data in the table below and select the best one. Explain how you determined which one is best.</p>
+<p id="p-678">Fit different polynomial models to the data in the table below and select the best one. Explain how you determined which one is best.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{c|ccccccc}\hline\hline
@@ -536,9 +546,9 @@ sp + plot(f(x), (x, 0, 42))
 \end{array}
 \end{equation*}
 </div></article><article class="exercise exercise-like" id="deer-pop-R2"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
-<p id="p-678">Calculate the \(R^2\) value for the model fit to deer population data in <a class="xref" data-knowl="./knowl/deer-population.html" title="Example 7.3.7: Deer Population">Example 7.3.7</a>.</p></article><article class="exercise exercise-like" id="exercise-38"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
+<p id="p-679">Calculate the \(R^2\) value for the model fit to deer population data in <a class="xref" data-knowl="./knowl/deer-population.html" title="Example 7.3.7: Deer Population">Example 7.3.7</a>.</p></article><article class="exercise exercise-like" id="exercise-38"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
 <div class="introduction" id="introduction-25">
-<p id="p-679">One useful property of polynomials is that they are easy to differentiate and integrate. Suppose a researcher observes a particle moving in a straight line and measures the particle’s velocity relative to its starting position at several points in time as shown in the table below.</p>
+<p id="p-680">One useful property of polynomials is that they are easy to differentiate and integrate. Suppose a researcher observes a particle moving in a straight line and measures the particle’s velocity relative to its starting position at several points in time as shown in the table below.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{l|cccccccc}\hline\hline
@@ -549,12 +559,12 @@ sp + plot(f(x), (x, 0, 42))
 </div>
 </div>
 <article class="task exercise-like" id="task-42"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-680">Fit several polynomial models to the data and choose the one that best models the velocity. (Suggestion: When choosing the best model, don’t rely strictly on the \(R^2\) value. Put a large emphasis on simplicity.)</p>
+<p id="p-681">Fit several polynomial models to the data and choose the one that best models the velocity. (Suggestion: When choosing the best model, don’t rely strictly on the \(R^2\) value. Put a large emphasis on simplicity.)</p>
 <div class="sagecell-sage" id="sage-243"><script type="text/x-sage">data = [(0, 0), (1.2, 3.6), (2.5, 5.5), (3.2, 7.4), 
 (4.6, 6.7), (5.4, 5.8), (6.3, 3.5), (7.3, 0)]
 </script></div></article><article class="task exercise-like" id="task-43"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-681">The acceleration of the particle at time \(t\) is \(a(t) = v'(t)\text{.}\) Use your model in part (a) to estimate \(a(1.8)\text{.}\) (The command to take the derivative of a function \(f(x)\) is <code class="code-inline tex2jax_ignore">diff(f,x)</code>.)</p></article><article class="task exercise-like" id="task-44"><h6 class="heading"><span class="codenumber">(c)</span></h6>
-<p id="p-682">The total distance traveled over the time interval \([a, b]\) is</p>
+<p id="p-682">The acceleration of the particle at time \(t\) is \(a(t) = v'(t)\text{.}\) Use your model in part (a) to estimate \(a(1.8)\text{.}\) (The command to take the derivative of a function \(f(x)\) is <code class="code-inline tex2jax_ignore">diff(f,x)</code>.)</p></article><article class="task exercise-like" id="task-44"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-683">The total distance traveled over the time interval \([a, b]\) is</p>
 <div class="displaymath">
 \begin{equation*}
 \text{Total distance traveled} = \int_a^b |v(t)|\,dt.

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-03-18T11:48:05-04:00       *-->
+<!--*       on 2026-03-30T11:47:23-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -289,7 +289,134 @@ def dynamical(b=(1.05,(-2,2,0.05)), m=input_box(default=0),
 </script></div>
 <p id="p-831">Type in -2000 for \(m\) and then move the slider for \(a_0\) left and right and observe how the long–term behavior of the system changes. Specifically, note that for \(a_0\) less than $40,000, the amount in the account eventually decreases to 0 and for \(a_0\) greater than $40,000, the amount grows without bound.</p></article></div>
 <p id="p-832">In <a class="xref" data-knowl="./knowl/dds-savings-acct.html" title="Example 8.2.4: Savings Account">Example 8.2.4</a> we saw that the long–term behavior of the system changed quite dramatically with a small change in \(a_0\text{.}\) In situations like this we say that the system is sensitive to the initial condition.</p>
-<p id="p-833">We note that if \(a_0\ne 40,000\text{,}\) the system either approaches 0 or increases without bound. This is an example of an <dfn class="terminology">unstable</dfn> or <dfn class="terminology">repelling</dfn> equilibrium.</p></section></div></main>
+<p id="p-833">We note that if \(a_0\ne 40,000\text{,}\) the system either approaches 0 or increases without bound. This is an example of an <dfn class="terminology">unstable</dfn> or <dfn class="terminology">repelling</dfn> equilibrium.</p>
+<article class="definition definition-like" id="definition-11"><h6 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">8.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Equilibrium Value.</span>
+</h6>
+<p id="p-834">An equilibrium value \(a\) is <dfn class="terminology">unstable</dfn> or <dfn class="terminology">repelling</dfn> if there is a number \(\varepsilon\) such that</p>
+<div class="displaymath">
+\begin{equation*}
+|a_n - a|\gt\varepsilon \qquad \text{whenever} \qquad |a_0 - a|\lt\varepsilon.
+\end{equation*}
+</div>
+<p id="p-835">The equilibrium \(a\) is <dfn class="terminology">stable</dfn> or <dfn class="terminology">attracting</dfn> if there is a number \(\varepsilon\) such that</p>
+<div class="displaymath">
+\begin{equation*}
+\lim_{n\to\infty} a_n = a \qquad \text{whenever} \qquad |a_0 - a|
+\lt\varepsilon.
+\end{equation*}
+</div></article><p id="p-836">In less technical terms, an equilibrium value \(a\) is repelling if the system starts near it, but does not approach it. This is exactly what we saw in <a class="xref" data-knowl="./knowl/dds-savings-acct.html" title="Example 8.2.4: Savings Account">Example 8.2.4</a>. The equilibrium is attracting if the system starts near \(a\) and approaches it.</p>
+<article class="example example-like" id="dds-antibiotic"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-dds-antibiotic"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">8.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Antibiotic in the Bloodstream.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-dds-antibiotic"><article class="example example-like"><div class="introduction" id="introduction-35">
+<p id="p-837">An infant is given an antibiotic to treat an ear infection. When taking an antibiotic, it is important to keep the amount of the drug in the bloodstream fairly constant.  If the amount gets too low, the bacteria can begin to regrow.  If the amount gets too high, it could cause other complications.</p>
+<p id="p-838">Suppose the half-life of the drug is one day (meaning that half the drug remains in the blood after each one-day period) and a dosage of 0.1 mg is given.  We want to examine what happens to the amount of the drug in the blood stream in the long run.</p>
+<p id="p-839">A simple affine model for the system is</p>
+<div class="displaymath">
+\begin{equation*}
+a_{n+1} = 0.5a_n + 0.1,
+\end{equation*}
+</div>
+<p id="p-840">where \(a_n\) is the amount of the drug in the blood at the end of day \(n\text{.}\) Since the problem did not specify an initial dosage, we need to experiment with different values.</p>
+</div>
+<div class="hidden-sagecell-sage" id="sage-290"><script type="text/x-sage">@interact
+def antibiotic(a0 = slider(0,1,step_size=0.01, \
+				default=0,label=r'\(a_0\)'), \
+				n = slider(1,50,step_size=1, \
+				default=15,label='Number of steps')):
+    f(x) = 0.5*x+0.1
+    a = [float(a0)]
+    for i in range(n):
+        a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True, \
+         			axes_labels=['Day','Amount'], \
+                   title="Antibiotic in bloodstream",\
+                  ymin=0, ymax=1))
+</script></div>
+<p id="p-841">Note that when \(a_0 = 0.2\text{,}\) the system remains at 0.2, meaning that 0.2 is an equilibrium value. Also note that no matter what the value of \(a_0\text{,}\) the system appears to always approach 0.2. This shows that 0.2 is a stable equilibrium.</p></article></div>
+<article class="example example-like" id="example-49"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-49"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">8.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Generalized Savings Account.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-49"><article class="example example-like"><div class="introduction" id="introduction-36">
+<p id="p-842">Suppose we want to withdraw $5000 every other year (starting in year 2) instead of every year. This makes our model</p>
+<div class="displaymath">
+\begin{equation*}
+a_{n+1} = \begin{cases}
+1.05a_n - 5000 \amp \text{if $n+1$ is a multiple of 2} \\
+1.05a_n \amp \text{otherwise}
+\end{cases}
+\end{equation*}
+</div>
+<p id="p-843">This system is neither linear nor affine.  We will take a strictly graphical approach to analyze the behavior in terms of the initial deposit.</p>
+</div>
+<div class="hidden-sagecell-sage" id="sage-291"><script type="text/x-sage">@interact
+def dynamical2(b=(1.05,(-2,2,0.05)), m=input_box(default=0), 
+              a0 = slider(0,80000,1, \
+              default=40000,label=r'\(a_0\)'), \
+              n = slider(1,50,step_size=1,\
+              default=15,label='Number of steps')):
+    f(x) = b*x
+    g(x) = b*x + m
+    a = [float(a0)]
+    for i in range(n):
+        if i%2 == 0: # if i is a multiple of 2
+            a.append(g(a[i]))
+        else:
+            a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True,\
+         axes_labels=['$n$','$a_n$'], \
+         title="Generalized Savings Account",\
+         ymin=0, ymax=80000))
+</script></div></article></div>
+<section class="exercises" id="exercises-13"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-44"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<p id="p-844">Your grandparents have their life savings of $750,000 in a savings account that pays 6.7% interest compounded yearly. They want to spend all of it before they die. If they plan to live 15 more years, how much should they withdraw at the end of each year to accomplish their goal?</p></article><article class="exercise exercise-like" id="exercise-45"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<p id="p-845">Kayla receives a $6,000 high school graduation present which she puts in a savings account paying 4.15% annual interest, compounded monthly. She plans to work for two years before starting college, put her earnings in the account, and then live off the money in the account during college. Here are the details of her plan:</p>
+<ul class="disc">
+<li id="li-71"><p id="p-846">She will deposit the same amount into the account at the end of each month for the two years she works (starting in month 1).</p></li>
+<li id="li-72"><p id="p-847">In month 25 she will stop making deposits and start withdrawing $1,000 each month for her first year in college.</p></li>
+<li id="li-73"><p id="p-848">During her second year she will withdraw $1,250 each month. During her third and fourth years she will withdraw $1,500 and $1,750 each month, respectively.</p></li>
+</ul>
+<p id="p-849">Figure out how much she must deposit each month for the first two years so she has $0 left in the account at the end of her fourth year of college. Approximately how much total interest does she earn over the six years?</p>
+<a data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-1" id="hint-1"><span class="type">Hint</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-1"><div class="hint solution-like">
+<p id="p-850">Recall that the formula for compound interest is given by</p>
+<div class="displaymath">
+\begin{equation*}
+A(t) = P\left(1+\frac{r}{n}\right)^{nt},
+\end{equation*}
+</div>
+<p id="p-851">where \(P\) is the initial amount in the account, \(r\) is the annual interest rate in decimal form, \(n\) is the number of times the interest is compounded per year, and \(t\) is the number of years.</p>
+<p id="p-852">As a discrete dynamical system, you can look at the formula</p>
+<div class="displaymath">
+\begin{equation*}
+a_{i+1} = \left(1+\frac{r}{n}\right)a_i, \qquad a_0 = P.
+\end{equation*}
+</div>
+</div></div></article><article class="exercise exercise-like" id="exercise-46"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-37"><p id="p-853">Suppose the amount of a drug in a patient's blood stream decreases at the rate of 50% per hour and that an injection is given at the end of each hour which increases the amount of drug in the blood stream by 0.2 units.</p></div>
+<article class="task exercise-like" id="task-51"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-854">Formulate a model of the amount of drug in the blood stream at the end of each hour.</p></article><article class="task exercise-like" id="task-52"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-855">Find all equilibrium value(s) of your model.</p></article><article class="task exercise-like" id="task-53"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-856">Graphically, classify each equilibrium value as attracting or repelling.</p></article><article class="task exercise-like" id="task-54"><h6 class="heading"><span class="codenumber">(d)</span></h6>
+<p id="p-857">Suppose we give the injection every 3 hours. Describe what happens to the long-term level of the drug in the blood stream.</p></article></article><article class="exercise exercise-like" id="exercise-47"><h6 class="heading"><span class="codenumber">4<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-38">
+<p id="p-858">Suppose two countries are engaged in an arms race. Further suppose that the two countries have economies of similar strength and they have similar levels of distrust of each other. A simple model for \(T_n\text{,}\) the total amount of money spent by the two nations, is given by the affine system</p>
+<div class="displaymath">
+\begin{equation*}
+T_{n+1} = (1-r+d)T_n + c
+\end{equation*}
+</div>
+<p id="p-859">where \(r\) is a positive constant that measures the restraint of growth due to the strength (or weakness) of the economies of the countries, \(d\) is a positive constant that measures the level of distrust between the countries, and \(c\) is a constant. If \(T_n\) eventually grows too large, then the countries will not be able to support the arms race and they must either negotiate an end or war breaks out. If \(T_n\) approaches a constant level, then they have a “stable” arms race. If \(T_n\) eventually decreases to 0, or \(\lim\limits_{n\to\infty} T_n = -\infty\text{,}\) then the race ends.</p>
+</div>
+<article class="task exercise-like" id="task-55"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-860">Suppose \(r = 0.3\text{,}\) \(d = 1\text{,}\) and \(c = -10\text{.}\) Calculate \(T_n\) for \(0 \le n \le 15\text{.}\) Graph these values. Set up a scroll bar to vary the value of \(T_0\) between 0 and 100. For what values of \(T_0\) does the race end?</p></article><article class="task exercise-like" id="task-56"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-861">Now suppose \(r = 0.3\text{,}\) \(d = 1\text{,}\) and \(c = 10\text{.}\) For what values of \(T_0\) does the race end?</p></article><article class="task exercise-like" id="task-57"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-862">Now suppose \(r = 0.3\text{,}\) \(d = 0.1\text{,}\) and \(c = 10\text{.}\) What happens to the arms race now?</p></article></article></section></section></div></main>
 </div>
 <script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>

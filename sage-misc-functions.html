@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-02-02T17:58:42-05:00       *-->
+<!--*       on 2026-03-30T11:47:21-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -93,7 +93,9 @@
 </div></nav></header><div class="page">
 <div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
 <nav id="toc"><ul>
-<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
 <li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
 <li class="link">
 <a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
@@ -151,6 +153,16 @@
 <a href="linearalgebra.html" data-scroll="linearalgebra"><span class="codenumber">7</span> <span class="title">Linear Algebra</span></a><ul>
 <li><a href="linear-algebra-basics.html" data-scroll="linear-algebra-basics">Linear Algebra Basics</a></li>
 <li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
+<li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
+<li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -161,7 +173,7 @@
 <section class="subsection" id="subsection-7"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.3.1</span> <span class="title">Composition of functions</span>
 </h3>
-<p id="p-83">We can compose two functions very easily in SageMath. Consider the two functions:</p>
+<p id="p-84">We can compose two functions very easily in SageMath. Consider the two functions:</p>
 <div class="displaymath">
 \begin{equation*}
 f(x) = 3x+5\quad\text{and}\quad g(x)=x^3 + 1.
@@ -177,14 +189,14 @@ print(h(1))
 print(h(2))
 print(h(3))
 </script></div>
-<p id="p-84">Recall, though, that generally \(g(f(x)) \ne f(g(x))\text{.}\)</p>
+<p id="p-85">Recall, though, that generally \(g(f(x)) \ne f(g(x))\text{.}\)</p>
 <div class="sagecell-sage" id="sage-55"><script type="text/x-sage">h(x) = g(f(x))
 print(h(x))
 print(h(1))
 print(h(2))
 print(h(3))
 </script></div>
-<p id="p-85">This is completely different output than what we got previously. We can do the calculations to verify:</p>
+<p id="p-86">This is completely different output than what we got previously. We can do the calculations to verify:</p>
 <div class="displaymath">
 \begin{align*}
 f(g(x)) \amp = 3(g(x)) + 5 \\
@@ -200,26 +212,26 @@ g(f(x)) \amp = g(3x+5)\\
 </div></section><section class="subsection" id="subsection-8"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.3.2</span> <span class="title">Manipulating polynomials</span>
 </h3>
-<p id="p-86">If we enter the following code</p>
+<p id="p-87">If we enter the following code</p>
 <div class="sagecell-sage" id="sage-56"><script type="text/x-sage">a(x) = x^2 - 5*x + 6
 b(x) = x^2 - 8*x + 15
 a(x) + b(x)
 </script></div>
-<p id="p-87">(Don't forget the asterisk for multiplication between the 5 and the \(x\text{...}\) and the 8 and the \(x\text{.}\)) Asking for the difference of the two functions gets us the right answer as well:</p>
+<p id="p-88">(Don't forget the asterisk for multiplication between the 5 and the \(x\text{...}\) and the 8 and the \(x\text{.}\)) Asking for the difference of the two functions gets us the right answer as well:</p>
 <div class="sagecell-sage" id="sage-57"><script type="text/x-sage">a(x) - b(x)
 </script></div>
-<p id="p-88">On the other hand, a request for the product of the two seems unfinished:</p>
+<p id="p-89">On the other hand, a request for the product of the two seems unfinished:</p>
 <div class="sagecell-sage" id="sage-58"><script type="text/x-sage">a(x) * b(x)
 </script></div>
-<p id="p-89">The <code class="code-inline tex2jax_ignore">expand</code> method will multiply out that product.</p>
+<p id="p-90">The <code class="code-inline tex2jax_ignore">expand</code> method will multiply out that product.</p>
 <div class="sagecell-sage" id="sage-59"><script type="text/x-sage">g(x) = a(x) * b(x)
 g(x).expand()
 </script></div>
-<p id="p-90">So \(g\) is the function that sends \(x\) to \(x^4 - 13*x^3 + 61*x^2 - 123*x + 90\text{.}\)</p>
-<p id="p-91">On the other hand, perhaps we want to factor \(g\) instead:</p>
+<p id="p-91">So \(g\) is the function that sends \(x\) to \(x^4 - 13*x^3 + 61*x^2 - 123*x + 90\text{.}\)</p>
+<p id="p-92">On the other hand, perhaps we want to factor \(g\) instead:</p>
 <div class="sagecell-sage" id="sage-60"><script type="text/x-sage">g.factor()
 </script></div>
-<p id="p-92">SageMath does allow us to write some methods like <code class="code-inline tex2jax_ignore">expand</code> or <code class="code-inline tex2jax_ignore">factor</code> in function form instead. For instance, <code class="code-inline tex2jax_ignore">factor(f)</code> is equivalent to <code class="code-inline tex2jax_ignore">f.factor()</code>. To get rid of the ``evaluates to'' piece, we need to specify the "of \(x\)" part of our function.</p>
+<p id="p-93">SageMath does allow us to write some methods like <code class="code-inline tex2jax_ignore">expand</code> or <code class="code-inline tex2jax_ignore">factor</code> in function form instead. For instance, <code class="code-inline tex2jax_ignore">factor(f)</code> is equivalent to <code class="code-inline tex2jax_ignore">f.factor()</code>. To get rid of the ``evaluates to'' piece, we need to specify the "of \(x\)" part of our function.</p>
 <div class="sagecell-sage" id="sage-61"><script type="text/x-sage">print(factor(g))
 factor(g(x))
 </script></div>
@@ -228,12 +240,12 @@ factor(a(b(x)))
 </script></div>
 <div class="sagecell-sage" id="sage-63"><script type="text/x-sage">factor(x^4 - 60*x^3 + 1330*x^2 - 12900*x + 46189)
 </script></div>
-<p id="p-93">Recall that we can find factors of numbers as well. If we were searching for roots of the previous polynomial, we would want to factor the constant term in order to look for possible rational roots.</p>
+<p id="p-94">Recall that we can find factors of numbers as well. If we were searching for roots of the previous polynomial, we would want to factor the constant term in order to look for possible rational roots.</p>
 <div class="sagecell-sage" id="sage-64"><script type="text/x-sage">factor(46189)
 </script></div>
 <div class="sagecell-sage" id="sage-65"><script type="text/x-sage">divisors(46189)
 </script></div>
-<p id="p-94">Here's a first "program'' that will demonstrate a couple of the commands from above, and the differences in output:</p>
+<p id="p-95">Here's a first "program'' that will demonstrate a couple of the commands from above, and the differences in output:</p>
 <div class="sagecell-sage" id="sage-66"><script type="text/x-sage">f(x) = a(b(x))
 print("Direct:")
 print(f(x))
@@ -244,37 +256,37 @@ print(factor(f(x)))
 </script></div></section><section class="subsection" id="subsection-9"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">3.3.3</span> <span class="title">Solving problems symbolically</span>
 </h3>
-<p id="p-95">Computer algebra systems like SageMath can solve problems in two ways: symbolically or numerically. When we solve numerically, we get a decimal approximation (a good one!) of the answer. When we solve symbolically, we get an exact answer, often in terms of radicals, logarithms, or other constants and functions. Computer algebra systems like SageMath can solve problems in two ways: symbolically or numerically. When we solve numerically, we get a decimal approximation (a good one!) of the answer. When we solve symbolically, we get an exact answer, often in terms of radicals, logarithms, or other constants and functions.</p>
+<p id="p-96">Computer algebra systems like SageMath can solve problems in two ways: symbolically or numerically. When we solve numerically, we get a decimal approximation (a good one!) of the answer. When we solve symbolically, we get an exact answer, often in terms of radicals, logarithms, or other constants and functions. Computer algebra systems like SageMath can solve problems in two ways: symbolically or numerically. When we solve numerically, we get a decimal approximation (a good one!) of the answer. When we solve symbolically, we get an exact answer, often in terms of radicals, logarithms, or other constants and functions.</p>
 <div class="sagecell-sage" id="sage-67"><script type="text/x-sage">solve(x^2 + 3*x + 2, x)
 </script></div>
-<p id="p-96">Note that this assumes we're looking for the roots of the function we've given. On the other hand, we can give an equation for SageMath to solve:</p>
+<p id="p-97">Note that this assumes we're looking for the roots of the function we've given. On the other hand, we can give an equation for SageMath to solve:</p>
 <div class="sagecell-sage" id="sage-68"><script type="text/x-sage">solve(x^2 + 9*x + 15 == 0, x)
 </script></div>
-<p id="p-97">By the way, we can use the <code class="code-inline tex2jax_ignore">pretty_print</code> command to get nice-looking output:</p>
+<p id="p-98">By the way, we can use the <code class="code-inline tex2jax_ignore">pretty_print</code> command to get nice-looking output:</p>
 <div class="sagecell-sage" id="sage-69"><script type="text/x-sage">pretty_print(solve(x^2 + 9*x + 15 == 0, x))
 </script></div>
-<p id="p-98">Note the square brackets encompassing the solutions. This is an example of a list in Python.</p>
-<p id="p-99">One way to distinguish symbolic versus numeric solutions is to compare</p>
+<p id="p-99">Note the square brackets encompassing the solutions. This is an example of a list in Python.</p>
+<p id="p-100">One way to distinguish symbolic versus numeric solutions is to compare</p>
 <div class="sagecell-sage" id="sage-70"><script type="text/x-sage">3+1/(7+1/(15+1/(1+1/(292+1/(1+1/(1+1/6))))))
 </script></div>
 <div class="sagecell-sage" id="sage-71"><script type="text/x-sage">N(3+1/(7+1/(15+1/(1+1/(292+1/(1+1/(1+1/6)))))))
 </script></div>
-<p id="p-100">That last answer is really close to \(\pi\) (relative error: \(2.78\times 10^{-11}\)).</p>
-<p id="p-101">There is no restriction to answers from polynomials. On the other hand ...</p>
+<p id="p-101">That last answer is really close to \(\pi\) (relative error: \(2.78\times 10^{-11}\)).</p>
+<p id="p-102">There is no restriction to answers from polynomials. On the other hand ...</p>
 <div class="sagecell-sage" id="sage-72"><script type="text/x-sage">var('theta')
 solve(sin(theta) == 1/2, theta)
 </script></div>
-<p id="p-102">... only produces one value because <code class="code-inline tex2jax_ignore">solve</code> uses the arcsine function to solve the equation. The (infinitely) other values for which \(\sin\theta = 1/2\) don't get produced. (The answer is \(\theta = \pi/6 + 2\pi\cdot k, 
+<p id="p-103">... only produces one value because <code class="code-inline tex2jax_ignore">solve</code> uses the arcsine function to solve the equation. The (infinitely) other values for which \(\sin\theta = 1/2\) don't get produced. (The answer is \(\theta = \pi/6 + 2\pi\cdot k, 
 5\pi/6 + 2\pi\cdot k\text{,}\) for all integers \(k\text{.}\))</p>
-<p id="p-103">Notice that we had to declare 'theta' as a variable before solving that equation. Remember that whenever we're using a variable symbolically (as opposed to assigning it a value), we have to declare it in advance. For example, if we want to re-derive the quadratic formula, we could type:</p>
+<p id="p-104">Notice that we had to declare 'theta' as a variable before solving that equation. Remember that whenever we're using a variable symbolically (as opposed to assigning it a value), we have to declare it in advance. For example, if we want to re-derive the quadratic formula, we could type:</p>
 <div class="sagecell-sage" id="sage-73"><script type="text/x-sage">var('a b c')
 pretty_print(solve(a*x^2 + b*x + c ==0, x))
 </script></div>
-<p id="p-104">There's a similar formula for cubics:</p>
+<p id="p-105">There's a similar formula for cubics:</p>
 <div class="sagecell-sage" id="sage-74"><script type="text/x-sage">var('a b c d')
 pretty_print(solve(a*x^3 + b*x^2 + c*x + d ==0, x))
 </script></div>
-<p id="p-105">SageMath can solve systems of equations, where we use the square brackets to let SageMath know we're providing a list of functions, rather than just one. So to solve the system:</p>
+<p id="p-106">SageMath can solve systems of equations, where we use the square brackets to let SageMath know we're providing a list of functions, rather than just one. So to solve the system:</p>
 <div class="displaymath">
 \begin{align*}
 9a+3b+c \amp =32\\
@@ -286,21 +298,21 @@ a+b+c \amp = 6
 <div class="sagecell-sage" id="sage-75"><script type="text/x-sage">var('a b c')
 solve([9*a + 3*b + c == 32, 4*a + 2*b + c == 15, a + b + c == 6], a, b, c)
 </script></div>
-<p id="p-106">In the cases where we will have a lot of possible solutions, it may be good to name the solution list using a variable and then asking for parts of the list:</p>
+<p id="p-107">In the cases where we will have a lot of possible solutions, it may be good to name the solution list using a variable and then asking for parts of the list:</p>
 <div class="sagecell-sage" id="sage-76"><script type="text/x-sage">answer = solve( x^6 - 21*x^5 + 175*x^4 - 735*x^3 + 1624*x^2 - 1764*x + 720 == 0, x)
 answer
 </script></div>
-<p id="p-107">Since SageMath is built out of Python, it uses Python's convention of numbering list elements starting from 0 and not from 1.</p>
+<p id="p-108">Since SageMath is built out of Python, it uses Python's convention of numbering list elements starting from 0 and not from 1.</p>
 <div class="sagecell-sage" id="sage-77"><script type="text/x-sage">answer[0]
 </script></div>
 <div class="sagecell-sage" id="sage-78"><script type="text/x-sage">answer[4]
 </script></div>
 <div class="sagecell-sage" id="sage-79"><script type="text/x-sage">answer[-1] # always gives the last element
 </script></div>
-<p id="p-108">... and a last reminder that the <code class="code-inline tex2jax_ignore">solve</code> command is not restricted to polynomial equations.</p>
+<p id="p-109">... and a last reminder that the <code class="code-inline tex2jax_ignore">solve</code> command is not restricted to polynomial equations.</p>
 <div class="sagecell-sage" id="sage-80"><script type="text/x-sage">solve( ln( x^2 ) == 5/3, x )
 </script></div>
-<p id="p-109">As a last piece, there are lots of ways to manipulate function displays.</p>
+<p id="p-110">As a last piece, there are lots of ways to manipulate function displays.</p>
 <div class="sagecell-sage" id="sage-81"><script type="text/x-sage"># Logs
 f(x) = log(x^2 * sin(x) / sqrt(1 + x))
 print("Original function:")

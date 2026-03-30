@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-02-02T17:58:42-05:00       *-->
+<!--*       on 2026-03-30T11:47:21-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -93,7 +93,9 @@
 </div></nav></header><div class="page">
 <div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
 <nav id="toc"><ul>
-<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
 <li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
 <li class="link">
 <a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
@@ -151,6 +153,16 @@
 <a href="linearalgebra.html" data-scroll="linearalgebra"><span class="codenumber">7</span> <span class="title">Linear Algebra</span></a><ul>
 <li><a href="linear-algebra-basics.html" data-scroll="linear-algebra-basics">Linear Algebra Basics</a></li>
 <li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
+<li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
+<li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -158,15 +170,15 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="sage-solve"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">2.5</span> <span class="title">Solving equations and inequalities</span>
 </h2>
-<p id="p-46">In Sage, equations and inequalities are defined using the operators <code class="code-inline tex2jax_ignore">==</code> (equal to), <code class="code-inline tex2jax_ignore">!=</code> (not equal to), <code class="code-inline tex2jax_ignore">&lt;</code> (less than), <code class="code-inline tex2jax_ignore">&lt;=</code> (less than or equal to), <code class="code-inline tex2jax_ignore">&gt;</code> (greater than), and <code class="code-inline tex2jax_ignore">&gt;=</code> (greater than or equal to) and will return either True or False.</p>
+<p id="p-47">In Sage, equations and inequalities are defined using the operators <code class="code-inline tex2jax_ignore">==</code> (equal to), <code class="code-inline tex2jax_ignore">!=</code> (not equal to), <code class="code-inline tex2jax_ignore">&lt;</code> (less than), <code class="code-inline tex2jax_ignore">&lt;=</code> (less than or equal to), <code class="code-inline tex2jax_ignore">&gt;</code> (greater than), and <code class="code-inline tex2jax_ignore">&gt;=</code> (greater than or equal to) and will return either True or False.</p>
 <div class="sagecell-sage" id="sage-11"><script type="text/x-sage">9 == 9
 </script></div>
 <div class="sagecell-sage" id="sage-12"><script type="text/x-sage">9 == 10
 </script></div>
-<p id="p-47">To solve an equation or inequality, we use the aptly named <code class="code-inline tex2jax_ignore">solve()</code> command. In Sage, \(x\) is automatically considered to be a variable. (We will see how to handle other letters shortly.)</p>
+<p id="p-48">To solve an equation or inequality, we use the aptly named <code class="code-inline tex2jax_ignore">solve()</code> command. In Sage, \(x\) is automatically considered to be a variable. (We will see how to handle other letters shortly.)</p>
 <div class="sagecell-sage" id="sage-13"><script type="text/x-sage">solve(3*x-2==5,x)
 </script></div>
-<p id="p-48">(Note that you always need the <code class="code-inline tex2jax_ignore">*</code> operator on multiplication. No shortening to <code class="code-inline tex2jax_ignore">3x</code>.)</p>
+<p id="p-49">(Note that you always need the <code class="code-inline tex2jax_ignore">*</code> operator on multiplication. No shortening to <code class="code-inline tex2jax_ignore">3x</code>.)</p>
 <div class="sagecell-sage" id="sage-14"><script type="text/x-sage">solve(2*x-5==1,x)
 </script></div>
 <div class="sagecell-sage" id="sage-15"><script type="text/x-sage">solve(2*x-5>=17,x)
@@ -175,7 +187,7 @@
 </script></div>
 <div class="sagecell-sage" id="sage-17"><script type="text/x-sage">pretty_print(solve(e^x == -1,x))
 </script></div>
-<p id="p-49">If Sage can't solve your equation exactly -- you'll know if Sage simply throws your equation or inequality back at you untouched -- we can use the <code class="code-inline tex2jax_ignore">find_root</code> command to get a numerical approximation for the solution. (This command uses Newton's method, among other possible methods.)</p>
+<p id="p-50">If Sage can't solve your equation exactly -- you'll know if Sage simply throws your equation or inequality back at you untouched -- we can use the <code class="code-inline tex2jax_ignore">find_root</code> command to get a numerical approximation for the solution. (This command uses Newton's method, among other possible methods.)</p>
 <div class="sagecell-sage" id="sage-18"><script type="text/x-sage">solve(sin(x)==cos(x),x)
 </script></div>
 <div class="sagecell-sage" id="sage-19"><script type="text/x-sage">find_root(sin(x)==cos(x),0,pi/2)

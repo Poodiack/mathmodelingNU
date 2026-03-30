@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-02-23T11:38:53-05:00       *-->
+<!--*       on 2026-03-30T11:47:22-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -93,7 +93,9 @@
 </div></nav></header><div class="page">
 <div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
 <nav id="toc"><ul>
-<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
 <li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
 <li class="link">
 <a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
@@ -153,6 +155,14 @@
 <li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra" class="active">Modeling with Systems of Equations</a></li>
 <li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
 <li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -160,14 +170,14 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="modeling-with-linear-algebra"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">7.2</span> <span class="title">Modeling with Systems of Equations</span>
 </h2>
-<p id="p-584">Elementary applications of linear algebra often involve describing a scenario with a system of equations and then solving the system. In this section we present four such applications: traffic flow, balancing chemical equations, and two economics applications.</p>
+<p id="p-585">Elementary applications of linear algebra often involve describing a scenario with a system of equations and then solving the system. In this section we present four such applications: traffic flow, balancing chemical equations, and two economics applications.</p>
 <article class="example example-like" id="example-31"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-31"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Traffic Flow.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-31"><article class="example example-like"><p id="p-585">Consider the network of streets in the figure below. The numbers and variables in the figure represent the traffic flow, measured in vehicles per hour (vph), along each street segment. The goal is to find the values of \(x_1\) through \(x_4\) and analyze the flow of traffic.</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-31"><article class="example example-like"><p id="p-586">Consider the network of streets in the figure below. The numbers and variables in the figure represent the traffic flow, measured in vehicles per hour (vph), along each street segment. The goal is to find the values of \(x_1\) through \(x_4\) and analyze the flow of traffic.</p>
 <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/241Notes030121-1.png" class="contained" alt=""></div>
-<p id="p-586">Our model is based on the following rather obvious assumption:</p>
+<p id="p-587">Our model is based on the following rather obvious assumption:</p>
 <blockquote class="blockquote" id="blockquote-3">All traffic that enters an intersection must leave the intersection.</blockquote>
-<p id="p-587">We organize the flow in and out of each intersection in the following table:</p>
+<p id="p-588">We organize the flow in and out of each intersection in the following table:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{clll}\hline\hline
@@ -179,7 +189,7 @@
 \end{array}
 \end{equation*}
 </div>
-<p id="p-588">Rewriting the four equations results in the final model:</p>
+<p id="p-589">Rewriting the four equations results in the final model:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -190,18 +200,18 @@
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-589">To solve this system, we use techniques from <a href="linear-algebra-basics.html" class="internal" title="Section 7.1: Linear Algebra Basics">Section 7.1</a>. We can write this system in the form \(A\mathbf{x} = \mathbf{b}\) and try to calculate \(\mathbf{x} = A^{-1}\mathbf{b}\text{,}\) but it turns out the matrix \(A\) is not invertible.</p>
+<p id="p-590">To solve this system, we use techniques from <a href="linear-algebra-basics.html" class="internal" title="Section 7.1: Linear Algebra Basics">Section 7.1</a>. We can write this system in the form \(A\mathbf{x} = \mathbf{b}\) and try to calculate \(\mathbf{x} = A^{-1}\mathbf{b}\text{,}\) but it turns out the matrix \(A\) is not invertible.</p>
 <div class="hidden-sagecell-sage" id="sage-214"><script type="text/x-sage">A = matrix(4, 4, [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0])
 b = matrix(4, 1, [725, 575, 1000, 1150])
 x = A.inverse()*b
 x
 </script></div>
-<p id="p-590">Thus we must use row-reduction. We write the augmented matrix and row-reduce it:</p>
+<p id="p-591">Thus we must use row-reduction. We write the augmented matrix and row-reduce it:</p>
 <div class="hidden-sagecell-sage" id="sage-215"><script type="text/x-sage">A.augment(b)
 </script></div>
 <div class="hidden-sagecell-sage" id="sage-216"><script type="text/x-sage">(A.augment(b)).rref()
 </script></div>
-<p id="p-591">This yields the general solution:</p>
+<p id="p-592">This yields the general solution:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -212,31 +222,31 @@ x_4 &amp; \text{ is free}
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-592">The fact that there is a free variable means that traffic can flow through this network in infinitely many ways, a result that should not be surprising. For example, if we know that on a given day, \(x_4 = 250\text{,}\) we would have \(x_1 = 325\text{,}\) \(x_2 = 400\text{,}\) and \(x_3 = 750\) vph.</p>
-<p id="p-593">With this general solution we can do more than simply calculate specific traffic flows. From the equation \(x_1 = 575-x_4\) we see that the maximum value of \(x_4\) is 575 vph; otherwise \(x_1\) would be negative. Also, the equation \(x_2 = 150+x_4\) tells us the minimum value of \(x_2\) is 150 since \(x_4\) cannot be negative. Thus if we were planning roadwork along the road segment corresponding to \(x_2\) resulting in restricted traffic flow, we would need to make sure the road could handle at least 150 vph.</p></article></div>
+<p id="p-593">The fact that there is a free variable means that traffic can flow through this network in infinitely many ways, a result that should not be surprising. For example, if we know that on a given day, \(x_4 = 250\text{,}\) we would have \(x_1 = 325\text{,}\) \(x_2 = 400\text{,}\) and \(x_3 = 750\) vph.</p>
+<p id="p-594">With this general solution we can do more than simply calculate specific traffic flows. From the equation \(x_1 = 575-x_4\) we see that the maximum value of \(x_4\) is 575 vph; otherwise \(x_1\) would be negative. Also, the equation \(x_2 = 150+x_4\) tells us the minimum value of \(x_2\) is 150 since \(x_4\) cannot be negative. Thus if we were planning roadwork along the road segment corresponding to \(x_2\) resulting in restricted traffic flow, we would need to make sure the road could handle at least 150 vph.</p></article></div>
 <article class="example example-like" id="example-32"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-32"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Balancing Chemical Equations.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-32"><article class="example example-like"><p id="p-594">In a chemical reaction, substances (called <dfn class="terminology">reactants</dfn>, often in the form of <dfn class="terminology">molecules</dfn>) composed of atoms react to form new substances (called <dfn class="terminology">products</dfn>). A simple assumption behind every chemical reaction is:</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-32"><article class="example example-like"><p id="p-595">In a chemical reaction, substances (called <dfn class="terminology">reactants</dfn>, often in the form of <dfn class="terminology">molecules</dfn>) composed of atoms react to form new substances (called <dfn class="terminology">products</dfn>). A simple assumption behind every chemical reaction is:</p>
 <blockquote class="blockquote" id="blockquote-4">Atoms cannot be created or destroyed in a reaction.</blockquote>
-<p id="p-595">As a simple example, sulfur (\(\text{S}_8\)) reacts with oxygen (\(\text{O}_2\)) to form sulfur dioxide (\(\text{SO}_2\)). This is represented by the chemical equation</p>
+<p id="p-596">As a simple example, sulfur (\(\text{S}_8\)) reacts with oxygen (\(\text{O}_2\)) to form sulfur dioxide (\(\text{SO}_2\)). This is represented by the chemical equation</p>
 <div class="displaymath">
 \begin{equation*}
 \text{S}_8 + \text{O}_2\to \text{SO}_2.
 \end{equation*}
 </div>
-<p id="p-596">A quick inspection of this equation reveals there are more sulfur atoms (S) on the left than the right, which violates the assumption. Thus we need to determine how many of each molecule react to form how many molecules of the product. This is called <dfn class="terminology">balancing the equation</dfn>. By inspection, a balanced version of this equation is</p>
+<p id="p-597">A quick inspection of this equation reveals there are more sulfur atoms (S) on the left than the right, which violates the assumption. Thus we need to determine how many of each molecule react to form how many molecules of the product. This is called <dfn class="terminology">balancing the equation</dfn>. By inspection, a balanced version of this equation is</p>
 <div class="displaymath">
 \begin{equation*}
 \text{S}_8 + 8\text{O}_2\to 8\text{SO}_2.
 \end{equation*}
 </div>
-<p id="p-597">Not every chemical equation can be balanced so easily by inspection. For example, ethylenediamine (\(\text{C}_2\text{H}_8\text{N}_2\)) reacts with dinitrogen tetroxide (\(\text{N}_2\text{O}_4\)) to form nitrogen (\(\text{N}_2\)), carbon dioxide (\(\text{CO}_2\)), and water (\(\text{H}_2\text{O}\)) according to the equation</p>
+<p id="p-598">Not every chemical equation can be balanced so easily by inspection. For example, ethylenediamine (\(\text{C}_2\text{H}_8\text{N}_2\)) reacts with dinitrogen tetroxide (\(\text{N}_2\text{O}_4\)) to form nitrogen (\(\text{N}_2\)), carbon dioxide (\(\text{CO}_2\)), and water (\(\text{H}_2\text{O}\)) according to the equation</p>
 <div class="displaymath">
 \begin{equation*}
 x_1\,\text{C}_2\text{H}_8\text{N}_2 + x_2\,\text{N}_2\text{O}_4 \to x_3 \,\text{N}_2 + x_4\, \text{CO}_2 + x_5\,\text{H}_2\text{O}.
 \end{equation*}
 </div>
-<p id="p-598">The coefficients \(x_1, \dots, x_5\) represent the unknown number of each molecule involved. The goal is to find appropriate integer values of these unknowns. We begin by equating the number of each atom from each side of the equation:</p>
+<p id="p-599">The coefficients \(x_1, \dots, x_5\) represent the unknown number of each molecule involved. The goal is to find appropriate integer values of these unknowns. We begin by equating the number of each atom from each side of the equation:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{cl}\hline\hline
@@ -248,9 +258,9 @@ x_1\,\text{C}_2\text{H}_8\text{N}_2 + x_2\,\text{N}_2\text{O}_4 \to x_3 \,\text{
 \end{array}
 \end{equation*}
 </div>
-<p id="p-599">Rewriting the four equations results in the final model:</p>
+<p id="p-600">Rewriting the four equations results in the final model:</p>
 <div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="./images/systemeq2.png" class="contained" alt=""></div>
-<p id="p-600">We solve this model by row-reduction:</p>
+<p id="p-601">We solve this model by row-reduction:</p>
 <div class="hidden-sagecell-sage" id="sage-217"><script type="text/x-sage">A = matrix([[2, 0, 0, -1, 0], [8, 0, 0, 0, -2], 
 	[2, 2, -2, 0, 0], [0, 4, 0, -2, -1]])
 b = matrix(4, 1, [0, 0, 0, 0])
@@ -258,7 +268,7 @@ A.augment(b)
 </script></div>
 <div class="hidden-sagecell-sage" id="sage-218"><script type="text/x-sage">(A.augment(b)).rref()
 </script></div>
-<p id="p-601">This yields the general solution</p>
+<p id="p-602">This yields the general solution</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -270,7 +280,7 @@ x_5 &amp;\text{ is free}
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-602">To find a particular solution, we choose the smallest positive integer value of the free variable so that all the other variables are positive integers. We choose \(x_5 = 4\text{,}\) yielding \(x_1 = 1\text{,}\) \(x_2 = 2\text{,}\) \(x_3 = 3\text{,}\) and \(x_4 = 2\) so that the balanced equation is</p>
+<p id="p-603">To find a particular solution, we choose the smallest positive integer value of the free variable so that all the other variables are positive integers. We choose \(x_5 = 4\text{,}\) yielding \(x_1 = 1\text{,}\) \(x_2 = 2\text{,}\) \(x_3 = 3\text{,}\) and \(x_4 = 2\) so that the balanced equation is</p>
 <div class="displaymath">
 \begin{equation*}
 \text{C}_2\text{H}_8\text{N}_2 + 2\text{N}_2\text{O}_4 \to 3\text{N}_2 + 2\text{CO}_2 + 4\text{H}_2\text{O}.
@@ -278,9 +288,9 @@ x_5 &amp;\text{ is free}
 </div></article></div>
 <article class="example example-like" id="equilibrium-example"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-equilibrium-example"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.2.3</span><span class="period">.</span><span class="space"> </span><span class="title">Equilibrium Prices.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-equilibrium-example"><article class="example example-like"><p id="p-603">Consider a simple economy that consists of three sectors: Chemical, Electric, and Metal. Each sector produces some yearly output (measured in millions of dollars). Each sector also consumes a certain proportion of the output of the other sectors as illustrated in <a class="xref" data-knowl="./knowl/equil-diagram.html" title="Figure 7.2.4">Figure 7.2.4</a>. (A sector consuming a portion of its own output can be thought of as an operational expense.)</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-equilibrium-example"><article class="example example-like"><p id="p-604">Consider a simple economy that consists of three sectors: Chemical, Electric, and Metal. Each sector produces some yearly output (measured in millions of dollars). Each sector also consumes a certain proportion of the output of the other sectors as illustrated in <a class="xref" data-knowl="./knowl/equil-diagram.html" title="Figure 7.2.4">Figure 7.2.4</a>. (A sector consuming a portion of its own output can be thought of as an operational expense.)</p>
 <figure class="figure figure-like" id="equil-diagram"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/241diagram1.png" class="contained" alt=""></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">7.2.4<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-604"><a class="xref" data-knowl="./knowl/exch-table.html" title="Table 7.2.5">Table 7.2.5</a>, called an <dfn class="terminology">exchange table</dfn>, summarizes this information. Note that each column in this table adds up to exactly 1 to model the fact that each sector’s output is totally consumed by the other sectors.</p>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">7.2.4<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-605"><a class="xref" data-knowl="./knowl/exch-table.html" title="Table 7.2.5">Table 7.2.5</a>, called an <dfn class="terminology">exchange table</dfn>, summarizes this information. Note that each column in this table adds up to exactly 1 to model the fact that each sector’s output is totally consumed by the other sectors.</p>
 <figure class="table table-like" id="exch-table"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">7.2.5<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr class="header-horizontal">
 <th class="c m b0 r0 l0 t3 lines" colspan="3">Proportion of Output From</th>
@@ -310,9 +320,9 @@ x_5 &amp;\text{ is free}
 <td class="c m b3 r1 l0 t0 lines">0.2</td>
 <td class="l m b3 r0 l0 t0 lines">Metal</td>
 </tr>
-</table></div></figure><p id="p-605">A reasonable assumption about a healthy economy is:</p>
+</table></div></figure><p id="p-606">A reasonable assumption about a healthy economy is:</p>
 <blockquote class="blockquote" id="blockquote-5">The total expenses of each sector must equal its output.</blockquote>
-<p id="p-606">In other words, a sector’s expenses must equal its income. An economy satisfying this assumption is said to be in <dfn class="terminology">equilibrium</dfn>, and the resulting outputs are called <dfn class="terminology">equilibrium prices</dfn>. To find equilibrium prices, let \(x_c\text{,}\) \(x_e\text{,}\) and \(x_m\) denote the outputs from chemical, electrical, and metal, respectively. The assumption yields the system of equations</p>
+<p id="p-607">In other words, a sector’s expenses must equal its income. An economy satisfying this assumption is said to be in <dfn class="terminology">equilibrium</dfn>, and the resulting outputs are called <dfn class="terminology">equilibrium prices</dfn>. To find equilibrium prices, let \(x_c\text{,}\) \(x_e\text{,}\) and \(x_m\) denote the outputs from chemical, electrical, and metal, respectively. The assumption yields the system of equations</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -322,7 +332,7 @@ x_5 &amp;\text{ is free}
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-607">We rewrite this system by subtracting the quantities on the right hand side of the equation:</p>
+<p id="p-608">We rewrite this system by subtracting the quantities on the right hand side of the equation:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -332,12 +342,12 @@ x_5 &amp;\text{ is free}
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-608">Then we solve by row-reduction:</p>
+<p id="p-609">Then we solve by row-reduction:</p>
 <div class="hidden-sagecell-sage" id="sage-219"><script type="text/x-sage">A = matrix([[-0.9, 0.6, 0.7], [0.5, -1, 0.1], [0.4, 0.4, -0.8]])
 b = matrix(3, 1, [0, 0, 0])
 (A.augment(b)).rref()
 </script></div>
-<p id="p-609">This yields the general solution:</p>
+<p id="p-610">This yields the general solution:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -347,12 +357,12 @@ x_m &amp; \text{ is free}
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-610">Any nonnegative choice for \(x_m\) yields a specific set of equilibrium prices. For example, if \(x_m = 15\text{,}\) then \(x_c = 19\) and \(x_e = 11\text{.}\)</p></article></div>
+<p id="p-611">Any nonnegative choice for \(x_m\) yields a specific set of equilibrium prices. For example, if \(x_m = 15\text{,}\) then \(x_c = 19\) and \(x_e = 11\text{.}\)</p></article></div>
 <article class="example example-like" id="example-34"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-34"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">The Leontief Input-Output Model.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-34"><article class="example example-like"><p id="p-611">In this example we present another economics application that resembles equilibrium prices, but there are some key differences. One difference is that there will be an “open” sector which consumes products but doesn't produce anything.</p>
-<p id="p-612">Consider an open economy with three sectors: mining, electrical, and auto. To produce $1 of mined material, the mining operation must purchase $0.1 of its own product, $0.3 of electricity, and $0.1 worth of autos for its transportation. To produce $1 of electricity, it takes $0.25 of mined material, $0.4 of electricity, and $0.15 of autos. Finally, to produce $1 worth of autos, the auto-manufacturing plant must purchase $0.2 of mined material, $0.5 of electricity, and consumes $0.1 of autos. Assume also that during a period of one year, the open sector has a demand of $50 million worth of mined material, $75 million worth of electricity, and $125 million worth of autos. Find the annual output of each sector in order to satisfy demand.</p>
-<p id="p-613">To solve this problem we first organize the inter-sector demands in <a class="xref" data-knowl="./knowl/leontief-table.html" title="Table 7.2.7">Table 7.2.7</a> called an <dfn class="terminology">input-output matrix</dfn>. This matrix looks much like an exchange table, but the entries of the matrix represent dollar amounts, not proportions. Also note that the columns do not add up to one and that the columns represent the purchaser, not the rows as in an exchange table.</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-34"><article class="example example-like"><p id="p-612">In this example we present another economics application that resembles equilibrium prices, but there are some key differences. One difference is that there will be an “open” sector which consumes products but doesn't produce anything.</p>
+<p id="p-613">Consider an open economy with three sectors: mining, electrical, and auto. To produce $1 of mined material, the mining operation must purchase $0.1 of its own product, $0.3 of electricity, and $0.1 worth of autos for its transportation. To produce $1 of electricity, it takes $0.25 of mined material, $0.4 of electricity, and $0.15 of autos. Finally, to produce $1 worth of autos, the auto-manufacturing plant must purchase $0.2 of mined material, $0.5 of electricity, and consumes $0.1 of autos. Assume also that during a period of one year, the open sector has a demand of $50 million worth of mined material, $75 million worth of electricity, and $125 million worth of autos. Find the annual output of each sector in order to satisfy demand.</p>
+<p id="p-614">To solve this problem we first organize the inter-sector demands in <a class="xref" data-knowl="./knowl/leontief-table.html" title="Table 7.2.7">Table 7.2.7</a> called an <dfn class="terminology">input-output matrix</dfn>. This matrix looks much like an exchange table, but the entries of the matrix represent dollar amounts, not proportions. Also note that the columns do not add up to one and that the columns represent the purchaser, not the rows as in an exchange table.</p>
 <figure class="table table-like" id="leontief-table"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">7.2.7<span class="period">.</span></span><span class="space"> </span></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr class="header-horizontal">
 <th class="c m b0 r0 l0 t3 lines" colspan="3">$ Purchased by</th>
@@ -382,9 +392,9 @@ x_m &amp; \text{ is free}
 <td class="c m b3 r1 l0 t0 lines">0.1</td>
 <td class="l m b3 r0 l0 t0 lines">Auto</td>
 </tr>
-</table></div></figure><p id="p-614">A reasonable assumption about this scenario is:</p>
+</table></div></figure><p id="p-615">A reasonable assumption about this scenario is:</p>
 <blockquote class="blockquote" id="blockquote-6">The total demand from each sector must equal its output.</blockquote>
-<p id="p-615">Let \(x_m\text{,}\) \(x_e\text{,}\) and \(x_a\) denote the annual outputs from mining, electrical, and auto, respectively. The assumption yields the system of equations</p>
+<p id="p-616">Let \(x_m\text{,}\) \(x_e\text{,}\) and \(x_a\) denote the annual outputs from mining, electrical, and auto, respectively. The assumption yields the system of equations</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -394,7 +404,7 @@ x_m &amp; \text{ is free}
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-616">We could solve this system by rewriting and row-reducing like we did in <a class="xref" data-knowl="./knowl/equilibrium-example.html" title="Example 7.2.3: Equilibrium Prices">Example 7.2.3</a>, but we'll take a different approach. First we'll rewrite the system in matrix form</p>
+<p id="p-617">We could solve this system by rewriting and row-reducing like we did in <a class="xref" data-knowl="./knowl/equilibrium-example.html" title="Example 7.2.3: Equilibrium Prices">Example 7.2.3</a>, but we'll take a different approach. First we'll rewrite the system in matrix form</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -417,13 +427,13 @@ x_a
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-617">or more generically,</p>
+<p id="p-618">or more generically,</p>
 <div class="displaymath">
 \begin{equation*}
 A\pmb{x}+\pmb{d} = \pmb{x}
 \end{equation*}
 </div>
-<p id="p-618">where \(A\) is the input-output matrix, \(\pmb{d}\) is the demand vector from the open sector, and \(\pmb{x}\) is the unknown output vector. Then we rewrite this matrix equation:</p>
+<p id="p-619">where \(A\) is the input-output matrix, \(\pmb{d}\) is the demand vector from the open sector, and \(\pmb{x}\) is the unknown output vector. Then we rewrite this matrix equation:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -433,7 +443,7 @@ A\pmb{x}+\pmb{d} = \pmb{x}
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-619">For this example,</p>
+<p id="p-620">For this example,</p>
 <div class="displaymath">
 \begin{equation*}
 I_n - A = \begin{bmatrix}
@@ -443,45 +453,45 @@ I_n - A = \begin{bmatrix}
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-620">We can compute the inverse of this matrix and solve for the output vector \(\pmb{x}\) in SageMath:</p>
+<p id="p-621">We can compute the inverse of this matrix and solve for the output vector \(\pmb{x}\) in SageMath:</p>
 <div class="hidden-sagecell-sage" id="sage-220"><script type="text/x-sage">A = matrix([[0.1, 0.25, 0.2], [0.3, 0.40, 0.5], [0.1, 0.15, 0.1]])
 d = matrix(3, 1, [50, 75, 125])
 x = (identity_matrix(3)-A).inverse()*d
 x
 </script></div>
-<p id="p-621">So mining should produce $229.9 million, electricity $437.8 million, and auto $237.4 million. One benefit of doing the calculations with matrices rather than row-reduction is that if the demand from the open sector were to change, then all we need to do is change \(\pmb{d}\) in the calculation \(\pmb{x} = (I_n - A)^{-1} \pmb{d}\text{.}\)</p></article></div>
+<p id="p-622">So mining should produce $229.9 million, electricity $437.8 million, and auto $237.4 million. One benefit of doing the calculations with matrices rather than row-reduction is that if the demand from the open sector were to change, then all we need to do is change \(\pmb{d}\) in the calculation \(\pmb{x} = (I_n - A)^{-1} \pmb{d}\text{.}\)</p></article></div>
 <section class="exercises" id="exercises-10"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="exercise-31"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
 <div class="introduction" id="introduction-20">
-<p id="p-622">Consider the road network pictured below.</p>
+<p id="p-623">Consider the road network pictured below.</p>
 <div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="./images/roadnetwork2.png" class="contained" alt=""></div>
 </div>
 <article class="task exercise-like" id="task-34"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-623">Construct a system of linear equations that models the traffic flow and find the general solution.</p></article><article class="task exercise-like" id="task-35"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-624">What is the minimum possible value of \(x_3\text{?}\)</p></article><article class="task exercise-like" id="task-36"><h6 class="heading"><span class="codenumber">(c)</span></h6>
-<p id="p-625">What is the maximum possible value of \(x_4\text{?}\)</p></article><article class="task exercise-like" id="task-37"><h6 class="heading"><span class="codenumber">(d)</span></h6>
-<p id="p-626">Suppose the 650 vph flowing into intersection D from the bottom were changed to 600 vph. Explain why there would be no solution to the resulting system of linear equations that models the traffic flow.</p></article></article><article class="exercise exercise-like" id="exercise-32"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
-<div class="introduction" id="introduction-21"><p id="p-627">Balance each of the following chemical equations:</p></div>
+<p id="p-624">Construct a system of linear equations that models the traffic flow and find the general solution.</p></article><article class="task exercise-like" id="task-35"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-625">What is the minimum possible value of \(x_3\text{?}\)</p></article><article class="task exercise-like" id="task-36"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-626">What is the maximum possible value of \(x_4\text{?}\)</p></article><article class="task exercise-like" id="task-37"><h6 class="heading"><span class="codenumber">(d)</span></h6>
+<p id="p-627">Suppose the 650 vph flowing into intersection D from the bottom were changed to 600 vph. Explain why there would be no solution to the resulting system of linear equations that models the traffic flow.</p></article></article><article class="exercise exercise-like" id="exercise-32"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-21"><p id="p-628">Balance each of the following chemical equations:</p></div>
 <article class="task exercise-like" id="task-38"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-628">Potassium permanganate reacts with hydrochloric acid to form potassium chloride, manganese (II) chloride, water, and chlorine gas:</p>
+<p id="p-629">Potassium permanganate reacts with hydrochloric acid to form potassium chloride, manganese (II) chloride, water, and chlorine gas:</p>
 <div class="displaymath">
 \begin{equation*}
 \text{KMnO}_4 + \text{HCl} \to \text{KCl} + \text{MnCl}_2 + \text{H}_2\text{O} + \text{Cl}_2.
 \end{equation*}
 </div></article><article class="task exercise-like" id="task-39"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-629">Sodium bicarbonate reacts with citric acid to form sodium citrate, water, and carbon dioxide:</p>
+<p id="p-630">Sodium bicarbonate reacts with citric acid to form sodium citrate, water, and carbon dioxide:</p>
 <div class="displaymath">
 \begin{equation*}
 \text{NaHCO}_3 + \text{H}_3\text{C}_6\text{H}_5\text{O}_7 \to \text{Na}_3\text{C}_6\text{H}_5\text{O}_7 + \text{H}_2\text{O} + \text{CO}_2.
 \end{equation*}
 </div></article></article><article class="exercise exercise-like" id="exercise-33"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
-<div class="introduction" id="introduction-22"><p id="p-630">Consider an economy with two sectors: Manufacturing and Services. Each year, Manufacturing sells 75% of its output to Services and the rest is an operational expense. Likewise, Services sells 85% of its output to Manufacturing and consumes the rest.</p></div>
+<div class="introduction" id="introduction-22"><p id="p-631">Consider an economy with two sectors: Manufacturing and Services. Each year, Manufacturing sells 75% of its output to Services and the rest is an operational expense. Likewise, Services sells 85% of its output to Manufacturing and consumes the rest.</p></div>
 <article class="task exercise-like" id="task-40"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-631">Set up an exchange table for this economy.</p></article><article class="task exercise-like" id="task-41"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-632">Find the equilibrium prices if the annual output from Services is $30 million.</p></article></article><article class="exercise exercise-like" id="exercise-34"><h6 class="heading"><span class="codenumber">4<span class="period">.</span></span></h6>
-<div class="introduction" id="introduction-23"><p id="p-633">Consider an economy whose exchange table is given below. Find the equilibrium prices if the annual output from Services is $46 million.</p></div>
+<p id="p-632">Set up an exchange table for this economy.</p></article><article class="task exercise-like" id="task-41"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-633">Find the equilibrium prices if the annual output from Services is $30 million.</p></article></article><article class="exercise exercise-like" id="exercise-34"><h6 class="heading"><span class="codenumber">4<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-23"><p id="p-634">Consider an economy whose exchange table is given below. Find the equilibrium prices if the annual output from Services is $46 million.</p></div>
 <div class="tabular-box natural-width"><table class="tabular">
 <tr class="header-horizontal">
 <th class="c m b0 r0 l0 t3 lines" colspan="3">Prop. of Output from</th>
@@ -512,7 +522,7 @@ x
 <td class="l m b3 r0 l0 t0 lines">Food</td>
 </tr>
 </table></div></article><article class="exercise exercise-like" id="exercise-35"><h6 class="heading"><span class="codenumber">5<span class="period">.</span></span></h6>
-<p id="p-634">An economy is based on three sectors, agriculture, energy, and manufacturing, plus an open sector. Production of each dollar of agriculture requires an input of $0.2 from the agriculture sector and $0.4 from the energy sector. Production of each dollar of energy requires an input of $0.2 from the energy sector and $0.4 from the manufacturing sector. Production of each dollar of manufacturing requires an input of $0.1 from the agriculture sector, $0.1 from the energy sector, and $0.3 from the manufacturing sector. Find the output from each sector that is needed to satisfy a demand of $20 billion for agriculture, $10 billion for energy, and $30 billion for manufacturing from the open sector.</p></article></section></section></div></main>
+<p id="p-635">An economy is based on three sectors, agriculture, energy, and manufacturing, plus an open sector. Production of each dollar of agriculture requires an input of $0.2 from the agriculture sector and $0.4 from the energy sector. Production of each dollar of energy requires an input of $0.2 from the energy sector and $0.4 from the manufacturing sector. Production of each dollar of manufacturing requires an input of $0.1 from the agriculture sector, $0.1 from the energy sector, and $0.3 from the manufacturing sector. Find the output from each sector that is needed to satisfy a demand of $20 billion for agriculture, $10 billion for energy, and $30 billion for manufacturing from the open sector.</p></article></section></section></div></main>
 </div>
 <script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>

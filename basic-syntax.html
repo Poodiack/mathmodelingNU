@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-02-02T17:58:42-05:00       *-->
+<!--*       on 2026-03-30T11:47:21-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -93,7 +93,9 @@
 </div></nav></header><div class="page">
 <div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
 <nav id="toc"><ul>
-<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
 <li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
 <li class="link">
 <a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
@@ -151,6 +153,16 @@
 <a href="linearalgebra.html" data-scroll="linearalgebra"><span class="codenumber">7</span> <span class="title">Linear Algebra</span></a><ul>
 <li><a href="linear-algebra-basics.html" data-scroll="linear-algebra-basics">Linear Algebra Basics</a></li>
 <li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
+<li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
+<li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -158,39 +170,39 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="basic-syntax"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">4.1</span> <span class="title">Basic Sage/Python syntax</span>
 </h2>
-<p id="p-112">Instructions are generally processed line by line. The hashtag <code class="code-inline tex2jax_ignore">#</code> is considered by Python to begin a comment, until the end of that line. A semicolon <code class="code-inline tex2jax_ignore">;</code> separates several instructions typed on the same line, although if we're looking to see output, we have to use the <code class="code-inline tex2jax_ignore">print</code> command on each.</p>
+<p id="p-113">Instructions are generally processed line by line. The hashtag <code class="code-inline tex2jax_ignore">#</code> is considered by Python to begin a comment, until the end of that line. A semicolon <code class="code-inline tex2jax_ignore">;</code> separates several instructions typed on the same line, although if we're looking to see output, we have to use the <code class="code-inline tex2jax_ignore">print</code> command on each.</p>
 <div class="sagecell-sage" id="sage-82"><script type="text/x-sage">print(2*3); print(3*4); print(4*5)  # one comment, three results
 </script></div>
-<p id="p-113">In the case where we have a command that's overlong, SageMath will continue type to the right and put a scrollbar in. Another option if we don't wish to scroll is to end a line with a backslash and continue the command on the next line. (The backslash is ignored by SageMath.)</p>
+<p id="p-114">In the case where we have a command that's overlong, SageMath will continue type to the right and put a scrollbar in. Another option if we don't wish to scroll is to end a line with a backslash and continue the command on the next line. (The backslash is ignored by SageMath.)</p>
 <div class="sagecell-sage" id="sage-83"><script type="text/x-sage">123 + \
 345
 </script></div>
 <section class="subsection" id="subsection-10"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">4.1.1</span> <span class="title">Function calls</span>
 </h3>
-<p id="p-114">To evaluate a function, its arguments should be put inside parentheses -- for example, <code class="code-inline tex2jax_ignore">cos(pi)</code>. If a function has no argument, we include empty parentheses. If we simply type a function without an argument or parentheses, no computation is performed.</p></section><section class="subsection" id="subsection-11"><h3 class="heading hide-type">
+<p id="p-115">To evaluate a function, its arguments should be put inside parentheses -- for example, <code class="code-inline tex2jax_ignore">cos(pi)</code>. If a function has no argument, we include empty parentheses. If we simply type a function without an argument or parentheses, no computation is performed.</p></section><section class="subsection" id="subsection-11"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">4.1.2</span> <span class="title">More about variables</span>
 </h3>
-<p id="p-115">As seen previously, SageMath denotes the assignment of a value to a variable by the equals sign. The expression to the right of the equals sign is first evaluated, then its value is saved in the variable whose name is on the left. Thus we have</p>
+<p id="p-116">As seen previously, SageMath denotes the assignment of a value to a variable by the equals sign. The expression to the right of the equals sign is first evaluated, then its value is saved in the variable whose name is on the left. Thus we have</p>
 <div class="sagecell-sage" id="sage-84"><script type="text/x-sage">y = 3; y = 3*y + 1; y = 3*y + 1; y
 </script></div>
-<p id="p-116">The <code class="code-inline tex2jax_ignore">del x</code> command discards the value assigned to the variable \(x\text{,}\) and the function call <code class="code-inline tex2jax_ignore">reset()</code> recovers the initial Sage state.</p>
-<p id="p-117">Several variables can be assigned simultaneously, which differs from sequential assignments.</p>
+<p id="p-117">The <code class="code-inline tex2jax_ignore">del x</code> command discards the value assigned to the variable \(x\text{,}\) and the function call <code class="code-inline tex2jax_ignore">reset()</code> recovers the initial Sage state.</p>
+<p id="p-118">Several variables can be assigned simultaneously, which differs from sequential assignments.</p>
 <div class="sagecell-sage" id="sage-85"><script type="text/x-sage">a, b = 10, 20 # (a,b) = (10,20) and [10,20] also possible
 </script></div>
 <div class="sagecell-sage" id="sage-86"><script type="text/x-sage">a, b = b, a
 a, b
 </script></div>
-<p id="p-118">The assignment <code class="code-inline tex2jax_ignore">a, b = b, a</code> is equivalent to swapping the values of \(a\) and \(b\) using an auxiliary variable.</p>
+<p id="p-119">The assignment <code class="code-inline tex2jax_ignore">a, b = b, a</code> is equivalent to swapping the values of \(a\) and \(b\) using an auxiliary variable.</p>
 <div class="sagecell-sage" id="sage-87"><script type="text/x-sage">temp = a; a = b; b = temp # equivalent to a, b = b, a
 (a, b)
 </script></div>
-<p id="p-119">We can also assign the same value to several variables simultaneously.</p>
+<p id="p-120">We can also assign the same value to several variables simultaneously.</p>
 <div class="sagecell-sage" id="sage-88"><script type="text/x-sage">a = b = c = 0
 (a, b, c)
 </script></div>
-<p id="p-120">The instructions <code class="code-inline tex2jax_ignore">x += 5</code> and <code class="code-inline tex2jax_ignore">n *= 2</code> are respectively equivalent to <code class="code-inline tex2jax_ignore">x = x+5</code> and <code class="code-inline tex2jax_ignore">n = n*2</code>.</p>
-<p id="p-121">The comparison between two objects is performed by the double-equals sign <code class="code-inline tex2jax_ignore">==</code>.</p>
+<p id="p-121">The instructions <code class="code-inline tex2jax_ignore">x += 5</code> and <code class="code-inline tex2jax_ignore">n *= 2</code> are respectively equivalent to <code class="code-inline tex2jax_ignore">x = x+5</code> and <code class="code-inline tex2jax_ignore">n = n*2</code>.</p>
+<p id="p-122">The comparison between two objects is performed by the double-equals sign <code class="code-inline tex2jax_ignore">==</code>.</p>
 <div class="sagecell-sage" id="sage-89"><script type="text/x-sage">print(2 + 2 == 2^2)
 print(3 * 3 == 3^3)
 </script></div></section></section></div></main>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-02-23T11:38:53-05:00       *-->
+<!--*       on 2026-03-30T11:47:22-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -93,7 +93,9 @@
 </div></nav></header><div class="page">
 <div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
 <nav id="toc"><ul>
-<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
 <li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
 <li class="link">
 <a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
@@ -153,6 +155,14 @@
 <li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
 <li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
 <li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -160,10 +170,10 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="linear-algebra-basics"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">7.1</span> <span class="title">Linear Algebra Basics</span>
 </h2>
-<p id="p-486">Elementary linear algebra deals with solving systems of linear equations and operations on matrices. As we will see throughout this unit, systems of linear equations and matrices have a wide variety of applications. We introduce some basic matrix operations and techniques for solving systems of equations. We begin with an example of solving simple systems of linear equations.</p>
+<p id="p-487">Elementary linear algebra deals with solving systems of linear equations and operations on matrices. As we will see throughout this unit, systems of linear equations and matrices have a wide variety of applications. We introduce some basic matrix operations and techniques for solving systems of equations. We begin with an example of solving simple systems of linear equations.</p>
 <article class="example example-like" id="systems-linear-eqns"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-systems-linear-eqns"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">Systems of Linear Equations.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-systems-linear-eqns"><article class="example example-like"><p id="p-487">Consider the system of linear equations</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-systems-linear-eqns"><article class="example example-like"><p id="p-488">Consider the system of linear equations</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -172,7 +182,7 @@ x + 2y &amp;=2\\
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-488">A <dfn class="terminology">solution</dfn> to this system is a value of \(x\) and a value of \(y\) that satisfy both equations simultaneously. To algebraically find a solution, if it exists, one approach is to multiply the equations by appropriate non-zero constants and add them in such a way that only one variable remains. For instance, we could multiply the first equation by \(-3\text{:}\)</p>
+<p id="p-489">A <dfn class="terminology">solution</dfn> to this system is a value of \(x\) and a value of \(y\) that satisfy both equations simultaneously. To algebraically find a solution, if it exists, one approach is to multiply the equations by appropriate non-zero constants and add them in such a way that only one variable remains. For instance, we could multiply the first equation by \(-3\text{:}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -181,7 +191,7 @@ x + 2y &amp;=2\\
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-489">and then add the two equations together to get</p>
+<p id="p-490">and then add the two equations together to get</p>
 <div class="displaymath">
 \begin{equation*}
 0x-10 y = 0
@@ -191,9 +201,9 @@ x + 2y &amp;=2\\
 x = 2(0) + 2 \quad\Longrightarrow \quad x=2.
 \end{equation*}
 </div>
-<p id="p-490">Thus the unique solution is \(x = 2\text{,}\) \(y = 0\text{.}\) Graphically, we can think of solving a system of equations such as this as finding the point of intersection of the lines \(x + 2y = 2\) and \(3x - 4y = 6\) (or equivalently, \(y = -x/2 + 1\) and \(y = 3x/4 - 3/2\text{.}\) This graph is shown below. We see the lines intersect at the unique point \((2, 0)\text{.}\)</p>
+<p id="p-491">Thus the unique solution is \(x = 2\text{,}\) \(y = 0\text{.}\) Graphically, we can think of solving a system of equations such as this as finding the point of intersection of the lines \(x + 2y = 2\) and \(3x - 4y = 6\) (or equivalently, \(y = -x/2 + 1\) and \(y = 3x/4 - 3/2\text{.}\) This graph is shown below. We see the lines intersect at the unique point \((2, 0)\text{.}\)</p>
 <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/linearalgebra1.png" class="contained" alt=""></div>
-<p id="p-491">Not every system of linear equations has a unique solution. Consider the system</p>
+<p id="p-492">Not every system of linear equations has a unique solution. Consider the system</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -202,9 +212,9 @@ x + 2y &amp;= -2
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-492">The graphs of these two lines are shown below. We see that the lines are parallel, so they never intersect meaning there is no solution.</p>
+<p id="p-493">The graphs of these two lines are shown below. We see that the lines are parallel, so they never intersect meaning there is no solution.</p>
 <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/linearalgebra2.png" class="contained" alt=""></div>
-<p id="p-493">Other systems have infinitely many solutions. Consider the system</p>
+<p id="p-494">Other systems have infinitely many solutions. Consider the system</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -213,10 +223,10 @@ x + 2y &amp;= 2 \\
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-494">Note that the second equation is simply 2 times the first equation. This means that any solution to the first equation will be a solution to the second equation. Graphically, this means these two equations have the same graph. The graphs of these two lines are shown below. There appears to be only one line because the lines lie on top of each other. These two lines intersect in infinitely many points, so there are infinitely many solutions to this system.</p>
+<p id="p-495">Note that the second equation is simply 2 times the first equation. This means that any solution to the first equation will be a solution to the second equation. Graphically, this means these two equations have the same graph. The graphs of these two lines are shown below. There appears to be only one line because the lines lie on top of each other. These two lines intersect in infinitely many points, so there are infinitely many solutions to this system.</p>
 <div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/linearalgebra3.png" class="contained" alt=""></div>
-<p id="p-495">This analysis applies to systems with any number of variables. In general, a system of linear equations can have either one unique solution, no solution, or infinitely many solutions.</p></article></div>
-<p id="p-496">Observe that the method for algebraically solving a system of equations presented in the example involved only arithmetic and that the most important part of the process is the numbers involved. If we keep our work neatly organized, we don’t really need to write the variables in each step. To this end, we write the coefficients of the variables and the constants on the right-hand sides of the equations in the following form:</p>
+<p id="p-496">This analysis applies to systems with any number of variables. In general, a system of linear equations can have either one unique solution, no solution, or infinitely many solutions.</p></article></div>
+<p id="p-497">Observe that the method for algebraically solving a system of equations presented in the example involved only arithmetic and that the most important part of the process is the numbers involved. If we keep our work neatly organized, we don’t really need to write the variables in each step. To this end, we write the coefficients of the variables and the constants on the right-hand sides of the equations in the following form:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -229,17 +239,17 @@ x + 2y &amp;= 2 \\
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-497">This leads to our definition of a <dfn class="terminology">matrix</dfn> and a <dfn class="terminology">vector</dfn>.</p>
+<p id="p-498">This leads to our definition of a <dfn class="terminology">matrix</dfn> and a <dfn class="terminology">vector</dfn>.</p>
 <article class="definition definition-like" id="definition-3"><h6 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.1.2</span><span class="period">.</span>
 </h6>
 <ul class="disc">
-<li id="li-44"><p id="p-498">A <dfn class="terminology">matrix</dfn> is a two-dimensional array of numbers.</p></li>
-<li id="li-45"><p id="p-499">The size of a matrix is denoted \(a\times b\) where \(a\) is the number of rows and \(b\) is the number of columns (rows are horizontal and columns are vertical).</p></li>
-<li id="li-46"><p id="p-500">A <dfn class="terminology">column vector</dfn> is a matrix with one column and a <dfn class="terminology">row vector</dfn> is a matrix with one row. When we refer to a generic vector, we mean a column vector.</p></li>
-<li id="li-47"><p id="p-501">The size of a vector is denoted by the number of rows and is referred to as the <dfn class="terminology">dimension</dfn> of the vector.</p></li>
-<li id="li-48"><p id="p-502">The symbol \(R^n\) denotes the set of all vectors of dimension \(n\text{.}\)</p></li>
-</ul></article><p id="p-503">Matrices are usually named with capital letters, such as \(A\text{,}\) and vectors are named with bold-face lower-case letters, such as \(\mathbf{b}\text{.}\) When writing a vector by hand, we often use a lower-case letter with an overhead arrow, such as \(\vec{b}\text{.}\) For example,</p>
+<li id="li-44"><p id="p-499">A <dfn class="terminology">matrix</dfn> is a two-dimensional array of numbers.</p></li>
+<li id="li-45"><p id="p-500">The size of a matrix is denoted \(a\times b\) where \(a\) is the number of rows and \(b\) is the number of columns (rows are horizontal and columns are vertical).</p></li>
+<li id="li-46"><p id="p-501">A <dfn class="terminology">column vector</dfn> is a matrix with one column and a <dfn class="terminology">row vector</dfn> is a matrix with one row. When we refer to a generic vector, we mean a column vector.</p></li>
+<li id="li-47"><p id="p-502">The size of a vector is denoted by the number of rows and is referred to as the <dfn class="terminology">dimension</dfn> of the vector.</p></li>
+<li id="li-48"><p id="p-503">The symbol \(R^n\) denotes the set of all vectors of dimension \(n\text{.}\)</p></li>
+</ul></article><p id="p-504">Matrices are usually named with capital letters, such as \(A\text{,}\) and vectors are named with bold-face lower-case letters, such as \(\mathbf{b}\text{.}\) When writing a vector by hand, we often use a lower-case letter with an overhead arrow, such as \(\vec{b}\text{.}\) For example,</p>
 <div class="displaymath">
 \begin{equation*}
 A = \begin{bmatrix}
@@ -248,7 +258,7 @@ A = \begin{bmatrix}
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-504">is a \(2\times 3\) matrix and</p>
+<p id="p-505">is a \(2\times 3\) matrix and</p>
 <div class="displaymath">
 \begin{equation*}
 \mathbf{b} = \begin{bmatrix}
@@ -258,12 +268,12 @@ A = \begin{bmatrix}
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-505">is a \(3\times 1\) matrix, or a 3-dimensional vector. A vector can be written vertically using square brackets, as above, or it may be written horizontally using parentheses, as \(\mathbf{b} = (-2,1,3)\text{.}\)</p>
-<p id="p-506">The numbers inside a matrix are called <dfn class="terminology">elements</dfn>. The position of an element is described by its row and column. For example, the element \(-1\) in matrix \(A\) is in row 2, column 3. We say that it is in location \((2, 3)\text{.}\)</p>
-<p id="p-507">Next we present by example some operations we can do in SageMath with matrices and vectors.</p>
+<p id="p-506">is a \(3\times 1\) matrix, or a 3-dimensional vector. A vector can be written vertically using square brackets, as above, or it may be written horizontally using parentheses, as \(\mathbf{b} = (-2,1,3)\text{.}\)</p>
+<p id="p-507">The numbers inside a matrix are called <dfn class="terminology">elements</dfn>. The position of an element is described by its row and column. For example, the element \(-1\) in matrix \(A\) is in row 2, column 3. We say that it is in location \((2, 3)\text{.}\)</p>
+<p id="p-508">Next we present by example some operations we can do in SageMath with matrices and vectors.</p>
 <article class="example example-like" id="example-20"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-20"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.3</span><span class="period">.</span><span class="space"> </span><span class="title">Scalar Multiplication.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-20"><article class="example example-like"><p id="p-508">In the context of linear algebra, a <dfn class="terminology">scalar</dfn> is another word for a real number. So scalar multiplication means we multiply a real number by a matrix or vector. To do this, we simply multiply each element of the matrix or vector by the real number. For the matrix \(A\) and vector \(\mathbf{b}\) defined above we can calculate, for example,</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-20"><article class="example example-like"><p id="p-509">In the context of linear algebra, a <dfn class="terminology">scalar</dfn> is another word for a real number. So scalar multiplication means we multiply a real number by a matrix or vector. To do this, we simply multiply each element of the matrix or vector by the real number. For the matrix \(A\) and vector \(\mathbf{b}\) defined above we can calculate, for example,</p>
 <div class="displaymath">
 \begin{equation*}
 3A = \begin{bmatrix}
@@ -280,20 +290,20 @@ A = \begin{bmatrix}
 -6 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-509">To enter these matrices into SageMath, we type</p>
+<p id="p-510">To enter these matrices into SageMath, we type</p>
 <div class="hidden-sagecell-sage" id="sage-190"><script type="text/x-sage">A = matrix([[1, 2, 3], [4, 0, -1]]) # A = matrix(2,3,[1, 2, 3, 4, 0, -1])
 b = matrix(3,1,[-2,1,3])
 </script></div>
-<p id="p-510">Note two different ways of entering matrices into Sage. We entered \(A\) by typing in the matrix as a list of its rows. For \(\mathbf{b}\text{,}\) we put in the dimensions of the matrix, then entered all the entries as one list.</p>
-<p id="p-511">If we want \(3A\) or \(-2\mathbf{b}\) for instance, we would type</p>
+<p id="p-511">Note two different ways of entering matrices into Sage. We entered \(A\) by typing in the matrix as a list of its rows. For \(\mathbf{b}\text{,}\) we put in the dimensions of the matrix, then entered all the entries as one list.</p>
+<p id="p-512">If we want \(3A\) or \(-2\mathbf{b}\) for instance, we would type</p>
 <div class="hidden-sagecell-sage" id="sage-191"><script type="text/x-sage">3*A
 </script></div>
 <div class="hidden-sagecell-sage" id="sage-192"><script type="text/x-sage">-2*b
 </script></div>
-<p id="p-512">Note that we cannot do a calculation such as \(3+A\) or \(-2-\mathbf{b}\text{.}\) In other words, we cannot do “scalar addition” or “scalar subtraction,” although we can add or subtract two scalars.</p></article></div>
+<p id="p-513">Note that we cannot do a calculation such as \(3+A\) or \(-2-\mathbf{b}\text{.}\) In other words, we cannot do “scalar addition” or “scalar subtraction,” although we can add or subtract two scalars.</p></article></div>
 <article class="example example-like" id="example-21"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-21"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.4</span><span class="period">.</span><span class="space"> </span><span class="title">Matrix Addition.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-21"><article class="example example-like"><p id="p-513">Matrices of the same size may be added by adding corresponding entries. For example</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-21"><article class="example example-like"><p id="p-514">Matrices of the same size may be added by adding corresponding entries. For example</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -311,15 +321,15 @@ b = matrix(3,1,[-2,1,3])
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-514">In SageMath, we could type</p>
+<p id="p-515">In SageMath, we could type</p>
 <div class="hidden-sagecell-sage" id="sage-193"><script type="text/x-sage">C = matrix(2, 2, [1, 2, 3, 4])
 D = matrix(2, 2, [5, 6, 7, 8])
 C + D
 </script></div>
-<p id="p-515">Subtraction works in the same way. Note that only matrices, or vectors, of the same size may be added or subtracted.</p></article></div>
+<p id="p-516">Subtraction works in the same way. Note that only matrices, or vectors, of the same size may be added or subtracted.</p></article></div>
 <article class="example example-like" id="example-22"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-22"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.5</span><span class="period">.</span><span class="space"> </span><span class="title">Matrix Multiplication.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-22"><article class="example example-like"><p id="p-516">Consider multiplying the matrix \(A\) times the vector \(\mathbf{b}\) as defined above. This can be done as follows:</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-22"><article class="example example-like"><p id="p-517">Consider multiplying the matrix \(A\) times the vector \(\mathbf{b}\) as defined above. This can be done as follows:</p>
 <div class="displaymath">
 \begin{equation*}
 A\mathbf{b} = \begin{bmatrix}
@@ -338,17 +348,17 @@ A\mathbf{b} = \begin{bmatrix}
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-517">Note that this calculation involves multiplying a \(2 \times 3\) matrix by a \(3 \times 1\) matrix and the product is a \(2\times 1\) matrix. For a product of matrices to be defined, the “inside” dimensions of the factors must be equal. The “outside” dimensions of the factors give the size of the product. More precisely, the column dimension of the first matrix must equal the row dimension of the second matrix. The row dimension of the first matrix and the column dimension of the second matrix give the size of the product. In this example the product \(\mathbf{b}A\) is not defined because the dimensions do not match up. Also note that we do not use the symbols \(\times\) or \(\cdot\) to denote matrix multiplication. These symbols are reserved for other linear algebra operations.</p>
-<p id="p-518">We can do matrix multiplication in SageMath by typing:</p>
+<p id="p-518">Note that this calculation involves multiplying a \(2 \times 3\) matrix by a \(3 \times 1\) matrix and the product is a \(2\times 1\) matrix. For a product of matrices to be defined, the “inside” dimensions of the factors must be equal. The “outside” dimensions of the factors give the size of the product. More precisely, the column dimension of the first matrix must equal the row dimension of the second matrix. The row dimension of the first matrix and the column dimension of the second matrix give the size of the product. In this example the product \(\mathbf{b}A\) is not defined because the dimensions do not match up. Also note that we do not use the symbols \(\times\) or \(\cdot\) to denote matrix multiplication. These symbols are reserved for other linear algebra operations.</p>
+<p id="p-519">We can do matrix multiplication in SageMath by typing:</p>
 <div class="hidden-sagecell-sage" id="sage-194"><script type="text/x-sage">A = matrix([[1, 2, 3], [4, 0, -1]]) # A = matrix(2,3,[1, 2, 3, 4, 0, -1])
 b = matrix(3,1,[-2,1,3])
 
 A*b
 </script></div>
-<p id="p-519">Asking for \(\mathbf{b}A\) will result in an error message.</p>
+<p id="p-520">Asking for \(\mathbf{b}A\) will result in an error message.</p>
 <div class="hidden-sagecell-sage" id="sage-195"><script type="text/x-sage">b*A
 </script></div>
-<p id="p-520">We can also multiply a matrix by a non-vector matrix as follows:</p>
+<p id="p-521">We can also multiply a matrix by a non-vector matrix as follows:</p>
 <div class="displaymath">
 \begin{equation*}
 CD = \begin{bmatrix}
@@ -366,7 +376,7 @@ CD = \begin{bmatrix}
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-521">The product \(DC\) can be calculated,</p>
+<p id="p-522">The product \(DC\) can be calculated,</p>
 <div class="displaymath">
 \begin{equation*}
 DC = \begin{bmatrix}
@@ -384,8 +394,8 @@ DC = \begin{bmatrix}
 \end{bmatrix},
 \end{equation*}
 </div>
-<p id="p-522">but note that \(CD\ne DC\text{.}\) This illustrates that matrix multiplication is not commutative.</p>
-<p id="p-523">We use the <code class="code-inline tex2jax_ignore">*</code> to indicate matrix multiplication in SageMath.</p>
+<p id="p-523">but note that \(CD\ne DC\text{.}\) This illustrates that matrix multiplication is not commutative.</p>
+<p id="p-524">We use the <code class="code-inline tex2jax_ignore">*</code> to indicate matrix multiplication in SageMath.</p>
 <div class="hidden-sagecell-sage" id="sage-196"><script type="text/x-sage">C = matrix([[1,2],[3,4]])
 D = matrix([[-1,0],[-2,1]])
 </script></div>
@@ -397,7 +407,7 @@ D = matrix([[-1,0],[-2,1]])
 </script></div></article></div>
 <article class="example example-like" id="example-23"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-23"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.6</span><span class="period">.</span><span class="space"> </span><span class="title">Transpose.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-23"><article class="example example-like"><p id="p-524">To calculate the <dfn class="terminology">transpose</dfn> of a matrix \(A\text{,}\) denoted \(A^T\text{,}\) we simply switch the rows and columns. Using the matrix \(A\) from above,</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-23"><article class="example example-like"><p id="p-525">To calculate the <dfn class="terminology">transpose</dfn> of a matrix \(A\text{,}\) denoted \(A^T\text{,}\) we simply switch the rows and columns. Using the matrix \(A\) from above,</p>
 <div class="displaymath">
 \begin{equation*}
 A^T = \begin{bmatrix}
@@ -407,7 +417,7 @@ A^T = \begin{bmatrix}
 \end{bmatrix} 
 \end{equation*}
 </div>
-<p id="p-525">Note that the dimensions of \(A^T\) are the dimensions of \(A\) switched around.</p>
+<p id="p-526">Note that the dimensions of \(A^T\) are the dimensions of \(A\) switched around.</p>
 <div class="hidden-sagecell-sage" id="sage-200"><script type="text/x-sage">A = matrix(2, 3, [1, 2, 3, 4, 0, -1])
 transpose(A)
 </script></div>
@@ -415,13 +425,13 @@ transpose(A)
 </script></div></article></div>
 <article class="example example-like" id="example-24"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-24"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.7</span><span class="period">.</span><span class="space"> </span><span class="title">Length of a Vector.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-24"><article class="example example-like"><p id="p-526">Geometrically a 2-dimensional vector \(\mathbf{b} = (b_1, b_2)\) can be thought of as an arrow that starts at the origin \((0, 0)\) and terminates at the point \((b_1, b_2)\) on the \(x\)-\(y\) plane. The length of the vector \(\mathbf{b}\text{,}\) denoted \(\|\mathbf{b}\|\text{,}\) is the distance of this point from the origin. The length is also called the <dfn class="terminology">norm</dfn> or <dfn class="terminology">Euclidean norm</dfn> of the vector and is calculated as</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-24"><article class="example example-like"><p id="p-527">Geometrically a 2-dimensional vector \(\mathbf{b} = (b_1, b_2)\) can be thought of as an arrow that starts at the origin \((0, 0)\) and terminates at the point \((b_1, b_2)\) on the \(x\)-\(y\) plane. The length of the vector \(\mathbf{b}\text{,}\) denoted \(\|\mathbf{b}\|\text{,}\) is the distance of this point from the origin. The length is also called the <dfn class="terminology">norm</dfn> or <dfn class="terminology">Euclidean norm</dfn> of the vector and is calculated as</p>
 <div class="displaymath">
 \begin{equation*}
 \|\mathbf{b}\| = \sqrt{b_1^2 + b_2^2}.
 \end{equation*}
 </div>
-<p id="p-527">This definition can be generalized to vectors of any dimension. The distance between two vectors \(\mathbf{d}\) and \(\mathbf{c}\) of the same dimension is defined as \(\|\mathbf{d}-\mathbf{c}\|\text{,}\) where \(\mathbf{d}-\mathbf{c}\) is the component-by-component difference of the vectors. So if \(\mathbf{d} = (1,1)\) and \(\mathbf{c}= (2,1)\text{,}\) we have</p>
+<p id="p-528">This definition can be generalized to vectors of any dimension. The distance between two vectors \(\mathbf{d}\) and \(\mathbf{c}\) of the same dimension is defined as \(\|\mathbf{d}-\mathbf{c}\|\text{,}\) where \(\mathbf{d}-\mathbf{c}\) is the component-by-component difference of the vectors. So if \(\mathbf{d} = (1,1)\) and \(\mathbf{c}= (2,1)\text{,}\) we have</p>
 <div class="displaymath">
 \begin{equation*}
 \|\mathbf{d} - \mathbf{c}\| = \left\|\begin{bmatrix}
@@ -436,17 +446,17 @@ transpose(A)
 \end{bmatrix} \right\| = \sqrt{(-1)^2 + 0^2} = 1.
 \end{equation*}
 </div>
-<p id="p-528">In SageMath, we can enter this as</p>
+<p id="p-529">In SageMath, we can enter this as</p>
 <div class="hidden-sagecell-sage" id="sage-202"><script type="text/x-sage">d = matrix(2, 1, [1, 1])
 c = matrix(2, 1, [2, 1])
 
 norm(d - c)
 </script></div></article></div>
-<p id="p-529">In the real numbers, 1 acts as a multiplicative identity, in that for any real number \(a\text{,}\) we have \(1\cdot a = a\cdot 1 = a\text{.}\) There is a special matrix that plays this part for matrix multiplication called the <dfn class="terminology">identity matrix</dfn>.</p>
+<p id="p-530">In the real numbers, 1 acts as a multiplicative identity, in that for any real number \(a\text{,}\) we have \(1\cdot a = a\cdot 1 = a\text{.}\) There is a special matrix that plays this part for matrix multiplication called the <dfn class="terminology">identity matrix</dfn>.</p>
 <article class="definition definition-like" id="definition-4"><h6 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.1.8</span><span class="period">.</span>
 </h6>
-<p id="p-530">The <dfn class="terminology">identity matrix</dfn> \(I_n\) is an \(n\times n\) matrix (meaning the number of rows equals the number of columns, called a <dfn class="terminology">square</dfn> matrix) with 1's along the main diagonal (from the top left corner to the bottom right corner) and 0's everywhere else. For example, the \(2\times 2\) identity matrix is</p>
+<p id="p-531">The <dfn class="terminology">identity matrix</dfn> \(I_n\) is an \(n\times n\) matrix (meaning the number of rows equals the number of columns, called a <dfn class="terminology">square</dfn> matrix) with 1's along the main diagonal (from the top left corner to the bottom right corner) and 0's everywhere else. For example, the \(2\times 2\) identity matrix is</p>
 <div class="displaymath">
 \begin{equation*}
 I_2 = \begin{bmatrix}
@@ -454,42 +464,42 @@ I_2 = \begin{bmatrix}
 0 &amp; 1
 \end{bmatrix}
 \end{equation*}
-</div></article><p id="p-531">In SageMath, we can type</p>
+</div></article><p id="p-532">In SageMath, we can type</p>
 <div class="sagecell-sage" id="sage-203"><script type="text/x-sage">identity_matrix(2)
 </script></div>
 <div class="sagecell-sage" id="sage-204"><script type="text/x-sage">identity_matrix(5)
 </script></div>
-<p id="p-532">\(I_n\) is called an identity matrix because \(I_n \mathbf{v} = \mathbf{v}\) for any \(n\)-dimensional vector \(\mathbf{v}\text{.}\)</p>
-<p id="p-533">Earlier, we defined matrix multiplication, so we might wonder about matrix division. We cannot divide matrices, but we can multiply a matrix by its multiplicative inverse, when it exists.</p>
+<p id="p-533">\(I_n\) is called an identity matrix because \(I_n \mathbf{v} = \mathbf{v}\) for any \(n\)-dimensional vector \(\mathbf{v}\text{.}\)</p>
+<p id="p-534">Earlier, we defined matrix multiplication, so we might wonder about matrix division. We cannot divide matrices, but we can multiply a matrix by its multiplicative inverse, when it exists.</p>
 <article class="definition definition-like" id="definition-5"><h6 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.1.9</span><span class="period">.</span>
 </h6>
-<p id="p-534">The inverse of a \(n\times n\) matrix \(A\text{,}\) denoted \(A^{-1}\text{,}\) is a matrix such that</p>
+<p id="p-535">The inverse of a \(n\times n\) matrix \(A\text{,}\) denoted \(A^{-1}\text{,}\) is a matrix such that</p>
 <div class="displaymath">
 \begin{equation*}
 AA^{-1} = A^{-1} A = I_n.
 \end{equation*}
-</div></article><p id="p-535">We stress three important points about inverse matrices:</p>
+</div></article><p id="p-536">We stress three important points about inverse matrices:</p>
 <ol class="decimal">
-<li id="li-49"><p id="p-536">Only square matrices can have inverses.</p></li>
-<li id="li-50"><p id="p-537">Not every square matrix \(A\) has an inverse. If an inverse exists, \(A\) is said to be <dfn class="terminology">invertible</dfn>.</p></li>
-<li id="li-51"><p id="p-538">Calculating an inverse by hand is not a trivial matter.</p></li>
+<li id="li-49"><p id="p-537">Only square matrices can have inverses.</p></li>
+<li id="li-50"><p id="p-538">Not every square matrix \(A\) has an inverse. If an inverse exists, \(A\) is said to be <dfn class="terminology">invertible</dfn>.</p></li>
+<li id="li-51"><p id="p-539">Calculating an inverse by hand is not a trivial matter.</p></li>
 </ol>
 <article class="example example-like" id="example-25"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-25"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.10</span><span class="period">.</span><span class="space"> </span><span class="title">Calculating a Matrix Inverse.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-25"><article class="example example-like"><p id="p-539">We can easily calculate the inverse of the matrix \(A=\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; -4 
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-25"><article class="example example-like"><p id="p-540">We can easily calculate the inverse of the matrix \(A=\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; -4 
 \end{bmatrix}\) using SageMath.</p>
 <div class="hidden-sagecell-sage" id="sage-205"><script type="text/x-sage">A = matrix(2, 2, [1, 2, 3, -4])
 A.inverse()
 </script></div>
-<p id="p-540">We can confirm this is correct by verifying \(AA^{-1}=A^{-1}A=I_2\text{:}\)</p>
+<p id="p-541">We can confirm this is correct by verifying \(AA^{-1}=A^{-1}A=I_2\text{:}\)</p>
 <div class="hidden-sagecell-sage" id="sage-206"><script type="text/x-sage">matrix([[2/5,1/5],[3/10,-1/10]]) * A
 </script></div>
 <div class="hidden-sagecell-sage" id="sage-207"><script type="text/x-sage">A * matrix([[2/5,1/5],[3/10,-1/10]])
 </script></div></article></div>
 <article class="example example-like" id="example-26"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-26"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.11</span><span class="period">.</span><span class="space"> </span><span class="title">Systems of Linear Equations.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-26"><article class="example example-like"><p id="p-541">Consider again the system of linear equations</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-26"><article class="example example-like"><p id="p-542">Consider again the system of linear equations</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -498,7 +508,7 @@ x + 2y &amp;= 2 \\
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-542">from <a class="xref" data-knowl="./knowl/systems-linear-eqns.html" title="Example 7.1.1: Systems of Linear Equations">Example 7.1.1</a>, which we solved algebraically and graphically. Now we show how it can be solved with matrices. First we write the system in the following matrix form:</p>
+<p id="p-543">from <a class="xref" data-knowl="./knowl/systems-linear-eqns.html" title="Example 7.1.1: Systems of Linear Equations">Example 7.1.1</a>, which we solved algebraically and graphically. Now we show how it can be solved with matrices. First we write the system in the following matrix form:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -513,8 +523,8 @@ y
 \end{bmatrix}
 \end{equation*}
 </div>
-<p id="p-543">which we will abbreviate to the shorthand \(A\mathbf{x} = \mathbf{b}\text{.}\) Matrix \(A = \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; -4 \end{bmatrix}\) is called the <dfn class="terminology">coefficient matrix</dfn>, vector \(\mathbf{x} = \begin{bmatrix} x \\ y \end{bmatrix}\) is called the <dfn class="terminology">unknown vector</dfn>, and vector \(\mathbf{b} = \begin{bmatrix} 2 \\ 6 \end{bmatrix}\) is called the <dfn class="terminology">constant vector</dfn>.</p>
-<p id="p-544">To solve a system \(A\mathbf{x} = \mathbf{b}\) where \(A\) is \(n\times n\) we can multiply both sides by \(A^{-1}\) (assuming \(A^{-1}\) exists):</p>
+<p id="p-544">which we will abbreviate to the shorthand \(A\mathbf{x} = \mathbf{b}\text{.}\) Matrix \(A = \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; -4 \end{bmatrix}\) is called the <dfn class="terminology">coefficient matrix</dfn>, vector \(\mathbf{x} = \begin{bmatrix} x \\ y \end{bmatrix}\) is called the <dfn class="terminology">unknown vector</dfn>, and vector \(\mathbf{b} = \begin{bmatrix} 2 \\ 6 \end{bmatrix}\) is called the <dfn class="terminology">constant vector</dfn>.</p>
+<p id="p-545">To solve a system \(A\mathbf{x} = \mathbf{b}\) where \(A\) is \(n\times n\) we can multiply both sides by \(A^{-1}\) (assuming \(A^{-1}\) exists):</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -525,16 +535,16 @@ I_n\mathbf{x} &amp;= A^{-1}\mathbf{b} \\
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-545">To solve this particular system in SageMath, we can type</p>
+<p id="p-546">To solve this particular system in SageMath, we can type</p>
 <div class="hidden-sagecell-sage" id="sage-208"><script type="text/x-sage">A = matrix(2, 2, [1, 2, 3, -4])
 b = matrix(2, 1, [2, 6])
 x = A.inverse() * b
 x
 </script></div>
-<p id="p-546">The results show that the solution to the system is \(x=2\) and \(y=0\text{,}\) the same as we found algebraically and graphically. Observe that the coefficient matrix in this example is invertible and there is a unique solution. This observation is true in general for systems with any number of variables.</p></article></div>
+<p id="p-547">The results show that the solution to the system is \(x=2\) and \(y=0\text{,}\) the same as we found algebraically and graphically. Observe that the coefficient matrix in this example is invertible and there is a unique solution. This observation is true in general for systems with any number of variables.</p></article></div>
 <article class="example example-like" id="example-27"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-27"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.12</span><span class="period">.</span><span class="space"> </span><span class="title">Augmented Matrices.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-27"><article class="example example-like"><p id="p-547">A linear system such as the previous example can also be solved using an <dfn class="terminology">augmented matrix</dfn>. To form this augmented matrix we combine matrix \(A\) and vector \(\mathbf{b}\) into one \(2\times 3\) matrix:</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-27"><article class="example example-like"><p id="p-548">A linear system such as the previous example can also be solved using an <dfn class="terminology">augmented matrix</dfn>. To form this augmented matrix we combine matrix \(A\) and vector \(\mathbf{b}\) into one \(2\times 3\) matrix:</p>
 <div class="displaymath">
 \begin{equation*}
 \left[ \begin{array}{cc|c}
@@ -543,14 +553,14 @@ x
 \end{array} \right]
 \end{equation*}
 </div>
-<p id="p-548">(We draw the vertical line to indicate where we've fused the matrix and the vector together.)</p>
-<p id="p-549">Next we perform elementary row operations on the augmented matrix. There are three possible elementary row operations:</p>
+<p id="p-549">(We draw the vertical line to indicate where we've fused the matrix and the vector together.)</p>
+<p id="p-550">Next we perform elementary row operations on the augmented matrix. There are three possible elementary row operations:</p>
 <ol class="decimal">
-<li id="li-52"><p id="p-550">Switch two rows of a matrix.</p></li>
-<li id="li-53"><p id="p-551">Multiply all elements of a row by a nonzero constant.</p></li>
-<li id="li-54"><p id="p-552">Add the elements of a row to the corresponding elements of another row.</p></li>
+<li id="li-52"><p id="p-551">Switch two rows of a matrix.</p></li>
+<li id="li-53"><p id="p-552">Multiply all elements of a row by a nonzero constant.</p></li>
+<li id="li-54"><p id="p-553">Add the elements of a row to the corresponding elements of another row.</p></li>
 </ol>
-<p id="p-553">These row operations are inspired by the algebraic solution we did in <a class="xref" data-knowl="./knowl/systems-linear-eqns.html" title="Example 7.1.1: Systems of Linear Equations">Example 7.1.1</a>. Any combination of these operations is also allowed. In this example, we first multiply the first row by \(-3\) and add it to the second row and place the result in row 2, denoted \(-3R_1 + R_2 \to R_2\text{:}\)</p>
+<p id="p-554">These row operations are inspired by the algebraic solution we did in <a class="xref" data-knowl="./knowl/systems-linear-eqns.html" title="Example 7.1.1: Systems of Linear Equations">Example 7.1.1</a>. Any combination of these operations is also allowed. In this example, we first multiply the first row by \(-3\) and add it to the second row and place the result in row 2, denoted \(-3R_1 + R_2 \to R_2\text{:}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \left[ \begin{array}{cc|c}
@@ -559,7 +569,7 @@ x
 \end{array} \right]
 \end{equation*}
 </div>
-<p id="p-554">The first row does not change. Next we perform \(-(1/10)R_2 \to R_2\text{:}\)</p>
+<p id="p-555">The first row does not change. Next we perform \(-(1/10)R_2 \to R_2\text{:}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \left[ \begin{array}{cc|c}
@@ -568,7 +578,7 @@ x
 \end{array} \right]
 \end{equation*}
 </div>
-<p id="p-555">Lastly we perform \(-2R_2 + R_1 \to R_1\text{:}\)</p>
+<p id="p-556">Lastly we perform \(-2R_2 + R_1 \to R_1\text{:}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \left[ \begin{array}{cc|c}
@@ -577,15 +587,15 @@ x
 \end{array} \right]
 \end{equation*}
 </div>
-<p id="p-556">Call this matrix \(B\text{.}\) The sequence of operations we just performed is generically called row-reduction or <dfn class="terminology">Gauss-Jordan elimination</dfn>. Matrix \(B\) is called the <dfn class="terminology">reduced row echelon form</dfn> (RREF) of the system. We say that \(B\) is <dfn class="terminology">row equivalent</dfn> to the original matrix. This means that \(B\) represents a system of equations with the same set of solutions as the original system. Converting \(B\) to a system of equations yields \(x = 2\) and \(y = 0\text{,}\) the solution to the original system.</p>
-<p id="p-557">A matrix is in RREF if the following two conditions are met:</p>
+<p id="p-557">Call this matrix \(B\text{.}\) The sequence of operations we just performed is generically called row-reduction or <dfn class="terminology">Gauss-Jordan elimination</dfn>. Matrix \(B\) is called the <dfn class="terminology">reduced row echelon form</dfn> (RREF) of the system. We say that \(B\) is <dfn class="terminology">row equivalent</dfn> to the original matrix. This means that \(B\) represents a system of equations with the same set of solutions as the original system. Converting \(B\) to a system of equations yields \(x = 2\) and \(y = 0\text{,}\) the solution to the original system.</p>
+<p id="p-558">A matrix is in RREF if the following two conditions are met:</p>
 <ol class="decimal">
-<li id="li-55"><p id="p-558">The first non-zero element in each row is a 1 (called a <dfn class="terminology">leading</dfn> 1).</p></li>
-<li id="li-56"><p id="p-559">Each element above or below a leading 1 is 0.</p></li>
+<li id="li-55"><p id="p-559">The first non-zero element in each row is a 1 (called a <dfn class="terminology">leading</dfn> 1).</p></li>
+<li id="li-56"><p id="p-560">Each element above or below a leading 1 is 0.</p></li>
 </ol>
-<p id="p-560">Once an augumented matrix is reduced to its RREF, we can simply read the solution off the matrix (assuming there is a unique solution). No additional work is necessary. We can show theoretically that every matrix is row equivalent to exactly one matrix in RREF. The sequence of row operations used to find the RREF of a matrix is not unique, but the final result is unique.</p>
-<p id="p-561">Notice that the piece of the matrix to the left of the line is \(I_2\text{.}\) This will always happen if our system has one solution: we get the identity matrix on the left after row reducing the augmented matrix.</p>
-<p id="p-562">We can augment two matrices in SageMath as well as request the RREF of the equivalent system.</p>
+<p id="p-561">Once an augumented matrix is reduced to its RREF, we can simply read the solution off the matrix (assuming there is a unique solution). No additional work is necessary. We can show theoretically that every matrix is row equivalent to exactly one matrix in RREF. The sequence of row operations used to find the RREF of a matrix is not unique, but the final result is unique.</p>
+<p id="p-562">Notice that the piece of the matrix to the left of the line is \(I_2\text{.}\) This will always happen if our system has one solution: we get the identity matrix on the left after row reducing the augmented matrix.</p>
+<p id="p-563">We can augment two matrices in SageMath as well as request the RREF of the equivalent system.</p>
 <div class="hidden-sagecell-sage" id="sage-209"><script type="text/x-sage">A = matrix(2, 2, [1, 2, 3, -4])
 b = matrix(2, 1, [2, 6])
 
@@ -596,7 +606,7 @@ B
 </script></div></article></div>
 <article class="example example-like" id="example-28"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-28"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.13</span><span class="period">.</span><span class="space"> </span><span class="title">Solving a System with 3 Variables.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-28"><article class="example example-like"><p id="p-563">Row-reduce the augmented matrix to its RREF to solve the system:</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-28"><article class="example example-like"><p id="p-564">Row-reduce the augmented matrix to its RREF to solve the system:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -606,7 +616,7 @@ x + 3y + 2z &amp; = 13
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-564">The augmented matrix is</p>
+<p id="p-565">The augmented matrix is</p>
 <div class="displaymath">
 \begin{equation*}
 \left[\begin{array}{rrr|r}
@@ -616,7 +626,7 @@ x + 3y + 2z &amp; = 13
 \end{array}\right]
 \end{equation*}
 </div>
-<p id="p-565">First we perform the row operations \(R_1-2R_2\to R_2\) and \(R_1-2R_3\to R_3\text{:}\)</p>
+<p id="p-566">First we perform the row operations \(R_1-2R_2\to R_2\) and \(R_1-2R_3\to R_3\text{:}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \left[\begin{array}{rrr|r}
@@ -626,7 +636,7 @@ x + 3y + 2z &amp; = 13
 \end{array}\right]
 \end{equation*}
 </div>
-<p id="p-566">Next we perform \(-5R_2+R_3 \to R_3\text{:}\)</p>
+<p id="p-567">Next we perform \(-5R_2+R_3 \to R_3\text{:}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \left[\begin{array}{rrr|r}
@@ -636,7 +646,7 @@ x + 3y + 2z &amp; = 13
 \end{array}\right]
 \end{equation*}
 </div>
-<p id="p-567">Then we perform \(R_1+R_2\to R_1\text{,}\) \(-R_2\to R_2\text{,}\) and \(-(1/6)R_3\to R_3\text{:}\)</p>
+<p id="p-568">Then we perform \(R_1+R_2\to R_1\text{,}\) \(-R_2\to R_2\text{,}\) and \(-(1/6)R_3\to R_3\text{:}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \left[\begin{array}{rrr|r}
@@ -646,7 +656,7 @@ x + 3y + 2z &amp; = 13
 \end{array}\right]
 \end{equation*}
 </div>
-<p id="p-568">Lastly, we perform \((1/2)R_1 - 2R_3\to R_1\) and \(R_2+R_3\to R_2\text{:}\)</p>
+<p id="p-569">Lastly, we perform \((1/2)R_1 - 2R_3\to R_1\) and \(R_2+R_3\to R_2\text{:}\)</p>
 <div class="displaymath">
 \begin{equation*}
 \left[\begin{array}{rrr|r}
@@ -656,15 +666,15 @@ x + 3y + 2z &amp; = 13
 \end{array}\right]
 \end{equation*}
 </div>
-<p id="p-569">This final matrix is in RREF and we see the solution is \(x = 2\text{,}\) \(y = 3\text{,}\) and \(z = 1\text{.}\)</p>
-<p id="p-570">We can use the same commands as we did in the \(2\times 2\) case to do the row reduction in SageMath:</p>
+<p id="p-570">This final matrix is in RREF and we see the solution is \(x = 2\text{,}\) \(y = 3\text{,}\) and \(z = 1\text{.}\)</p>
+<p id="p-571">We can use the same commands as we did in the \(2\times 2\) case to do the row reduction in SageMath:</p>
 <div class="hidden-sagecell-sage" id="sage-211"><script type="text/x-sage">A = matrix([[2, 1, 3], [1, 1, 1], [1, 3, 2]])
 b = matrix(3, 1, [10, 6, 13])
 (A.augment(b)).rref()
 </script></div></article></div>
 <article class="example example-like" id="example-29"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-29"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.14</span><span class="period">.</span><span class="space"> </span><span class="title">A System with No Solution.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-29"><article class="example example-like"><p id="p-571">As shown in <a class="xref" data-knowl="./knowl/systems-linear-eqns.html" title="Example 7.1.1: Systems of Linear Equations">Example 7.1.1</a>, some systems have no solution. In this example we examine what this means in terms of an augmented matrix. Consider the system</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-29"><article class="example example-like"><p id="p-572">As shown in <a class="xref" data-knowl="./knowl/systems-linear-eqns.html" title="Example 7.1.1: Systems of Linear Equations">Example 7.1.1</a>, some systems have no solution. In this example we examine what this means in terms of an augmented matrix. Consider the system</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -678,10 +688,10 @@ b = matrix(3, 1, [10, 6, 13])
 b = matrix(3, 1, [6, 10, -1])
 (A.augment(b)).rref()
 </script></div>
-<p id="p-572">Converting this last row to an equation yields \(0 = 1\text{,}\) an obvious contradiction. This means there is no solution to this system.</p></article></div>
+<p id="p-573">Converting this last row to an equation yields \(0 = 1\text{,}\) an obvious contradiction. This means there is no solution to this system.</p></article></div>
 <article class="example example-like" id="example-30"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-30"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.1.15</span><span class="period">.</span><span class="space"> </span><span class="title">A System with Many Solutions.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-30"><article class="example example-like"><p id="p-573">As shown in <a class="xref" data-knowl="./knowl/systems-linear-eqns.html" title="Example 7.1.1: Systems of Linear Equations">Example 7.1.1</a>, some systems have infinitely many solutions. In this example we examine what this means in terms of the reduced form of an augmented matrix. As we will see in the next section, systems of this type occur frequently in applications. Consider the system</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-30"><article class="example example-like"><p id="p-574">As shown in <a class="xref" data-knowl="./knowl/systems-linear-eqns.html" title="Example 7.1.1: Systems of Linear Equations">Example 7.1.1</a>, some systems have infinitely many solutions. In this example we examine what this means in terms of the reduced form of an augmented matrix. As we will see in the next section, systems of this type occur frequently in applications. Consider the system</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -691,12 +701,12 @@ x + 2y - z &amp;= 3 \\
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-574">We use SageMath to set up the system's augmented matrix and to row-reduce it:</p>
+<p id="p-575">We use SageMath to set up the system's augmented matrix and to row-reduce it:</p>
 <div class="hidden-sagecell-sage" id="sage-213"><script type="text/x-sage">A = matrix([[1, 2, -1], [2, 4, -2], [3, 6, 2]])
 b = matrix(3, 1, [3, 6, -1])
 (A.augment(b)).rref()
 </script></div>
-<p id="p-575">Converting this augmented matrix back to a system of equations yields</p>
+<p id="p-576">Converting this augmented matrix back to a system of equations yields</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -706,7 +716,7 @@ z &amp;= -2 \\
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-576">The last equation is meaningless. The second equation gives us the value of \(z\text{.}\) The first equation doesn’t give a specific value of any variable, but it does give us a relationship between \(x\) and \(y\text{.}\) We can rewrite this equation as \(x = 1 - 2y\text{.}\) The variable \(y\) is called a <dfn class="terminology">free variable</dfn>, meaning it can take any value it wants. We rewrite the result in this form:</p>
+<p id="p-577">The last equation is meaningless. The second equation gives us the value of \(z\text{.}\) The first equation doesn’t give a specific value of any variable, but it does give us a relationship between \(x\) and \(y\text{.}\) We can rewrite this equation as \(x = 1 - 2y\text{.}\) The variable \(y\) is called a <dfn class="terminology">free variable</dfn>, meaning it can take any value it wants. We rewrite the result in this form:</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -716,12 +726,12 @@ z &amp; =-2
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-577">This result is called the <dfn class="terminology">general solution</dfn> of the system. We get a specific solution by choosing a value of \(y\) and calculating \(x\text{.}\) For instance, choosing \(y = 1\) yields the <dfn class="terminology">specific solution</dfn> \(x = -1\text{,}\) \(y = 1\text{,}\) \(z = 0\text{.}\)</p></article></div>
+<p id="p-578">This result is called the <dfn class="terminology">general solution</dfn> of the system. We get a specific solution by choosing a value of \(y\) and calculating \(x\text{.}\) For instance, choosing \(y = 1\) yields the <dfn class="terminology">specific solution</dfn> \(x = -1\text{,}\) \(y = 1\text{,}\) \(z = 0\text{.}\)</p></article></div>
 <section class="exercises" id="exercises-9"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="exercise-25"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
-<p id="p-578">Calculate</p>
+<p id="p-579">Calculate</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -735,7 +745,7 @@ z &amp; =-2
 \end{bmatrix}
 \end{equation*}
 </div></article><article class="exercise exercise-like" id="exercise-26"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
-<p id="p-579">Calculate</p>
+<p id="p-580">Calculate</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -745,7 +755,7 @@ z &amp; =-2
 \end{bmatrix}^{\,T}
 \end{equation*}
 </div></article><article class="exercise exercise-like" id="exercise-27"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
-<p id="p-580">Find the distance between</p>
+<p id="p-581">Find the distance between</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{bmatrix}
@@ -759,9 +769,9 @@ z &amp; =-2
 \end{bmatrix}
 \end{equation*}
 </div></article><article class="exercise exercise-like" id="exercise-28"><h6 class="heading"><span class="codenumber">4<span class="period">.</span></span></h6>
-<p id="p-581">Let \(B = \begin{bmatrix} 7 &amp; 1 &amp; -8 \\
+<p id="p-582">Let \(B = \begin{bmatrix} 7 &amp; 1 &amp; -8 \\
 2 &amp; 7 &amp; -3 \\ -1 &amp; 0 &amp; -2 \end{bmatrix}\text{.}\) Calculate \(B^{-1}\) and show that \(B^{-1}B= I_3\) and \(BB^{-1} = I_3\text{.}\)</p></article><article class="exercise exercise-like" id="exercise-29"><h6 class="heading"><span class="codenumber">5<span class="period">.</span></span></h6>
-<p id="p-582">Use matrices to solve the system</p>
+<p id="p-583">Use matrices to solve the system</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -771,7 +781,7 @@ z &amp; =-2
 \end{aligned}
 \end{equation*}
 </div></article><article class="exercise exercise-like" id="exercise-30"><h6 class="heading"><span class="codenumber">6<span class="period">.</span></span></h6>
-<p id="p-583">Find the augmented matrix for the system of linear equations and find the solution by row-reducing.</p>
+<p id="p-584">Find the augmented matrix for the system of linear equations and find the solution by row-reducing.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}

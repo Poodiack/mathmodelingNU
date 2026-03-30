@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-03-07T13:20:02-05:00       *-->
+<!--*       on 2026-03-30T11:47:22-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -93,7 +93,9 @@
 </div></nav></header><div class="page">
 <div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
 <nav id="toc"><ul>
-<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
 <li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
 <li class="link">
 <a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
@@ -157,13 +159,19 @@
 <li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
 </ul>
 </li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
+</ul>
+</li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="multiple-regression"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">7.4</span> <span class="title">Multiple Regression</span>
 </h2>
-<section class="introduction" id="introduction-26"><p id="p-683">In previous sections we have discussed predicting the value of one response variable \(y\) with one predictor variable \(x\text{.}\) In this section we will discuss using two or more predictor variables \(x_1, x_2, \dots , x_n\text{.}\) This topic is called <dfn class="terminology">multiple regression.</dfn></p>
-<p id="p-684">Consider the problem of predicting the selling price of a house. The selling price is affected by many factors including the age of the house, living area, number of bedrooms, etc. The table below lists the selling price, living area (in ft\({}^2\)), acres of land, and the number of bedrooms of 10 homes in a neighborhood.</p>
+<section class="introduction" id="introduction-26"><p id="p-684">In previous sections we have discussed predicting the value of one response variable \(y\) with one predictor variable \(x\text{.}\) In this section we will discuss using two or more predictor variables \(x_1, x_2, \dots , x_n\text{.}\) This topic is called <dfn class="terminology">multiple regression.</dfn></p>
+<p id="p-685">Consider the problem of predicting the selling price of a house. The selling price is affected by many factors including the age of the house, living area, number of bedrooms, etc. The table below lists the selling price, living area (in ft\({}^2\)), acres of land, and the number of bedrooms of 10 homes in a neighborhood.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{cccc}\hline\hline
@@ -182,24 +190,24 @@
 \end{equation*}
 </div></section><article class="example example-like" id="example-39"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-39"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.4.1</span><span class="period">.</span><span class="space"> </span><span class="title">Single Predictor Variable.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-39"><article class="example example-like"><p id="p-685">Consider the graphs of Selling Price vs. Area and Selling Price vs. Acres as shown in <a class="xref" data-knowl="./knowl/spsinglepredictor.html" title="Figure 7.4.2">Figure 7.4.2</a> below along with the linear regression equation for each.</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-39"><article class="example example-like"><p id="p-686">Consider the graphs of Selling Price vs. Area and Selling Price vs. Acres as shown in <a class="xref" data-knowl="./knowl/spsinglepredictor.html" title="Figure 7.4.2">Figure 7.4.2</a> below along with the linear regression equation for each.</p>
 <figure class="figure figure-like" id="spsinglepredictor"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:50%;"><figure class="figure figure-like" id="figure-11"><img src="./images/spvsarea.png" class="contained" alt=""><figcaption><span class="codenumber">(a)</span><span class="space"> </span>Selling Price vs. Area</figcaption></figure></div>
 <div class="sbspanel top" style="width:50%;"><figure class="figure figure-like" id="figure-12"><img src="./images/spvsacres.png" class="contained" alt=""><figcaption><span class="codenumber">(b)</span><span class="space"> </span>Selling Price vs. Acres</figcaption></figure></div>
 </div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">7.4.2<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-686">Notice that the \(R^2\) value for the predictor variable Area is higher than the \(R^2\) value for Acres. This means that the regression equation for Selling Price in terms of Area will give a better predicted Selling Price than the equation in terms of Acres. We say that out of these two variables, Area is the best single-variable predictor of selling price.</p>
-<p id="p-687">Suppose a house has an area of 2,800 ft\({}^2\text{.}\)We could use the regression equation for Selling Price in terms of Area to predict that the house would sell for \(12.852(2,800) + 66,239 =
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">7.4.2<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-687">Notice that the \(R^2\) value for the predictor variable Area is higher than the \(R^2\) value for Acres. This means that the regression equation for Selling Price in terms of Area will give a better predicted Selling Price than the equation in terms of Acres. We say that out of these two variables, Area is the best single-variable predictor of selling price.</p>
+<p id="p-688">Suppose a house has an area of 2,800 ft\({}^2\text{.}\)We could use the regression equation for Selling Price in terms of Area to predict that the house would sell for \(12.852(2,800) + 66,239 =
 \$102,224\text{.}\) This, of course, is only a point–estimate of the price, and probably not a very good estimate because the \(R^2\) value for the regression equation is only 0.2232.</p></article></div>
 <article class="example example-like" id="example-40"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-40"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Multiple Predictor Variables.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-40"><article class="example example-like"><p id="p-688">Considering only one predictor variable is a bit too simple. Many variables affect the selling price, so we should consider more than one predictor variable in our regression equation. Suppose we consider both Area and Acres.</p>
-<p id="p-689">If we let \(y =\) Selling Price, \(x_1 =\) Area, and \(x_2 =\) Acres, we want to fit a model of the form</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-40"><article class="example example-like"><p id="p-689">Considering only one predictor variable is a bit too simple. Many variables affect the selling price, so we should consider more than one predictor variable in our regression equation. Suppose we consider both Area and Acres.</p>
+<p id="p-690">If we let \(y =\) Selling Price, \(x_1 =\) Area, and \(x_2 =\) Acres, we want to fit a model of the form</p>
 <div class="displaymath">
 \begin{equation*}
 y = a_0 + a_1 x_1 + a_2 x_2
 \end{equation*}
 </div>
-<p id="p-690">to the data where \(a_0\text{,}\) \(a_1\text{,}\) and \(a_2\) are constants. As in <a href="polynomials.html" class="internal" title="Section 7.3: Polynomials">Section 7.3</a>, ideally we want to satisfy the system of equations</p>
+<p id="p-691">to the data where \(a_0\text{,}\) \(a_1\text{,}\) and \(a_2\) are constants. As in <a href="polynomials.html" class="internal" title="Section 7.3: Polynomials">Section 7.3</a>, ideally we want to satisfy the system of equations</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{aligned}
@@ -209,7 +217,7 @@ a_0 + a_1(3100) + 1a_2 &amp;= 109,000
 \end{aligned}
 \end{equation*}
 </div>
-<p id="p-691">We could take a matrix approach to find a least–squares solution to this system as we did before, but <code class="code-inline tex2jax_ignore">find_fit</code> will do this automatically for us.</p>
+<p id="p-692">We could take a matrix approach to find a least–squares solution to this system as we did before, but <code class="code-inline tex2jax_ignore">find_fit</code> will do this automatically for us.</p>
 <div class="hidden-sagecell-sage" id="sage-244"><script type="text/x-sage">housepoints = \
 [(100000, 2205, 2.5, 3), (93500, 2155, 0.8, 3), 
 (95650, 2600, 1.1, 4), (75025, 1900, 0.35, 3), 
@@ -230,13 +238,13 @@ pretty_print(html(r"$y=%s + %s x_1 + %s x_2$" %
     latex(n(sol[a1],digits=3)), 
     latex(n(sol[a2],digits=6)))))
 </script></div>
-<div class="displaymath" id="p-692">
+<div class="displaymath" id="p-693">
 \begin{gather*}
 y=36669.6+18.9x_1+11239.2x_2
 \end{gather*}
 </div>
-<p id="p-693">Such a model is called a <dfn class="terminology">multiple-regression equation.</dfn></p>
-<p id="p-694">We can compute the \(R^2\) value in the usual way.</p>
+<p id="p-694">Such a model is called a <dfn class="terminology">multiple-regression equation.</dfn></p>
+<p id="p-695">We can compute the \(R^2\) value in the usual way.</p>
 <div class="hidden-sagecell-sage" id="sage-245"><script type="text/x-sage">import numpy as np
 spmean = np.mean(sellingprice)
 sphatvalues = [sol[a0] + sol[a1]*x1 + sol[a2]*x2 for (x1, x2, y) in newpoints]
@@ -245,18 +253,18 @@ ssres = sum((sellingprice[i] - sphatvalues[i])^2 for i in range(len(sellingprice
 rsquared = (sstot - ssres)/sstot
 rsquared
 </script></div>
-<p id="p-695">Another important statistic is the <dfn class="terminology">Adjusted \(\pmb{R^2}\)</dfn> value which is defined by</p>
+<p id="p-696">Another important statistic is the <dfn class="terminology">Adjusted \(\pmb{R^2}\)</dfn> value which is defined by</p>
 <div class="displaymath">
 \begin{equation*}
 \text{Adjusted $R^2$} = 1 - \left[\frac{n-1}{n-(k+1)} \right](1-R^2)
 \end{equation*}
 </div>
-<p id="p-696">where \(n\) is the number of data points and \(k\) is the number of predictor variables (\(n = 10\) and \(k = 2\) in this case).</p>
+<p id="p-697">where \(n\) is the number of data points and \(k\) is the number of predictor variables (\(n = 10\) and \(k = 2\) in this case).</p>
 <div class="hidden-sagecell-sage" id="sage-246"><script type="text/x-sage">adjusted_rsquared  = 1 - ((10 - 1)/(10 - (2 + 1))*(1 - rsquared))
 adjusted_rsquared
 </script></div>
-<p id="p-697">The adjusted \(R^2\) value takes into account the number of data points (the more data points, the higher the adjusted \(R^2\) value) and the number of predictor variables (the more predictor variables, the lower the adjusted \(R^2\) value). We want as simple a model as possible, so the fewer the variables, the better. We will compare different sets of predictor variables using adjusted \(R^2\) values.</p>
-<p id="p-698">The results for all the different combinations of predictor variables are shown in the table below.</p>
+<p id="p-698">The adjusted \(R^2\) value takes into account the number of data points (the more data points, the higher the adjusted \(R^2\) value) and the number of predictor variables (the more predictor variables, the lower the adjusted \(R^2\) value). We want as simple a model as possible, so the fewer the variables, the better. We will compare different sets of predictor variables using adjusted \(R^2\) values.</p>
+<p id="p-699">The results for all the different combinations of predictor variables are shown in the table below.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{r|cc}\hline\hline
@@ -268,11 +276,11 @@ adjusted_rsquared
 \end{array}
 \end{equation*}
 </div>
-<p id="p-699">Note that including the variable Bedrooms results in low \(R^2\) values. This indicates that the number of bedrooms is not a good predictor of the selling price. Also note that the \(R^2\) value for the set of all three predictor variables is the highest, but the adjusted \(R^2\) value is lower than that for Area and Acres. This indicates that the set of three variables gives better predictions (a higher \(R^2\) value), but the additional variable makes it more complicated, so it is less desirable as a model (a lower adjusted \(R^2\) value).</p>
-<p id="p-700">If we simply compare the adjusted \(R^2\) values, we conclude that the best combination of predictor variables is Area and Acres. To refine our model we might want to collect data on other variables that might affect the selling price such as age, total number of rooms, etc. With more variables, there are many different combinations of predictor variables we could consider. The process of determining which set of variables is best is very complicated. We have presented a very simple strategy here.</p></article></div>
+<p id="p-700">Note that including the variable Bedrooms results in low \(R^2\) values. This indicates that the number of bedrooms is not a good predictor of the selling price. Also note that the \(R^2\) value for the set of all three predictor variables is the highest, but the adjusted \(R^2\) value is lower than that for Area and Acres. This indicates that the set of three variables gives better predictions (a higher \(R^2\) value), but the additional variable makes it more complicated, so it is less desirable as a model (a lower adjusted \(R^2\) value).</p>
+<p id="p-701">If we simply compare the adjusted \(R^2\) values, we conclude that the best combination of predictor variables is Area and Acres. To refine our model we might want to collect data on other variables that might affect the selling price such as age, total number of rooms, etc. With more variables, there are many different combinations of predictor variables we could consider. The process of determining which set of variables is best is very complicated. We have presented a very simple strategy here.</p></article></div>
 <article class="example example-like" id="example-41"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-41"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.4.4</span><span class="period">.</span><span class="space"> </span><span class="title">Polynomial Models.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-41"><article class="example example-like"><p id="p-701">Let’s return to the problem of fitting a 2nd degree polynomial model of the form \(y = a + bx + cx^2\) to the set of four data points \(\{(1, 2) , (2, 4) , (3, 5) , (4, 2)\}\) as considered in <a class="xref" data-knowl="./knowl/three-data-points.html" title="Example 7.3.2: Three Data Points">Example 7.3.2</a>. We could think of this as predicting the values of \(y\) with the “predictor” variables \(x\) and \(x^2\text{,}\) so it can be treated as a multiple regression problem.</p>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-41"><article class="example example-like"><p id="p-702">Let’s return to the problem of fitting a 2nd degree polynomial model of the form \(y = a + bx + cx^2\) to the set of four data points \(\{(1, 2) , (2, 4) , (3, 5) , (4, 2)\}\) as considered in <a class="xref" data-knowl="./knowl/three-data-points.html" title="Example 7.3.2: Three Data Points">Example 7.3.2</a>. We could think of this as predicting the values of \(y\) with the “predictor” variables \(x\) and \(x^2\text{,}\) so it can be treated as a multiple regression problem.</p>
 <div class="hidden-sagecell-sage" id="sage-247"><script type="text/x-sage">points = [(1, 2), (2, 4), (3, 5), (4, 2)]
 ourpoints = [(x, x^2, y) for (x, y) in points]
 
@@ -284,7 +292,7 @@ pretty_print(html(r"$y=%s + %s x + %s x^2$" %
 	latex(n(sol[b],digits=3)), 
     latex(n(sol[c],digits=3)))))
 </script></div>
-<div class="displaymath" id="p-702">
+<div class="displaymath" id="p-703">
 \begin{gather*}
 y=-3.25 + 6.35x + - 1.25 x^2
 \end{gather*}
@@ -299,10 +307,10 @@ ssres = sum((yvalues[i] - yhatvalues[i])^2 for i in range(len(yvalues)))
 rsquared = (sstot - ssres)/sstot
 rsquared
 </script></div>
-<p id="p-703">These results give us the model \(y = -3.25+6.35x-1.25x^2\text{,}\) which is exactly the same as we got previously. Also note that the \(R^2\) value is 0.9333, exactly the same as before.</p></article></div>
+<p id="p-704">These results give us the model \(y = -3.25+6.35x-1.25x^2\text{,}\) which is exactly the same as we got previously. Also note that the \(R^2\) value is 0.9333, exactly the same as before.</p></article></div>
 <article class="example example-like" id="deer-pop-example-2"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-deer-pop-example-2"><h6 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">7.4.5</span><span class="period">.</span><span class="space"> </span><span class="title">Deer Population Again.</span>
-</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-deer-pop-example-2"><article class="example example-like"><p id="p-704">We can use a multiple regression approach to fit a model of the form \(y = a + bx +
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-deer-pop-example-2"><article class="example example-like"><p id="p-705">We can use a multiple regression approach to fit a model of the form \(y = a + bx +
 c \cos (\pi x/5) + d \sin (\pi x/5)\) to the transformed deer population data from the previous section.</p>
 <div class="displaymath">
 \begin{equation*}
@@ -312,7 +320,7 @@ c \cos (\pi x/5) + d \sin (\pi x/5)\) to the transformed deer population data fr
 \end{array}
 \end{equation*}
 </div>
-<p id="p-705">In this case we have 3 predictor variables: \(x\text{,}\) \(\cos (\pi x/5)\text{,}\) and \(\sin (\pi x/5)\text{.}\)</p>
+<p id="p-706">In this case we have 3 predictor variables: \(x\text{,}\) \(\cos (\pi x/5)\text{,}\) and \(\sin (\pi x/5)\text{.}\)</p>
 <div class="hidden-sagecell-sage" id="sage-249"><script type="text/x-sage">points = [(0, 12.5), (6, 28.5), (10, 7), (16, 20), 
 	(21, 6.5), (24, 12), (30, 4), (36, 11), (41, 3.5)]
 ourpoints = [(x, cos(pi*x/5), sin(pi*x/5), y) for (x,y) in points]
@@ -326,7 +334,7 @@ pretty_print(html(r"$y=%s + %s x + %s \cos(\pi x/5) + %s \sin(\pi x/5)$" %
     latex(n(sol[c],digits=4)),
     latex(n(sol[d],digits=4)))))
 </script></div>
-<div class="displaymath" id="p-706">
+<div class="displaymath" id="p-707">
 \begin{gather*}
 y=18.965 + -0.314 x + -5.693\cos(\pi x/5) + - 2.915\sin(\pi x/5)
 \end{gather*}
@@ -341,19 +349,19 @@ ssres = sum((yvalues[i] - yhatvalues[i])^2 for i in range(len(yvalues)))
 rsquared = (sstot - ssres)/sstot
 rsquared.n()
 </script></div>
-<p id="p-707">These coefficients give us the approximate model</p>
+<p id="p-708">These coefficients give us the approximate model</p>
 <div class="displaymath">
 \begin{equation*}
 y = 18.965 - 0.314 - 5.693\cos\left(\frac{\pi x}5\right) - 2.915\sin\left(\frac{\pi x}5\right)
 \end{equation*}
 </div>
-<p id="p-708">which is exactly the same as in <a class="xref" data-knowl="./knowl/deer-population.html" title="Example 7.3.7: Deer Population">Example 7.3.7</a>. Also note that the \(R^2\) value is 0.8771 which should be (approximately) the same as that calculated in <a class="xref" data-knowl="./knowl/deer-pop-R2.html" title="Exercise 7.3.2.2">Exercise 7.3.2.2</a>.</p></article></div>
+<p id="p-709">which is exactly the same as in <a class="xref" data-knowl="./knowl/deer-population.html" title="Example 7.3.7: Deer Population">Example 7.3.7</a>. Also note that the \(R^2\) value is 0.8771 which should be (approximately) the same as that calculated in <a class="xref" data-knowl="./knowl/deer-pop-R2.html" title="Exercise 7.3.2.2">Exercise 7.3.2.2</a>.</p></article></div>
 <section class="exercises" id="exercises-12"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="exercise-39"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
 <div class="introduction" id="introduction-27">
-<p id="p-709">In an attempt to predict the final grade of students in an Introduction to Statistics class, the professor gives each student a 20-point pretest at the beginning of the year. The table below gives the final grade, pretest score, ACT score, and year (1 = freshman, 2 = sophomore, etc.) of 10 students.</p>
+<p id="p-710">In an attempt to predict the final grade of students in an Introduction to Statistics class, the professor gives each student a 20-point pretest at the beginning of the year. The table below gives the final grade, pretest score, ACT score, and year (1 = freshman, 2 = sophomore, etc.) of 10 students.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{r|cccccccccc}\hline\hline
@@ -376,10 +384,10 @@ ACTs = [a for (g, p, y, a) in gradepoints]
 </script></div>
 </div>
 <article class="task exercise-like" id="task-45"><h6 class="heading"><span class="codenumber">(a)</span></h6>
-<p id="p-710">Find the regression equation that predicts Grade in terms of Pretest Score. Repeat using Year and then ACT. Which of these single-variable predictors is best at predicting the final grade based on the \(R^2\) values? Does the pretest score alone appear to be a good predictor of the final grade? Explain.</p></article><article class="task exercise-like" id="task-46"><h6 class="heading"><span class="codenumber">(b)</span></h6>
-<p id="p-711">Consider all four different combinations of two or three predictor variables. Determine which combination is best at predicting the final grade using the methods described in this section. Based on your results, does it seem worthwhile to give the pretest as a way of predicting the final grade? Does the year of the student appear to affect the final grade? Explain.</p></article><article class="task exercise-like" id="task-47"><h6 class="heading"><span class="codenumber">(c)</span></h6>
-<p id="p-712">Use the multiple regression equation that predicts Grade in terms of Pretest and ACT to predict the grade of a student who has a pretest score of 18 and an ACT score of 28.</p></article></article><article class="exercise exercise-like" id="exercise-40"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
-<p id="p-713">Use a multiple regression approach to fit a 7th degree polynomial to the 8 data points shown in the table below. Create a graph of the resulting polynomial on top of the data points.</p>
+<p id="p-711">Find the regression equation that predicts Grade in terms of Pretest Score. Repeat using Year and then ACT. Which of these single-variable predictors is best at predicting the final grade based on the \(R^2\) values? Does the pretest score alone appear to be a good predictor of the final grade? Explain.</p></article><article class="task exercise-like" id="task-46"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-712">Consider all four different combinations of two or three predictor variables. Determine which combination is best at predicting the final grade using the methods described in this section. Based on your results, does it seem worthwhile to give the pretest as a way of predicting the final grade? Does the year of the student appear to affect the final grade? Explain.</p></article><article class="task exercise-like" id="task-47"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-713">Use the multiple regression equation that predicts Grade in terms of Pretest and ACT to predict the grade of a student who has a pretest score of 18 and an ACT score of 28.</p></article></article><article class="exercise exercise-like" id="exercise-40"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<p id="p-714">Use a multiple regression approach to fit a 7th degree polynomial to the 8 data points shown in the table below. Create a graph of the resulting polynomial on top of the data points.</p>
 <div class="displaymath">
 \begin{equation*}
 \begin{array}{c|cccccccc}\hline\hline
@@ -388,7 +396,7 @@ ACTs = [a for (g, p, y, a) in gradepoints]
 \end{array}
 \end{equation*}
 </div></article><article class="exercise exercise-like" id="exercise-41"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
-<p id="p-714">The sin and cos terms in the deer population model in <a class="xref" data-knowl="./knowl/deer-pop-example-2.html" title="Example 7.4.5: Deer Population Again">Example 7.4.5</a> were included to capture the oscillating pattern of the data. One might wonder if both terms are really necessary. Fit a model of the form \(y=a+bx+\cos(\pi x/5)\) and then fit a model of the form \(y=a+bx+\sin(\pi x/5)\) to the data. Compare the \(R^2\) value for each model to the original model. Does the inclusion of both sin and cos terms yield a significantly better model? Explain why or why not.</p></article></section></section></div></main>
+<p id="p-715">The sin and cos terms in the deer population model in <a class="xref" data-knowl="./knowl/deer-pop-example-2.html" title="Example 7.4.5: Deer Population Again">Example 7.4.5</a> were included to capture the oscillating pattern of the data. One might wonder if both terms are really necessary. Fit a model of the form \(y=a+bx+\cos(\pi x/5)\) and then fit a model of the form \(y=a+bx+\sin(\pi x/5)\) to the data. Compare the \(R^2\) value for each model to the original model. Does the inclusion of both sin and cos terms yield a significantly better model? Explain why or why not.</p></article></section></section></div></main>
 </div>
 <script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-02-02T17:58:42-05:00       *-->
+<!--*       on 2026-03-30T11:47:21-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -93,7 +93,9 @@
 </div></nav></header><div class="page">
 <div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
 <nav id="toc"><ul>
-<li class="link frontmatter"><a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a></li>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
 <li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
 <li class="link">
 <a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
@@ -151,6 +153,16 @@
 <a href="linearalgebra.html" data-scroll="linearalgebra"><span class="codenumber">7</span> <span class="title">Linear Algebra</span></a><ul>
 <li><a href="linear-algebra-basics.html" data-scroll="linear-algebra-basics">Linear Algebra Basics</a></li>
 <li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
+<li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
+<li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -158,33 +170,33 @@
 <main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="sage-plotting"><h2 class="heading hide-type">
 <span class="type">Section</span> <span class="codenumber">2.9</span> <span class="title">Plotting</span>
 </h2>
-<p id="p-66">Sage has a basic <code class="code-inline tex2jax_ignore">plot()</code> command to produce 2D function graphs. To produce a basic graph of \(f(x)=\sin x\)  from \(x=-\pi/2\) to \(x=\pi/2\text{,}\) we would type</p>
+<p id="p-67">Sage has a basic <code class="code-inline tex2jax_ignore">plot()</code> command to produce 2D function graphs. To produce a basic graph of \(f(x)=\sin x\)  from \(x=-\pi/2\) to \(x=\pi/2\text{,}\) we would type</p>
 <div class="sagecell-sage" id="sage-39"><script type="text/x-sage">plot(sin(x),(x,-pi/2,pi/2))
 </script></div>
-<p id="p-67">This is rather plain by design. We can add options to make things look a little better.</p>
+<p id="p-68">This is rather plain by design. We can add options to make things look a little better.</p>
 <div class="sagecell-sage" id="sage-40"><script type="text/x-sage">plot(sin(x),(x,-pi/2,pi/2),axes_labels=['$x$','$\\sin\\,x$'],color='purple')
 </script></div>
-<p id="p-68">We can also change the style of line and its thickness:</p>
+<p id="p-69">We can also change the style of line and its thickness:</p>
 <div class="sagecell-sage" id="sage-41"><script type="text/x-sage">plot(sin(x),(x,-pi/2,pi/2),linestyle='--',thickness=3)
 </script></div>
-<p id="p-69">We can graph two functions together on the same set of axes by adding the plots together:</p>
+<p id="p-70">We can graph two functions together on the same set of axes by adding the plots together:</p>
 <div class="sagecell-sage" id="sage-42"><script type="text/x-sage">p = plot(sin(x),(x,-pi/2,pi/2),color='black')
 q = plot(cos(x),(x,-pi/2,pi/2),color='red')
 show(p+q)
 </script></div>
-<p id="p-70">We can now use the <code class="code-inline tex2jax_ignore">find_root()</code> command we saw earlier to find the point of intersection of the two graphs and then add this point to the above graph.</p>
+<p id="p-71">We can now use the <code class="code-inline tex2jax_ignore">find_root()</code> command we saw earlier to find the point of intersection of the two graphs and then add this point to the above graph.</p>
 <div class="sagecell-sage" id="sage-43"><script type="text/x-sage">find_root(sin(x)==cos(x),-pi/2,pi/2)
 </script></div>
 <div class="sagecell-sage" id="sage-44"><script type="text/x-sage">P = point([0.7853981633974484,sin(0.7853981633974484)]) # I used copy and paste to get that number there
 T = text("(0.79,0.71)",(0.7853981633974484,sin(0.7853981633974484)+0.10))
 show(p+q+P+T)
 </script></div>
-<p id="p-71">Note that Sage handles many of the details of making graphs look "nice." However, sometimes Sage will need our help.</p>
+<p id="p-72">Note that Sage handles many of the details of making graphs look "nice." However, sometimes Sage will need our help.</p>
 <div class="sagecell-sage" id="sage-45"><script type="text/x-sage">f(x) = (x^3 + x^2 + x)/(x^2 - x -2 )
 p = plot(f(x),(x,-5,5))
 show(p)
 </script></div>
-<p id="p-72">The vertical asymptotes cause Sage to display rather large \(y\)-values, which means that most of the features of the graph are obscured. We can explicitly adjust the vertical and horizontal limits of our plot.</p>
+<p id="p-73">The vertical asymptotes cause Sage to display rather large \(y\)-values, which means that most of the features of the graph are obscured. We can explicitly adjust the vertical and horizontal limits of our plot.</p>
 <div class="sagecell-sage" id="sage-46"><script type="text/x-sage">show(p,xmin=-2, xmax = 4, ymin = -20, ymax = 20)
 </script></div></section></div></main>
 </div>
