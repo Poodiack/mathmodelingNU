@@ -1,6 +1,6 @@
 %********************************************%
 %*       Generated from PreTeXt source      *%
-%*       on 2026-03-18T11:48:09-04:00       *%
+%*       on 2026-03-30T11:47:17-04:00       *%
 %*   A recent stable commit (2020-08-09):   *%
 %* 98f21740783f166a773df4dc83cab5293ab63a4a *%
 %*                                          *%
@@ -695,7 +695,7 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 {\LARGE Mathematical Computation and Modeling}\\[3\baselineskip]
 {\Large Robert D. Poodiack}\\[0.5\baselineskip]
 {\Large Norwich University}\\[3\baselineskip]
-{\Large March 18, 2026}\\}
+{\Large March 30, 2026}\\}
 \clearpage
 %% end:   title page
 %% begin: copyright-page
@@ -6884,6 +6884,139 @@ Type in -2000 for \(m\) and then move the slider for \(a_0\) left and right and 
 In \hyperref[x:example:dds-savings-acct]{Example~{\xreffont\ref{x:example:dds-savings-acct}}} we saw that the long–term behavior of the system changed quite dramatically with a small change in \(a_0\). In situations like this we say that the system is sensitive to the initial condition.%
 \par
 We note that if \(a_0\ne 40,000\), the system either approaches 0 or increases without bound. This is an example of an \terminology{unstable} or \terminology{repelling} equilibrium.%
+\begin{definition}{Equilibrium Value.}{g:definition:id148}%
+An equilibrium value \(a\) is \terminology{unstable} or \terminology{repelling} if there is a number \(\varepsilon\) such that%
+%
+\begin{equation*}
+|a_n - a|\gt\varepsilon \qquad \text{whenever} \qquad |a_0 - a|\lt\varepsilon.
+\end{equation*}
+The equilibrium \(a\) is \terminology{stable} or \terminology{attracting} if there is a number \(\varepsilon\) such that%
+%
+\begin{equation*}
+\lim_{n\to\infty} a_n = a \qquad \text{whenever} \qquad |a_0 - a|
+\lt\varepsilon.
+\end{equation*}
+\end{definition}
+In less technical terms, an equilibrium value \(a\) is repelling if the system starts near it, but does not approach it. This is exactly what we saw in \hyperref[x:example:dds-savings-acct]{Example~{\xreffont\ref{x:example:dds-savings-acct}}}. The equilibrium is attracting if the system starts near \(a\) and approaches it.%
+\begin{example}{Antibiotic in the Bloodstream.}{x:example:dds-antibiotic}%
+An infant is given an antibiotic to treat an ear infection. When taking an antibiotic, it is important to keep the amount of the drug in the bloodstream fairly constant.  If the amount gets too low, the bacteria can begin to regrow.  If the amount gets too high, it could cause other complications.%
+\par
+Suppose the half-life of the drug is one day (meaning that half the drug remains in the blood after each one-day period) and a dosage of 0.1 mg is given.  We want to examine what happens to the amount of the drug in the blood stream in the long run.%
+\par
+A simple affine model for the system is%
+%
+\begin{equation*}
+a_{n+1} = 0.5a_n + 0.1,
+\end{equation*}
+where \(a_n\) is the amount of the drug in the blood at the end of day \(n\). Since the problem did not specify an initial dosage, we need to experiment with different values.%
+\begin{sageinput}
+@interact
+def antibiotic(a0 = slider(0,1,step_size=0.01, \
+				default=0,label=r'\(a_0\)'), \
+				n = slider(1,50,step_size=1, \
+				default=15,label='Number of steps')):
+    f(x) = 0.5*x+0.1
+    a = [float(a0)]
+    for i in range(n):
+        a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True, \
+         			axes_labels=['Day','Amount'], \
+                   title="Antibiotic in bloodstream",\
+                  ymin=0, ymax=1))
+\end{sageinput}
+Note that when \(a_0 = 0.2\), the system remains at 0.2, meaning that 0.2 is an equilibrium value. Also note that no matter what the value of \(a_0\), the system appears to always approach 0.2. This shows that 0.2 is a stable equilibrium.%
+\end{example}
+\begin{example}{Generalized Savings Account.}{g:example:id149}%
+Suppose we want to withdraw \textdollar{}5000 every other year (starting in year 2) instead of every year. This makes our model%
+%
+\begin{equation*}
+a_{n+1} = \begin{cases}
+1.05a_n - 5000 \amp \text{if $n+1$ is a multiple of 2} \\
+1.05a_n \amp \text{otherwise}
+\end{cases}
+\end{equation*}
+This system is neither linear nor affine.  We will take a strictly graphical approach to analyze the behavior in terms of the initial deposit.%
+\begin{sageinput}
+@interact
+def dynamical2(b=(1.05,(-2,2,0.05)), m=input_box(default=0), 
+              a0 = slider(0,80000,1, \
+              default=40000,label=r'\(a_0\)'), \
+              n = slider(1,50,step_size=1,\
+              default=15,label='Number of steps')):
+    f(x) = b*x
+    g(x) = b*x + m
+    a = [float(a0)]
+    for i in range(n):
+        if i%2 == 0: # if i is a multiple of 2
+            a.append(g(a[i]))
+        else:
+            a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True,\
+         axes_labels=['$n$','$a_n$'], \
+         title="Generalized Savings Account",\
+         ymin=0, ymax=80000))
+\end{sageinput}
+\end{example}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 8.2 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id150}
+\begin{divisionexercise}{1}{}{}{g:exercise:id151}%
+Your grandparents have their life savings of \textdollar{}750,000 in a savings account that pays 6.7\% interest compounded yearly. They want to spend all of it before they die. If they plan to live 15 more years, how much should they withdraw at the end of each year to accomplish their goal?%
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id152}%
+Kayla receives a \textdollar{}6,000 high school graduation present which she puts in a savings account paying 4.15\% annual interest, compounded monthly. She plans to work for two years before starting college, put her earnings in the account, and then live off the money in the account during college. Here are the details of her plan:%
+%
+\begin{itemize}[label=\textbullet]
+\item{}She will deposit the same amount into the account at the end of each month for the two years she works (starting in month 1).%
+\item{}In month 25 she will stop making deposits and start withdrawing \textdollar{}1,000 each month for her first year in college.%
+\item{}During her second year she will withdraw \textdollar{}1,250 each month. During her third and fourth years she will withdraw \textdollar{}1,500 and \textdollar{}1,750 each month, respectively.%
+\end{itemize}
+Figure out how much she must deposit each month for the first two years so she has \textdollar{}0 left in the account at the end of her fourth year of college. Approximately how much total interest does she earn over the six years?%
+\par\smallskip%
+\noindent\hypertarget{g:hint:id153}{}Recall that the formula for compound interest is given by%
+%
+\begin{equation*}
+A(t) = P\left(1+\frac{r}{n}\right)^{nt},
+\end{equation*}
+where \(P\) is the initial amount in the account, \(r\) is the annual interest rate in decimal form, \(n\) is the number of times the interest is compounded per year, and \(t\) is the number of years.%
+\par
+As a discrete dynamical system, you can look at the formula%
+%
+\begin{equation*}
+a_{i+1} = \left(1+\frac{r}{n}\right)a_i, \qquad a_0 = P.
+\end{equation*}
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id154}%
+Suppose the amount of a drug in a patient's blood stream decreases at the rate of 50\% per hour and that an injection is given at the end of each hour which increases the amount of drug in the blood stream by 0.2 units.%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Formulate a model of the amount of drug in the blood stream at the end of each hour.%
+\item{}Find all equilibrium value(s) of your model.%
+\item{}Graphically, classify each equilibrium value as attracting or repelling.%
+\item{}Suppose we give the injection every 3 hours. Describe what happens to the long-term level of the drug in the blood stream.%
+\end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{4}{}{}{g:exercise:id155}%
+Suppose two countries are engaged in an arms race. Further suppose that the two countries have economies of similar strength and they have similar levels of distrust of each other. A simple model for \(T_n\), the total amount of money spent by the two nations, is given by the affine system%
+%
+\begin{equation*}
+T_{n+1} = (1-r+d)T_n + c
+\end{equation*}
+where \(r\) is a positive constant that measures the restraint of growth due to the strength (or weakness) of the economies of the countries, \(d\) is a positive constant that measures the level of distrust between the countries, and \(c\) is a constant. If \(T_n\) eventually grows too large, then the countries will not be able to support the arms race and they must either negotiate an end or war breaks out. If \(T_n\) approaches a constant level, then they have a ``stable'' arms race. If \(T_n\) eventually decreases to 0, or \(\lim\limits_{n\to\infty} T_n = -\infty\), then the race ends.%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Suppose \(r = 0.3\), \(d = 1\), and \(c = -10\). Calculate \(T_n\) for \(0 \le n \le 15\). Graph these values. Set up a scroll bar to vary the value of \(T_0\) between 0 and 100. For what values of \(T_0\) does the race end?%
+\item{}Now suppose \(r = 0.3\), \(d = 1\), and \(c = 10\). For what values of \(T_0\) does the race end?%
+\item{}Now suppose \(r = 0.3\), \(d = 0.1\), and \(c = 10\). What happens to the arms race now?%
+\end{enumerate}
+\end{divisionexercise}%
+\end{exercises-subsection-numberless}
 \end{sectionptx}
 \end{chapterptx}
 \end{partptx}
