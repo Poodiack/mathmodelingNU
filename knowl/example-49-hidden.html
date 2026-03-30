@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-03-30T11:47:24-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example example-like"><div class="introduction">
+<p xmlns:svg="http://www.w3.org/2000/svg">Suppose we want to withdraw $5000 every other year (starting in year 2) instead of every year. This makes our model</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+a_{n+1} = \begin{cases}
+1.05a_n - 5000 \amp \text{if $n+1$ is a multiple of 2} \\
+1.05a_n \amp \text{otherwise}
+\end{cases}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">This system is neither linear nor affine.  We will take a strictly graphical approach to analyze the behavior in terms of the initial deposit.</p>
+</div>
+<div class="sagecell-sage" id="sage-291"><script type="text/x-sage">@interact
+def dynamical2(b=(1.05,(-2,2,0.05)), m=input_box(default=0), 
+              a0 = slider(0,80000,1, \
+              default=40000,label=r'\(a_0\)'), \
+              n = slider(1,50,step_size=1,\
+              default=15,label='Number of steps')):
+    f(x) = b*x
+    g(x) = b*x + m
+    a = [float(a0)]
+    for i in range(n):
+        if i%2 == 0: # if i is a multiple of 2
+            a.append(g(a[i]))
+        else:
+            a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True,\
+         axes_labels=['$n$','$a_n$'], \
+         title="Generalized Savings Account",\
+         ymin=0, ymax=80000))
+</script></div></article></body>
+</html>

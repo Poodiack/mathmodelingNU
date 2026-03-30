@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-03-30T11:47:24-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">8.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Antibiotic in the Bloodstream.</span>
+</h6>
+<div class="introduction">
+<p xmlns:svg="http://www.w3.org/2000/svg">An infant is given an antibiotic to treat an ear infection. When taking an antibiotic, it is important to keep the amount of the drug in the bloodstream fairly constant.  If the amount gets too low, the bacteria can begin to regrow.  If the amount gets too high, it could cause other complications.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Suppose the half-life of the drug is one day (meaning that half the drug remains in the blood after each one-day period) and a dosage of 0.1 mg is given.  We want to examine what happens to the amount of the drug in the blood stream in the long run.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">A simple affine model for the system is</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+a_{n+1} = 0.5a_n + 0.1,
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">where \(a_n\) is the amount of the drug in the blood at the end of day \(n\text{.}\) Since the problem did not specify an initial dosage, we need to experiment with different values.</p>
+</div>
+<div class="sagecell-sage" id="sage-290"><script type="text/x-sage">@interact
+def antibiotic(a0 = slider(0,1,step_size=0.01, \
+				default=0,label=r'\(a_0\)'), \
+				n = slider(1,50,step_size=1, \
+				default=15,label='Number of steps')):
+    f(x) = 0.5*x+0.1
+    a = [float(a0)]
+    for i in range(n):
+        a.append(f(a[i]))
+    points = list(zip(range(n),a))
+    show(point(points,size=50)+\
+         list_plot(points,plotjoined=True, \
+         			axes_labels=['Day','Amount'], \
+                   title="Antibiotic in bloodstream",\
+                  ymin=0, ymax=1))
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Note that when \(a_0 = 0.2\text{,}\) the system remains at 0.2, meaning that 0.2 is an equilibrium value. Also note that no matter what the value of \(a_0\text{,}\) the system appears to always approach 0.2. This shows that 0.2 is a stable equilibrium.</p></article><span class="incontext"><a href="long-term-behavior-dds.html#dds-antibiotic">in-context</a></span>
+</body>
+</html>
