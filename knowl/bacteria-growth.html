@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-04-03T11:50:11-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">8.3.2</span><span class="period">.</span><span class="space"> </span><span class="title">Bacteria Growth.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">To implement the model, we need to find the value of \(b\text{.}\)  The equation says that \(a_{n+1} - a_n\) is proportional to \((621-a_n)a_n\text{.}\)  So if the graph of \((a_{n+1}-a_n)\) versus \((621-a_n)a_n\) is approximately a straight line through the origin, then the assumption is reasonable and the slope of the line is the value of \(b\text{.}\)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">First, we generate the list of the \(\Delta a_n\)'s.</p>
+<div class="sagecell-sage" id="sage-292"><script type="text/x-sage">a = [10.3, 17.2, 27, 45.3, 80.2, 125.3, 176.2, 255.6, 330.8,
+390.4, 440, 520.4, 560.4, 600.5, 610.8, 614.6, 618.3,
+619.5, 620, 621]
+bacPop = list(zip(range(20), a))
+
+Delta_an = [(a[n+1]-a[n]) for n in range(len(a)-1)]
+Delta_an
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Next we generate a list of the products \((621-a_n)a_n\) for all \(n\text{.}\)</p>
+<div class="sagecell-sage" id="sage-293"><script type="text/x-sage">product = [(621-a[n])*a[n] for n in range(len(a))]
+product
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We <code class="code-inline tex2jax_ignore">zip</code> the two lists into a set of ordered pairs.  We want the \((621-a_n)a_n\)'s to be the \(x\)-coordinates and the \(\Delta a_n\)'s to be the \(y\)-coordinates. (Think about why we need this order.)</p>
+<div class="sagecell-sage" id="sage-294"><script type="text/x-sage">mypoints = list(zip(product,Delta_an))
+
+points(mypoints,size=50,frame=True,
+	axes_labels=['$(621-a_n)a_n$','$a_{n+1}-a_n$'])
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We're checking for a proportionality relationship so we will to find the line through the origin that best fits these points using the <code class="code-inline tex2jax_ignore">find_fit</code> command.</p>
+<div class="sagecell-sage" id="sage-295"><script type="text/x-sage">var('b')
+model(x) = b*x
+sol = find_fit(mypoints,model, solution_dict=True)
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">If we plot the line with the data, it appears to be a good fit.</p>
+<div class="sagecell-sage" id="sage-296"><script type="text/x-sage">show(points(mypoints, size=50, frame=True,
+axes_labels=['$(621-a_n)a_n$','$a_{n+1}-a_n$']) \
++ plot(sol[b]*x,0,100000,color='red'))
+pretty_print('y = ', sol[b], 'x')
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Now we need to form the set of predicted populations, using our formula. We start the list with the first value in the data, and then add on all of the predicted points.</p>
+<div class="sagecell-sage" id="sage-297"><script type="text/x-sage">pred_pop = [a[0]]
+for n in range(len(a)+1):
+    pred_pop.append(pred_pop[n] + 
+    sol[b]*(621-pred_pop[n])*pred_pop[n])
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We form a set of points to plot using the <code class="code-inline tex2jax_ignore">zip</code> command and then plot them using the <code class="code-inline tex2jax_ignore">points</code> command.</p>
+<div class="sagecell-sage" id="sage-298"><script type="text/x-sage">pred_points = list(zip(range(n),pred_pop))
+
+points(bacPop, size=50, 
+    axes_labels=['Hour', 'Pop. (thousands)'], 
+    legend_label='Actual', frame=True) \
++ points(pred_points, marker='^',size=50, 
+color='red',legend_label='Predicted')
+</script></div>
+<section class="paragraphs"><h5 class="heading"><span class="title">Sensitivity to the Intrinsic Growth Rate.</span></h5>
+<p xmlns:svg="http://www.w3.org/2000/svg">In <a href="long-term-behavior-dds.html" class="internal" title="Section 8.2: Long-Term Behavior and Equilibria">Section 8.2</a> we looked at how the long–term behavior of the savings account changes as the initial deposit changes. Now we look at how the behavior of our constrained population model changes as the value of \(b\) changes. We take a strictly graphical approach.</p></section><div class="sagecell-sage" id="sage-299"><script type="text/x-sage">@interact
+
+def bacGrowth(b=slider([k/200000. for k in range(0,800)], \
+					default=0.0008)):
+    pred_pop = [10.3]
+    for n in range(100):
+        pred_pop.append(pred_pop[n] + \
+        b*(621-pred_pop[n])*pred_pop[n])
+    pred_points = list(zip(range(n),pred_pop))
+    show(points(pred_points,size=50,color='red'))
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Notice that the behavior of the system changes quite dramatically as \(b\) changes. For small values of \(b\text{,}\) the behavior is very regular. But for larger values, it is quite chaotic. This illustrates that we must be careful about using a model of this form if we are unsure of the value of \(b\text{.}\) The value of \(b\) dramatically affects the behavior of the system. If we use a wrong value of \(b\text{,}\) our analysis of the system could be very inaccurate.</p></article><span class="incontext"><a href="discrete-logistic-eqn.html#bacteria-growth">in-context</a></span>
+</body>
+</html>
