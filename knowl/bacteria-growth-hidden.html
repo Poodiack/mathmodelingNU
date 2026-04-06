@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-04-03T11:50:11-04:00       *-->
+<!--*       on 2026-04-06T11:46:55-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -71,14 +71,16 @@ color='red',legend_label='Predicted')
 <section class="paragraphs"><h5 class="heading"><span class="title">Sensitivity to the Intrinsic Growth Rate.</span></h5>
 <p xmlns:svg="http://www.w3.org/2000/svg">In <a href="long-term-behavior-dds.html" class="internal" title="Section 8.2: Long-Term Behavior and Equilibria">Section 8.2</a> we looked at how the long–term behavior of the savings account changes as the initial deposit changes. Now we look at how the behavior of our constrained population model changes as the value of \(b\) changes. We take a strictly graphical approach.</p></section><div class="sagecell-sage" id="sage-299"><script type="text/x-sage">@interact
 
-def bacGrowth(b=slider([k/200000. for k in range(0,800)], \
+def bacGrowth(b=slider([k/200000. for k in range(0,900)], \
 					default=0.0008)):
-    pred_pop = [10.3]
+    pred_pop = [a[0]]
     for n in range(100):
         pred_pop.append(pred_pop[n] + \
         b*(621-pred_pop[n])*pred_pop[n])
     pred_points = list(zip(range(n),pred_pop))
-    show(points(pred_points,size=50,color='red'))
+    show(points(pred_points,size=50,color='red',
+               axes_labels=['Hour','Population'],
+               frame=True))
 </script></div>
 <p xmlns:svg="http://www.w3.org/2000/svg">Notice that the behavior of the system changes quite dramatically as \(b\) changes. For small values of \(b\text{,}\) the behavior is very regular. But for larger values, it is quite chaotic. This illustrates that we must be careful about using a model of this form if we are unsure of the value of \(b\text{.}\) The value of \(b\) dramatically affects the behavior of the system. If we use a wrong value of \(b\text{,}\) our analysis of the system could be very inaccurate.</p></article></body>
 </html>
