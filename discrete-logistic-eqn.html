@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-04-03T11:50:09-04:00       *-->
+<!--*       on 2026-04-06T11:46:53-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -85,10 +85,10 @@
 </div></div>
 <nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
-<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="long-term-behavior-dds.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="discrete-dynamical.html" title="Up">Up</a><span id="nextbutton" class="next-button button toolbar-item disabled">Next</span></span></div>
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="long-term-behavior-dds.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="discrete-dynamical.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="linear-predator-prey.html" title="Next">Next</a></span></div>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="long-term-behavior-dds.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="discrete-dynamical.html" title="Up">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="long-term-behavior-dds.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="discrete-dynamical.html" title="Up">Up</a><a class="next-button button toolbar-item" href="linear-predator-prey.html" title="Next">Next</a>
 </div>
 </div></nav></header><div class="page">
 <div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
@@ -164,6 +164,7 @@
 <li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
 <li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
 <li><a href="discrete-logistic-eqn.html" data-scroll="discrete-logistic-eqn" class="active">Discrete Logistic Equation</a></li>
+<li><a href="linear-predator-prey.html" data-scroll="linear-predator-prey">A Linear Predator-Prey Model</a></li>
 </ul>
 </li>
 </ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
@@ -280,14 +281,16 @@ color='red',legend_label='Predicted')
 <section class="paragraphs" id="paragraphs-5"><h5 class="heading"><span class="title">Sensitivity to the Intrinsic Growth Rate.</span></h5>
 <p id="p-882">In <a href="long-term-behavior-dds.html" class="internal" title="Section 8.2: Long-Term Behavior and Equilibria">Section 8.2</a> we looked at how the long–term behavior of the savings account changes as the initial deposit changes. Now we look at how the behavior of our constrained population model changes as the value of \(b\) changes. We take a strictly graphical approach.</p></section><div class="hidden-sagecell-sage" id="sage-299"><script type="text/x-sage">@interact
 
-def bacGrowth(b=slider([k/200000. for k in range(0,800)], \
+def bacGrowth(b=slider([k/200000. for k in range(0,900)], \
 					default=0.0008)):
-    pred_pop = [10.3]
+    pred_pop = [a[0]]
     for n in range(100):
         pred_pop.append(pred_pop[n] + \
         b*(621-pred_pop[n])*pred_pop[n])
     pred_points = list(zip(range(n),pred_pop))
-    show(points(pred_points,size=50,color='red'))
+    show(points(pred_points,size=50,color='red',
+               axes_labels=['Hour','Population'],
+               frame=True))
 </script></div>
 <p id="p-883">Notice that the behavior of the system changes quite dramatically as \(b\) changes. For small values of \(b\text{,}\) the behavior is very regular. But for larger values, it is quite chaotic. This illustrates that we must be careful about using a model of this form if we are unsure of the value of \(b\text{.}\) The value of \(b\) dramatically affects the behavior of the system. If we use a wrong value of \(b\text{,}\) our analysis of the system could be very inaccurate.</p></article></div>
 <section class="exercises" id="exercises-14"><h3 class="heading hide-type">
@@ -302,7 +305,18 @@ def bacGrowth(b=slider([k/200000. for k in range(0,800)], \
 \pmb{a_n} \amp 50 \amp 85 \amp 110 \amp 130 \amp 175 \amp 200 \amp 215 \amp 221 \amp 228 \amp 232 \amp 234 \\\hline\hline
 \end{array}
 \end{equation*}
-</div></article></section></section></div></main>
+</div></article><article class="exercise exercise-like" id="exercise-49"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<p id="p-885">We noted that in the bacteria growth example, the predicted values were consistently lower than the actual values. Make an interactive version of the bacteria growth graphing where the value of \(b\) is given by a slider. (Have the slider be the value of \(k/500,000\) where \(k\) is in a range from 0 to 1,000. Look at the code for the slider in the last cell above.)</p></article><article class="exercise exercise-like" id="exercise-50"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-40">
+<p id="p-886">Consider a cup of coffee that is initially \(100^\circ\)F, cools to \(90^\circ\)F in 10 minutes, and sits in a room whose temperature is a constant \(60^\circ\)F. A simple assumption for how the coffee cools is that the amount the temperature changes from one minute to the next is proportional to the difference between the coffee temperature and the room temperature.</p> That is,<div class="displaymath">
+\begin{equation*}
+a_{n+1} - a_{n} = k (a_n - 60)
+\end{equation*}
+</div>where \(a_n\) is the coffee temperature at minute \(n\) and \(k\) is some constant.</div>
+<article class="task exercise-like" id="task-58"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-887">Implement this model to predict the coffee temperature for \(0\le n\le 150\text{.}\) Use a slider to find the value of \(k\) that yields \(a_{10} \approx 90\text{.}\)</p></article><article class="task exercise-like" id="task-59"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-888">Create a graph of \(a_n\) vs \(n\text{.}\)</p></article><article class="task exercise-like" id="task-60"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-889">Does this model seem reasonable? Briefly explain why or why not.</p></article></article></section></section></div></main>
 </div>
 <script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
