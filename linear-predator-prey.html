@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-04-06T11:46:53-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A Linear Predator-Prey Model</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="discrete-logistic-eqn.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="discrete-dynamical.html" title="Up">Up</a><span id="nextbutton" class="next-button button toolbar-item disabled">Next</span></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="discrete-logistic-eqn.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="discrete-dynamical.html" title="Up">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks">Working with Jupyter notebooks</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination">Coefficient of Determination</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="linearalgebra.html" data-scroll="linearalgebra"><span class="codenumber">7</span> <span class="title">Linear Algebra</span></a><ul>
+<li><a href="linear-algebra-basics.html" data-scroll="linear-algebra-basics">Linear Algebra Basics</a></li>
+<li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
+<li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
+<li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
+<li><a href="discrete-logistic-eqn.html" data-scroll="discrete-logistic-eqn">Discrete Logistic Equation</a></li>
+<li><a href="linear-predator-prey.html" data-scroll="linear-predator-prey" class="active">A Linear Predator-Prey Model</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="linear-predator-prey"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">8.4</span> <span class="title">A Linear Predator-Prey Model</span>
+</h2>
+<section class="introduction" id="introduction-41"><p id="p-890">Consider a forest containing foxes and rabbits where the foxes eat the rabbits for food. We want to examine whether the two species can survive in the long term.  A forest is a very complex ecosystem.  So to simplify the model, we use the following assumptions:</p>
+<ol class="decimal">
+<li id="li-74"><p id="p-891">The only source of food for the foxes is rabbits and the only predator of the rabbits is foxes.</p></li>
+<li id="li-75"><p id="p-892">Without rabbits present, the foxes would die out.</p></li>
+<li id="li-76"><p id="p-893">Without foxes present, the population of rabbits would grow.</p></li>
+<li id="li-77"><p id="p-894">The presence of rabbits increases the rate at which the population of foxes grows.</p></li>
+<li id="li-78"><p id="p-895">The presence of foxes decreases the rate at which the population of rabbits grows.</p></li>
+</ol>
+<p id="p-896">We will model these populations using a discrete dynamical model.  Each state of the system consists of the population of foxes and rabbits at a point in time. Since this state consists of two components, this is a <dfn class="terminology">two-dimensional discrete dynamical system</dfn>.</p>
+<p id="p-897">To create our model, we first need to define some variables. Let</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+F_n \amp= \text{population of foxes at the end of month $n$} \\
+R_n \amp= \text{population of rabbits at the end of month $n$}
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-898">As in the bacteria model, the assumptions are stated in terms of rates of change, \(\Delta F_n = F_{n+1} - F_n\) and \(\Delta R_n = R_{n+1} - R_n\text{.}\)  There are many ways we could model these rates of change with the assumptions.  We will create a linear model here. In the next section we will create a non-linear model.</p>
+<p id="p-899">Assumptions 2 and 3 deal with the rates of change of each population in the absence of the other.  A reasonable way to model these is to say that the rates are proportional to the populations.  This gives the difference equations</p>
+<div class="displaymath">
+\begin{align}
+\Delta F_n \amp= F_{n+1} - F_n = -a\,F_n \label{fneq}\tag{8.4.1}\\
+\Delta R_n \amp= R_{n+1} - R_n = d\,R_n \label{rneq}\tag{8.4.2}
+\end{align}
+</div>
+<p id="p-900">where both \(a\) and \(d\) are between 0 and 1.  The constant of proportionality in <a class="xref" data-knowl="./knowl/fneq.html" title="Equation 8.4.1">(8.4.1)</a> is negative to reflect the fact that the foxes would die out (a negative rate of change) without the rabbits. The coefficient in <a class="xref" data-knowl="./knowl/rneq.html" title="Equation 8.4.2">(8.4.2)</a> is positive because the population of rabbits grows (a positive rate of change) without the foxes.</p>
+<p id="p-901">Now, assumptions 4 and 5 say that these rates either increase or decrease in the presence of the other species.  So to incorporate these assumptions, we simply add one term to each of the above equations, yielding</p>
+<div class="displaymath">
+\begin{align}
+F_{n+1} - F_n \amp= -a\,F_n + b\,R_n \label{fneq2}\tag{8.4.3}\\
+R_{n+1} - R_n \amp= -c\,F_n + d\,R_n \label{rneq2}\tag{8.4.4}
+\end{align}
+</div>
+<p id="p-902">where \(b\) and \(c\) are non-negative.  Note that the added term in the fox equation is positive to reflect the fact that the presence of rabbits increases the rate at which the population of foxes grows. The added term in the rabbit equation is negative because the presence of foxes decreases the rate at which the population of rabbits grows.</p>
+<p id="p-903">Rewriting Equations <a class="xref" data-knowl="./knowl/fneq2.html" title="Equation 8.4.3">(8.4.3)</a> and <a class="xref" data-knowl="./knowl/rneq2.html" title="Equation 8.4.4">(8.4.4)</a> yields our model in the form of a system of linear equations:</p>
+<div class="displaymath">
+\begin{align}
+F_{n+1} \amp= (1-a)F_n + b\,R_n \label{fneq3}\tag{8.4.5}\\
+R_{n+1} \amp= -c\,F_n + (1+d)R_n. \label{rneq3}\tag{8.4.6}
+\end{align}
+</div>
+<p id="p-904">Because our model has the form of a system of linear equations, it is called a <dfn class="terminology">two-dimensional linear discrete dynamical system</dfn>. While we could write the model in matrix form and apply linear algebra methods to solve it, we will take a strictly graphical approach to analyze the model.</p>
+<p id="p-905">The parameters \((1-a)\) and \(b\) are called the fox <dfn class="terminology">death</dfn> and <dfn class="terminology">birth</dfn> factors, respectively, while the parameters \(-c\) and \((1+d)\) are called the rabbit death and birth factors, respectively.</p></section><p id="p-906">Suppose, for example, we start with 500 foxes and 200 rabbits in our forest, and have a fox death factor of 0.5, a fox birth factor of 0.4, a rabbit death factor of -0.17, and a rabbit birth factor of 1.1.  Let's see what happens over time.</p>
+<div class="sagecell-sage" id="sage-300"><script type="text/x-sage">a = 0.5 # since 1 - a = 0.5
+b = 0.4
+c = 0.17 # since -c = -0.17
+d = 0.1 # since 1 + d = 1.1
+
+def foxrabbit(a, b, c, d, months):
+    f = [500]  # initial fox population
+    r = [200]  # initial rabbit population
+    for n in range(months):
+        f.append((1-a)*f[n]+b*r[n])
+        r.append(-c*f[n]+(1+d)*r[n])
+    rabbits = list(zip(range(months),r)) # to graph rabbits vs. time
+    foxes = list(zip(range(months),f))  # to graph foxes vs. time
+    foxesrabbits = list(zip(f,r))  # to graph rabbits vs. foxes
+    show(points(rabbits, size=50, 
+    	axes_labels=['Month','Rabbits'], 
+    	title='Rabbit Time Plot', rgbcolor='red'))
+    show(points(foxes, size=50, axes_labels=['Month','Foxes'],
+    	title='Fox Time Plot'))
+    show(points(foxesrabbits, size=50, 
+    	axes_labels=['Foxes','Rabbits'], 
+    	title='Trajectory', rgbcolor='purple'))
+</script></div>
+<div class="sagecell-sage" id="sage-301"><script type="text/x-sage">foxrabbit( a, b, c, d, 30 )
+</script></div>
+<figure class="figure figure-like" id="foxrabbitpic"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel bottom" style="width:45%;"><img src="./images/rabbittimeplot.png" class="contained" alt=""></div>
+<div class="sbspanel bottom" style="width:45%;"><img src="./images/foxtimeplot.png" class="contained" alt=""></div>
+</div></div>
+<div class="image-box" style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="./images/trajectory.png" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">8.4.1<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-907">The graphs of rabbits versus month and foxes versus month are called <dfn class="terminology">time plots</dfn>. The curve in the graph of rabbits versus foxes is called a <dfn class="terminology">trajectory</dfn> of the system. The plane on which a trajectory is drawn is called the <dfn class="terminology">phase plane</dfn>. Notice that the trajectory tends toward the origin (0 foxes and 0 rabbits). This means that both species eventually die out. This is also shown in the time plots. If we change the initial populations, we note that the trajectories always tend toward the origin. This indicates that the populations always die out, regardless of the initial populations.</p>
+<p id="p-908">As in a one-dimensional discrete dyanmical system, two-dimensional systems can have an <dfn class="terminology">equilibrium</dfn>.</p>
+<article class="definition definition-like" id="definition-13"><h6 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">8.4.2</span><span class="period">.</span>
+</h6>
+<p id="p-909">Let</p>
+<div class="displaymath">
+\begin{equation*}
+a_{n+1} = f(a_n,b_n), \quad b_{n+1}=g(a_n,b_n)
+\end{equation*}
+</div>
+<p id="p-910">be a two-dimensional discrete dynamical system. A point \((a,b)\) is an <dfn class="terminology">equilibrium point</dfn> if \(a_n=a\) and \(b_n=b\) for all \(n\) whenever \(a_0=a\) and \(b_0=b\text{.}\)</p></article><p id="p-911">Stated another way, \((a,b)\) is an equilibrium point if \(f(a,b)=a\) and \(g(a,b)=b\text{.}\) For the system given by <a class="xref" data-knowl="./knowl/fneq3.html" title="Equation 8.4.5">(8.4.5)</a> and <a class="xref" data-knowl="./knowl/rneq3.html" title="Equation 8.4.6">(8.4.6)</a>, the origin, \((0,0)\) is an equlibrium point since</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+f(0,0) \amp (1-a)(0) + b(0) = 0+0 = 0 \\
+g(0,0) \amp -c(0) + (1+d)(0) = 0+0 = 0
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-912">Since the trajectories appear to be attracted to the origin, we have graphical evidence that the origin is an <dfn class="terminology">attracting equilibrium</dfn>. If the trajectories tended to go away from the origin, we would say the origin is a <dfn class="terminology">repelling equilibrium</dfn>.</p>
+<section class="exercises" id="exercises-15"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-51"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<p id="p-913">Implement a slider in the given code to vary the rabbit death rate from 0 to -0.50 in increments of 0.001. Are there any changes in the overall behavior of the system at any point? (This change of behavior caused by a change in the value of a parameter is called a <dfn class="terminology">bifurcation</dfn>.)</p></article><article class="exercise exercise-like" id="exercise-52"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-42"><p id="p-914">Suppose the rabbit death factor is -0.05 and the other factors are as shown as in the above code. For initial populations of 500 foxes and 200 rabbits, we saw that the populations grow without bound in the long–run. Here we will investigate whether this is true for all initial populations.</p></div>
+<article class="task exercise-like" id="task-61"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-915">Fix the initial rabbit population at 200. What happens if the initial fox population increases or decreases? How large can the initial fox population be for both species to survive?</p></article><article class="task exercise-like" id="task-62"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-916">Fix the initial fox population at 500. What happens if the initial rabbit population increases or decreases? How small can the initial rabbit population be for both species to survive?</p></article></article><article class="exercise exercise-like" id="exercise-53"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-43"><p id="p-917">Investigate sensitivity to the parameter rabbit birth factor using values of the other parameters and the initial populations given in the code (i.e. increase and decrease the rabbit birth factor and observe what happens to the populations in the long–run).</p></div>
+<article class="task exercise-like" id="task-63"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-918">For what values of the rabbit birth factor do the populations die out? For what values do the populations grow without bound? Are there any values for which the populations appear to reach an equilibrium?</p></article><article class="task exercise-like" id="task-64"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-919">A forest ranger knows that the populations will both die out under the parameters in the initial code above. To prevent this, she advocates building rabbit shelters in an attempt to increase the rabbit birth factor. Does this model predict that this would have any effect on the survival of the populations? Why or why not?</p></article></article><article class="exercise exercise-like" id="exercise-54"><h6 class="heading"><span class="codenumber">4<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-44"><p id="p-920">With the parameters and the initial fox and rabbit populations given, both populations die out. A hunting club claims that if they were allowed to kill (or harvest) a few foxes each month the populations would survive.</p></div>
+<article class="task exercise-like" id="task-65"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-921">Modify the model to include this harvesting. Does the model support this claim? If it does, how many foxes could be harvested each month for both species to survive?</p></article><article class="task exercise-like" id="task-66"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-922">A conservation group claims that more foxes should be put into the forest each month for the populations to survive. Does your model support this claim?</p></article></article></section></section></div></main>
+</div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>
