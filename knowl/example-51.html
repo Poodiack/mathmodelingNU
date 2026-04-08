@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-04-08T11:10:32-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">8.5.3</span><span class="period">.</span><span class="space"> </span><span class="title">Hunting.</span>
+</h6>
+<p xmlns:svg="http://www.w3.org/2000/svg">Suppose that a local hunting club wants to have a fox hunt at one of their next two meetings. The first meeting is 36 months from now and the next is 36 months after that. If they limit themselves to killing 50 foxes, how would the two options affect the long–term populations of the foxes and rabbits?</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Starting with 110 foxes and 900 rabbits, the model predicts that at month 36, there will be approximately 88 foxes. Killing 50 foxes would reduce this number to 38. In the SageMath cell, changing the equation in month 36 to reflect the hunting of 50 foxes results in the code and graph shown below.</p>
+<div class="sagecell-sage" id="sage-304"><script type="text/x-sage">a = 0.12 # since 1 - a = 0.88
+b = 0.0001
+c = 0.0003 # since -c = -0.0003
+d = 0.039 # since 1 + d = 1.039
+
+def foxrabbitnonlinear(a, b, c, d, months):
+    f = [110]  # initial fox population
+    r = [900]  # initial rabbit population
+    for n in range(months):
+        if n==36:
+            f.append((1-a)*f[n]+b*r[n]*f[n]-50)
+        else:
+            f.append((1-a)*f[n]+b*r[n]*f[n])
+        r.append(-c*r[n]*f[n]+(1+d)*r[n])
+    rabbits = list(zip(range(months),r)) # to graph rabbits vs. time
+    foxes = list(zip(range(months),f))  # to graph foxes vs. time
+    foxesrabbits = list(zip(f,r))  # to graph rabbits vs. foxes
+    show(points(rabbits, size=50, axes_labels=['Month','Population'], 
+    	rgbcolor='red', legend_label = 'Rabbits') +  
+    	points(foxes, size=50, legend_label = 'Foxes'),
+    	frame=True, title='Time Plots')
+    show(points(foxesrabbits, size=50, 
+    	axes_labels=['Foxes','Rabbits'], rgbcolor='purple',
+    	frame=True, title='Trajectory'))
+</script></div>
+<div class="sagecell-sage" id="sage-305"><script type="text/x-sage">foxrabbitnonlinear(a, b, c, d, 500)
+</script></div>
+<figure class="figure figure-like"><div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="./images/foxhunt36.png" class="contained" alt=""></div>
+<figcaption xmlns:svg="http://www.w3.org/2000/svg"><span class="type">Figure</span><span class="space"> </span><span class="codenumber">8.5.4<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p xmlns:svg="http://www.w3.org/2000/svg">Notice that this causes a dramatic change in the behavior of the system. The populations fluctuate much more than they did in <a class="xref" data-knowl="./knowl/foxrabbitnlpic.html" title="Figure 8.5.1">Figure 8.5.1</a>. So, hunting 50 foxes in month 36 would have a great effect on the long–term populations.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Now change the code above so that the hunt occurs in month 72. In month 72, the model predicts a population of 212. Killing 50 foxes would leave 162. Changing the number of foxes in month 72 to 162 results in the graph in <a class="xref" data-knowl="./knowl/foxhunt72.html" title="Figure 8.5.5">Figure 8.5.5</a>. Notice that the fox population drops in month 72 which causes the rabbit population to initially grow. However, in the long–term the populations behave much as they did in <a class="xref" data-knowl="./knowl/foxrabbitnlpic.html" title="Figure 8.5.1">Figure 8.5.1</a>.</p>
+<figure class="figure figure-like"><div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="./images/foxhunt72.png" class="contained" alt=""></div>
+<figcaption xmlns:svg="http://www.w3.org/2000/svg"><span class="type">Figure</span><span class="space"> </span><span class="codenumber">8.5.5<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p xmlns:svg="http://www.w3.org/2000/svg">Why is there such a dramatic difference between these two cases? Note that originally near month 36, the fox population was near a local minimum. At month 72, it was near a local maximum. Killing 50 foxes near a time of a local minimum has a much greater effect than near a local maximum.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Thus the hunting club should not schedule the hunt at month 36; this would cause too great an effect on the populations. The hunt at month 72 would not cause a long–term effect.</p></article><span class="incontext"><a href="nonlinear-predator-prey.html#example-51">in-context</a></span>
+</body>
+</html>
