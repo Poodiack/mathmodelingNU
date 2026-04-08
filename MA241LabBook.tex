@@ -1,6 +1,6 @@
 %********************************************%
 %*       Generated from PreTeXt source      *%
-%*       on 2026-03-30T11:47:17-04:00       *%
+%*       on 2026-04-08T11:10:34-04:00       *%
 %*   A recent stable commit (2020-08-09):   *%
 %* 98f21740783f166a773df4dc83cab5293ab63a4a *%
 %*                                          *%
@@ -695,7 +695,7 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 {\LARGE Mathematical Computation and Modeling}\\[3\baselineskip]
 {\Large Robert D. Poodiack}\\[0.5\baselineskip]
 {\Large Norwich University}\\[3\baselineskip]
-{\Large March 30, 2026}\\}
+{\Large April 8, 2026}\\}
 \clearpage
 %% end:   title page
 %% begin: copyright-page
@@ -7014,6 +7014,556 @@ where \(r\) is a positive constant that measures the restraint of growth due to 
 \item{}Suppose \(r = 0.3\), \(d = 1\), and \(c = -10\). Calculate \(T_n\) for \(0 \le n \le 15\). Graph these values. Set up a scroll bar to vary the value of \(T_0\) between 0 and 100. For what values of \(T_0\) does the race end?%
 \item{}Now suppose \(r = 0.3\), \(d = 1\), and \(c = 10\). For what values of \(T_0\) does the race end?%
 \item{}Now suppose \(r = 0.3\), \(d = 0.1\), and \(c = 10\). What happens to the arms race now?%
+\end{enumerate}
+\end{divisionexercise}%
+\end{exercises-subsection-numberless}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 8.3 Discrete Logistic Equation}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Discrete Logistic Equation}{}{Discrete Logistic Equation}{}{}{x:section:discrete-logistic-eqn}
+\begin{introduction}{}%
+The table below gives the number of bacteria (in thousands) in a Petri dish, \(a_n\), at the end of each hour \(n\).%
+%
+\begin{equation*}
+\begin{array}{c|cccccccccc}\hline\hline
+\pmb{n} \amp 0 \amp 1 \amp 2 \amp 3 \amp 4 \amp 5 \amp 6 \amp 7 \amp 8 \amp 9 \\
+\pmb{a_n} \amp 10.3 \amp 17.2 \amp 27 \amp 45.3 \amp 80.2 \amp 125.3 \amp 176.2 \amp 255.6 \amp 330.8 \amp 390.4 \\\hline\hline
+\pmb{n} \amp 10 \amp 11 \amp 12 \amp 13 \amp 14 \amp 15 \amp 16 \amp 17 \amp 18 \amp 19 \\
+\pmb{a_n} \amp 440 \amp 520.4 \amp 560.4 \amp 600.5 \amp 610.8 \amp 614.6 \amp 618.3 \amp 619.5 \amp 620 \amp 621 \\\hline\hline
+\end{array}
+\end{equation*}
+This data is graphed below.%
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/bacteriapop.png}
+\end{image}%
+When modeling a dynamical system, it is often convenient to think about the way the variable(s) change(s) between time periods.  We consider the change between time periods to be \(\Delta a_n = a_{n+1} - a_n\). The values of this variable for the first seven values of \(n\) are given below.%
+%
+\begin{equation*}
+\begin{array}{c|ccccccc}\hline\hline
+\pmb{n} \amp 0 \amp 1 \amp 2 \amp 3 \amp 4 \amp 5 \amp 6 \\\hline
+\pmb{a_n} \amp 10.3 \amp 17.2 \amp 27 \amp 45.3 \amp 80.2 \amp 125.3 \amp 176.2 \\
+\pmb{\Delta a_n} \amp 6.9 \amp 9.8 \amp 18.3 \amp 34.9 \amp 45.1 \amp 50.9 \amp 79.4\\\hline\hline
+\end{array}
+\end{equation*}
+Notice that as \(a_n\) increases, \(\Delta a_n\) also increases.  This suggests that \(\Delta a_n\) is proportional to \(a_n\), which leads to the equation%
+%
+\begin{equation*}
+\Delta a_n = a_{n+1} - a_n = r\,a_n
+\end{equation*}
+where \(r\) is some positive constant.  An equation describing the difference in populations between time periods such as the one above is called a \terminology{difference equation}. Forming a difference equation is often the first step in modeling a discrete dynamical system.  Solving this equation for \(a_{n+1}\) yields the model%
+%
+\begin{equation*}
+a_{n+1} = (1+r)a_n.
+\end{equation*}
+The parameter \(r\) can be interpreted here as a constant hourly growth rate.  However, the graph of population versus hour shows that the population does not grow at a constant rate. Also note that this constant hourly growth rate would predict a population that grows without bound, which the data does not support either.%
+\par
+To refine the model, note that the graph shows that the rate of growth decreases as the population nears 621.  This number is called the \terminology{carrying capacity} of the system.  So instead of assuming a constant growth rate \(r\), we assume a growth rate that approaches zero as the population nears 621. An equation implementing this assumption is%
+%
+\begin{equation*}
+\Delta a_n = a_{n+1} - a_n = b(621-a_n)a_n
+\end{equation*}
+where \(b\gt 0\) is a constant.  Again, solving for \(a_{n+1}\) yields the model%
+%
+\begin{equation*}
+a_{n+1} = a_n + b(621-a_n)a_n.
+\end{equation*}
+This is called a \terminology{discrete logistic equation}.%
+\begin{definition}{}{g:definition:id156}%
+A \terminology{discrete logistic equation} (also called a \terminology{logistic map} or a \terminology{constrained growth model}) is an equation of the form%
+%
+\begin{equation*}
+a_{n+1} = a_n + b(c-a_n)a_n
+\end{equation*}
+where \(b\) and \(c\) are constants. This type of equation is often used to model population growth where \(a_n\) is the population at time \(n\). The constant \(b\) is called the \terminology{intrinsic growth rate} and \(c\) is called the \terminology{carrying capacity}.%
+\end{definition}
+\end{introduction}%
+\begin{example}{Bacteria Growth.}{x:example:bacteria-growth}%
+To implement the model, we need to find the value of \(b\).  The equation says that \(a_{n+1} - a_n\) is proportional to \((621-a_n)a_n\).  So if the graph of \((a_{n+1}-a_n)\) versus \((621-a_n)a_n\) is approximately a straight line through the origin, then the assumption is reasonable and the slope of the line is the value of \(b\).%
+\par
+First, we generate the list of the \(\Delta a_n\)'s.%
+\begin{sageinput}
+a = [10.3, 17.2, 27, 45.3, 80.2, 125.3, 176.2, 255.6, 330.8,
+390.4, 440, 520.4, 560.4, 600.5, 610.8, 614.6, 618.3,
+619.5, 620, 621]
+bacPop = list(zip(range(20), a))
+
+Delta_an = [(a[n+1]-a[n]) for n in range(len(a)-1)]
+Delta_an
+\end{sageinput}
+\begin{sageoutput}
+[6.90000000000000,
+ 9.80000000000000,
+ 18.3000000000000,
+ 34.9000000000000,
+ 45.1000000000000,
+ 50.9000000000000,
+ 79.4000000000000,
+ 75.2000000000000,
+ 59.6000000000000,
+ 49.6000000000000,
+ 80.4000000000000,
+ 40.0000000000000,
+ 40.1000000000000,
+ 10.3000000000000,
+ 3.80000000000007,
+ 3.69999999999993,
+ 1.20000000000005,
+ 0.500000000000000,
+ 1]
+\end{sageoutput}
+Next we generate a list of the products \((621-a_n)a_n\) for all \(n\).%
+\begin{sageinput}
+product = [(621-a[n])*a[n] for n in range(len(a))]
+product
+\end{sageinput}
+\begin{sageoutput}
+[6290.21000000000,
+ 10385.3600000000,
+ 16038,
+ 26079.2100000000,
+ 43372.1600000000,
+ 62111.2100000000,
+ 78373.7600000000,
+ 93396.2400000000,
+ 95998.1600000000,
+ 90026.2400000000,
+ 79640,
+ 52352.2400000000,
+ 33960.2400000000,
+ 12310.2500000000,
+ 6230.16000000003,
+ 3933.43999999999,
+ 1669.41000000003,
+ 929.250000000000,
+ 620,
+ 0]
+\end{sageoutput}
+We \mono{zip} the two lists into a set of ordered pairs.  We want the \((621-a_n)a_n\)'s to be the \(x\)-coordinates and the \(\Delta a_n\)'s to be the \(y\)-coordinates. (Think about why we need this order.)%
+\begin{sageinput}
+mypoints = list(zip(product,Delta_an))
+
+points(mypoints,size=50,frame=True,
+	axes_labels=['$(621-a_n)a_n$','$a_{n+1}-a_n$'])
+\end{sageinput}
+We're checking for a proportionality relationship so we will to find the line through the origin that best fits these points using the \mono{find\_fit} command.%
+\begin{sageinput}
+var('b')
+model(x) = b*x
+sol = find_fit(mypoints,model, solution_dict=True)
+\end{sageinput}
+If we plot the line with the data, it appears to be a good fit.%
+\begin{sageinput}
+show(points(mypoints, size=50, frame=True,
+axes_labels=['$(621-a_n)a_n$','$a_{n+1}-a_n$']) \
++ plot(sol[b]*x,0,100000,color='red'))
+pretty_print('y = ', sol[b], 'x')
+\end{sageinput}
+Now we need to form the set of predicted populations, using our formula. We start the list with the first value in the data, and then add on all of the predicted points.%
+\begin{sageinput}
+pred_pop = [a[0]]
+for n in range(len(a)+1):
+    pred_pop.append(pred_pop[n] + 
+    sol[b]*(621-pred_pop[n])*pred_pop[n])
+\end{sageinput}
+We form a set of points to plot using the \mono{zip} command and then plot them using the \mono{points} command.%
+\begin{sageinput}
+pred_points = list(zip(range(n),pred_pop))
+
+points(bacPop, size=50, 
+    axes_labels=['Hour', 'Pop. (thousands)'], 
+    legend_label='Actual', frame=True) \
++ points(pred_points, marker='^',size=50, 
+color='red',legend_label='Predicted')
+\end{sageinput}
+\begin{paragraphs}{Sensitivity to the Intrinsic Growth Rate.}{g:paragraphs:id157}%
+In \hyperref[x:section:long-term-behavior-dds]{Section~{\xreffont\ref{x:section:long-term-behavior-dds}}} we looked at how the long–term behavior of the savings account changes as the initial deposit changes. Now we look at how the behavior of our constrained population model changes as the value of \(b\) changes. We take a strictly graphical approach.%
+\end{paragraphs}%
+\begin{sageinput}
+@interact
+
+def bacGrowth(b=slider([k/200000. for k in range(0,900)], \
+					default=0.0008)):
+    pred_pop = [a[0]]
+    for n in range(100):
+        pred_pop.append(pred_pop[n] + \
+        b*(621-pred_pop[n])*pred_pop[n])
+    pred_points = list(zip(range(n),pred_pop))
+    show(points(pred_points,size=50,color='red',
+               axes_labels=['Hour','Population'],
+               frame=True))
+\end{sageinput}
+Notice that the behavior of the system changes quite dramatically as \(b\) changes. For small values of \(b\), the behavior is very regular. But for larger values, it is quite chaotic. This illustrates that we must be careful about using a model of this form if we are unsure of the value of \(b\). The value of \(b\) dramatically affects the behavior of the system. If we use a wrong value of \(b\), our analysis of the system could be very inaccurate.%
+\end{example}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 8.3 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id158}
+\begin{divisionexercise}{1}{}{}{g:exercise:id159}%
+The table below contains data on the population of foxes in a forest over a period of several years. Fit a discrete logistic equation to the data. How well does the model fit the data?%
+%
+\begin{equation*}
+\begin{array}{l|ccccccccccc}\hline\hline
+\pmb{n} \amp 0 \amp 1 \amp 2 \amp 3 \amp 4 \amp 5 \amp 6 \amp 7 \amp 8 \amp 9 \amp 10 \\\hline
+\pmb{a_n} \amp 50 \amp 85 \amp 110 \amp 130 \amp 175 \amp 200 \amp 215 \amp 221 \amp 228 \amp 232 \amp 234 \\\hline\hline
+\end{array}
+\end{equation*}
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id160}%
+We noted that in the bacteria growth example, the predicted values were consistently lower than the actual values. Make an interactive version of the bacteria growth graphing where the value of \(b\) is given by a slider. (Have the slider be the value of \(k/500,000\) where \(k\) is in a range from 0 to 1,000. Look at the code for the slider in the last cell above.)%
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id161}%
+Consider a cup of coffee that is initially \(100^\circ\)F, cools to \(90^\circ\)F in 10 minutes, and sits in a room whose temperature is a constant \(60^\circ\)F. A simple assumption for how the coffee cools is that the amount the temperature changes from one minute to the next is proportional to the difference between the coffee temperature and the room temperature.%
+ That is,%
+\begin{equation*}
+a_{n+1} - a_{n} = k (a_n - 60)
+\end{equation*}
+where \(a_n\) is the coffee temperature at minute \(n\) and \(k\) is some constant.\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Implement this model to predict the coffee temperature for \(0\le n\le 150\). Use a slider to find the value of \(k\) that yields \(a_{10} \approx 90\).%
+\item{}Create a graph of \(a_n\) vs \(n\).%
+\item{}Does this model seem reasonable? Briefly explain why or why not.%
+\end{enumerate}
+\end{divisionexercise}%
+\end{exercises-subsection-numberless}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 8.4 A Linear Predator-Prey Model}
+\typeout{************************************************}
+%
+\begin{sectionptx}{A Linear Predator-Prey Model}{}{A Linear Predator-Prey Model}{}{}{x:section:linear-predator-prey}
+\begin{introduction}{}%
+Consider a forest containing foxes and rabbits where the foxes eat the rabbits for food. We want to examine whether the two species can survive in the long term.  A forest is a very complex ecosystem.  So to simplify the model, we use the following assumptions:%
+%
+\begin{enumerate}
+\item{}The only source of food for the foxes is rabbits and the only predator of the rabbits is foxes.%
+\item{}Without rabbits present, the foxes would die out.%
+\item{}Without foxes present, the population of rabbits would grow.%
+\item{}The presence of rabbits increases the rate at which the population of foxes grows.%
+\item{}The presence of foxes decreases the rate at which the population of rabbits grows.%
+\end{enumerate}
+We will model these populations using a discrete dynamical model.  Each state of the system consists of the population of foxes and rabbits at a point in time. Since this state consists of two components, this is a \terminology{two-dimensional discrete dynamical system}.%
+\par
+To create our model, we first need to define some variables. Let%
+%
+\begin{equation*}
+\begin{aligned}
+F_n \amp= \text{population of foxes at the end of month $n$} \\
+R_n \amp= \text{population of rabbits at the end of month $n$}
+\end{aligned}
+\end{equation*}
+As in the bacteria model, the assumptions are stated in terms of rates of change, \(\Delta F_n = F_{n+1} - F_n\) and \(\Delta R_n = R_{n+1} - R_n\).  There are many ways we could model these rates of change with the assumptions.  We will create a linear model here. In the next section we will create a non-linear model.%
+\par
+Assumptions 2 and 3 deal with the rates of change of each population in the absence of the other.  A reasonable way to model these is to say that the rates are proportional to the populations.  This gives the difference equations%
+%
+\begin{align}
+\Delta F_n \amp= F_{n+1} - F_n = -a\,F_n \label{x:mrow:fneq}\\
+\Delta R_n \amp= R_{n+1} - R_n = d\,R_n \label{x:mrow:rneq}
+\end{align}
+where both \(a\) and \(d\) are between 0 and 1.  The constant of proportionality in \hyperref[x:mrow:fneq]{({\xreffont\ref{x:mrow:fneq}})} is negative to reflect the fact that the foxes would die out (a negative rate of change) without the rabbits. The coefficient in \hyperref[x:mrow:rneq]{({\xreffont\ref{x:mrow:rneq}})} is positive because the population of rabbits grows (a positive rate of change) without the foxes.%
+\par
+Now, assumptions 4 and 5 say that these rates either increase or decrease in the presence of the other species.  So to incorporate these assumptions, we simply add one term to each of the above equations, yielding%
+%
+\begin{align}
+F_{n+1} - F_n \amp= -a\,F_n + b\,R_n \label{x:mrow:fneq2}\\
+R_{n+1} - R_n \amp= -c\,F_n + d\,R_n \label{x:mrow:rneq2}
+\end{align}
+where \(b\) and \(c\) are non-negative.  Note that the added term in the fox equation is positive to reflect the fact that the presence of rabbits increases the rate at which the population of foxes grows. The added term in the rabbit equation is negative because the presence of foxes decreases the rate at which the population of rabbits grows.%
+\par
+Rewriting Equations \hyperref[x:mrow:fneq2]{({\xreffont\ref{x:mrow:fneq2}})} and \hyperref[x:mrow:rneq2]{({\xreffont\ref{x:mrow:rneq2}})} yields our model in the form of a system of linear equations:%
+%
+\begin{align}
+F_{n+1} \amp= (1-a)F_n + b\,R_n \label{x:mrow:fneq3}\\
+R_{n+1} \amp= -c\,F_n + (1+d)R_n. \label{x:mrow:rneq3}
+\end{align}
+Because our model has the form of a system of linear equations, it is called a \terminology{two-dimensional linear discrete dynamical system}. While we could write the model in matrix form and apply linear algebra methods to solve it, we will take a strictly graphical approach to analyze the model.%
+\par
+The parameters \((1-a)\) and \(b\) are called the fox \terminology{death} and \terminology{birth} factors, respectively, while the parameters \(-c\) and \((1+d)\) are called the rabbit death and birth factors, respectively.%
+\end{introduction}%
+Suppose, for example, we start with 500 foxes and 200 rabbits in our forest, and have a fox death factor of 0.5, a fox birth factor of 0.4, a rabbit death factor of -0.17, and a rabbit birth factor of 1.1.  Let's see what happens over time.%
+\begin{sageinput}
+a = 0.5 # since 1 - a = 0.5
+b = 0.4
+c = 0.17 # since -c = -0.17
+d = 0.1 # since 1 + d = 1.1
+
+def foxrabbit(a, b, c, d, months):
+    f = [500]  # initial fox population
+    r = [200]  # initial rabbit population
+    for n in range(months):
+        f.append((1-a)*f[n]+b*r[n])
+        r.append(-c*f[n]+(1+d)*r[n])
+    rabbits = list(zip(range(months),r)) # to graph rabbits vs. time
+    foxes = list(zip(range(months),f))  # to graph foxes vs. time
+    foxesrabbits = list(zip(f,r))  # to graph rabbits vs. foxes
+    show(points(rabbits, size=50, 
+    	axes_labels=['Month','Rabbits'], 
+    	title='Rabbit Time Plot', rgbcolor='red'))
+    show(points(foxes, size=50, axes_labels=['Month','Foxes'],
+    	title='Fox Time Plot'))
+    show(points(foxesrabbits, size=50, 
+    	axes_labels=['Foxes','Rabbits'], 
+    	title='Trajectory', rgbcolor='purple'))
+\end{sageinput}
+\begin{sageinput}
+foxrabbit( a, b, c, d, 30 )
+\end{sageinput}
+\begin{figureptx}{}{x:figure:foxrabbitpic}{}%
+\begin{sidebyside}{2}{0}{0}{0.1}%
+\begin{sbspanel}{0.45}[bottom]%
+\includegraphics[width=\linewidth]{./images/rabbittimeplot.png}
+\end{sbspanel}%
+\begin{sbspanel}{0.45}[bottom]%
+\includegraphics[width=\linewidth]{./images/foxtimeplot.png}
+\end{sbspanel}%
+\end{sidebyside}%
+\begin{image}{0.275}{0.45}{0.275}%
+\includegraphics[width=\linewidth]{./images/trajectory.png}
+\end{image}%
+\tcblower
+\end{figureptx}%
+The graphs of rabbits versus month and foxes versus month are called \terminology{time plots}. The curve in the graph of rabbits versus foxes is called a \terminology{trajectory} of the system. The plane on which a trajectory is drawn is called the \terminology{phase plane}. Notice that the trajectory tends toward the origin (0 foxes and 0 rabbits). This means that both species eventually die out. This is also shown in the time plots. If we change the initial populations, we note that the trajectories always tend toward the origin. This indicates that the populations always die out, regardless of the initial populations.%
+\par
+As in a one-dimensional discrete dyanmical system, two-dimensional systems can have an \terminology{equilibrium}.%
+\begin{definition}{}{g:definition:id162}%
+Let%
+%
+\begin{equation*}
+a_{n+1} = f(a_n,b_n), \quad b_{n+1}=g(a_n,b_n)
+\end{equation*}
+be a two-dimensional discrete dynamical system. A point \((a,b)\) is an \terminology{equilibrium point} if \(a_n=a\) and \(b_n=b\) for all \(n\) whenever \(a_0=a\) and \(b_0=b\).%
+\end{definition}
+Stated another way, \((a,b)\) is an equilibrium point if \(f(a,b)=a\) and \(g(a,b)=b\). For the system given by \hyperref[x:mrow:fneq3]{({\xreffont\ref{x:mrow:fneq3}})} and \hyperref[x:mrow:rneq3]{({\xreffont\ref{x:mrow:rneq3}})}, the origin, \((0,0)\) is an equlibrium point since%
+%
+\begin{equation*}
+\begin{aligned}
+f(0,0) \amp (1-a)(0) + b(0) = 0+0 = 0 \\
+g(0,0) \amp -c(0) + (1+d)(0) = 0+0 = 0
+\end{aligned}
+\end{equation*}
+Since the trajectories appear to be attracted to the origin, we have graphical evidence that the origin is an \terminology{attracting equilibrium}. If the trajectories tended to go away from the origin, we would say the origin is a \terminology{repelling equilibrium}.%
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 8.4 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id163}
+\begin{divisionexercise}{1}{}{}{g:exercise:id164}%
+Implement a slider in the given code to vary the rabbit death rate from 0 to -0.50 in increments of 0.001. Are there any changes in the overall behavior of the system at any point? (This change of behavior caused by a change in the value of a parameter is called a \terminology{bifurcation}.)%
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id165}%
+Suppose the rabbit death factor is -0.05 and the other factors are as shown as in the above code. For initial populations of 500 foxes and 200 rabbits, we saw that the populations grow without bound in the long–run. Here we will investigate whether this is true for all initial populations.%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Fix the initial rabbit population at 200. What happens if the initial fox population increases or decreases? How large can the initial fox population be for both species to survive?%
+\item{}Fix the initial fox population at 500. What happens if the initial rabbit population increases or decreases? How small can the initial rabbit population be for both species to survive?%
+\end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id166}%
+Investigate sensitivity to the parameter rabbit birth factor using values of the other parameters and the initial populations given in the code (i.e. increase and decrease the rabbit birth factor and observe what happens to the populations in the long–run).%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}For what values of the rabbit birth factor do the populations die out? For what values do the populations grow without bound? Are there any values for which the populations appear to reach an equilibrium?%
+\item{}A forest ranger knows that the populations will both die out under the parameters in the initial code above. To prevent this, she advocates building rabbit shelters in an attempt to increase the rabbit birth factor. Does this model predict that this would have any effect on the survival of the populations? Why or why not?%
+\end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{4}{}{}{g:exercise:id167}%
+With the parameters and the initial fox and rabbit populations given, both populations die out. A hunting club claims that if they were allowed to kill (or harvest) a few foxes each month the populations would survive.%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Modify the model to include this harvesting. Does the model support this claim? If it does, how many foxes could be harvested each month for both species to survive?%
+\item{}A conservation group claims that more foxes should be put into the forest each month for the populations to survive. Does your model support this claim?%
+\end{enumerate}
+\end{divisionexercise}%
+\end{exercises-subsection-numberless}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 8.5 A Nonlinear Predator-Prey Model}
+\typeout{************************************************}
+%
+\begin{sectionptx}{A Nonlinear Predator-Prey Model}{}{A Nonlinear Predator-Prey Model}{}{}{x:section:nonlinear-predator-prey}
+\begin{introduction}{}%
+Let's consider a similar population of foxes and rabbits along with the same set of assumptions as in \hyperref[x:section:linear-predator-prey]{Section~{\xreffont\ref{x:section:linear-predator-prey}}}, but we will model the assumptions differently. We will start with modeling assumptions 2 and 3 the same way:%
+%
+\begin{align}
+\Delta F_n \amp = F_{n+1}-F_n = -a\,F_n \label{x:mrow:fneq4}\\
+\Delta R_n \amp = R_{n+1}-R_n = d\,R_n\label{x:mrow:rneq4}
+\end{align}
+where \(0\lt a\le 1\) and \(0\lt d\le 1\). In \hyperref[x:section:linear-predator-prey]{Section~{\xreffont\ref{x:section:linear-predator-prey}}}, the coefficients of \(F_n\) and \(R_n\) were kept constant. In this section we model them as increasing or decreasing in the presence of the other population, as we did in modeling the growth of bacteria. Assumption 4 says that the presence of rabbits increases the rate of growth of foxes, so we have%
+%
+\begin{gather}
+F_{n+1}-F_n = (-a+bR_n)F_n\label{x:mrow:fn-diff}
+\end{gather}
+where \(b\ge 0\).  Likewise, assumption 5 says that the presence of foxes decreases the rate of growth of rabbits, so we have%
+%
+\begin{gather}
+R_{n+1} - R_n = (d - c\,F_n)R_n\label{x:mrow:rn-diff}
+\end{gather}
+where \(c\ge 0\). Rewriting \hyperref[x:mrow:fn-diff]{({\xreffont\ref{x:mrow:fn-diff}})} and \hyperref[x:mrow:rn-diff]{({\xreffont\ref{x:mrow:rn-diff}})} we get our model%
+%
+\begin{align}
+F_{n+1} \amp = (1-a)F_n + b\,R_n F_n\label{x:mrow:flasteq}\\
+R_{n+1} \amp = -c\,R_nF_n + (1+d)R_n\label{x:mrow:rlasteq}
+\end{align}
+This type of model is called a \terminology{Lotka-Volterra} model, named after the researchers who devised it in the 1920s and 1930s.%
+\par
+Note that both equations have a term involving \(R_nF_n\); thus the model is nonlinear. This term can be interpreted as modeling the number of \terminology{interactions} of the two species.  The interactions increase the number of foxes while decreasing the number of rabbits.  Also note the similarities between this nonlinear model and the linear model in \hyperref[x:mrow:fneq3]{({\xreffont\ref{x:mrow:fneq3}})}.  We will refer to the parameters in this model using the same names as in the linear model.%
+\par
+Let's implement this model in SageMath, modeling 500 months. (Note that the parameters in this model do have similar meanings as in the linear model, but they do have different values. Also we have different initial populations.)%
+\end{introduction}%
+\begin{sageinput}
+a = 0.12 # since 1 - a = 0.88
+b = 0.0001
+c = 0.0003 # since -c = -0.0003
+d = 0.039 # since 1 + d = 1.039
+
+def foxrabbitnonlinear(a, b, c, d, months):
+    f = [110]  # initial fox population
+    r = [900]  # initial rabbit population
+    for n in range(months):
+        f.append((1-a)*f[n]+b*r[n]*f[n])
+        r.append(-c*r[n]*f[n]+(1+d)*r[n])
+    rabbits = list(zip(range(months),r)) # to graph rabbits vs. time
+    foxes = list(zip(range(months),f))  # to graph foxes vs. time
+    foxesrabbits = list(zip(f,r))  # to graph rabbits vs. foxes
+    show(points(rabbits, size=50, axes_labels=['Month','Population'], 
+    	rgbcolor='red', legend_label = 'Rabbits') +  
+    	points(foxes, size=50, legend_label = 'Foxes'),
+    	frame=True, title='Time Plots')
+    show(points(foxesrabbits, size=50, 
+    	axes_labels=['Foxes','Rabbits'], rgbcolor='purple',
+    	frame=True, title='Trajectory'))
+\end{sageinput}
+\begin{sageinput}
+foxrabbitnonlinear(a, b, c, d, 500)
+\end{sageinput}
+\begin{figureptx}{}{x:figure:foxrabbitnlpic}{}%
+\begin{sidebyside}{2}{0}{0}{0.1}%
+\begin{sbspanel}{0.45}[bottom]%
+\includegraphics[width=\linewidth]{./images/nonlinearfoxrabbit.png}
+\end{sbspanel}%
+\begin{sbspanel}{0.45}[bottom]%
+\includegraphics[width=\linewidth]{./images/nonlineartrajectory.png}
+\end{sbspanel}%
+\end{sidebyside}%
+\tcblower
+\end{figureptx}%
+This model predicts that the populations oscillate with the same period of oscillation, but with a phase shift, meaning that they do not reach their peaks at the same time.  These oscillations cause the spiraling nature of the trajectories in the graph of rabbits versus foxes. Oscillations such as this are actually observed in nature; thus this model appears to be more reasonable than the linear model.%
+\par
+Now let's calculate the equilibrium of the system.  Suppose \((f,r)\) is an equilibrium. By definition, this must satisfy the system of equations%
+%
+\begin{equation*}
+\begin{aligned}
+f \amp= 0.88f + 0.0001fr \\
+r \amp= -0.0003fr + 1.039r
+\end{aligned}
+\end{equation*}
+Assuming that \(f\ne 0\) and \(r\ne 0\), we get the solution \(f = 130\) and \(r = 1200\).  Another equilibrium is \((0,0)\). Note that the point \((130,1200)\) is at the center of the spiral in the phase plane.  If we change the starting populations in the code to 130 foxes and 1200 rabbits, we note that the populations do not change, as expected.%
+\par
+To determine whether this equilibrium is stable or unstable, we need to consider starting populations near the equilibrium.  Changing the starting population to 129 foxes and 1201 rabbits yields the trajectory shown in \hyperref[x:figure:neareqtraj]{Figure~{\xreffont\ref{x:figure:neareqtraj}}}.%
+\begin{figureptx}{}{x:figure:neareqtraj}{}%
+\begin{image}{0.25}{0.5}{0.25}%
+\includegraphics[width=\linewidth]{./images/neareqtraj.png}
+\end{image}%
+\tcblower
+\end{figureptx}%
+Notice that the trajectory moves away from the equilibrium. Trying other initial populations yields similar results. The fact that the trajectories move away from the equilibrium is evidence that the equilibrium is repelling.%
+\begin{example}{Hunting.}{g:example:id168}%
+Suppose that a local hunting club wants to have a fox hunt at one of their next two meetings. The first meeting is 36 months from now and the next is 36 months after that. If they limit themselves to killing 50 foxes, how would the two options affect the long–term populations of the foxes and rabbits?%
+\par
+Starting with 110 foxes and 900 rabbits, the model predicts that at month 36, there will be approximately 88 foxes. Killing 50 foxes would reduce this number to 38. In the SageMath cell, changing the equation in month 36 to reflect the hunting of 50 foxes results in the code and graph shown below.%
+\begin{sageinput}
+a = 0.12 # since 1 - a = 0.88
+b = 0.0001
+c = 0.0003 # since -c = -0.0003
+d = 0.039 # since 1 + d = 1.039
+
+def foxrabbitnonlinear(a, b, c, d, months):
+    f = [110]  # initial fox population
+    r = [900]  # initial rabbit population
+    for n in range(months):
+        if n==36:
+            f.append((1-a)*f[n]+b*r[n]*f[n]-50)
+        else:
+            f.append((1-a)*f[n]+b*r[n]*f[n])
+        r.append(-c*r[n]*f[n]+(1+d)*r[n])
+    rabbits = list(zip(range(months),r)) # to graph rabbits vs. time
+    foxes = list(zip(range(months),f))  # to graph foxes vs. time
+    foxesrabbits = list(zip(f,r))  # to graph rabbits vs. foxes
+    show(points(rabbits, size=50, axes_labels=['Month','Population'], 
+    	rgbcolor='red', legend_label = 'Rabbits') +  
+    	points(foxes, size=50, legend_label = 'Foxes'),
+    	frame=True, title='Time Plots')
+    show(points(foxesrabbits, size=50, 
+    	axes_labels=['Foxes','Rabbits'], rgbcolor='purple',
+    	frame=True, title='Trajectory'))
+\end{sageinput}
+\begin{sageinput}
+foxrabbitnonlinear(a, b, c, d, 500)
+\end{sageinput}
+\begin{figureptx}{}{x:figure:foxhunt36}{}%
+\begin{image}{0.25}{0.5}{0.25}%
+\includegraphics[width=\linewidth]{./images/foxhunt36.png}
+\end{image}%
+\tcblower
+\end{figureptx}%
+Notice that this causes a dramatic change in the behavior of the system. The populations fluctuate much more than they did in \hyperref[x:figure:foxrabbitnlpic]{Figure~{\xreffont\ref{x:figure:foxrabbitnlpic}}}. So, hunting 50 foxes in month 36 would have a great effect on the long–term populations.%
+\par
+Now change the code above so that the hunt occurs in month 72. In month 72, the model predicts a population of 212. Killing 50 foxes would leave 162. Changing the number of foxes in month 72 to 162 results in the graph in \hyperref[x:figure:foxhunt72]{Figure~{\xreffont\ref{x:figure:foxhunt72}}}. Notice that the fox population drops in month 72 which causes the rabbit population to initially grow. However, in the long–term the populations behave much as they did in \hyperref[x:figure:foxrabbitnlpic]{Figure~{\xreffont\ref{x:figure:foxrabbitnlpic}}}.%
+\begin{figureptx}{}{x:figure:foxhunt72}{}%
+\begin{image}{0.25}{0.5}{0.25}%
+\includegraphics[width=\linewidth]{./images/foxhunt72.png}
+\end{image}%
+\tcblower
+\end{figureptx}%
+Why is there such a dramatic difference between these two cases? Note that originally near month 36, the fox population was near a local minimum. At month 72, it was near a local maximum. Killing 50 foxes near a time of a local minimum has a much greater effect than near a local maximum.%
+\par
+Thus the hunting club should not schedule the hunt at month 36; this would cause too great an effect on the populations. The hunt at month 72 would not cause a long–term effect.%
+\end{example}
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 8.5 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id169}
+\begin{divisionexercise}{1}{}{}{g:exercise:id170}%
+Consider the parameter fox death factor.%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Investigate the sensitivity of the system to the value of this parameter (use initial populations of 110 foxes and 900 rabbits). Specifically, comment on how the amplitudes of the oscillations change as this parameter changes.%
+\item{}Can this death factor ever be greater than or equal to 1? Why or why not? (Hint: See Equations \hyperref[x:mrow:fneq4]{({\xreffont\ref{x:mrow:fneq4}})} and \hyperref[x:mrow:flasteq]{({\xreffont\ref{x:mrow:flasteq}})}.)%
+\item{}This parameter could be interpreted as the proportion of foxes that survive from one month to the next in the absence of rabbits. Suppose that a disease infects the fox population, decreasing the proportion that survives each month. What effect might this have on the populations?%
+\end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id171}%
+Suppose hunters are allowed to kill \(m\) rabbits at the end of each month.%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Modify the model to take this into account (use the parameters and initial populations shown in the original model).%
+\item{}What effect will this have in the long–term? Would you say the system is sensitive to the parameter \(m\)?%
+\item{}How many rabbits could the hunters kill each month and still have the populations survive in the long–term?%
+\end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{3}{}{}{g:exercise:id172}%
+Consider a forest that contains Foxes and Wolves which compete for the same food resources. If \(F_n\) and \(W_n\) represent the populations of foxes and wolves, respectively, at the end of month \(n\), a model for their populations is%
+%
+\begin{equation*}
+\begin{aligned}
+F_{n+1} \amp=1.2\,F_n - 0.001\,F_n W_n \\
+W_{n+1} \amp=1.3\,W_n - 0.002\,F_n W_n
+\end{aligned}
+\end{equation*}
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Consider the parameters 1.2 and 1.3. Explain why both of them are greater than 1.%
+\item{}Why are the parameters -0.001 and -0.002 both negative?%
+\item{}Find the equilibria for this system and graphically determine if they are attracting or repelling (consider only values up to \(n = 25\)).%
+\item{}Is this model sensitive to the initial populations? Why or why not?%
 \end{enumerate}
 \end{divisionexercise}%
 \end{exercises-subsection-numberless}
