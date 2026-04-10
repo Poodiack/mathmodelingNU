@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-04-10T09:11:12-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Epidemics</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "has_am",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/0.13/pretext_add_on.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script xmlns:svg="http://www.w3.org/2000/svg">sagecellEvalName='Evaluate (Sage)';
+</script><link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.31/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content" style="display:none">\(
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="MA241LabBook.html"><span class="title">MA241 Manual:</span> <span class="subtitle">Mathematical Computation and Modeling</span></a></h1>
+<p class="byline">Robert D. Poodiack</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3"><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="nonlinear-predator-prey.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="discrete-dynamical.html" title="Up">Up</a><span id="nextbutton" class="next-button button toolbar-item disabled">Next</span></span></div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="nonlinear-predator-prey.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="discrete-dynamical.html" title="Up">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="MA241LabBookFront.html" data-scroll="MA241LabBookFront"><span class="title">Front Matter</span></a><ul><li><a href="preface-1.html" data-scroll="preface-1">Preface</a></li></ul>
+</li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">SageMath and Python Basics</span></a></li>
+<li class="link">
+<a href="download.html" data-scroll="download"><span class="codenumber">1</span> <span class="title">Acquiring access to SageMath</span></a><ul>
+<li><a href="section-downloading-Sage.html" data-scroll="section-downloading-Sage">Downloading SageMath</a></li>
+<li><a href="section-cocalc.html" data-scroll="section-cocalc">Using Sage without downloading</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="gettingstarted.html" data-scroll="gettingstarted"><span class="codenumber">2</span> <span class="title">Getting Started with SageMath</span></a><ul>
+<li><a href="section-starting-Sage.html" data-scroll="section-starting-Sage">Starting up SageMath</a></li>
+<li><a href="jupyter-notebooks.html" data-scroll="jupyter-notebooks">Working with Jupyter notebooks</a></li>
+<li><a href="sage-intro.html" data-scroll="sage-intro">An introduction to SageMath</a></li>
+<li><a href="sage-calculator.html" data-scroll="sage-calculator">SageMath as a calculator</a></li>
+<li><a href="sage-solve.html" data-scroll="sage-solve">Solving equations and inequalities</a></li>
+<li><a href="sage-constants-functions.html" data-scroll="sage-constants-functions">Standard constants and functions</a></li>
+<li><a href="sage-declaring-variables.html" data-scroll="sage-declaring-variables">Declaring Variables</a></li>
+<li><a href="sage-calculus.html" data-scroll="sage-calculus">Calculus</a></li>
+<li><a href="sage-plotting.html" data-scroll="sage-plotting">Plotting</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="sage-more-functions.html" data-scroll="sage-more-functions"><span class="codenumber">3</span> <span class="title">Some deeper examples</span></a><ul>
+<li><a href="sage-function-review.html" data-scroll="sage-function-review">Review of mathematical functions</a></li>
+<li><a href="sage-plotting-review.html" data-scroll="sage-plotting-review">Review of plotting functions</a></li>
+<li><a href="sage-misc-functions.html" data-scroll="sage-misc-functions">Miscellaneous stuff on functions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="basic-programming.html" data-scroll="basic-programming"><span class="codenumber">4</span> <span class="title">Basic programming</span></a><ul>
+<li><a href="basic-syntax.html" data-scroll="basic-syntax">Basic Sage/Python syntax</a></li>
+<li><a href="algorithmics.html" data-scroll="algorithmics">Algorithmics</a></li>
+<li><a href="more-algorithmics.html" data-scroll="more-algorithmics">More Algorithmics</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-modeling-intro.html" data-scroll="part-modeling-intro"><span class="codenumber">II</span> <span class="title">Mathematical Modeling</span></a></li>
+<li class="link">
+<a href="intro-to-modeling.html" data-scroll="intro-to-modeling"><span class="codenumber">5</span> <span class="title">Introduction to Mathematical Modeling</span></a><ul>
+<li><a href="basic-definitions.html" data-scroll="basic-definitions">Definitions</a></li>
+<li><a href="purpose.html" data-scroll="purpose">Purpose</a></li>
+<li><a href="process.html" data-scroll="process">Process</a></li>
+<li><a href="assumptions.html" data-scroll="assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="proportionality.html" data-scroll="proportionality"><span class="codenumber">6</span> <span class="title">Proportionality and Geometric Similarity</span></a><ul>
+<li><a href="scatterplots.html" data-scroll="scatterplots">Scatter Plots and Lines of Best Fit in SageMath</a></li>
+<li><a href="modeling-with-proportionality.html" data-scroll="modeling-with-proportionality">Modeling with Proportionality</a></li>
+<li><a href="fitting-lines-analytically.html" data-scroll="fitting-lines-analytically">Fitting Straight Lines Analytically</a></li>
+<li><a href="geometric-similarity.html" data-scroll="geometric-similarity">Geometric Similarity</a></li>
+<li><a href="linearizable-models.html" data-scroll="linearizable-models">Linearizable Models</a></li>
+<li><a href="coefficient-of-determination.html" data-scroll="coefficient-of-determination">Coefficient of Determination</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="linearalgebra.html" data-scroll="linearalgebra"><span class="codenumber">7</span> <span class="title">Linear Algebra</span></a><ul>
+<li><a href="linear-algebra-basics.html" data-scroll="linear-algebra-basics">Linear Algebra Basics</a></li>
+<li><a href="modeling-with-linear-algebra.html" data-scroll="modeling-with-linear-algebra">Modeling with Systems of Equations</a></li>
+<li><a href="polynomials.html" data-scroll="polynomials">Polynomials</a></li>
+<li><a href="multiple-regression.html" data-scroll="multiple-regression">Multiple Regression</a></li>
+<li><a href="interactivity.html" data-scroll="interactivity">Sidetrip: Interactivity in SageMath</a></li>
+<li><a href="spline-models.html" data-scroll="spline-models">Spline Models</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="discrete-dynamical.html" data-scroll="discrete-dynamical"><span class="codenumber">8</span> <span class="title">Discrete Dynamical Systems</span></a><ul>
+<li><a href="introduction-dds.html" data-scroll="introduction-dds">Introduction</a></li>
+<li><a href="long-term-behavior-dds.html" data-scroll="long-term-behavior-dds">Long-Term Behavior and Equilibria</a></li>
+<li><a href="discrete-logistic-eqn.html" data-scroll="discrete-logistic-eqn">Discrete Logistic Equation</a></li>
+<li><a href="linear-predator-prey.html" data-scroll="linear-predator-prey">A Linear Predator-Prey Model</a></li>
+<li><a href="nonlinear-predator-prey.html" data-scroll="nonlinear-predator-prey">A Nonlinear Predator-Prey Model</a></li>
+<li><a href="epidemics.html" data-scroll="epidemics" class="active">Epidemics</a></li>
+</ul>
+</li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="epidemics"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">8.6</span> <span class="title">Epidemics</span>
+</h2>
+<section class="introduction" id="introduction-49"><p id="p-954">Consider a community of 1000 persons in which three members get sick with the flu. The following week, five new cases of the flu are reported.  We are interested in modeling the spread of the disease through the community.</p>
+<p id="p-955">Consider the following assumptions:</p>
+<ol class="decimal">
+<li id="li-79"><p id="p-956">No one enters or leaves the community and no one in the community has contact with anyone outside the community</p></li>
+<li id="li-80"><p id="p-957">Each person is either susceptible, \(S\) (able to get the flu); infected, \(I\) (currently has the flu and is able to spread it); or removed, \(R\) (already had the flu and is not able to get it again).  Initially, every person is either susceptible or infected.</p></li>
+<li id="li-81"><p id="p-958">A susceptible person can get the flu only by contact with an infected person.</p></li>
+<li id="li-82"><p id="p-959">Once a person gets the flu, they cannot get it again.</p></li>
+<li id="li-83"><p id="p-960">The average duration of the flu is 2 weeks, during which time an infected person can spread the disease to a susceptible person.</p></li>
+</ol>
+<p id="p-961">The model we are going to build is called an <dfn class="terminology">SIR</dfn> model.  We begin by dividing the population into three categories -- susceptible, infected, and removed -- as described in assumption 2.  Those who are susceptible can become infected, and those who are infected become removed when they recover.</p>
+<p id="p-962">Let \(S_n\text{,}\) \(I_n\text{,}\) and \(R_n\) represent the number of persons who are susceptible, infected, and removed, respectively, at the end of week \(n\text{.}\)  As in previous models, we begin by modeling the change in these variables using difference equations.</p>
+<p id="p-963">Let's begin by modeling \(R_n\text{.}\)  Assumption 5 says that the average duration of the flu is two weeks.  This means that, on average, about half of the infected persons will be healed (or removed) each week.  Therefore, if we let \(\gamma = 0.5\text{,}\) a difference equation for \(R_n\) is</p>
+<div class="displaymath">
+\begin{gather}
+\Delta R_n = R_{n+1} - R_n = \gamma\,I_n\label{removedeqn}\tag{8.6.1}
+\end{gather}
+</div>
+<p id="p-964">yielding the model</p>
+<div class="displaymath">
+\begin{gather}
+R_{n+1} = R_n + \gamma\,I_n\label{removedeqn2}\tag{8.6.2}
+\end{gather}
+</div>
+<p id="p-965">The parameter \(\gamma\) is called the <dfn class="terminology">removal rate</dfn> and represents the proportion of the infected persons who are removed each week.  The quantity \(\gamma\,I_n\) can be thought of as the number of “newly removed” persons each week.</p>
+<p id="p-966">Now for \(I_n\text{.}\)  This quantity will increase due to some persons who are newly infected as a result of the interactions between susceptible and infected persons, and it will decrease due to the newly removed persons.  Therefore, a difference equation is</p>
+<div class="displaymath">
+\begin{gather}
+\Delta I_n = I_{n+1} - I_n = \alpha\,S_n I_n - \gamma I_n.\label{infectedeqn}\tag{8.6.3}
+\end{gather}
+</div>
+<p id="p-967">The first term, \(\alpha S_n I_n\) models the number of interactions of the susceptible and infected persons, similar to the nonlinear predator-prey model. This quantity can be thought of as the number of “newly infected” persons.  Notice that the number of newly infected persons in a week is a product of the number of infected and susceptible persons in the previous week.  The parameter \(\alpha\) is called the <dfn class="terminology">transmission coefficient</dfn>. It is a measure of the likelihood that an interaction between an infected person and a susceptible person will result in an infection and is most likely a very small number.  Equation <a class="xref" data-knowl="./knowl/infectedeqn.html" title="Equation 8.6.3">(8.6.3)</a> yields the model</p>
+<div class="displaymath">
+\begin{gather}
+I_{n+1} = I_n + \alpha\,S_n I_n - \gamma\,I_n\label{infectedeqn2}\tag{8.6.4}
+\end{gather}
+</div>
+<p id="p-968">Lastly, to model \(S_n\text{,}\) note that this quantity is decreased only by the number of newly infected persons; it does not increase.  Thus a difference equation is</p>
+<div class="displaymath">
+\begin{gather}
+\Delta S_n = S_{n+1} - S_n = -\alpha\,S_n I_n\label{susceptibleeqn}\tag{8.6.5}
+\end{gather}
+</div>
+<p id="p-969">Therefore, the model is</p>
+<div class="displaymath">
+\begin{gather}
+S_{n+1} = S_n - \alpha S_n I_n\label{susceptibleeqn2}\tag{8.6.6}
+\end{gather}
+</div>
+<p id="p-970">The overall model is given by the three equations</p>
+<div class="displaymath">
+\begin{equation*}
+\begin{aligned}
+S_{n+1} \amp = S_n -\alpha S_n I_n \\
+I_{n+1} \amp= I_n +\alpha S_n I_n - \gamma I_n \\
+R_{n+1} \amp= R_n + \gamma I_n
+\end{aligned}
+\end{equation*}
+</div>
+<p id="p-971">Now to determine the parameters \(\alpha\) and \(\gamma\text{.}\)  We already noted that \(\gamma\) is the proportion of infected persons removed each week. In this case \(\gamma = 0.5\text{.}\)  In general,</p>
+<div class="displaymath">
+\begin{equation*}
+\gamma = \frac{1}{\text{average duration of the infectious period}}.
+\end{equation*}
+</div>
+<p id="p-972">To find the value of \(\alpha\text{,}\) we need to use the fact that we started with three sick persons and had five new cases the first week.  In terms of variables, this means that in week 0,</p>
+<div class="displaymath">
+\begin{equation*}
+I_0 = 3 \text{ and }S_0 = 997\text{.}
+\end{equation*}
+</div>
+<p id="p-973">In week 1, the number of newly infected persons is five, so</p>
+<div class="displaymath">
+\begin{align}
+5 \amp= \alpha\,S_0I_0 = \alpha(3\cdot 997) \label{alphaeqn1}\tag{8.6.7}\\
+\Longrightarrow \alpha \amp = \frac{5}{3\cdot 997} = 0.00167.\label{alphaeqn2}\tag{8.6.8}
+\end{align}
+</div>
+<p id="p-974">Now we can implement the model.</p></section><div class="sagecell-sage" id="sage-306"><script type="text/x-sage">population = 1000
+alpha = 0.00167 # transmission coefficient
+gamma = 0.5 # removal rate
+
+def SIRmodel(population, alpha, gamma, weeks):
+    I = [3]
+    S = [population-I[0]] # reflects that S[0] + I[0] = total pop.
+    R = [0]
+    for n in range(weeks):
+        S.append(S[n]-alpha*S[n]*I[n])
+        I.append(I[n]+alpha*S[n]*I[n]-gamma*I[n])
+        R.append(R[n]+gamma*I[n])
+    Spoints = list(zip(range(weeks),S))
+    Ipoints = list(zip(range(weeks),I))
+    Rpoints = list(zip(range(weeks),R))
+    show(list_plot(Spoints, plotjoined = True, 
+    	rgbcolor='blue', legend_label = 'Susceptibles') + \
+        list_plot(Ipoints, plotjoined = True, 
+        rgbcolor = 'red', legend_label = 'Infectives') + \
+        list_plot(Rpoints, plotjoined = True, 
+        rgbcolor = 'green', legend_label = 'Removals'), 
+        axes_labels = ['Week', 'Persons'], frame=True)
+</script></div>
+<div class="sagecell-sage" id="sage-307"><script type="text/x-sage">SIRmodel(population, alpha, gamma, 25)
+</script></div>
+<figure class="figure figure-like" id="SIRgraph1"><div class="image-box" style="width: 70%; margin-left: 15%; margin-right: 15%;"><img src="./images/SIRgraph1.png" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">8.6.1<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-975">Notice that the graph shows that the worst of the epidemic will occur during week 8.</p>
+<p id="p-976">Note that the number of susceptibles does not go to 0 over time. We can re-execute the loop code and look at the numbers for \(S\text{.}\)</p>
+<div class="sagecell-sage" id="sage-308"><script type="text/x-sage">I = [3]
+S = [population-I[0]]
+R = [0]
+for n in range(25):
+    S.append(S[n]-alpha*S[n]*I[n])
+    I.append(I[n]+alpha*S[n]*I[n]-gamma*I[n])
+    R.append(R[n]+gamma*I[n])
+S
+</script></div>
+<p id="p-977">It appears approximately nine people will never get the flu.  That is</p>
+<div class="displaymath">
+\begin{equation*}
+\lim_{n\to\infty} S_n \approx 9.
+\end{equation*}
+</div>
+<p class="continuation">The fact that this limit is not zero is typical for an SIR model. (In apocalyptic movies, these nine people would be kidnapped by what's left of the government for examination.)</p>
+<p id="p-978">Now let's examine sensitivity to the initial number of cases.  It is often the case that at the beginning of an epidemic, the number of initial cases (\(I_0\)) is underreported. We can use our model to easily assess this impact.</p>
+<p id="p-979">We will assume the number of new cases in week 1, five, is accurate. If the number of initial cases changes, the transmission coefficient changes.  Generalizing equation <a class="xref" data-knowl="./knowl/alphaeqn2.html" title="Equation 8.6.8">(8.6.8)</a>, we see that</p>
+<div class="displaymath">
+\begin{gather}
+\alpha = \frac{\text{number of new cases in week 1}}{(\text{initial number of cases})(\text{population} - \text{initial number of cases})}\label{alphaeqn3}\tag{8.6.9}
+\end{gather}
+</div>
+<p id="p-980">We can implement Formula <a class="xref" data-knowl="./knowl/alphaeqn3.html" title="Equation 8.6.9">(8.6.9)</a> in our model to easily calculate the value of \(\alpha\) for different numbers of initial cases.</p>
+<div class="sagecell-sage" id="sage-309"><script type="text/x-sage">population = 1000
+gamma = 0.5 # removal rate
+newcasesweek1 = 5 
+
+def SIRmodel(population, newcasesweek1, gamma, weeks):
+    I = [4]  # change this number to actual number of initial cases
+    S = [population-I[0]]
+    R = [0]
+    alpha = newcasesweek1/(I[0]*(population - I[0]))
+    for n in range(weeks):
+        S.append(S[n]-alpha*S[n]*I[n])
+        I.append(I[n]+alpha*S[n]*I[n]-gamma*I[n])
+        R.append(R[n]+gamma*I[n])
+    Spoints = list(zip(range(weeks),S))
+    Ipoints = list(zip(range(weeks),I))
+    Rpoints = list(zip(range(weeks),R))
+    show(list_plot(Spoints, plotjoined = True, 
+    rgbcolor='blue', legend_label = 'Susceptibles') + \
+        list_plot(Ipoints, plotjoined = True, 
+        rgbcolor = 'red', legend_label = 'Infectives') + \
+        list_plot(Rpoints, plotjoined = True, 
+        rgbcolor = 'green', legend_label = 'Removals'),
+        axes_labels = ['Week', 'Persons'], frame=True)
+</script></div>
+<div class="sagecell-sage" id="sage-310"><script type="text/x-sage">SIRmodel(population, newcasesweek1, gamma, 25)
+</script></div>
+<figure class="figure figure-like" id="SIRdifferentinitial"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel bottom" style="width:45%;"><figure class="figure figure-like" id="figure-20"><img src="./images/SIR4cases.png" class="contained" alt=""><figcaption><span class="codenumber">(a)</span><span class="space"> </span>4 Initial Cases</figcaption></figure></div>
+<div class="sbspanel bottom" style="width:45%;"><figure class="figure figure-like" id="figure-21"><img src="./images/SIR6cases.png" class="contained" alt=""><figcaption><span class="codenumber">(b)</span><span class="space"> </span>6 Initial Cases</figcaption></figure></div>
+</div></div>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:20%;margin-right:20%;"><div class="sbspanel top" style="width:100%;"><figure class="figure figure-like" id="figure-22"><img src="./images/SIR10cases.png" class="contained" alt=""><figcaption><span class="codenumber">(a)</span><span class="space"> </span>10 Initial Cases</figcaption></figure></div></div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">8.6.2<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p id="p-981">Notice that with 4 initial cases the value of the transmission coefficient decreases, the worst of the epidemic occurs about 2 weeks later, and the severity decreases. At the peak, only 277 people have the flu and in the long–run, about 69 people never get the flu.</p>
+<p id="p-982">As the number of initial cases increases, the severity decreases. Particularly note that with 10 or more initial cases, the number of infectives never increases. In this case we say that there is no epidemic. We see that if the initial number of infectives is higher than originally thought, the epidemic may not be as bad as originally thought.</p>
+<section class="exercises" id="exercises-17"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-58"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-50"><p id="p-983">In the original model we assumed that the population is constant. Now let’s relax this assumption. Suppose that 25 people move into the community each week starting in week 1. Assume that each of these people is susceptible.</p></div>
+<article class="task exercise-like" id="task-77"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-984">Modify the subroutine to incorporate this influx of people and describe what happens to the spread of the flu over a 100 week period (use \(\alpha = 0.00167\text{,}\) \(\gamma = 0.5\) and \(I_0 = 3\)).</p></article><article class="task exercise-like" id="task-78"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-985">What happens if 100 new people move in each week?</p></article></article><article class="exercise exercise-like" id="exercise-59"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-51">
+<p id="p-986">Suppose the population is a constant 1,000, that initially 50 people have the flu (\(I_0 = 50\)), \(\alpha = 0.00167\) and that \(\gamma = 0.5\text{.}\) To try to decrease the severity of the epidemic, the community quarantines some of those with the flu. One way to model quarantining is to simply modify the transmission coefficient. For instance, if 25% of those with the flu are quarantined, then only 75% of the interactions between those infected and those susceptible are capable of producing an infected person. Therefore, the number of newly infected people is given by</p>
+<div class="displaymath">
+\begin{equation*}
+(0.75\alpha)S_n I_n
+\end{equation*}
+</div>
+<p id="p-987">Thus the new “effective” transmission coefficient is (0.75\(\alpha\)).</p>
+</div>
+<article class="task exercise-like" id="task-79"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-988">Add in a new variable to the code that represents the proportion quarantined and set it to 0.25, and modify the model to incorporate this parameter. Describe what effect quarantining 25% has over not quarantining.</p></article><article class="task exercise-like" id="task-80"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-989">Add a slider that allows the user to vary the proportion quarantined between 0 and 1. Describe what happens as the proportion quarantined changes. What happens if it equals 0? What if it equals 1?</p></article><article class="task exercise-like" id="task-81"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-990">Add a slider that allows the user to vary the number of initial cases, \(I_0\text{,}\) between 0 and 1000.</p></article><article class="task exercise-like" id="task-82"><h6 class="heading"><span class="codenumber">(d)</span></h6>
+<p id="p-991">Find a value of Proportion Quarantined that prevents an epidemic from occurring (i.e. the number of infectives never increases) regardless of the value of \(I_0\text{.}\) Estimate the smallest such value of Proportion Quarantined.</p></article></article></section></section></div></main>
+</div>
+<script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

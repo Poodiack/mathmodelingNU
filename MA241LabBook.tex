@@ -1,6 +1,6 @@
 %********************************************%
 %*       Generated from PreTeXt source      *%
-%*       on 2026-04-08T11:10:34-04:00       *%
+%*       on 2026-04-10T09:11:15-04:00       *%
 %*   A recent stable commit (2020-08-09):   *%
 %* 98f21740783f166a773df4dc83cab5293ab63a4a *%
 %*                                          *%
@@ -695,7 +695,7 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 {\LARGE Mathematical Computation and Modeling}\\[3\baselineskip]
 {\Large Robert D. Poodiack}\\[0.5\baselineskip]
 {\Large Norwich University}\\[3\baselineskip]
-{\Large April 8, 2026}\\}
+{\Large April 10, 2026}\\}
 \clearpage
 %% end:   title page
 %% begin: copyright-page
@@ -7564,6 +7564,262 @@ W_{n+1} \amp=1.3\,W_n - 0.002\,F_n W_n
 \item{}Why are the parameters -0.001 and -0.002 both negative?%
 \item{}Find the equilibria for this system and graphically determine if they are attracting or repelling (consider only values up to \(n = 25\)).%
 \item{}Is this model sensitive to the initial populations? Why or why not?%
+\end{enumerate}
+\end{divisionexercise}%
+\end{exercises-subsection-numberless}
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 8.6 Epidemics}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Epidemics}{}{Epidemics}{}{}{x:section:epidemics}
+\begin{introduction}{}%
+Consider a community of 1000 persons in which three members get sick with the flu. The following week, five new cases of the flu are reported.  We are interested in modeling the spread of the disease through the community.%
+\par
+Consider the following assumptions:%
+%
+\begin{enumerate}
+\item{}No one enters or leaves the community and no one in the community has contact with anyone outside the community%
+\item{}Each person is either susceptible, \(S\) (able to get the flu); infected, \(I\) (currently has the flu and is able to spread it); or removed, \(R\) (already had the flu and is not able to get it again).  Initially, every person is either susceptible or infected.%
+\item{}A susceptible person can get the flu only by contact with an infected person.%
+\item{}Once a person gets the flu, they cannot get it again.%
+\item{}The average duration of the flu is 2 weeks, during which time an infected person can spread the disease to a susceptible person.%
+\end{enumerate}
+The model we are going to build is called an \terminology{SIR} model.  We begin by dividing the population into three categories -{}-{} susceptible, infected, and removed -{}-{} as described in assumption 2.  Those who are susceptible can become infected, and those who are infected become removed when they recover.%
+\par
+Let \(S_n\), \(I_n\), and \(R_n\) represent the number of persons who are susceptible, infected, and removed, respectively, at the end of week \(n\).  As in previous models, we begin by modeling the change in these variables using difference equations.%
+\par
+Let's begin by modeling \(R_n\).  Assumption 5 says that the average duration of the flu is two weeks.  This means that, on average, about half of the infected persons will be healed (or removed) each week.  Therefore, if we let \(\gamma = 0.5\), a difference equation for \(R_n\) is%
+%
+\begin{gather}
+\Delta R_n = R_{n+1} - R_n = \gamma\,I_n\label{x:mrow:removedeqn}
+\end{gather}
+yielding the model%
+%
+\begin{gather}
+R_{n+1} = R_n + \gamma\,I_n\label{x:mrow:removedeqn2}
+\end{gather}
+The parameter \(\gamma\) is called the \terminology{removal rate} and represents the proportion of the infected persons who are removed each week.  The quantity \(\gamma\,I_n\) can be thought of as the number of ``newly removed'' persons each week.%
+\par
+Now for \(I_n\).  This quantity will increase due to some persons who are newly infected as a result of the interactions between susceptible and infected persons, and it will decrease due to the newly removed persons.  Therefore, a difference equation is%
+%
+\begin{gather}
+\Delta I_n = I_{n+1} - I_n = \alpha\,S_n I_n - \gamma I_n.\label{x:mrow:infectedeqn}
+\end{gather}
+The first term, \(\alpha S_n I_n\) models the number of interactions of the susceptible and infected persons, similar to the nonlinear predator-prey model. This quantity can be thought of as the number of ``newly infected'' persons.  Notice that the number of newly infected persons in a week is a product of the number of infected and susceptible persons in the previous week.  The parameter \(\alpha\) is called the \terminology{transmission coefficient}. It is a measure of the likelihood that an interaction between an infected person and a susceptible person will result in an infection and is most likely a very small number.  Equation \hyperref[x:mrow:infectedeqn]{({\xreffont\ref{x:mrow:infectedeqn}})} yields the model%
+%
+\begin{gather}
+I_{n+1} = I_n + \alpha\,S_n I_n - \gamma\,I_n\label{x:mrow:infectedeqn2}
+\end{gather}
+Lastly, to model \(S_n\), note that this quantity is decreased only by the number of newly infected persons; it does not increase.  Thus a difference equation is%
+%
+\begin{gather}
+\Delta S_n = S_{n+1} - S_n = -\alpha\,S_n I_n\label{x:mrow:susceptibleeqn}
+\end{gather}
+Therefore, the model is%
+%
+\begin{gather}
+S_{n+1} = S_n - \alpha S_n I_n\label{x:mrow:susceptibleeqn2}
+\end{gather}
+The overall model is given by the three equations%
+%
+\begin{equation*}
+\begin{aligned}
+S_{n+1} \amp = S_n -\alpha S_n I_n \\
+I_{n+1} \amp= I_n +\alpha S_n I_n - \gamma I_n \\
+R_{n+1} \amp= R_n + \gamma I_n
+\end{aligned}
+\end{equation*}
+Now to determine the parameters \(\alpha\) and \(\gamma\).  We already noted that \(\gamma\) is the proportion of infected persons removed each week. In this case \(\gamma = 0.5\).  In general,%
+%
+\begin{equation*}
+\gamma = \frac{1}{\text{average duration of the infectious period}}.
+\end{equation*}
+To find the value of \(\alpha\), we need to use the fact that we started with three sick persons and had five new cases the first week.  In terms of variables, this means that in week 0,%
+%
+\begin{equation*}
+I_0 = 3 \text{ and }S_0 = 997\text{.}
+\end{equation*}
+In week 1, the number of newly infected persons is five, so%
+%
+\begin{align}
+5 \amp= \alpha\,S_0I_0 = \alpha(3\cdot 997) \label{x:mrow:alphaeqn1}\\
+\Longrightarrow \alpha \amp = \frac{5}{3\cdot 997} = 0.00167.\label{x:mrow:alphaeqn2}
+\end{align}
+Now we can implement the model.%
+\end{introduction}%
+\begin{sageinput}
+population = 1000
+alpha = 0.00167 # transmission coefficient
+gamma = 0.5 # removal rate
+
+def SIRmodel(population, alpha, gamma, weeks):
+    I = [3]
+    S = [population-I[0]] # reflects that S[0] + I[0] = total pop.
+    R = [0]
+    for n in range(weeks):
+        S.append(S[n]-alpha*S[n]*I[n])
+        I.append(I[n]+alpha*S[n]*I[n]-gamma*I[n])
+        R.append(R[n]+gamma*I[n])
+    Spoints = list(zip(range(weeks),S))
+    Ipoints = list(zip(range(weeks),I))
+    Rpoints = list(zip(range(weeks),R))
+    show(list_plot(Spoints, plotjoined = True, 
+    	rgbcolor='blue', legend_label = 'Susceptibles') + \
+        list_plot(Ipoints, plotjoined = True, 
+        rgbcolor = 'red', legend_label = 'Infectives') + \
+        list_plot(Rpoints, plotjoined = True, 
+        rgbcolor = 'green', legend_label = 'Removals'), 
+        axes_labels = ['Week', 'Persons'], frame=True)
+\end{sageinput}
+\begin{sageinput}
+SIRmodel(population, alpha, gamma, 25)
+\end{sageinput}
+\begin{figureptx}{}{x:figure:SIRgraph1}{}%
+\begin{image}{0.15}{0.7}{0.15}%
+\includegraphics[width=\linewidth]{./images/SIRgraph1.png}
+\end{image}%
+\tcblower
+\end{figureptx}%
+Notice that the graph shows that the worst of the epidemic will occur during week 8.%
+\par
+Note that the number of susceptibles does not go to 0 over time. We can re-execute the loop code and look at the numbers for \(S\).%
+\begin{sageinput}
+I = [3]
+S = [population-I[0]]
+R = [0]
+for n in range(25):
+    S.append(S[n]-alpha*S[n]*I[n])
+    I.append(I[n]+alpha*S[n]*I[n]-gamma*I[n])
+    R.append(R[n]+gamma*I[n])
+S
+\end{sageinput}
+\begin{sageoutput}
+[997,
+ 992.005030000000,
+ 981.245148340803,
+ 958.291565179937,
+ 910.349546204527,
+ 814.692301587283,
+ 641.744252119348,
+ 388.276826046222,
+ 147.244741940060,
+ 42.2724215836508,
+ 19.7936802200344,
+ 13.7879014273983,
+ 11.5578579155443,
+ 10.5801353765636,
+ 10.1153535054228,
+ 9.88532003431096,
+ 9.76912139282374,
+ 9.70980929530723,
+ 9.67937153154970,
+ 9.66370834419732,
+ 9.65563664495684,
+ 9.65147401086667,
+ 9.64932649792016,
+ 9.64821837453491,
+ 9.64764652180503,
+ 9.64735139894192]
+\end{sageoutput}
+It appears approximately nine people will never get the flu.  That is%
+\begin{equation*}
+\lim_{n\to\infty} S_n \approx 9.
+\end{equation*}
+The fact that this limit is not zero is typical for an SIR model. (In apocalyptic movies, these nine people would be kidnapped by what's left of the government for examination.)%
+\par
+Now let's examine sensitivity to the initial number of cases.  It is often the case that at the beginning of an epidemic, the number of initial cases (\(I_0\)) is underreported. We can use our model to easily assess this impact.%
+\par
+We will assume the number of new cases in week 1, five, is accurate. If the number of initial cases changes, the transmission coefficient changes.  Generalizing equation \hyperref[x:mrow:alphaeqn2]{({\xreffont\ref{x:mrow:alphaeqn2}})}, we see that%
+%
+\begin{gather}
+\alpha = \frac{\text{number of new cases in week 1}}{(\text{initial number of cases})(\text{population} - \text{initial number of cases})}\label{x:mrow:alphaeqn3}
+\end{gather}
+We can implement Formula \hyperref[x:mrow:alphaeqn3]{({\xreffont\ref{x:mrow:alphaeqn3}})} in our model to easily calculate the value of \(\alpha\) for different numbers of initial cases.%
+\begin{sageinput}
+population = 1000
+gamma = 0.5 # removal rate
+newcasesweek1 = 5 
+
+def SIRmodel(population, newcasesweek1, gamma, weeks):
+    I = [4]  # change this number to actual number of initial cases
+    S = [population-I[0]]
+    R = [0]
+    alpha = newcasesweek1/(I[0]*(population - I[0]))
+    for n in range(weeks):
+        S.append(S[n]-alpha*S[n]*I[n])
+        I.append(I[n]+alpha*S[n]*I[n]-gamma*I[n])
+        R.append(R[n]+gamma*I[n])
+    Spoints = list(zip(range(weeks),S))
+    Ipoints = list(zip(range(weeks),I))
+    Rpoints = list(zip(range(weeks),R))
+    show(list_plot(Spoints, plotjoined = True, 
+    rgbcolor='blue', legend_label = 'Susceptibles') + \
+        list_plot(Ipoints, plotjoined = True, 
+        rgbcolor = 'red', legend_label = 'Infectives') + \
+        list_plot(Rpoints, plotjoined = True, 
+        rgbcolor = 'green', legend_label = 'Removals'),
+        axes_labels = ['Week', 'Persons'], frame=True)
+\end{sageinput}
+\begin{sageinput}
+SIRmodel(population, newcasesweek1, gamma, 25)
+\end{sageinput}
+\begin{figureptx}{}{x:figure:SIRdifferentinitial}{}%
+\begin{sidebyside}{2}{0}{0}{0.1}%
+\begin{sbspanel}{0.45}[bottom]%
+\begin{subfigureptx}{4 Initial Cases}{g:figure:id173}{}%
+\includegraphics[width=\linewidth]{./images/SIR4cases.png}
+\tcblower
+\end{subfigureptx}%
+\end{sbspanel}%
+\begin{sbspanel}{0.45}[bottom]%
+\begin{subfigureptx}{6 Initial Cases}{g:figure:id174}{}%
+\includegraphics[width=\linewidth]{./images/SIR6cases.png}
+\tcblower
+\end{subfigureptx}%
+\end{sbspanel}%
+\end{sidebyside}%
+\begin{sidebyside}{1}{0.2}{0.2}{0}%
+\begin{sbspanel}{0.6}%
+\begin{subfigureptx}{10 Initial Cases}{g:figure:id175}{}%
+\includegraphics[width=\linewidth]{./images/SIR10cases.png}
+\tcblower
+\end{subfigureptx}%
+\end{sbspanel}%
+\end{sidebyside}%
+\tcblower
+\end{figureptx}%
+Notice that with 4 initial cases the value of the transmission coefficient decreases, the worst of the epidemic occurs about 2 weeks later, and the severity decreases. At the peak, only 277 people have the flu and in the long–run, about 69 people never get the flu.%
+\par
+As the number of initial cases increases, the severity decreases. Particularly note that with 10 or more initial cases, the number of infectives never increases. In this case we say that there is no epidemic. We see that if the initial number of infectives is higher than originally thought, the epidemic may not be as bad as originally thought.%
+%
+%
+\typeout{************************************************}
+\typeout{Exercises 8.6 Exercises}
+\typeout{************************************************}
+%
+\begin{exercises-subsection-numberless}{Exercises}{}{Exercises}{}{}{g:exercises:id176}
+\begin{divisionexercise}{1}{}{}{g:exercise:id177}%
+In the original model we assumed that the population is constant. Now let’s relax this assumption. Suppose that 25 people move into the community each week starting in week 1. Assume that each of these people is susceptible.%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Modify the subroutine to incorporate this influx of people and describe what happens to the spread of the flu over a 100 week period (use \(\alpha = 0.00167\), \(\gamma = 0.5\) and \(I_0 = 3\)).%
+\item{}What happens if 100 new people move in each week?%
+\end{enumerate}
+\end{divisionexercise}%
+\begin{divisionexercise}{2}{}{}{g:exercise:id178}%
+Suppose the population is a constant 1,000, that initially 50 people have the flu (\(I_0 = 50\)), \(\alpha = 0.00167\) and that \(\gamma = 0.5\). To try to decrease the severity of the epidemic, the community quarantines some of those with the flu. One way to model quarantining is to simply modify the transmission coefficient. For instance, if 25\% of those with the flu are quarantined, then only 75\% of the interactions between those infected and those susceptible are capable of producing an infected person. Therefore, the number of newly infected people is given by%
+%
+\begin{equation*}
+(0.75\alpha)S_n I_n
+\end{equation*}
+Thus the new ``effective'' transmission coefficient is (0.75\(\alpha\)).%
+\begin{enumerate}[font=\bfseries,label=(\alph*),ref=\alph*]
+\item{}Add in a new variable to the code that represents the proportion quarantined and set it to 0.25, and modify the model to incorporate this parameter. Describe what effect quarantining 25\% has over not quarantining.%
+\item{}Add a slider that allows the user to vary the proportion quarantined between 0 and 1. Describe what happens as the proportion quarantined changes. What happens if it equals 0? What if it equals 1?%
+\item{}Add a slider that allows the user to vary the number of initial cases, \(I_0\), between 0 and 1000.%
+\item{}Find a value of Proportion Quarantined that prevents an epidemic from occurring (i.e. the number of infectives never increases) regardless of the value of \(I_0\). Estimate the smallest such value of Proportion Quarantined.%
 \end{enumerate}
 \end{divisionexercise}%
 \end{exercises-subsection-numberless}
