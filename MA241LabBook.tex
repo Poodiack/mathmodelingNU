@@ -1,6 +1,6 @@
 %********************************************%
 %*       Generated from PreTeXt source      *%
-%*       on 2026-04-10T09:11:15-04:00       *%
+%*       on 2026-04-15T11:46:42-04:00       *%
 %*   A recent stable commit (2020-08-09):   *%
 %* 98f21740783f166a773df4dc83cab5293ab63a4a *%
 %*                                          *%
@@ -695,7 +695,7 @@ listing options={language=Python,breaklines=true,breakatwhitespace=true, extende
 {\LARGE Mathematical Computation and Modeling}\\[3\baselineskip]
 {\Large Robert D. Poodiack}\\[0.5\baselineskip]
 {\Large Norwich University}\\[3\baselineskip]
-{\Large April 10, 2026}\\}
+{\Large April 15, 2026}\\}
 \clearpage
 %% end:   title page
 %% begin: copyright-page
@@ -7823,6 +7823,267 @@ Thus the new ``effective'' transmission coefficient is (0.75\(\alpha\)).%
 \end{enumerate}
 \end{divisionexercise}%
 \end{exercises-subsection-numberless}
+\end{sectionptx}
+\end{chapterptx}
+ %
+%
+\typeout{************************************************}
+\typeout{Chapter 9 Discrete Dynamical Systems}
+\typeout{************************************************}
+%
+\begin{chapterptx}{Discrete Dynamical Systems}{}{Discrete Dynamical Systems}{}{}{x:chapter:simulations}
+%
+%
+\typeout{************************************************}
+\typeout{Section 9.1 Introduction}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Introduction}{}{Introduction}{}{}{x:section:intro-simulations}
+\begin{introduction}{}%
+Mathematical modeling is all about describing systems (a system being a collection of components that operate together). Systems come in two general categories: \terminology{Deterministic} and \terminology{Probabilistic}. A deterministic system is one in which the behavior is determined once its parameters are set. A probabilistic system is one in which the behavior is determined, in part, by random events. Similarly, models can be put into these same two categories.%
+\par
+An example of a deterministic system is the area under a curve \(y = f (x)\) over an interval \([a, b]\). The parameters of this system are the function \(f (x)\) and the interval \([a, b]\). Once these parameters are set, the area is determined. Nothing else affects it. We can model this system with a deterministic model using elementary calculus:%
+%
+\begin{equation*}
+\text{Area} = \int_a^b f(x)\,dx.
+\end{equation*}
+Most real world systems are probabilistic. Inevitably a real world system involves some type of random event. Probabilistic systems are more difficult to model, so we typically treat them as if they were deterministic and create a deterministic model. Every model of a real world system we have created to this point has been deterministic.%
+\par
+Here we will introduce one very common type of probabilistic model, \terminology{simulation}. A simulation, in general, is any model that uses random numbers. Often simulations are used to imitate some type of real world behavior, but this does not have to be the case.%
+\par
+There are many reasons why one would construct a simulation model.%
+%
+\begin{enumerate}
+\item{}\emph{System is far too complex to model analytically.} Consider a military air cargo transportation network. This system consists of many components including aircraft of different type, parking spots at airfields, fuel availability at airfields, different types of cargo, etc. It seems impossible to construct an analytical model that incorporates all of these components. Many simplifications would be needed, resulting in a very low-fidelity model.%
+\item{}\emph{It may be difficult, costly, or dangerous to collect data for creating an empirical model.} Consider a hospital emergency room. If we were interested in modeling the waiting time of patients in terms of the number of doctors on staff, we could vary the number of doctors from week-to-week, collect data on waiting time, and construct an empirical model. This approach would certainly take much time and could result in dead patients. A much more practical approach is to simulate the behavior of the emergency room on a computer and vary the number of doctors in the simulation.%
+\item{}\emph{The system may not exist yet.} Consider an aircraft on the drawing board. If we want to study the drag on the fuselage, we can’t go fly it and collect data because it doesn’t exist yet! We could simulate its behavior using a computer based on its design.%
+\item{}\emph{System may contain random events that we do not want to over-simplify.} Consider a check-out line at a supermarket where customers arrive at an average of 2 per minute and the cashier can service an average of 3 customers per minute. If we wanted to model the waiting time of customers, we might be tempted to say that they won’t have to wait at all because the service rate is greater than the arrival rate. This is a vast oversimplification. Instead, we will simulate the arrival and service of customers and analyze waiting time.%
+\end{enumerate}
+We will focus on \terminology{Monte Carlo Simulations}. These simulations get their name from the fact that they are often used to study games of chance (such as those played in Monte Carlo). These simulations consist of three basic steps:%
+%
+\begin{enumerate}
+\item{}Construct a model that uses random numbers.%
+\item{}Evaluate, or ``run,'' the model many times (possibly hundreds or thousands) using different random numbers each time.%
+\item{}Statistically analyze the results.%
+\end{enumerate}
+One advantage of using simulations to study real world behavior is that it allows the modeler to test ``what–if'' scenarios at very little cost. For example, in a simulation of a hospital emergency room, we could easily change the number of doctors or nurses on staff and observe the results. We could simulate many months or years of time in a matter of a few minutes at very little cost and no danger to anybody.%
+\par
+In this chapter, we present a wide range of common types of simulation models and discuss some important topics related to the construction of simulation models.%
+\end{introduction}%
+\end{sectionptx}
+%
+%
+\typeout{************************************************}
+\typeout{Section 9.2 Basic Examples}
+\typeout{************************************************}
+%
+\begin{sectionptx}{Basic Examples}{}{Basic Examples}{}{}{x:section:basic-examples}
+\begin{introduction}{}%
+In this section we illustrate some of the basic concepts involved with a Monte Carlo simulation with three different examples.%
+\end{introduction}%
+\begin{example}{Flipping a Coin.}{g:example:id179}%
+Here we approximate the probability of getting at least 7 tails when a coin is flipped 10 times. In the terminology of elementary probability theory, flipping a coin 10 times is a \terminology{random experiment}, and getting at least 7 tails is an \terminology{event}. One way of estimating the probability of an event is to perform the random experiment many times, each time is called a \terminology{trial}, and count the number of times the event occurred, called the \terminology{number of successes}. We then calculate%
+%
+\begin{equation*}
+P(\text{event}) \approx \frac{\text{Number of successes}}{\text{Total number of trials}}.
+\end{equation*}
+We apply this approach to estimate \(P(\text{at least 7 tails})\).%
+\begin{paragraphs}{Algorithm.}{g:paragraphs:id180}%
+%
+\begin{enumerate}
+\item{}Simulate 10 random flips of a coin and determine the number of tails obtained. This is one trial.%
+\item{}Repeat for 1000 trials.%
+\item{}Calculate the number of trials in which at least 7 tails were obtained. This is the number of successes.%
+\item{}Calculate \(P(\text{at least 7 tails})\approx \dfrac{\text{Number of successes}}{1000}\).%
+\end{enumerate}
+\end{paragraphs}%
+\par
+To implement this algorithm in SageMath, we will make use of the Python command \mono{randrange(2)}, which will select 0 or 1 with equal probability. An output of 1 indicates a Tail and a 0 indicates a Head.%
+\begin{sageinput}
+def CoinFlip():
+    NumOfSuccesses = 0 # initialize the number of successes
+    for trial in range(1000):
+        TotalTails = 0 # initialize the number of tails in this trial
+        for i in range(10):
+            flip = randrange(2) # produces a 0 or a 1 with equal probability
+            if flip == 1:
+                TotalTails += 1
+        if TotalTails >= 7: # if we got 7 or more tails, count the trial as a success
+            NumOfSuccesses += 1
+    print("Probability of at least 7 tails is: ", n(NumOfSuccesses/1000, digits=3))
+\end{sageinput}
+We can execute the cell below several times and get different answers based on the output of the \mono{randrange(2)} command. Execute the following cell several times.%
+\begin{sageinput}
+CoinFlip()
+\end{sageinput}
+One benefit of a simulation like this is that we can easily modify it to consider different what-if scenarios. For instance, what if we use a \terminology{biased} coin where the probability of a tail on a single flip is different than 0.5? Suppose our coin only has a probability of 0.4 of turning up with a Tail. We can modify our SageMath code to use the \mono{random( )} command, which generates a pseudo-random number between 0 and 1, as follows:%
+\begin{sageinput}
+TailProb = 0.4
+
+def CoinFlipBiased():
+    NumOfSuccesses = 0 # initialize the number of successes
+    for trial in range(1000):
+        TotalTails = 0 # initialize the number of tails in this trial
+        for i in range(10):
+            if random() < TailProb:
+                flip = 1
+            else: flip = 0
+            if flip == 1:
+                TotalTails += 1
+        if TotalTails >= 7: # if we got 7 or more tails, count the trial as a success
+            NumOfSuccesses += 1
+    print("Probability of at least 7 tails is: ", n(NumOfSuccesses/1000, digits=3))
+\end{sageinput}
+\begin{sageinput}
+CoinFlipBiased()
+\end{sageinput}
+We can also make this subroutine work for any value of \(P\)(tail) by making TailProb a required input for the subroutine. We can also create a graph of the results (see \hyperref[x:figure:probgraph]{Figure~{\xreffont\ref{x:figure:probgraph}}} for an example) and a table of estimates for \(P\)(at least 7 tails) for different values of \(P\)(tail).%
+\begin{sageinput}
+def CoinFlipBiased(TailProb):
+    if (TailProb < 0 or TailProb > 1):
+        return(print("Please enter a proper probability of getting a tail")) # return ends execution
+    NumOfSuccesses = 0 # initialize the number of successes
+    for trial in range(1000):
+        TotalTails = 0 # initialize the number of tails in this trial
+        for i in range(10):
+            if random() < TailProb:
+                flip = 1
+            else: flip = 0
+            if flip == 1:
+                TotalTails += 1
+        if TotalTails >= 7: # if we got 7 or more tails, count the trial as a success
+            NumOfSuccesses += 1
+    return(n(NumOfSuccesses/1000, digits=3))
+\end{sageinput}
+\begin{sageinput}
+def CoinFlipTable():
+    """
+    returns a table of P(at least 7 tails) estimates for
+    P(tail) values between 0 and 1 in increments of 0.05
+    """
+    values = []
+    for i in range(21):
+        values.append((n(i/20, digits=2), CoinFlipBiased(i/20)))
+    step_plot = plot_step_function(values, axes_labels = ["P(tail)", "P(at least 7 tails)"],frame=True)
+
+    # Create rectangles underneath
+    rects = Graphics()
+    for i in range(len(values)-1):
+        x0, y0 = values[i]
+        x1, y1 = values[i+1]
+    # Create a polygon for each rectangle
+        rect = polygon([[x0, 0], [x0, y0], [x1, y0], [x1, 0]], 
+                   color='red', alpha=0.3, edgecolor='black')
+        rects += rect
+
+    show(step_plot + rects, aspect_ratio="automatic")
+
+    show(table(values, header_row=["P(tail)", r"P(at least 7 tails)"]))
+\end{sageinput}
+\begin{sageinput}
+CoinFlipTable()
+\end{sageinput}
+\begin{figureptx}{}{x:figure:probgraph}{}%
+\begin{image}{0}{1}{0}%
+\includegraphics[width=\linewidth]{./images/probgraph.png}
+\end{image}%
+\tcblower
+\end{figureptx}%
+\end{example}
+\begin{example}{Area Under a Curve.}{g:example:id181}%
+Here we construct a probabilistic model of a deterministic system. Specifically, we use a simulation to estimate the area under the curve \(y=\sqrt{1-x^2}\) over the interval \([-1,1]\). This curve forms the top-half of a circle with radius 1, so the area under the curve is exactly \(\pi/2\). This simulation could be seen as a way of estimating the value of \(\pi\).%
+\par
+A graph of the curve is shown in \hyperref[x:figure:upper-half-circle]{Figure~{\xreffont\ref{x:figure:upper-half-circle}}} along with a rectangle of height \(h = 1\) and width \(w = 2\) drawn around it.%
+\begin{figureptx}{}{x:figure:upper-half-circle}{}%
+\begin{image}{0.2}{0.6}{0.2}%
+\includegraphics[width=\linewidth]{./images/upper-half-circle.png}
+\end{image}%
+\tcblower
+\end{figureptx}%
+In the simulation, we randomly pick points inside the rectangle and determine if each one is above or below the curve. We then estimate the area under the curve using the relationship%
+%
+\begin{equation*}
+\frac{\text{Area under the curve}}{\text{Area under the rectangle}} \approx \frac{\text{Number of points under the curve}}{\text{Total number of points}}
+\end{equation*}
+or equivalently,%
+%
+\begin{gather}
+\text{Area under the curve} \approx \frac{\text{Number of points under the curve}}{\text{Total number of points}}(\text{Area under the rectangle})\label{x:mrow:area-under-curve}
+\end{gather}
+\begin{paragraphs}{Algorithm.}{g:paragraphs:id182}%
+%
+\begin{enumerate}
+\item{}Randomly pick 200 points inside the rectangle.%
+\item{}Determine if each point lies under the curve.%
+\item{}Count the number of points under the curve.%
+\item{}Use \hyperref[x:mrow:area-under-curve]{({\xreffont\ref{x:mrow:area-under-curve}})} to estimate the area under the curve. This is one trial.%
+\item{}Repeat for a total of 200 trials.%
+\end{enumerate}
+\end{paragraphs}%
+\par
+We can now implement the algorithm.%
+\begin{sageinput}
+f(x) = sqrt(1-x^2)
+a = -1
+b = 1
+h = 1
+import numpy as np
+
+def AreaUnderCurve():
+    for trial in range(200):
+        AreaEstimates = []
+        pointsUnderCurve = 0
+        for i in range(200):
+            x = a + random()*(b-a)
+            y = random()*h
+            if y < f(x):
+                pointsUnderCurve += 1
+        AreaEstimates.append(pointsUnderCurve/200*(b-a)*h)
+    print("The average approximate area is:", 
+    	round(np.mean(AreaEstimates), ndigits=2))
+\end{sageinput}
+\begin{sageinput}
+AreaUnderCurve()
+\end{sageinput}
+Re-execute the above cell several times and note the variation in the average.%
+\par
+Think of one trial as if we are playing paintball. We are assured of landing in the rectangle on each shot. If we hit under the curve, we get a red splat; if not, we get a blue splat. We basically compute the proportion of red splats we get from 200 shots and multiply that proportion by the area of the rectangle.%
+\begin{sageinput}
+f(x) = sqrt(1-x^2)
+a = -1
+b = 1
+h = 1
+
+def AreaUnderCurveSingle():
+    goodpoints = []
+    badpoints = []
+    pointsUnderCurve = 0
+    for i in range(200):
+        x = a + random()*(b-a)
+        y = random()*h
+        if y < f(x):
+            pointsUnderCurve += 1
+            goodpoints.append((x,y))
+        else:
+            badpoints.append((x,y))
+    print("The approximate area is:", 
+    	round(pointsUnderCurve/200*(b-a)*h, ndigits=3))
+    p1 = plot(f, (-1,1)) # don't call it f(x) -- we're using x for something here already
+    p2 = polygon([[-1,0], [-1,1], [1,1], [1,0]], 
+    	fill=False, thickness=1, color='black')
+    show(p1 + p2 + list_plot(goodpoints, size=100, color='red') + \
+        list_plot(badpoints, size=100, color='blue'))
+\end{sageinput}
+\begin{sageinput}
+AreaUnderCurveSingle()
+\end{sageinput}
+Note that the average value over 200 trials we got from the first code is generally closer to the actual answer \(\pi/2\approx 1.57\) than the single results we're getting from the single trials. The average also has less variation.%
+\par
+This example illustrates a very important point when analyzing results from simulations:%
+\begin{quote}%
+The more trials, the closer the average value is to the theoretical value.\end{quote}
+The point is that if you want to estimate something with a simulation, you will get a more accurate estimate if you use many trials and take an average than if you use only a few trials. This concept is called the \terminology{Law of Large Numbers.}%
+\end{example}
 \end{sectionptx}
 \end{chapterptx}
 \end{partptx}
