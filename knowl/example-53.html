@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-04-15T11:46:40-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.2.3</span><span class="period">.</span><span class="space"> </span><span class="title">Area Under a Curve.</span>
+</h6>
+<div class="introduction">
+<p xmlns:svg="http://www.w3.org/2000/svg">Here we construct a probabilistic model of a deterministic system. Specifically, we use a simulation to estimate the area under the curve \(y=\sqrt{1-x^2}\) over the interval \([-1,1]\text{.}\) This curve forms the top-half of a circle with radius 1, so the area under the curve is exactly \(\pi/2\text{.}\) This simulation could be seen as a way of estimating the value of \(\pi\text{.}\)</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">A graph of the curve is shown in <a class="xref" data-knowl="./knowl/upper-half-circle.html" title="Figure 9.2.4">Figure 9.2.4</a> along with a rectangle of height \(h = 1\) and width \(w = 2\) drawn around it.</p>
+<figure class="figure figure-like"><div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="./images/upper-half-circle.png" class="contained" alt=""></div>
+<figcaption xmlns:svg="http://www.w3.org/2000/svg"><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.4<span class="period">.</span></span><span class="space"> </span></figcaption></figure><p xmlns:svg="http://www.w3.org/2000/svg">In the simulation, we randomly pick points inside the rectangle and determine if each one is above or below the curve. We then estimate the area under the curve using the relationship</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+\frac{\text{Area under the curve}}{\text{Area under the rectangle}} \approx \frac{\text{Number of points under the curve}}{\text{Total number of points}}
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">or equivalently,</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{gather}
+\text{Area under the curve} \approx \frac{\text{Number of points under the curve}}{\text{Total number of points}}(\text{Area under the rectangle})\tag{9.2.1}
+\end{gather}
+</div>
+</div>
+<section class="paragraphs"><h5 class="heading"><span class="title">Algorithm.</span></h5>
+<ol class="decimal">
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Randomly pick 200 points inside the rectangle.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Determine if each point lies under the curve.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Count the number of points under the curve.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Use <a class="xref" data-knowl="./knowl/area-under-curve.html" title="Equation 9.2.1">(9.2.1)</a> to estimate the area under the curve. This is one trial.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Repeat for a total of 200 trials.</p></li>
+</ol></section><p xmlns:svg="http://www.w3.org/2000/svg">We can now implement the algorithm.</p>
+<div class="sagecell-sage" id="sage-318"><script type="text/x-sage">f(x) = sqrt(1-x^2)
+a = -1
+b = 1
+h = 1
+import numpy as np
+
+def AreaUnderCurve():
+    for trial in range(200):
+        AreaEstimates = []
+        pointsUnderCurve = 0
+        for i in range(200):
+            x = a + random()*(b-a)
+            y = random()*h
+            if y < f(x):
+                pointsUnderCurve += 1
+        AreaEstimates.append(pointsUnderCurve/200*(b-a)*h)
+    print("The average approximate area is:", 
+    	round(np.mean(AreaEstimates), ndigits=2))
+</script></div>
+<div class="sagecell-sage" id="sage-319"><script type="text/x-sage">AreaUnderCurve()
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Re-execute the above cell several times and note the variation in the average.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">Think of one trial as if we are playing paintball. We are assured of landing in the rectangle on each shot. If we hit under the curve, we get a red splat; if not, we get a blue splat. We basically compute the proportion of red splats we get from 200 shots and multiply that proportion by the area of the rectangle.</p>
+<div class="sagecell-sage" id="sage-320"><script type="text/x-sage">f(x) = sqrt(1-x^2)
+a = -1
+b = 1
+h = 1
+
+def AreaUnderCurveSingle():
+    goodpoints = []
+    badpoints = []
+    pointsUnderCurve = 0
+    for i in range(200):
+        x = a + random()*(b-a)
+        y = random()*h
+        if y < f(x):
+            pointsUnderCurve += 1
+            goodpoints.append((x,y))
+        else:
+            badpoints.append((x,y))
+    print("The approximate area is:", 
+    	round(pointsUnderCurve/200*(b-a)*h, ndigits=3))
+    p1 = plot(f, (-1,1)) # don't call it f(x) -- we're using x for something here already
+    p2 = polygon([[-1,0], [-1,1], [1,1], [1,0]], 
+    	fill=False, thickness=1, color='black')
+    show(p1 + p2 + list_plot(goodpoints, size=100, color='red') + \
+        list_plot(badpoints, size=100, color='blue'))
+</script></div>
+<div class="sagecell-sage" id="sage-321"><script type="text/x-sage">AreaUnderCurveSingle()
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">Note that the average value over 200 trials we got from the first code is generally closer to the actual answer \(\pi/2\approx 1.57\) than the single results we're getting from the single trials. The average also has less variation.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">This example illustrates a very important point when analyzing results from simulations:</p>
+<blockquote class="blockquote">The more trials, the closer the average value is to the theoretical value.</blockquote>
+<p xmlns:svg="http://www.w3.org/2000/svg">The point is that if you want to estimate something with a simulation, you will get a more accurate estimate if you use many trials and take an average than if you use only a few trials. This concept is called the <dfn class="terminology">Law of Large Numbers.</dfn></p></article><span class="incontext"><a href="basic-examples.html#example-53">in-context</a></span>
+</body>
+</html>

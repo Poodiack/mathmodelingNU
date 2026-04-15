@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-04-15T11:46:40-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body>
+<article class="example example-like"><h6 xmlns:svg="http://www.w3.org/2000/svg" class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Flipping a Coin.</span>
+</h6>
+<div class="introduction">
+<p xmlns:svg="http://www.w3.org/2000/svg">Here we approximate the probability of getting at least 7 tails when a coin is flipped 10 times. In the terminology of elementary probability theory, flipping a coin 10 times is a <dfn class="terminology">random experiment</dfn>, and getting at least 7 tails is an <dfn class="terminology">event</dfn>. One way of estimating the probability of an event is to perform the random experiment many times, each time is called a <dfn class="terminology">trial</dfn>, and count the number of times the event occurred, called the <dfn class="terminology">number of successes</dfn>. We then calculate</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath">
+\begin{equation*}
+P(\text{event}) \approx \frac{\text{Number of successes}}{\text{Total number of trials}}.
+\end{equation*}
+</div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We apply this approach to estimate \(P(\text{at least 7 tails})\text{.}\)</p>
+</div>
+<section class="paragraphs"><h5 class="heading"><span class="title">Algorithm.</span></h5>
+<ol class="decimal">
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Simulate 10 random flips of a coin and determine the number of tails obtained. This is one trial.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Repeat for 1000 trials.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Calculate the number of trials in which at least 7 tails were obtained. This is the number of successes.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Calculate \(P(\text{at least 7 tails})\approx \dfrac{\text{Number of successes}}{1000}\text{.}\)</p></li>
+</ol></section><p xmlns:svg="http://www.w3.org/2000/svg">To implement this algorithm in SageMath, we will make use of the Python command <code class="code-inline tex2jax_ignore">randrange(2)</code>, which will select 0 or 1 with equal probability. An output of 1 indicates a Tail and a 0 indicates a Head.</p>
+<div class="sagecell-sage" id="sage-311"><script type="text/x-sage">def CoinFlip():
+    NumOfSuccesses = 0 # initialize the number of successes
+    for trial in range(1000):
+        TotalTails = 0 # initialize the number of tails in this trial
+        for i in range(10):
+            flip = randrange(2) # produces a 0 or a 1 with equal probability
+            if flip == 1:
+                TotalTails += 1
+        if TotalTails >= 7: # if we got 7 or more tails, count the trial as a success
+            NumOfSuccesses += 1
+    print("Probability of at least 7 tails is: ", n(NumOfSuccesses/1000, digits=3))
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We can execute the cell below several times and get different answers based on the output of the <code class="code-inline tex2jax_ignore">randrange(2)</code> command. Execute the following cell several times.</p>
+<div class="sagecell-sage" id="sage-312"><script type="text/x-sage">CoinFlip()
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">One benefit of a simulation like this is that we can easily modify it to consider different what-if scenarios. For instance, what if we use a <dfn class="terminology">biased</dfn> coin where the probability of a tail on a single flip is different than 0.5? Suppose our coin only has a probability of 0.4 of turning up with a Tail. We can modify our SageMath code to use the <code class="code-inline tex2jax_ignore">random( )</code> command, which generates a pseudo-random number between 0 and 1, as follows:</p>
+<div class="sagecell-sage" id="sage-313"><script type="text/x-sage">TailProb = 0.4
+
+def CoinFlipBiased():
+    NumOfSuccesses = 0 # initialize the number of successes
+    for trial in range(1000):
+        TotalTails = 0 # initialize the number of tails in this trial
+        for i in range(10):
+            if random() < TailProb:
+                flip = 1
+            else: flip = 0
+            if flip == 1:
+                TotalTails += 1
+        if TotalTails >= 7: # if we got 7 or more tails, count the trial as a success
+            NumOfSuccesses += 1
+    print("Probability of at least 7 tails is: ", n(NumOfSuccesses/1000, digits=3))
+</script></div>
+<div class="sagecell-sage" id="sage-314"><script type="text/x-sage">CoinFlipBiased()
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">We can also make this subroutine work for any value of \(P\)(tail) by making TailProb a required input for the subroutine. We can also create a graph of the results (see <a class="xref" data-knowl="./knowl/probgraph.html" title="Figure 9.2.2">Figure 9.2.2</a> for an example) and a table of estimates for \(P\)(at least 7 tails) for different values of \(P\)(tail).</p>
+<div class="sagecell-sage" id="sage-315"><script type="text/x-sage">def CoinFlipBiased(TailProb):
+    if (TailProb < 0 or TailProb > 1):
+        return(print("Please enter a proper probability of getting a tail")) # return ends execution
+    NumOfSuccesses = 0 # initialize the number of successes
+    for trial in range(1000):
+        TotalTails = 0 # initialize the number of tails in this trial
+        for i in range(10):
+            if random() < TailProb:
+                flip = 1
+            else: flip = 0
+            if flip == 1:
+                TotalTails += 1
+        if TotalTails >= 7: # if we got 7 or more tails, count the trial as a success
+            NumOfSuccesses += 1
+    return(n(NumOfSuccesses/1000, digits=3))
+</script></div>
+<div class="sagecell-sage" id="sage-316"><script type="text/x-sage">def CoinFlipTable():
+    """
+    returns a table of P(at least 7 tails) estimates for
+    P(tail) values between 0 and 1 in increments of 0.05
+    """
+    values = []
+    for i in range(21):
+        values.append((n(i/20, digits=2), CoinFlipBiased(i/20)))
+    step_plot = plot_step_function(values, axes_labels = ["P(tail)", "P(at least 7 tails)"],frame=True)
+
+    # Create rectangles underneath
+    rects = Graphics()
+    for i in range(len(values)-1):
+        x0, y0 = values[i]
+        x1, y1 = values[i+1]
+    # Create a polygon for each rectangle
+        rect = polygon([[x0, 0], [x0, y0], [x1, y0], [x1, 0]], 
+                   color='red', alpha=0.3, edgecolor='black')
+        rects += rect
+
+    show(step_plot + rects, aspect_ratio="automatic")
+
+    show(table(values, header_row=["P(tail)", r"P(at least 7 tails)"]))
+</script></div>
+<div class="sagecell-sage" id="sage-317"><script type="text/x-sage">CoinFlipTable()
+</script></div>
+<figure class="figure figure-like"><div xmlns:svg="http://www.w3.org/2000/svg" class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="./images/probgraph.png" class="contained" alt=""></div>
+<figcaption xmlns:svg="http://www.w3.org/2000/svg"><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.2<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><span class="incontext"><a href="basic-examples.html#example-52">in-context</a></span>
+</body>
+</html>
