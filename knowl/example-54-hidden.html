@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2026-04-15T13:36:24-04:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>$(function () {
+    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Their results will be linked, only within language type
+    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+                           linked: true,
+                           languages: ['sage'],
+                           evalButtonText: 'Evaluate (Sage)'});
+});
+</script>
+</head>
+<body><article class="example example-like"><div class="introduction"><p xmlns:svg="http://www.w3.org/2000/svg">A car dealership is sponsoring a contest where the grand prize is a new car. Contests are to gather tickets which contain the letter “C,” “A,” or “R” from participating merchants. To win, one must obtain all three letters. 55% of the tickets contain a “C”, 44% contain an “A”, and 1% contain an “R.” What is the expected number of tickets a contestant must gather to win the car?</p></div>
+<section class="paragraphs"><h5 class="heading"><span class="title">Algorithm.</span></h5>
+<ol class="decimal">
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Randomly generate 500 tickets.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Keep running totals of the number of each letter obtained.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Determine if at least one of each letter has been obtained.</p></li>
+<li><p xmlns:svg="http://www.w3.org/2000/svg">Repeat for a total of 500 trials.</p></li>
+</ol></section><p xmlns:svg="http://www.w3.org/2000/svg">To implement this algorithm, we use the following code.</p>
+<div class="sagecell-sage" id="sage-322"><script type="text/x-sage">import numpy as np
+
+def CarTicket():
+    ticketsToWin = [] # record for each trial the number of tickets needed for a win
+    for trial in range(500):
+        numOfCs = 0 # reset the numbers of C's, A's, and R's drawn for next trial
+        numOfAs = 0
+        numOfRs = 0
+        for tickets in range(500):
+            ticket = random()
+            if ticket < 0.55:
+                numOfCs += 1
+            elif ticket < 0.99: # elif is needed here; otherwise ticket < 0.55 would add to both C's and A's
+                numOfAs += 1
+            else:
+                numOfRs += 1
+            if (numOfCs > 0 and numOfAs > 0 and numOfRs > 0):
+                break # we have at least one of all three tickets so stop drawing
+        ticketsToWin.append(tickets)
+    return(print("The average number of tickets needed to win the car is", 
+    	round(np.mean(ticketsToWin), ndigits=5)))
+</script></div>
+<div class="sagecell-sage" id="sage-323"><script type="text/x-sage">CarTicket()
+</script></div>
+<p xmlns:svg="http://www.w3.org/2000/svg">The idea is to break up the interval \((0,1)\) into three sub-intervals of length 0.55, 0.44, and 0.01. Then we generate a random number between 0 and 1 with the <code class="code-inline tex2jax_ignore">random( )</code> function. If this number is in the first sub-interval, the letter is a “C”, etc.</p>
+<p xmlns:svg="http://www.w3.org/2000/svg">The simulation shows that the expected number of tickets needed to win the contest is around 100.</p></article></body>
+</html>
