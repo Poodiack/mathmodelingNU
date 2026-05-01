@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2026-04-15T11:52:39-04:00       *-->
+<!--*       on 2026-04-15T13:36:21-04:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -357,7 +357,58 @@ def AreaUnderCurveSingle():
 <p id="p-1030">Note that the average value over 200 trials we got from the first code is generally closer to the actual answer \(\pi/2\approx 1.57\) than the single results we're getting from the single trials. The average also has less variation.</p>
 <p id="p-1031">This example illustrates a very important point when analyzing results from simulations:</p>
 <blockquote class="blockquote" id="blockquote-7">The more trials, the closer the average value is to the theoretical value.</blockquote>
-<p id="p-1032">The point is that if you want to estimate something with a simulation, you will get a more accurate estimate if you use many trials and take an average than if you use only a few trials. This concept is called the <dfn class="terminology">Law of Large Numbers.</dfn></p></article></div></section></div></main>
+<p id="p-1032">The point is that if you want to estimate something with a simulation, you will get a more accurate estimate if you use many trials and take an average than if you use only a few trials. This concept is called the <dfn class="terminology">Law of Large Numbers.</dfn></p></article></div>
+<article class="example example-like" id="example-54"><a data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-54"><h6 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Car Dealership Contest.</span>
+</h6></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-54"><article class="example example-like"><div class="introduction" id="introduction-56"><p id="p-1033">A car dealership is sponsoring a contest where the grand prize is a new car. Contests are to gather tickets which contain the letter “C,” “A,” or “R” from participating merchants. To win, one must obtain all three letters. 55% of the tickets contain a “C”, 44% contain an “A”, and 1% contain an “R.” What is the expected number of tickets a contestant must gather to win the car?</p></div>
+<section class="paragraphs" id="paragraphs-8"><h5 class="heading"><span class="title">Algorithm.</span></h5>
+<ol class="decimal">
+<li id="li-100"><p id="p-1034">Randomly generate 500 tickets.</p></li>
+<li id="li-101"><p id="p-1035">Keep running totals of the number of each letter obtained.</p></li>
+<li id="li-102"><p id="p-1036">Determine if at least one of each letter has been obtained.</p></li>
+<li id="li-103"><p id="p-1037">Repeat for a total of 500 trials.</p></li>
+</ol></section><p id="p-1038">To implement this algorithm, we use the following code.</p>
+<div class="hidden-sagecell-sage" id="sage-322"><script type="text/x-sage">import numpy as np
+
+def CarTicket():
+    ticketsToWin = [] # record for each trial the number of tickets needed for a win
+    for trial in range(500):
+        numOfCs = 0 # reset the numbers of C's, A's, and R's drawn for next trial
+        numOfAs = 0
+        numOfRs = 0
+        for tickets in range(500):
+            ticket = random()
+            if ticket < 0.55:
+                numOfCs += 1
+            elif ticket < 0.99: # elif is needed here; otherwise ticket < 0.55 would add to both C's and A's
+                numOfAs += 1
+            else:
+                numOfRs += 1
+            if (numOfCs > 0 and numOfAs > 0 and numOfRs > 0):
+                break # we have at least one of all three tickets so stop drawing
+        ticketsToWin.append(tickets)
+    return(print("The average number of tickets needed to win the car is", 
+    	round(np.mean(ticketsToWin), ndigits=5)))
+</script></div>
+<div class="hidden-sagecell-sage" id="sage-323"><script type="text/x-sage">CarTicket()
+</script></div>
+<p id="p-1039">The idea is to break up the interval \((0,1)\) into three sub-intervals of length 0.55, 0.44, and 0.01. Then we generate a random number between 0 and 1 with the <code class="code-inline tex2jax_ignore">random( )</code> function. If this number is in the first sub-interval, the letter is a “C”, etc.</p>
+<p id="p-1040">The simulation shows that the expected number of tickets needed to win the contest is around 100.</p></article></div>
+<section class="exercises" id="exercises-18"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber"></span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-60"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<p id="p-1041">Modify the <code class="code-inline tex2jax_ignore">CoinFlip</code> function so there are a total of 5000 trials. Compare the variability of the value of \(P\)(at least 7 tails) with 1000 trials as compared to 5000 trials.</p></article><article class="exercise exercise-like" id="exercise-61"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<p id="p-1042">Modify the <code class="code-inline tex2jax_ignore">CoinFlip</code> function to approximate the probability that the number of Tails is between 4 and 7, inclusive.</p></article><article class="exercise exercise-like" id="exercise-62"><h6 class="heading"><span class="codenumber">3<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-57"><p id="p-1043">Suppose you roll a fair four-sided die three times. Design a function to estimate the probability that</p></div>
+<article class="task exercise-like" id="task-83"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-1044">the sum of the three rolls is at least 7,</p></article><article class="task exercise-like" id="task-84"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-1045">at least one of the rolls is greater than 2, and</p></article><article class="task exercise-like" id="task-85"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<p id="p-1046">the first roll or the third roll is even.</p></article></article><article class="exercise exercise-like" id="exercise-63"><h6 class="heading"><span class="codenumber">4<span class="period">.</span></span></h6>
+<div class="introduction" id="introduction-58"><p id="p-1047">Go back to our area under the curve simulation.</p></div>
+<article class="task exercise-like" id="task-86"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<p id="p-1048">Increase the value of \(h\) in the simulation. How does this affect the quality of the estimation of the area?</p></article><article class="task exercise-like" id="task-87"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<p id="p-1049">Increase the number of points selected inside the rectangle. How does this affect the estimate?</p></article></article></section></section></div></main>
 </div>
 <script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
